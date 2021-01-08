@@ -10,6 +10,7 @@ The purpose of this project is to provide a template for new open source reposit
 ## Usage
 
 To contribute to this repo please see [CONTRIBUTING.md](CONTRIBUTING.md)
+
 Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 
 ## Notes
@@ -17,7 +18,8 @@ Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 **NOTE: This repository has been configured with the [DCO bot](https://github.com/probot/dco): [dco.yml](.github/dco.yml).**
 
 If you have any questions or issues you can create a new issue [here](https://github.com/ibm/mac-ibm-notifications/issues).
-You can also find a list of the mainteners of this repo [here](MAINTAINERS.md)
+
+You can also find a list of the mainteners of this repo [here](MAINTAINERS.md).
 
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
