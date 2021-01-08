@@ -1,0 +1,24 @@
+# Xcode
+#
+
+## User settings
+**/xcuserdata/
+
+## Obj-C/Swift specific
+*.hmap
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+.build/
+**/.DS_Store
+*.zip
+*.app
+
+fastlane/test_output/
+fastlane/report.xml
+fastlane/README.md
+Gemfile.lock
+.idea/

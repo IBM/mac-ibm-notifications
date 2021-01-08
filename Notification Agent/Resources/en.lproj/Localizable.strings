@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Notification Agent
+
+  Created by Simone Martorelli on 8/10/20.
+  Copyright © 2020 IBM. All rights reserved.
+  SPDX-License-Identifier: Apache2.0
+*/
+
+// MARK: - Main popup window
+"default_popup_bar_title" = "Mac@IBM Notifications";
+
+// MARK: - Accessory views
+"accessory_view_timer_label" = "Please make a selection in %@";
+
+// MARK: - Buttons
+"default_main_button_label" = "Ok";
+"cancel_label" = "Cancel";

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>NotificationAgentUITests</key>
+		<dict>
+			<key>testLaunchPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_OSSignpost-ApplicationLaunchExtended.duration</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.82116</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>PopupUITests</key>
+		<dict>
+			<key>testLaunchPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_OSSignpost-ApplicationLaunchExtended.duration</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.82566</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testPresentPopup()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.1156</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_OSSignpost-ApplicationLaunchExtended.duration</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.82761</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testPresentPopupPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.0981</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>
