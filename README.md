@@ -19,7 +19,7 @@ Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 
 If you have any questions or issues you can create a new issue [here](https://github.com/ibm/mac-ibm-notifications/issues).
 
-You can also find a list of the mainteners of this repo [here](MAINTAINERS.md).
+You can also find a list of the maintainers of this repo [here](MAINTAINERS.md).
 
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
