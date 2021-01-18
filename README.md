@@ -10,7 +10,7 @@
 
 ## Scope
 
-The purpose of this project is to provide a template for new open source repositories.
+The purpose of this project is to provide an useful tool to system administrators to trigger interactive popups and notification banners to the end user.
 
 ## Usage
 
