@@ -22,7 +22,7 @@ For detailed usage of this tool please refer to the [official wiki](https://gith
 
 ## Notes
 
-If you have any questions or issues you can create a new issue [here](https://github.com/ibm/mac-ibm-notifications/issues).
+If you have any questions or issues you can create a new issue [here](https://github.com/IBM/mac-ibm-notifications/issues/new/choose).
 
 You can also find a list of the maintainers of this repo [here](MAINTAINERS.md).
 
