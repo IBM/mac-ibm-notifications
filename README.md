@@ -2,6 +2,10 @@
 
 <!-- Build Status, is a great thing to have at the top of your repository, it shows that you take your CI/CD as first class citizens -->
 <!-- [![Build Status](https://travis-ci.org/jjasghar/ibm-cloud-cli.svg?branch=master)](https://travis-ci.org/jjasghar/ibm-cloud-cli) -->
+![License](https://img.shields.io/badge/license-Apache%202-blue)
+![Swift version](https://img.shields.io/badge/swift-5-EA392B)
+![Xcode version](https://img.shields.io/badge/xcode-12.3-1984E5)
+![macOS](https://img.shields.io/badge/macOS-Big%20Sur-green)
 
 ## Scope
 
@@ -12,6 +16,8 @@ The purpose of this project is to provide a template for new open source reposit
 To contribute to this repo please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
+
+For detailed usage of this tool please refer to the [official wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Usage-guidelines)
 
 ## Notes
 
