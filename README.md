@@ -6,6 +6,7 @@
 ![Swift version](https://img.shields.io/badge/swift-5-EA392B)
 ![Xcode version](https://img.shields.io/badge/xcode-12.3-1984E5)
 ![macOS](https://img.shields.io/badge/macOS-Big%20Sur-green)
+![Project version](https://img.shields.io/badge/version-1.2.0-bright%20green)
 
 ## Scope
 
@@ -20,8 +21,6 @@ Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 For detailed usage of this tool please refer to the [official wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Usage-guidelines)
 
 ## Notes
-
-**NOTE: This repository has been configured with the [DCO bot](https://github.com/probot/dco): [dco.yml](.github/dco.yml).**
 
 If you have any questions or issues you can create a new issue [here](https://github.com/ibm/mac-ibm-notifications/issues).
 
