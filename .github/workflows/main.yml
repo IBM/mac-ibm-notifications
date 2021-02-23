@@ -7,16 +7,18 @@ on:
       - main
 
 jobs:
+  SwiftLint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: GitHub Action for SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
   test:
     runs-on: macos-latest
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
-        
-      - name: SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
-
-      - name: Run a multi-line script
+      - name: Run Xcodebuild Test, Build
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           xcodebuild -project "Notification Agent.xcodeproj" -scheme Mac@IBM -destination 'platform=OS X' clean test build | xcpretty
