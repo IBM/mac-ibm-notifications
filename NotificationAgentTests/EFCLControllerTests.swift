@@ -6,7 +6,6 @@
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable notification_center_detachment
 
 import Foundation
 import XCTest
