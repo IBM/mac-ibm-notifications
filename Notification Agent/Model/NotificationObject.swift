@@ -6,7 +6,6 @@
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable line_length trailing_whitespace compiler_protocol_init
 
 import Foundation
 

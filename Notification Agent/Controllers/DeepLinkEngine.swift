@@ -5,8 +5,6 @@
 //  Created by Simone Martorelli on 6/22/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
-//
-//  swiftlint:disable all
 
 import Foundation
 import os.log

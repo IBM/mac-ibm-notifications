@@ -6,7 +6,6 @@
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Signals
@@ -63,7 +62,7 @@ final class EFCLController {
     /// - Parameter reason: reason why the application should exit.
     /// - Returns: never.
     internal func applicationExit(withReason reason: ExitReason) {
-        //logger.log("Notification Agent exit with reason: %{public}@", reason)
+        // logger.log("Notification Agent exit with reason: %{public}@", reason)
         guard !isRunningTestForEFCL else { return }
         switch reason {
         case .untrackedSuccess:

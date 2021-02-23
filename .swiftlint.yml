@@ -1,0 +1,8 @@
+--- 
+disabled_rules: 
+  - line_length
+  - compiler_protocol_init
+  - cyclomatic_complexity
+  - notification_center_detachment
+  - trailing_whitespace
+  - colon

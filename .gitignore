@@ -8,14 +8,15 @@
 *.hmap
 
 ## App packaging
-*.ipa
-*.dSYM.zip
-*.dSYM
+**/*.ipa
+**/*.dSYM.zip
+**/*.dSYM
+
 
 .build/
 **/.DS_Store
-*.zip
-*.app
+**/*.zip
+**/*.app
 
 fastlane/test_output/
 fastlane/report.xml

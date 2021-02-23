@@ -1,7 +1,6 @@
 # mac-ibm-notifications
 
-<!-- Build Status, is a great thing to have at the top of your repository, it shows that you take your CI/CD as first class citizens -->
-<!-- [![Build Status](https://travis-ci.org/jjasghar/ibm-cloud-cli.svg?branch=master)](https://travis-ci.org/jjasghar/ibm-cloud-cli) -->
+[![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
 ![License](https://img.shields.io/badge/license-Apache%202-blue)
 ![Swift version](https://img.shields.io/badge/swift-5-EA392B)
 ![Xcode version](https://img.shields.io/badge/xcode-12.3-1984E5)
