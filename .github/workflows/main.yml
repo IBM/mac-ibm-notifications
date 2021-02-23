@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        
+      - name: SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
+
+      - name: Run a multi-line script
+        shell: bash --noprofile --norc -eo pipefail {0}
+        run: |
+          xcodebuild -project "Notification Agent.xcodeproj" -scheme Mac@IBM -destination 'platform=OS X' clean test build | xcpretty
