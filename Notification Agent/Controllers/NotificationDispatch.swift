@@ -38,7 +38,7 @@ final class NotificationDispatch {
         guard let object = notification.userInfo?["object"] as? NotificationObject else { return }
         switch object.type {
         case .banner:
-            userNotificationController.showBanner(object)
+            self.userNotificationController.showBanner(object)
         case .popup:
             DispatchQueue.main.async {
                 let storyboard = NSStoryboard(name: "Main", bundle: nil)
@@ -52,6 +52,16 @@ final class NotificationDispatch {
                 window.makeKeyAndOrderFront(self)
                 NSSound(named: .init("Funk"))?.play()
             }
+        case .onboarding:
+            guard let pages = object.payload?.pages else { return }
+            let onboardingViewController = OnboardingViewController(with: pages)
+            let window = NSWindow(contentViewController: onboardingViewController)
+            window.styleMask.remove(.resizable)
+            window.title = ""
+            window.titlebarAppearsTransparent = true
+            window.center()
+            window.delegate = onboardingViewController
+            window.makeKeyAndOrderFront(self)
         }
     }
 }

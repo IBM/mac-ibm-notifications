@@ -19,7 +19,7 @@ struct MockedData {
         "subtitle": "Test_subtitle"],
         // No buttons no title no subtitle with accessory view
         ["type": "popup",
-        "accessory_view_type": "text",
+        "accessory_view_type": "whitebox",
         "accessory_view_payload": "Test_accessory_view"],
         // Multiple buttons
         ["type": "popup",
@@ -28,7 +28,7 @@ struct MockedData {
         "main_button_label": "Button One",
         "secondary_button_label": "Button_Two",
         "secondary_button_cta_type": "link",
-        "secondary_button_cta_payload": "https://www.google.com"],
+        "secondary_button_cta_payload": "https://www.ibm.com"],
         // One help button
         ["type": "popup",
         "title": "Test_Title",
@@ -36,7 +36,7 @@ struct MockedData {
         "main_button_label": "Button_One",
         "secondary_button_label": "Button_Two",
         "secondary_button_cta_type": "link",
-        "secondary_button_cta_payload": "https://www.google.com",
+        "secondary_button_cta_payload": "https://www.ibm.com",
         "help_button_cta_type": "infopopup",
         "help_button_cta_payload": "test_text"],
         // Destructive tertiary button
@@ -46,10 +46,10 @@ struct MockedData {
          "main_button_label": "Button_One",
          "secondary_button_label": "Button_Two",
          "secondary_button_cta_type": "link",
-         "secondary_button_cta_payload": "https://www.google.com",
+         "secondary_button_cta_payload": "https://www.ibm.com",
          "tertiary_button_label": "Button_Three",
          "tertiary_button_cta_type": "exitlink",
-         "tertiary_button_cta_payload": "https://www.google.com"]
+         "tertiary_button_cta_payload": "https://www.ibm.com"]
     ]
 
     static let wrongFormatDictionaries: [[String: Any]] = [
@@ -84,7 +84,7 @@ struct MockedData {
          "-main_button_label", "Button One",
          "-secondary_button_label", "Button_Two",
          "-secondary_button_cta_type", "link",
-         "-secondary_button_cta_payload", "https://www.google.com"],
+         "-secondary_button_cta_payload", "https://www.ibm.com"],
         // One help button
         ["path",
          "--isRunningTestForCommandLine",
@@ -96,7 +96,7 @@ struct MockedData {
          "-main_button_cta_payload", "testpolicy",
          "-secondary_button_label", "Button_Two",
          "-secondary_button_cta_type", "link",
-         "-secondary_button_cta_payload", "https://www.google.com",
+         "-secondary_button_cta_payload", "https://www.ibm.com",
          "-help_button_cta_type", "infopopup",
          "-help_button_cta_payload", "test_text"],
         // Destructive tertiary button
@@ -110,10 +110,10 @@ struct MockedData {
          "-main_button_cta_payload", "testpolicy",
          "-secondary_button_label", "Button_Two",
          "-secondary_button_cta_type", "link",
-         "-secondary_button_cta_payload", "https://www.google.com",
+         "-secondary_button_cta_payload", "https://www.ibm.com",
          "-tertiary_button_label", "Button_Three",
          "-tertiary_button_cta_type", "exitlink",
-         "-tertiary_button_cta_payload", "https://www.google.com"]
+         "-tertiary_button_cta_payload", "https://www.ibm.com"]
     ]
 
     static let wrongArgumentLists: [[String]] = [

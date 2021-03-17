@@ -23,12 +23,15 @@ final class EFCLController {
         case secondaryButtonClicked
         case tertiaryButtonClicked
         case userDismissedNotification
+        case userDismissedOnboarding
+        case userFinishedOnboarding
         case invalidArgumentsSyntax
         case invalidArgumentFormat
         case internalError
         case cancelPressed
         case receivedSigInt
         case unableToLoadResources
+        case timeout
         case exitWithInput(inputText: String)
     }
 
@@ -62,18 +65,17 @@ final class EFCLController {
     /// - Parameter reason: reason why the application should exit.
     /// - Returns: never.
     internal func applicationExit(withReason reason: ExitReason) {
-        // logger.log("Notification Agent exit with reason: %{public}@", reason)
         guard !isRunningTestForEFCL else { return }
         switch reason {
         case .untrackedSuccess:
             exit(200)
-        case .mainButtonClicked:
+        case .mainButtonClicked, .userFinishedOnboarding:
             exit(0)
         case .secondaryButtonClicked:
             exit(2)
         case .tertiaryButtonClicked:
             exit(3)
-        case .userDismissedNotification:
+        case .userDismissedNotification, .userDismissedOnboarding:
             exit(239)
         case .invalidArgumentsSyntax:
             exit(250)
@@ -85,6 +87,8 @@ final class EFCLController {
             exit(201)
         case .unableToLoadResources:
             exit(260)
+        case .timeout:
+            exit(4)
         case .exitWithInput(let inputValue):
             print(inputValue)
             exit(200)
@@ -151,7 +155,7 @@ final class EFCLController {
         }
         for configSet in recognizedConfigurationsDict {
             guard let defaultsKey = ConfigurableParameters.set[configSet.key] else {
-                logger.log("%{public}@ key not set for unknown error.", configSet.key)
+                logger.log(.error, "%{public}@ key not set for unknown error.", configSet.key)
                 continue
             }
             UserDefaults.standard.set(configSet.value, forKey: defaultsKey)

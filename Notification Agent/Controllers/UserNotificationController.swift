@@ -31,12 +31,13 @@ class UserNotificationController: NSObject {
     // MARK: - Public methods
 
     /// Request the authorization to send User Notification.
-    func registerForRichNotifications(_ completion: @escaping () -> Void) {
+    func registerForRichNotificationsIfNeeded(_ completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if let error = error {
                 self.logger.log(.error,
                        "Mac@IBM Notification Agent rich notification autorization request ended with error: %{public}@",
                        error.localizedDescription)
+                EFCLController.shared.applicationExit(withReason: .internalError)
             }
             if granted {
                 self.logger.log("Mac@IBM Notification Agent rich notification autorization granted")
@@ -50,51 +51,54 @@ class UserNotificationController: NSObject {
     /// Show to the user a control center notification that describe the notification object received.
     /// - Parameter notificationObject: the notification object that needs to be show.
     func showBanner(_ notificationObject: NotificationObject) {
-        let userNotificationContent = UNMutableNotificationContent()
-        let userNotificationRequestIdentifier = notificationObject.identifier.uuidString
+        registerForRichNotificationsIfNeeded {
+            let userNotificationContent = UNMutableNotificationContent()
+            let userNotificationRequestIdentifier = notificationObject.identifier.uuidString
 
-        userNotificationContent.title = notificationObject.title ?? ""
-        userNotificationContent.body = notificationObject.subtitle ?? ""
-        var actions: [UNNotificationAction] = []
-        if let tertiaryButton = notificationObject.tertiaryButton {
-            let actionThree = UNNotificationAction(identifier: tertiaryButton.label, title: tertiaryButton.label, options: [.authenticationRequired])
-            actions.insert(actionThree, at: 0)
-        }
-        if let secondaryButton = notificationObject.secondaryButton {
-            let actionTwo = UNNotificationAction(identifier: secondaryButton.label, title: secondaryButton.label, options: [.authenticationRequired])
-            actions.insert(actionTwo, at: 0)
-        }
-        if !actions.isEmpty || notificationObject.mainButton.label != "default_main_button_label".localized {
-            let actionOne = UNNotificationAction(identifier: notificationObject.mainButton.label, title: notificationObject.mainButton.label, options: [.authenticationRequired])
-            actions.insert(actionOne, at: 0)
-        }
-        // Archiving notification object inside a Data object in order to add it to the userinfo of the UNMutableNotificationContent.
-        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: notificationObject, requiringSecureCoding: true) else {
-            self.logger.log(.error, "Unable to encode notification object for UNNotificationContent userinfo")
-            EFCLController.shared.applicationExit(withReason: .internalError)
-            return
-        }
-        userNotificationContent.userInfo = ["notificationObject": data]
-        let category = UNNotificationCategory(identifier: UUID().uuidString, actions: actions, intentIdentifiers: [], options: [.customDismissAction])
-        UNUserNotificationCenter.current().setNotificationCategories([category])
-
-        userNotificationContent.categoryIdentifier = category.identifier
-        userNotificationContent.sound = UNNotificationSound.default
-
-        let userNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
-
-        let request = UNNotificationRequest(identifier: userNotificationRequestIdentifier,
-                                            content: userNotificationContent,
-                                            trigger: userNotificationTrigger)
-
-        UNUserNotificationCenter.current().add(request) { error in
-            guard error == nil else {
-                self.logger.log(.error,
-                       "Mac@IBM Notification Agent rich notification center failed to send request: %{public}@", request)
+            userNotificationContent.title = notificationObject.title ?? ""
+            userNotificationContent.body = notificationObject.subtitle ?? ""
+            var actions: [UNNotificationAction] = []
+            if let tertiaryButton = notificationObject.tertiaryButton {
+                let actionThree = UNNotificationAction(identifier: tertiaryButton.label, title: tertiaryButton.label, options: [.authenticationRequired])
+                actions.insert(actionThree, at: 0)
+            }
+            if let secondaryButton = notificationObject.secondaryButton {
+                let actionTwo = UNNotificationAction(identifier: secondaryButton.label, title: secondaryButton.label, options: [.authenticationRequired])
+                actions.insert(actionTwo, at: 0)
+            }
+            if !actions.isEmpty || notificationObject.mainButton.label != "default_main_button_label".localized {
+                let actionOne = UNNotificationAction(identifier: notificationObject.mainButton.label, title: notificationObject.mainButton.label, options: [.authenticationRequired])
+                actions.insert(actionOne, at: 0)
+            }
+            // Archiving notification object inside a Data object in order to add it to the userinfo of the UNMutableNotificationContent.
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: notificationObject, requiringSecureCoding: true) else {
+                self.logger.log(.error, "Unable to encode notification object for UNNotificationContent userinfo")
+                EFCLController.shared.applicationExit(withReason: .internalError)
                 return
             }
-            self.logger.log("Mac@IBM Notification Agent rich notification center sent request: %{public}@", request)
-            self.presentedNotifications.append(notificationObject)
+            userNotificationContent.userInfo = ["notificationObject": data]
+            let category = UNNotificationCategory(identifier: UUID().uuidString, actions: actions, intentIdentifiers: [], options: [.customDismissAction])
+            UNUserNotificationCenter.current().setNotificationCategories([category])
+
+            userNotificationContent.categoryIdentifier = category.identifier
+            userNotificationContent.sound = UNNotificationSound.default
+
+            let userNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
+
+            let request = UNNotificationRequest(identifier: userNotificationRequestIdentifier,
+                                                content: userNotificationContent,
+                                                trigger: userNotificationTrigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+                guard error == nil else {
+                    self.logger.log(.error,
+                                    "Mac@IBM Notification Agent rich notification center failed to send request: %{public}@", request)
+                    EFCLController.shared.applicationExit(withReason: .internalError)
+                    return
+                }
+                self.logger.log("Mac@IBM Notification Agent rich notification center sent request: %{public}@", request)
+                self.presentedNotifications.append(notificationObject)
+            }
         }
     }
 }
@@ -124,6 +128,7 @@ extension UserNotificationController: UNUserNotificationCenterDelegate {
             actionType = .tertiary
         default:
             logger.log(.error, "User triggered action with untracked identifier, inspect the case with the developers. Identifier: %{public}@", response.actionIdentifier)
+            EFCLController.shared.applicationExit(withReason: .untrackedSuccess)
             return
         }
         replyHandler.handleResponse(ofType: actionType, for: notificationObject)
