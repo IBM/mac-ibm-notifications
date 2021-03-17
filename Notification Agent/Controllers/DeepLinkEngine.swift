@@ -5,9 +5,11 @@
 //  Created by Simone Martorelli on 6/22/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
+//
 
 import Foundation
 import os.log
+import SwiftJWT
 
 /// Handle the deeplink that triggered the agent.
 final class DeepLinkEngine {
@@ -65,10 +67,27 @@ final class DeepLinkEngine {
             return dict[item.name] = item.value ?? ""
         }
         dict = dict.filter({ $0.value != "" })
-        
+        if UserDefaults.standard.bool(forKey: "deeplinkSecurity") {
+            guard let token = dict["token"], verifyToken(token: Token(jwtString: token)) else {
+                throw NAError.deepLinkHandling(type: .invalidToken)
+            }
+        }
         // Parse the URL - END
         
         let notificationObject = try NotificationObject(from: dict)
         return notificationObject
+    }
+
+    func verifyToken(token: Token) -> Bool {
+        guard let publicKeyString = UserDefaults.standard.string(forKey: "deeplinkSecurityKey"),
+              let publickKeyData = publicKeyString.data(using: .utf8) else { return false }
+        let jwtVerifier = JWTVerifier.rs256(publicKey: publickKeyData)
+        guard let verified = try? JWT<MacAtIbmClaims>(jwtString: token.jwtString, verifier: jwtVerifier) else {
+            return false
+        }
+        print(verified.validateClaims())
+        let validationResult = verified.validateClaims()
+
+        return validationResult == .success && JWT<MacAtIbmClaims>.verify(token.jwtString, using: jwtVerifier)
     }
 }

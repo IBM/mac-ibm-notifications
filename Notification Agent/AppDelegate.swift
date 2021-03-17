@@ -28,11 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         isConfigured = true
         NSApplication.shared.activate(ignoringOtherApps: true)
-        userNotificationController.registerForRichNotifications {
-            self.notificationDispatch.startObservingForNotifications()
-            self.efclController.parseArguments()
-            completion()
-        }
+        self.notificationDispatch.startObservingForNotifications()
+        self.efclController.parseArguments()
+        completion()
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -47,15 +45,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        #if DEBUG // Reenable it only when authentication method is applied.
+        guard UserDefaults.standard.bool(forKey: "deeplinkSecurity") else { return }
         self.deepLinkEngine.agentTriggeredByDeepLink = true
         configureApp {
             for url in urls {
-                self.logger.log("Mac@IBM Notification Agent was triggered by a URL")
+                self.logger.log("Mac@IBM Notification Agent was triggered by a URL", [url.absoluteString])
                 self.deepLinkEngine.processURL(url)
             }
         }
-        #endif
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String: Any]) {

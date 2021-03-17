@@ -14,5 +14,5 @@
 "accessory_view_timer_label" = "Please make a selection in %@";
 
 // MARK: - Buttons
-"default_main_button_label" = "Ok";
+"default_main_button_label" = "OK";
 "cancel_label" = "Cancel";

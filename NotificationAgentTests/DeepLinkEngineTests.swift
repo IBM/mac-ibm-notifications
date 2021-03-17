@@ -21,6 +21,7 @@ class DeepLinkEngineTests: XCTestCase {
                 _ = try DeepLinkEngine.shared.parse(url)
                 XCTAssert(true)
             } catch {
+                print(url)
                 XCTAssert(false)
             }
         }

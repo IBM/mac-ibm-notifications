@@ -22,12 +22,17 @@ final class VideoAccessoryView: NSView {
     }
     private var playerViewWidthAnchor: NSLayoutConstraint!
     private var playerViewHeightAnchor: NSLayoutConstraint!
-
+    private var playerAspectRatio: NSLayoutConstraint!
+    private let needsFullWidth: Bool
+    private let preferredSize: CGSize
+    
     private let logger = Logger.shared
 
     // MARK: - Initializers
 
-    init() {
+    init(with media: NAMedia, preferredSize: CGSize = .zero, needsFullWidth: Bool = true) {
+        self.needsFullWidth = needsFullWidth
+        self.preferredSize = preferredSize
         super.init(frame: .zero)
         playerView = AVPlayerView()
         playerView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +42,8 @@ final class VideoAccessoryView: NSView {
         playerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         playerView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         playerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        playerView.player = media.player!
+        videoResolution = media.videoResolution ?? .zero
     }
 
     required init?(coder: NSCoder) {
@@ -50,31 +57,17 @@ final class VideoAccessoryView: NSView {
         self.adjustViewSize()
     }
 
-    // MARK: - Public methods
-
-    /// Load the video from the given file path or URL string.
-    /// - Parameter string: a file path or an URL string.
-    func loadVideo(from string: String) {
-        if FileManager.default.fileExists(atPath: string) {
-            let url = URL(fileURLWithPath: string)
-            let player = AVPlayer(url: url)
-            playerView.player = player
-            videoResolution = resolutionForVideo(at: url)
-        } else if let url = URL(string: string) {
-            let player = AVPlayer(url: url)
-            playerView.player = player
-            videoResolution = resolutionForVideo(at: url)
-        } else {
-            logger.log(.error, "Unable to load video from %@", string)
-            EFCLController.shared.applicationExit(withReason: .unableToLoadResources)
-        }
-        adjustViewSize()
-    }
-
     // MARK: - Private methods
 
     /// Adjust the view size based on the superview width and on the video height.
     private func adjustViewSize() {
+        guard needsFullWidth else {
+            if preferredSize != .zero {
+                playerView.heightAnchor.constraint(equalToConstant: preferredSize.height).isActive = true
+            }
+            playerView.widthAnchor.constraint(equalTo: playerView.heightAnchor, multiplier: videoResolution.width/videoResolution.height).isActive = true
+            return
+        }
         guard containerWidth > 0 else { return }
         var videoHeight: CGFloat = 0
         if let res = videoResolution {
@@ -88,11 +81,5 @@ final class VideoAccessoryView: NSView {
         playerViewHeightAnchor = playerView.heightAnchor.constraint(equalToConstant: videoHeight)
         playerViewWidthAnchor?.isActive = true
         playerViewHeightAnchor?.isActive = true
-    }
-
-    private func resolutionForVideo(at url: URL) -> CGSize? {
-        guard let track = AVURLAsset(url: url).tracks(withMediaType: AVMediaType.video).first else { return nil }
-        let size = track.naturalSize.applying(track.preferredTransform)
-        return CGSize(width: abs(size.width), height: abs(size.height))
     }
 }

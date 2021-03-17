@@ -5,6 +5,7 @@
 //  Created by Simone Martorelli on 7/13/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
+//
 
 import Foundation
 import XCTest

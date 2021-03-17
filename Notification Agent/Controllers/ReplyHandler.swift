@@ -24,6 +24,7 @@ public final class ReplyHandler {
         case help // Click on the help button. Help button type "infoPopup" is managed in the viewController itself.
         case dismiss // "banner" UI type UI dismissed.
         case cancel // "Cancel" button pressed on popup.
+        case timeout // Timeout.
     }
 
     // MARK: - Static variables
@@ -64,6 +65,8 @@ public final class ReplyHandler {
             efclController.applicationExit(withReason: .userDismissedNotification)
         case .cancel:
             efclController.applicationExit(withReason: .cancelPressed)
+        case .timeout:
+            efclController.applicationExit(withReason: .timeout)
         }
 
         guard let button = triggerButton else { return }
