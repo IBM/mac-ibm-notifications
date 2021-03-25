@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -675,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Mac_IBM" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Mac_IBM_Notifications" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +684,7 @@
         <!--Pop Up View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="Mac_IBM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="Mac_IBM_Notifications" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="529" height="129"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -699,7 +699,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="default_icon" id="6x1-Vi-I8C"/>
                             </imageView>
                             <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="42Z-Y4-Bak">
-                                <rect key="frame" x="440" y="13" width="72" height="32"/>
+                                <rect key="frame" x="439" y="13" width="74" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="cMQ-XC-6r4"/>
                                 </constraints>
@@ -715,7 +715,7 @@ DQ
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="afi-PD-X0x">
-                                <rect key="frame" x="332" y="13" width="105" height="32"/>
+                                <rect key="frame" x="339" y="13" width="99" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="QA6-hp-as8"/>
                                 </constraints>
@@ -728,7 +728,7 @@ DQ
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-kS-72Q">
-                                <rect key="frame" x="100" y="13" width="87" height="33"/>
+                                <rect key="frame" x="99" y="13" width="89" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="1xO-Qe-wsQ"/>
                                 </constraints>
@@ -740,12 +740,12 @@ DQ
                                     <action selector="didClickedTertiaryButton:" target="XfG-lQ-9wD" id="wjc-hN-kQK"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-SU-bDD">
-                                <rect key="frame" x="23" y="20" width="22" height="22"/>
+                            <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-SU-bDD">
+                                <rect key="frame" x="20" y="16" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P1e-SU-bDD" secondAttribute="height" multiplier="1:1" id="WNP-UT-F6F"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="help_button" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="pVj-HJ-2Zr">
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="pVj-HJ-2Zr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -754,7 +754,7 @@ DQ
                                 </connections>
                             </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pyp-Ls-xUg">
-                                <rect key="frame" x="106" y="55" width="400" height="60"/>
+                                <rect key="frame" x="106" y="54" width="400" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="400" id="AVV-Tp-h11"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="iRa-MO-PIW"/>
@@ -769,6 +769,7 @@ DQ
                             <constraint firstItem="vWd-KW-45q" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="14" id="Chu-Oj-bMm"/>
                             <constraint firstAttribute="bottom" secondItem="cPd-kS-72Q" secondAttribute="bottom" constant="20" id="I0b-zE-vrd"/>
                             <constraint firstItem="42Z-Y4-Bak" firstAttribute="top" secondItem="Pyp-Ls-xUg" secondAttribute="bottom" constant="14" id="KFW-AJ-wHm"/>
+                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P1e-SU-bDD" secondAttribute="trailing" constant="12" symbolic="YES" id="NMV-MC-AFV"/>
                             <constraint firstAttribute="trailing" secondItem="42Z-Y4-Bak" secondAttribute="trailing" constant="23" id="Xjv-sQ-VN8"/>
                             <constraint firstItem="vWd-KW-45q" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="23" id="hgx-Sj-nf7"/>
                             <constraint firstAttribute="bottom" secondItem="P1e-SU-bDD" secondAttribute="bottom" constant="20" id="htw-SD-aob"/>
@@ -796,7 +797,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="default_icon" width="50" height="50"/>
-        <image name="help_button" width="22" height="22"/>
+        <image name="default_icon" width="1024" height="1024"/>
     </resources>
 </document>

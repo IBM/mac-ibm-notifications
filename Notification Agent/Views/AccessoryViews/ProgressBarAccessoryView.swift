@@ -125,20 +125,17 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
     func didReceivedNewStateforProgressBar(_ newState: ProgressState) {
         DispatchQueue.main.async {
             self.viewState = newState
+            self.progressBar.isIndeterminate = self.viewState.isIndeterminate
+            if self.viewState.isIndeterminate {
+                self.progressBar.startAnimation(nil)
+            }
             NSAnimationContext.runAnimationGroup { (context) in
                 context.duration = 0.2
                 self.topMessageLabel.animator().stringValue = self.viewState.topMessage
                 self.bottomMessageLabel.animator().stringValue = self.viewState.bottomMessage
-                if self.progressBar.isIndeterminate != self.viewState.isIndeterminate {
-                    self.delegate?.didChangeEstimation(self.viewState.isIndeterminate)
-                    if self.viewState.isIndeterminate {
-                        self.progressBar.startAnimation(nil)
-                    } else {
-                        self.progressBar.stopAnimation(nil)
-                    }
+                if !self.viewState.isIndeterminate {
+                    self.progressBar.animator().doubleValue = self.viewState.percent
                 }
-                self.progressBar.animator().isIndeterminate = self.viewState.isIndeterminate
-                self.progressBar.animator().doubleValue = self.viewState.percent
                 if self.viewState.percent >= 100 {
                     self.delegate?.didFinishLoading(self)
                 }
@@ -148,9 +145,13 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
 
     /// Interactive updates ended.
     func didFinishedInteractiveUpdates() {
-        DispatchQueue.main.async {
-            self.progressBar.stopAnimation(nil)
+        defer {
             self.delegate?.didFinishLoading(self)
+        }
+        DispatchQueue.main.async {
+            self.progressBar.isIndeterminate = false
+            self.progressBar.doubleValue = 100
+            self.progressBar.stopAnimation(nil)
         }
     }
 }

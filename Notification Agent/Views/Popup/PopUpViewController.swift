@@ -80,12 +80,12 @@ class PopUpViewController: NSViewController {
             if let fontSize = titleLabel.font?.pointSize {
                 titleLabel.font = .boldSystemFont(ofSize: fontSize)
             }
-            self.popupElementsStackView.addArrangedSubview(titleLabel)
+            self.popupElementsStackView.insertView(titleLabel, at: 0, in: .top)
         }
 
         if let subtitle = notificationObject?.subtitle {
             let textView = MarkdownTextView(withText: subtitle.localized)
-            self.popupElementsStackView.addArrangedSubview(textView)
+            self.popupElementsStackView.insertView(textView, at: 0, in: .center)
         }
     }
 
@@ -113,17 +113,18 @@ class PopUpViewController: NSViewController {
     private func configureAccessoryView(_ accessoryView: NotificationAccessoryElement) {
         switch accessoryView.type {
         case .timer:
-            guard let time = Int(accessoryView.payload) else { return }
-            let timerAccessoryView = TimerAccessoryView(withTimeInSeconds: time)
+            guard let rawTime = notificationObject.timeout,
+                  let time = Int(rawTime) else { return }
+            let timerAccessoryView = TimerAccessoryView(withTimeInSeconds: time, label: accessoryView.payload)
             timerAccessoryView.translatesAutoresizingMaskIntoConstraints = false
             timerAccessoryView.delegate = self
-            self.popupElementsStackView.addArrangedSubview(timerAccessoryView)
+            self.popupElementsStackView.insertView(timerAccessoryView, at: 0, in: .bottom)
         case .whitebox:
             let markdownTextView = MarkdownTextView(withText: accessoryView.payload.localized, drawsBackground: true)
-            self.popupElementsStackView.addArrangedSubview(markdownTextView)
+            self.popupElementsStackView.insertView(markdownTextView, at: 0, in: .bottom)
         case .progressbar:
             let progressBarAccessoryView = ProgressBarAccessoryView(accessoryView.payload)
-            self.popupElementsStackView.addArrangedSubview(progressBarAccessoryView)
+            self.popupElementsStackView.insertView(progressBarAccessoryView, at: 0, in: .bottom)
             progressBarAccessoryView.delegate = self
             self.secondaryButton.isHidden  = !(progressBarAccessoryView.isUserInteractionEnabled && notificationObject.secondaryButton != nil)
             self.shouldAllowCancel = progressBarAccessoryView.isUserInterruptionAllowed
@@ -131,18 +132,18 @@ class PopUpViewController: NSViewController {
         case .image:
             guard let media = accessoryView.media, media.image != nil else { return }
             let imageAccessoryView = ImageAccessoryView(with: media)
-            self.popupElementsStackView.addArrangedSubview(imageAccessoryView)
+            self.popupElementsStackView.insertView(imageAccessoryView, at: 0, in: .bottom)
         case .video:
             guard let media = accessoryView.media, media.player  != nil  else { return }
             let videoAccessoryView = VideoAccessoryView(with: media)
-            self.popupElementsStackView.addArrangedSubview(videoAccessoryView)
+            self.popupElementsStackView.insertView(videoAccessoryView, at: 0, in: .bottom)
         case .input:
             let inputAccessoryView = InputAccessoryView(with: accessoryView.payload.localized)
-            self.popupElementsStackView.addArrangedSubview(inputAccessoryView)
+            self.popupElementsStackView.insertView(inputAccessoryView, at: 0, in: .bottom)
             self.accessoryView = inputAccessoryView
-        case .securedInput:
+        case .securedinput:
             let securedInputAccessoryView = InputAccessoryView(with: accessoryView.payload.localized, isSecured: true)
-            self.popupElementsStackView.addArrangedSubview(securedInputAccessoryView)
+            self.popupElementsStackView.insertView(securedInputAccessoryView, at: 0, in: .bottom)
             self.accessoryView = securedInputAccessoryView
         }
     }
@@ -170,7 +171,7 @@ class PopUpViewController: NSViewController {
         if self.popupElementsStackView.arrangedSubviews.count == 1 {
             self.popupElementsStackView.distribution = .equalSpacing
         } else {
-            self.popupElementsStackView.distribution = .fillProportionally
+            self.popupElementsStackView.distribution = .gravityAreas
         }
     }
 
