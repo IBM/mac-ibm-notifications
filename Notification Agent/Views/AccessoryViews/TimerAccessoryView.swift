@@ -20,10 +20,11 @@ public final class TimerAccessoryView: NSView {
     weak var delegate: TimerAccessoryViewDelegate?
     var timerLabel: NSTextField!
     var timer: Timer?
+    var label: String
     var countDown: Int {
         didSet {
             DispatchQueue.main.async {
-                self.timerLabel.stringValue = String(format: "accessory_view_timer_label".localized,
+                self.timerLabel.stringValue = String(format: self.label,
                                                      self.countDown.timeFormattedString)
             }
         }
@@ -31,10 +32,11 @@ public final class TimerAccessoryView: NSView {
 
     // MARK: - Initializers
 
-    init(withTimeInSeconds time: Int) {
-        self.timerLabel = NSTextField(labelWithString: String(format: "accessory_view_timer_label".localized,
+    init(withTimeInSeconds time: Int, label: String) {
+        self.timerLabel = NSTextField(labelWithString: String(format: label,
                                                               time.timeFormattedString))
         self.countDown = time
+        self.label = label
         super.init(frame: .zero)
         self.startTimer()
         self.buildView()

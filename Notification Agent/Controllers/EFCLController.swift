@@ -47,7 +47,7 @@ final class EFCLController {
                                    "--config",
                                    "-reset",
                                    "sudo"]
-    static let standaloneBooleanArguments = ["always_on_top"]
+    static let standaloneBooleanArguments = ["always_on_top", "silent"]
     // MARK: - Variables
 
     let logger = Logger.shared
@@ -192,7 +192,7 @@ final class EFCLController {
     /// - Parameter arguments: the app's launch arguments.
     private func checkSpecialArguments(_ arguments: [String]) {
         guard !arguments.contains("--help") else {
-            HelpBuilder.printHelpPage()
+            HelpBuilder.printHelp(arguments)
             applicationExit(withReason: .untrackedSuccess)
             return
         }

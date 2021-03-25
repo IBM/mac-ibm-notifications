@@ -45,8 +45,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        guard UserDefaults.standard.bool(forKey: "deeplinkSecurity") else { return }
         self.deepLinkEngine.agentTriggeredByDeepLink = true
+        guard UserDefaults.standard.bool(forKey: "deeplinkSecurity") else {
+            logger.log(.error, "You need to enable deep link security to use deep link")
+            return
+        }
         configureApp {
             for url in urls {
                 self.logger.log("Mac@IBM Notification Agent was triggered by a URL", [url.absoluteString])

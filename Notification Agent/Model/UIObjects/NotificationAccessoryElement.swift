@@ -26,7 +26,7 @@ public final class NotificationAccessoryElement: NSObject, Codable, NSSecureCodi
         case image
         case video
         case input
-        case securedInput
+        case securedinput
     }
 
     // MARK: - Variables

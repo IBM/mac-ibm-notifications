@@ -96,7 +96,6 @@ final class MarkdownTextView: NSView {
         scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 
-        self.setText(text)
         if drawsBackground {
             textViewBackgroundColor = .white
             textColor = .black
@@ -104,6 +103,7 @@ final class MarkdownTextView: NSView {
             textViewBackgroundColor = nil
             textColor = .labelColor
         }
+        self.setText(text)
     }
 
     required init?(coder: NSCoder) {
@@ -123,12 +123,17 @@ final class MarkdownTextView: NSView {
     /// - Parameter text: the text that needs to be displayed.
     func setText(_ text: String) {
         let markdownText = SwiftyMarkdown(string: text)
+        markdownText.setFontColorForAllStyles(with: textView.drawsBackground ? .black : .labelColor)
         markdownText.h1.fontSize = 20
         markdownText.h1.fontStyle = .bold
         markdownText.h2.fontSize = 18
         markdownText.h2.fontStyle = .bold
         markdownText.h3.fontSize = 16
         markdownText.h3.fontStyle = .bold
+        
+        markdownText.code.color = .gray
+        markdownText.code.fontName = "CourierNewPSMT"
+        
         let attributedString = markdownText.attributedString()
         self.textView.textStorage?.setAttributedString(attributedString)
     }

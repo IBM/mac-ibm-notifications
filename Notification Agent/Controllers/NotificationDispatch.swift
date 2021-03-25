@@ -50,6 +50,7 @@ final class NotificationDispatch {
                 window.styleMask.remove(.closable)
                 window.center()
                 window.makeKeyAndOrderFront(self)
+                guard object.silent == false else { return }
                 NSSound(named: .init("Funk"))?.play()
             }
         case .onboarding:

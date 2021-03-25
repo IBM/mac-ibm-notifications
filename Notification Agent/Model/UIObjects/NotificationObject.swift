@@ -51,8 +51,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var helpButton: NotificationButton?
     /// The timeout for the notification. After this amount of seconds past a default action is triggered.
     var timeout: String?
-    /// A boolean value that set if the popup window if always on top of the window hierarchy.
+    /// A boolean value that set if the pop-up window if always on top of the window hierarchy.
     var alwaysOnTop: Bool?
+    /// A boolean value that set if the pop-up must not trigger any sound when appear.
+    var silent: Bool?
     /// The payload data needed for the "onboarding" UI type.
     var payload: OnboardingData?
 
@@ -74,7 +76,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.subtitle = dict["subtitle"] as? String
         self.iconPath = dict["icon_path"] as? String
         if let onboardingRawData = dict["payload"] as? String {
-            self.payload = try OnboardingData(from: onboardingRawData)
+            self.payload = try Self.loadOnboardingPayload(onboardingRawData)
         }
 
         if let accessoryviewTyperawValue = dict["accessory_view_type"] as? String,
@@ -117,6 +119,11 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.alwaysOnTop = false
         }
+        if let silentRaw = dict["silent"] as? String {
+            self.silent = silentRaw.lowercased() == "true"
+        } else {
+            self.silent = false
+        }
 
         super.init()
         switch type {
@@ -128,6 +135,16 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             guard self.payload != nil else {
                 throw NAError.dataFormat(type: .noInfoToShow)
             }
+        }
+    }
+
+    static func loadOnboardingPayload(_ payload: String) throws -> OnboardingData? {
+        if payload.isValidURL, let url = URL(string: payload) {
+            return try OnboardingData(from: url)
+        } else if FileManager.default.fileExists(atPath: payload) {
+            return try OnboardingData(from: URL(fileURLWithPath: payload))
+        } else {
+            return try OnboardingData(from: payload)
         }
     }
     
@@ -147,6 +164,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case helpButton
         case timeout
         case alwaysOnTop
+        case silent
     }
     
     required public init(from decoder: Decoder) throws {
@@ -166,6 +184,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.helpButton = try container.decodeIfPresent(NotificationButton.self, forKey: .helpButton)
         self.timeout = try container.decodeIfPresent(String.self, forKey: .timeout)
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
+        self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -183,6 +202,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.helpButton, forKey: .helpButton)
         try container.encodeIfPresent(self.timeout, forKey: .timeout)
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
+        try container.encodeIfPresent(self.silent, forKey: .silent)
     }
     
     // MARK: Codable protocol conformity - END
@@ -224,6 +244,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: alwaysOnTop)
             coder.encode(number, forKey: NOCodingKeys.alwaysOnTop.rawValue)
         }
+        if let silent = self.silent {
+            let number = NSNumber(booleanLiteral: silent)
+            coder.encode(number, forKey: NOCodingKeys.silent.rawValue)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -240,6 +264,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.helpButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.helpButton.rawValue)
         self.timeout = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.timeout.rawValue) as String?
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
+        self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool
     }
     
     // MARK: - NSSecureCoding protocol conformity - END
