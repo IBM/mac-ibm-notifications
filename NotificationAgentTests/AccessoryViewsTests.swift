@@ -13,7 +13,7 @@ import XCTest
 
 class AccessoryViewsTests: XCTestCase {
     func testTimerAccessoryView() {
-        let timerAccessoryView = TimerAccessoryView(withTimeInSeconds: 5)
+        let timerAccessoryView = TimerAccessoryView(withTimeInSeconds: 5, label: "%@")
         let spyDelegate = SpyTimerAccessoryViewDelegate()
         timerAccessoryView.delegate = spyDelegate
         spyDelegate.asyncExpectation = expectation(description: "Timer did finished")
