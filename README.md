@@ -5,7 +5,7 @@
 ![Swift version](https://img.shields.io/badge/swift-5-EA392B)
 ![Xcode version](https://img.shields.io/badge/xcode-12.3-1984E5)
 ![macOS](https://img.shields.io/badge/os-macOS%20Big%20Sur-green)
-![Project version](https://img.shields.io/badge/version-1.2.0-bright%20green)
+![Project version](https://img.shields.io/badge/version-2.1.0-bright%20green)
 
 ## Scope
 
