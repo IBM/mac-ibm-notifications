@@ -5,7 +5,7 @@
 
 ## Pre-launch Checklist
 
-- [ ] I read the [] and followed the process outlined there for submitting PRs.
+- [ ] I read the [Code of Conduct](/CODE_OF_CONDUCT.md) and followed the process outlined there for submitting PRs.
 - [ ] I listed at least one issue that this PR fixes in the description above.
 - [ ] I updated/added relevant documentation (doc comments with `///`).
 - [ ] I added new tests to check the change I am making or feature I am adding, or Hixie said the PR is test-exempt.
