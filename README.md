@@ -3,7 +3,7 @@
 [![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
 ![License](https://img.shields.io/badge/license-Apache%202-blue)
 ![Swift version](https://img.shields.io/badge/swift-5-EA392B)
-![Xcode version](https://img.shields.io/badge/xcode-12.3-1984E5)
+![Xcode version](https://img.shields.io/badge/xcode-12.4-1984E5)
 ![macOS](https://img.shields.io/badge/os-macOS%20Big%20Sur-green)
 ![Project version](https://img.shields.io/badge/version-2.1.0-bright%20green)
 
@@ -17,7 +17,7 @@ To contribute to this repo please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 
-For detailed usage of this tool please refer to the [official wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Usage-guidelines)
+For detailed usage of this tool please refer to the [official wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Usage)
 
 ## Notes
 
