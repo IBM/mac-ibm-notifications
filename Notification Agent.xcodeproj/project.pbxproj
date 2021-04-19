@@ -795,7 +795,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.mac-notification-agent";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -821,7 +821,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.mac-notification-agent";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
