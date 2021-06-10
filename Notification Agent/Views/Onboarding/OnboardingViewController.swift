@@ -9,7 +9,7 @@
 
 import Cocoa
 
-protocol OnboardingNavigationDelegate: class {
+protocol OnboardingNavigationDelegate: AnyObject {
     func didSelectNextButton(_ sender: OnboardingPageViewController)
     func didSelectBackButton(_ sender: OnboardingPageViewController)
 }

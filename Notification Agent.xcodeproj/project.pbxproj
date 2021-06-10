@@ -166,7 +166,7 @@
 		B9EDC98D24EC0D91004F6108 /* InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSection.swift; sourceTree = "<group>"; };
 		B9EDC98F24EC0DAD004F6108 /* HorizontalLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLine.swift; sourceTree = "<group>"; };
 		D3CA46A125516523001AA69B /* InputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
-		F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac@IBM Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F47F5536249B8C1B006A0754 /* IBM Notifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM Notifier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47F5539249B8C1B006A0754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47F553B249B8C1B006A0754 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		F47F553D249B8C1B006A0754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 		F47F5537249B8C1B006A0754 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */,
+				F47F5536249B8C1B006A0754 /* IBM Notifier.app */,
 				F47F5548249B8C1C006A0754 /* NotificationAgentTests.xctest */,
 			);
 			name = Products;
@@ -401,9 +401,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */ = {
+		F47F5535249B8C1B006A0754 /* IBM Notifier */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "Mac@IBM Notifications" */;
+			buildConfigurationList = F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "IBM Notifier" */;
 			buildPhases = (
 				F47F5532249B8C1B006A0754 /* Sources */,
 				F47F5533249B8C1B006A0754 /* Frameworks */,
@@ -414,14 +414,14 @@
 			);
 			dependencies = (
 			);
-			name = "Mac@IBM Notifications";
+			name = "IBM Notifier";
 			packageProductDependencies = (
 				B9B1720224F6C28800DF656A /* Signals */,
 				B9A1425725D68DC500E87AD6 /* SwiftJWT */,
 				B97F10C325DD682900E15245 /* SwiftyMarkdown */,
 			);
 			productName = "Notification Agent";
-			productReference = F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */;
+			productReference = F47F5536249B8C1B006A0754 /* IBM Notifier.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F47F5547249B8C1C006A0754 /* NotificationAgentTests */ = {
@@ -479,7 +479,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */,
+				F47F5535249B8C1B006A0754 /* IBM Notifier */,
 				F47F5547249B8C1C006A0754 /* NotificationAgentTests */,
 			);
 		};
@@ -634,7 +634,7 @@
 /* Begin PBXTargetDependency section */
 		F47F554A249B8C1C006A0754 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */;
+			target = F47F5535249B8C1B006A0754 /* IBM Notifier */;
 			targetProxy = F47F5549249B8C1C006A0754 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -784,7 +784,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -795,7 +795,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -810,7 +810,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -821,7 +821,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -888,7 +888,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "Mac@IBM Notifications" */ = {
+		F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "IBM Notifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F47F555D249B8C1C006A0754 /* Debug */,

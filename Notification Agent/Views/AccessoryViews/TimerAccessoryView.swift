@@ -9,7 +9,7 @@
 
 import Cocoa
 
-protocol TimerAccessoryViewDelegate: class {
+protocol TimerAccessoryViewDelegate: AnyObject {
     func timerDidFinished(_ sender: TimerAccessoryView)
 }
 

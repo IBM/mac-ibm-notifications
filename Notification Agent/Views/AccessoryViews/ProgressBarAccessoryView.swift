@@ -10,7 +10,7 @@
 import Cocoa
 
 /// The delegate that will communicate outside the event of the progress bar if needed.
-protocol ProgressBarAccessoryViewDelegate: class {
+protocol ProgressBarAccessoryViewDelegate: AnyObject {
     func didFinishLoading(_ sender: ProgressBarAccessoryView)
     func didChangeEstimation(_ isIndeterminated: Bool)
 

@@ -10,7 +10,7 @@
 import Foundation
 
 /// InteractiveEFCLController delegate
-protocol InteractiveEFCLControllerDelegate: class {
+protocol InteractiveEFCLControllerDelegate: AnyObject {
     /// Triggered when a new state for the progress bar is available.
     /// - Parameter newState: The new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState)
