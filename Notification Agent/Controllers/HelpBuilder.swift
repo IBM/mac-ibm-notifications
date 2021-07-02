@@ -90,10 +90,14 @@ public final class HelpBuilder {
     static let bannerNotes: [String] = ["If no call to action type defined for a button the default one is " + "[ none ]".red() + ", that simply return the exit code related to the clicked button."]
     static let specialArguments: [String] = ["--help".blue(),
                                              "--version".blue(),
+                                             "--terms".blue(),
+                                             "--privacy".blue(),
                                              "--v".blue()]
-    static let specialArgumentsDescriptions: [String] = ["Show help's page",
-                                             "Show app's version",
-                                             "Verbose mode"]
+    static let specialArgumentsDescriptions: [String] = ["Shows the help's page",
+                                             "Shows the app's version",
+                                             "Shows the Terms & Conditions",
+                                             "Shows the Privacy Policy",
+                                             "Enable verbose mode"]
     static let configurableParameters: [String] = ["-default_popup_bar_title".yellow(),
                                                    "-default_popup_icon_path".yellow(),
                                                    "-default_popup_timeout".yellow(),
@@ -256,6 +260,26 @@ public final class HelpBuilder {
         print("Usage (reset): ".bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + "[" + "--config -reset".green() + "] " + configArgumentsString + "\n")
         for index in configurableParameters.indices {
             print("\(configurableParameters[index]):\n      \(configurableParametersDescriptions[index])")
+        }
+    }
+    
+    static func printPrivacyPolicy() {
+        guard let url = Bundle.main.url(forResource: "PRIVACY POLICY", withExtension: "rtf") else { return }
+        let opts : [NSAttributedString.DocumentReadingOptionKey : Any] =
+            [.documentType : NSAttributedString.DocumentType.rtf]
+        var attributes : NSDictionary?
+        if let attributedString = try? NSAttributedString(url: url, options: opts, documentAttributes: &attributes) {
+            print(attributedString.string)
+        }
+    }
+    
+    static func printTermsAndCondition() {
+        guard let url = Bundle.main.url(forResource: "TERMS AND CONDITIONS", withExtension: "rtf") else { return }
+        let opts : [NSAttributedString.DocumentReadingOptionKey : Any] =
+            [.documentType : NSAttributedString.DocumentType.rtf]
+        var attributes : NSDictionary?
+        if let attributedString = try? NSAttributedString(url: url, options: opts, documentAttributes: &attributes) {
+            print(attributedString.string)
         }
     }
 

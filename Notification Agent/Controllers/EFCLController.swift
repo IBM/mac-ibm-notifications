@@ -43,6 +43,8 @@ final class EFCLController {
                                    "--v",
                                    "--help",
                                    "--version",
+                                   "--terms",
+                                   "--privacy",
                                    "--isRunningTestForCommandLine",
                                    "--config",
                                    "-reset",
@@ -198,6 +200,16 @@ final class EFCLController {
         }
         guard !arguments.contains("--version") else {
             HelpBuilder.printAppVersion()
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
+        guard !arguments.contains("--privacy") else {
+            HelpBuilder.printPrivacyPolicy()
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
+        guard !arguments.contains("--terms") else {
+            HelpBuilder.printTermsAndCondition()
             applicationExit(withReason: .untrackedSuccess)
             return
         }

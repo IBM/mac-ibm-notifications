@@ -71,6 +71,9 @@
 		B9A8854D25B9C68200081C8D /* OnboardingPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A8854825B9C68200081C8D /* OnboardingPageViewController.xib */; };
 		B9A8855625BB404000081C8D /* Decodable-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A8855525BB404000081C8D /* Decodable-Extensions.swift */; };
 		B9A8855725BB404000081C8D /* Decodable-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A8855525BB404000081C8D /* Decodable-Extensions.swift */; };
+		B9AD2C0F268B64E200A158B2 /* TERMS AND CONDITIONS.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */; };
+		B9AD2C11268B652C00A158B2 /* NOTICES.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C10268B652C00A158B2 /* NOTICES.rtf */; };
+		B9AD2C13268B653F00A158B2 /* PRIVACY POLICY.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */; };
 		B9B1720324F6C28800DF656A /* Signals in Frameworks */ = {isa = PBXBuildFile; productRef = B9B1720224F6C28800DF656A /* Signals */; };
 		B9C7A9C824D16A6A0038D4A7 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */; };
 		B9C7A9CA24D16F790038D4A7 /* NotificationDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */; };
@@ -145,6 +148,9 @@
 		B9A8854725B9C68200081C8D /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		B9A8854825B9C68200081C8D /* OnboardingPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageViewController.xib; sourceTree = "<group>"; };
 		B9A8855525BB404000081C8D /* Decodable-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable-Extensions.swift"; sourceTree = "<group>"; };
+		B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "TERMS AND CONDITIONS.rtf"; sourceTree = "<group>"; };
+		B9AD2C10268B652C00A158B2 /* NOTICES.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NOTICES.rtf; sourceTree = "<group>"; };
+		B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "PRIVACY POLICY.rtf"; sourceTree = "<group>"; };
 		B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationController.swift; sourceTree = "<group>"; };
 		B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDispatch.swift; sourceTree = "<group>"; };
 		B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossfadeSegue.swift; sourceTree = "<group>"; };
@@ -253,6 +259,9 @@
 			children = (
 				F47F553D249B8C1B006A0754 /* Assets.xcassets */,
 				B9524D3324E15DA9007662C8 /* Localizable.strings */,
+				B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */,
+				B9AD2C10268B652C00A158B2 /* NOTICES.rtf */,
+				B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -490,10 +499,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9AD2C0F268B64E200A158B2 /* TERMS AND CONDITIONS.rtf in Resources */,
 				B9A8854C25B9C68200081C8D /* OnboardingPageViewController.xib in Resources */,
 				B9EDC98924EC0D05004F6108 /* InfoPopOverViewController.xib in Resources */,
 				F47F553E249B8C1B006A0754 /* Assets.xcassets in Resources */,
 				B9C8C42A25C83D11008EDCFD /* OnboardingViewController.xib in Resources */,
+				B9AD2C13268B653F00A158B2 /* PRIVACY POLICY.rtf in Resources */,
+				B9AD2C11268B652C00A158B2 /* NOTICES.rtf in Resources */,
 				B9524D3124E15DA9007662C8 /* Localizable.strings in Resources */,
 				B9EDC98A24EC0D05004F6108 /* InfoPopOverStackItem.xib in Resources */,
 				F47F5541249B8C1B006A0754 /* Main.storyboard in Resources */,
@@ -781,11 +793,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 27;
+				DEVELOPMENT_TEAM = PETKK2G752;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -807,11 +819,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 27;
+				DEVELOPMENT_TEAM = PETKK2G752;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

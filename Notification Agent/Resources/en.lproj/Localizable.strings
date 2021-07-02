@@ -8,8 +8,9 @@
 */
 
 // MARK: - Main popup window
-"default_popup_bar_title" = "Mac@IBM Notifications";
+"default_popup_bar_title" = "IBM Notifier";
 
 // MARK: - Buttons
 "default_main_button_label" = "OK";
 "cancel_label" = "Cancel";
+
