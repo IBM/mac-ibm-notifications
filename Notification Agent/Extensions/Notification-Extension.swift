@@ -1,6 +1,6 @@
 //
 //  Notification-Extension.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 7/10/20.
 //  Copyright © 2020 IBM Inc. All rights reserved

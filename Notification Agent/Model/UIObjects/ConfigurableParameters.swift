@@ -1,6 +1,6 @@
 //
 //  ConfigurableParameter.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 9/10/20.
 //  Copyright © 2020 IBM Inc. All rights reserved

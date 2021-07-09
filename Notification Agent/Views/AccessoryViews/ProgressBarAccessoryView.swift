@@ -1,6 +1,6 @@
 //
 //  ProgressBarAccessoryView.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 10/13/20.
 //  Copyright © 2020 IBM Inc. All rights reserved

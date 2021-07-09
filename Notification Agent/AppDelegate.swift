@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Jan Valentik on 18/06/2020.
 //  Copyright © 2020 IBM Inc. All rights reserved
@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        logger.log("Mac@IBM Notification Agent will terminate")
+        logger.log("IBM Notifier will terminate")
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         configureApp {
             for url in urls {
-                self.logger.log("Mac@IBM Notification Agent was triggered by a URL", [url.absoluteString])
+                self.logger.log("IBM Notifier was triggered by a URL", [url.absoluteString])
                 self.deepLinkEngine.processURL(url)
             }
         }
@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String: Any]) {
         self.apnsController.agentTriggeredByAPNS = true
         configureApp {
-            self.logger.log("Mac@IBM Notification Agent was triggered by a remote notification")
+            self.logger.log("IBM Notifier was triggered by a remote notification")
             self.apnsController.receivedRemoteNotification(with: userInfo)
         }
     }

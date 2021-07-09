@@ -1,6 +1,6 @@
 //
 //  Token.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Jan Valentik on 20/11/2020.
 //  Copyright © 2020 IBM. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  NAMedia.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 01/03/2021.
 //  Copyright © 2021 IBM. All rights reserved.

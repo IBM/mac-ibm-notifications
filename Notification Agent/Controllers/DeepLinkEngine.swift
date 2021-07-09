@@ -1,6 +1,6 @@
 //
 //  DeepLinkEngine.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 6/22/20.
 //  Copyright © 2020 IBM Inc. All rights reserved

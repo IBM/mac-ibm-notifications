@@ -27,7 +27,7 @@
 			<string>NotificationAgentDeepLink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>macatibm</string>
+				<string>ibmnotifier</string>
 			</array>
 		</dict>
 	</array>
@@ -47,9 +47,5 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
-	<key>NSSupportsSuddenTermination</key>
-	<true/>
 </dict>
 </plist>

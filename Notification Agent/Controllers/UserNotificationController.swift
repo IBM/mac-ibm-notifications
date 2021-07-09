@@ -35,14 +35,14 @@ class UserNotificationController: NSObject {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if let error = error {
                 self.logger.log(.error,
-                       "Mac@IBM Notification Agent rich notification autorization request ended with error: %{public}@",
+                       "IBM Notifier rich notification autorization request ended with error: %{public}@",
                        error.localizedDescription)
                 EFCLController.shared.applicationExit(withReason: .internalError)
             }
             if granted {
-                self.logger.log("Mac@IBM Notification Agent rich notification autorization granted")
+                self.logger.log("IBM Notifier rich notification autorization granted")
             } else {
-                self.logger.log("Mac@IBM Notification Agent rich notification autorization not granted")
+                self.logger.log("IBM Notifier rich notification autorization not granted")
             }
             completion()
         }
@@ -92,11 +92,11 @@ class UserNotificationController: NSObject {
             UNUserNotificationCenter.current().add(request) { error in
                 guard error == nil else {
                     self.logger.log(.error,
-                                    "Mac@IBM Notification Agent rich notification center failed to send request: %{public}@", request)
+                                    "IBM Notifier rich notification center failed to send request: %{public}@", request)
                     EFCLController.shared.applicationExit(withReason: .internalError)
                     return
                 }
-                self.logger.log("Mac@IBM Notification Agent rich notification center sent request: %{public}@", request)
+                self.logger.log("IBM Notifier rich notification center sent request: %{public}@", request)
                 self.presentedNotifications.append(notificationObject)
             }
         }
@@ -107,7 +107,7 @@ class UserNotificationController: NSObject {
 
 extension UserNotificationController: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-       logger.log("Mac@IBM Notification Agent rich notification user response: %{public}@", response.actionIdentifier)
+       logger.log("IBM Notifier rich notification user response: %{public}@", response.actionIdentifier)
         guard let notificationObjectData = response.notification.request.content.userInfo["notificationObject"] as? Data,
               let notificationObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NotificationObject.self, from: notificationObjectData) else {
             self.logger.log(.error, "Unable to decode notification object from UNNotificationResponse")

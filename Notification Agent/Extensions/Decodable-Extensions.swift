@@ -1,6 +1,6 @@
 //
 //  Decodable-Extensions.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 22/01/2021.
 //  Copyright © 2021 IBM. All rights reserved.

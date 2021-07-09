@@ -136,7 +136,7 @@
 		B96172FA251D10420042F0CF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B96AE19524F52A2300C99A5E /* ReplyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyHandler.swift; sourceTree = "<group>"; };
 		B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkEngine.swift; sourceTree = "<group>"; };
-		B99C0D9A25E7CF4B00DB2168 /* Mac@IBM Notifications.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Mac@IBM Notifications.entitlements"; sourceTree = "<group>"; };
+		B99C0D9A25E7CF4B00DB2168 /* IBM Notifier.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "IBM Notifier.entitlements"; sourceTree = "<group>"; };
 		B99D1E8D2535F68900661954 /* ProgressBarAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarAccessoryView.swift; sourceTree = "<group>"; };
 		B9A03A9A24B76511005BB90E /* NotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObject.swift; sourceTree = "<group>"; };
 		B9A03A9E24B779B8005BB90E /* NotificationAccessoryElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAccessoryElement.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				F47F5542249B8C1B006A0754 /* Info.plist */,
-				B99C0D9A25E7CF4B00DB2168 /* Mac@IBM Notifications.entitlements */,
+				B99C0D9A25E7CF4B00DB2168 /* IBM Notifier.entitlements */,
 				F47F5539249B8C1B006A0754 /* AppDelegate.swift */,
 				B9A03AA624B87346005BB90E /* Controllers */,
 				B9A03A9724B764D0005BB90E /* Model */,
@@ -792,11 +792,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Notification Agent/IBM Notifier.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = PETKK2G752;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -818,11 +818,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Notification Agent/IBM Notifier.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = PETKK2G752;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -860,7 +860,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mac@IBM Notifications.app/Contents/MacOS/Mac@IBM Notifications";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBM Notifier.app/Contents/MacOS/IBM Notifier";
 			};
 			name = Debug;
 		};
@@ -884,7 +884,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mac@IBM Notifications.app/Contents/MacOS/Mac@IBM Notifications";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBM Notifier.app/Contents/MacOS/IBM Notifier";
 			};
 			name = Release;
 		};

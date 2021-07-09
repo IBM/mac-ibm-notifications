@@ -1,6 +1,6 @@
 //
 //  HelpBuilder.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 8/27/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
@@ -146,9 +146,9 @@ public final class HelpBuilder {
                                                     "Invalid arguments syntax."]
     static let onboardingReturnValues: [String] = ["0".bold()]
     static let onboardingReturnValuesDescription: [String] = ["User did finish onboarding."]
-    static let examplePopup: String = "~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications -type popup -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\" -help_button_cta_type infopopup -help_button_cta_payload \"Test help text\"]"
-    static let exampleBanner: String = "~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications -type banner -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\""
-    static let exampleOnboarding: String = "~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications -type onboarding -payload \"{\\\"pages\\\":[{\\\"title\\\":\\\"First page's title\\\",\\\"subtitle\\\":\\\"First page's subtitle\\\",\\\"body\\\":\\\"First page's body\\\",\\\"mediaType\\\":\\\"image\\\",\\\"mediaPayload\\\":\\\"http://image.address\\\"}]}\""
+    static let examplePopup: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type popup -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\" -help_button_cta_type infopopup -help_button_cta_payload \"Test help text\"]"
+    static let exampleBanner: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type banner -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\""
+    static let exampleOnboarding: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type onboarding -payload \"{\\\"pages\\\":[{\\\"title\\\":\\\"First page's title\\\",\\\"subtitle\\\":\\\"First page's subtitle\\\",\\\"body\\\":\\\"First page's body\\\",\\\"mediaType\\\":\\\"image\\\",\\\"mediaPayload\\\":\\\"http://image.address\\\"}]}\""
 
     static func printHelp(_ arguments: [String]) {
         guard !arguments.contains("-popup") else {
@@ -167,17 +167,17 @@ public final class HelpBuilder {
             Self.printConfigurationHelp()
             return
         }
-        print("\nMac@IBM Notification Agent Help Page".bold().blue() + "\n")
+        print("\nIBM Notifier Help Page".bold().blue() + "\n")
         print("You can use:\n     --help -popup - To show help page about the pop-up UI;\n     --help -banner - To show help page about the banner UI;\n     --help -onboarding - To show help page about the onboarding UI;\n     --help -configuration - To show help page about the configuration mode.\n")
     }
 
     static func printPopupHelp() {
-        print("\nMac@IBM Notifications Popup UI".bold().blue() + "\n")
+        print("\nIBM Notifier Popup UI".bold().blue() + "\n")
         var argumentsString = ""
         for argument in popupArguments {
             argumentsString += "[\(argument)] "
         }
-        print("Usage: ".cyan().bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + argumentsString + "\n")
+        print("Usage: ".cyan().bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + argumentsString + "\n")
         print("Color Legend: ".cyan().bold())
         print("Mandatory value".green() + " " + "Optional value".yellow() + "\n")
         print("Arguments details:".cyan().bold())
@@ -202,12 +202,12 @@ public final class HelpBuilder {
     }
 
     static func printBannerHelp() {
-        print("\nMac@IBM Notifications Banner UI".bold().blue() + "\n")
+        print("\nIBM Notifier Banner UI".bold().blue() + "\n")
         var argumentsString = ""
         for argument in bannerArguments {
             argumentsString += "[\(argument)] "
         }
-        print("Usage: ".cyan().bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + argumentsString + "\n")
+        print("Usage: ".cyan().bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + argumentsString + "\n")
         print("Color Legend: ".cyan().bold())
         print("Mandatory value".green() + " " + "Optional value".yellow() + "\n")
         print("Arguments details:".cyan().bold())
@@ -228,12 +228,12 @@ public final class HelpBuilder {
     }
 
     static func printOnboardingHelp() {
-        print("\nMac@IBM Notifications Onboarding UI".bold().blue() + "\n")
+        print("\nIBM Notifier Onboarding UI".bold().blue() + "\n")
         var argumentsString = ""
         for argument in onboardingArguments {
             argumentsString += "[\(argument)] "
         }
-        print("Usage: ".cyan().bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + argumentsString + "\n")
+        print("Usage: ".cyan().bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + argumentsString + "\n")
         print("Color Legend: ".cyan().bold())
         print("Mandatory value".green() + " " + "Optional value".yellow() + "\n")
         print("Arguments details:".cyan().bold())
@@ -250,14 +250,14 @@ public final class HelpBuilder {
     }
     
     static func printConfigurationHelp() {
-        print("\nMac@IBM Notifications Configuration Mode".bold().blue() + "\n")
+        print("\nIBM Notifier Configuration Mode".bold().blue() + "\n")
         print("Configuration mode:".bold().cyan())
         var configArgumentsString = ""
         for argument in configurableParameters {
             configArgumentsString += "[\(argument)] "
         }
-        print("Usage (set): ".bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + "[" + "--config".green() + "] " + configArgumentsString)
-        print("Usage (reset): ".bold() + "\n~/Mac@IBM\\ Notifications.app/Contents/MacOS/Mac@IBM\\ Notifications " + "[" + "--config -reset".green() + "] " + configArgumentsString + "\n")
+        print("Usage (set): ".bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + "[" + "--config".green() + "] " + configArgumentsString)
+        print("Usage (reset): ".bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + "[" + "--config -reset".green() + "] " + configArgumentsString + "\n")
         for index in configurableParameters.indices {
             print("\(configurableParameters[index]):\n      \(configurableParametersDescriptions[index])")
         }
@@ -284,13 +284,13 @@ public final class HelpBuilder {
     }
 
     static func printNoArgumentsPage() {
-        print("\nMac@IBM Notifications".bold().blue() + "\n")
+        print("\nIBM Notifier".bold().blue() + "\n")
         for index in specialArguments.indices {
             print("[\(specialArguments[index])] - \(specialArgumentsDescriptions[index])")
         }
     }
 
     static func printAppVersion() {
-        print("Mac@IBM Notification Agent version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown")".bold())
+        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown")".bold())
     }
 }
