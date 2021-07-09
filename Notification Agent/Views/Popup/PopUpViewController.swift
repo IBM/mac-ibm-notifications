@@ -1,6 +1,6 @@
 //
 //  PopUpViewController.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Jan Valentik on 18/06/2020.
 //  Copyright © 2020 IBM Inc. All rights reserved

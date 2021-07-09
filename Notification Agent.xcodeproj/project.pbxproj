@@ -71,6 +71,9 @@
 		B9A8854D25B9C68200081C8D /* OnboardingPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A8854825B9C68200081C8D /* OnboardingPageViewController.xib */; };
 		B9A8855625BB404000081C8D /* Decodable-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A8855525BB404000081C8D /* Decodable-Extensions.swift */; };
 		B9A8855725BB404000081C8D /* Decodable-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A8855525BB404000081C8D /* Decodable-Extensions.swift */; };
+		B9AD2C0F268B64E200A158B2 /* TERMS AND CONDITIONS.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */; };
+		B9AD2C11268B652C00A158B2 /* NOTICES.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C10268B652C00A158B2 /* NOTICES.rtf */; };
+		B9AD2C13268B653F00A158B2 /* PRIVACY POLICY.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */; };
 		B9B1720324F6C28800DF656A /* Signals in Frameworks */ = {isa = PBXBuildFile; productRef = B9B1720224F6C28800DF656A /* Signals */; };
 		B9C7A9C824D16A6A0038D4A7 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */; };
 		B9C7A9CA24D16F790038D4A7 /* NotificationDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */; };
@@ -133,7 +136,7 @@
 		B96172FA251D10420042F0CF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B96AE19524F52A2300C99A5E /* ReplyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyHandler.swift; sourceTree = "<group>"; };
 		B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkEngine.swift; sourceTree = "<group>"; };
-		B99C0D9A25E7CF4B00DB2168 /* Mac@IBM Notifications.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Mac@IBM Notifications.entitlements"; sourceTree = "<group>"; };
+		B99C0D9A25E7CF4B00DB2168 /* IBM Notifier.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "IBM Notifier.entitlements"; sourceTree = "<group>"; };
 		B99D1E8D2535F68900661954 /* ProgressBarAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarAccessoryView.swift; sourceTree = "<group>"; };
 		B9A03A9A24B76511005BB90E /* NotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObject.swift; sourceTree = "<group>"; };
 		B9A03A9E24B779B8005BB90E /* NotificationAccessoryElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAccessoryElement.swift; sourceTree = "<group>"; };
@@ -145,6 +148,9 @@
 		B9A8854725B9C68200081C8D /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		B9A8854825B9C68200081C8D /* OnboardingPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageViewController.xib; sourceTree = "<group>"; };
 		B9A8855525BB404000081C8D /* Decodable-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable-Extensions.swift"; sourceTree = "<group>"; };
+		B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "TERMS AND CONDITIONS.rtf"; sourceTree = "<group>"; };
+		B9AD2C10268B652C00A158B2 /* NOTICES.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NOTICES.rtf; sourceTree = "<group>"; };
+		B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "PRIVACY POLICY.rtf"; sourceTree = "<group>"; };
 		B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationController.swift; sourceTree = "<group>"; };
 		B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDispatch.swift; sourceTree = "<group>"; };
 		B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossfadeSegue.swift; sourceTree = "<group>"; };
@@ -166,7 +172,7 @@
 		B9EDC98D24EC0D91004F6108 /* InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSection.swift; sourceTree = "<group>"; };
 		B9EDC98F24EC0DAD004F6108 /* HorizontalLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLine.swift; sourceTree = "<group>"; };
 		D3CA46A125516523001AA69B /* InputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
-		F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac@IBM Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F47F5536249B8C1B006A0754 /* IBM Notifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM Notifier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47F5539249B8C1B006A0754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47F553B249B8C1B006A0754 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		F47F553D249B8C1B006A0754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,6 +259,9 @@
 			children = (
 				F47F553D249B8C1B006A0754 /* Assets.xcassets */,
 				B9524D3324E15DA9007662C8 /* Localizable.strings */,
+				B9AD2C0E268B64E200A158B2 /* TERMS AND CONDITIONS.rtf */,
+				B9AD2C10268B652C00A158B2 /* NOTICES.rtf */,
+				B9AD2C12268B653F00A158B2 /* PRIVACY POLICY.rtf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -363,7 +372,7 @@
 		F47F5537249B8C1B006A0754 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */,
+				F47F5536249B8C1B006A0754 /* IBM Notifier.app */,
 				F47F5548249B8C1C006A0754 /* NotificationAgentTests.xctest */,
 			);
 			name = Products;
@@ -373,7 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				F47F5542249B8C1B006A0754 /* Info.plist */,
-				B99C0D9A25E7CF4B00DB2168 /* Mac@IBM Notifications.entitlements */,
+				B99C0D9A25E7CF4B00DB2168 /* IBM Notifier.entitlements */,
 				F47F5539249B8C1B006A0754 /* AppDelegate.swift */,
 				B9A03AA624B87346005BB90E /* Controllers */,
 				B9A03A9724B764D0005BB90E /* Model */,
@@ -401,9 +410,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */ = {
+		F47F5535249B8C1B006A0754 /* IBM Notifier */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "Mac@IBM Notifications" */;
+			buildConfigurationList = F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "IBM Notifier" */;
 			buildPhases = (
 				F47F5532249B8C1B006A0754 /* Sources */,
 				F47F5533249B8C1B006A0754 /* Frameworks */,
@@ -414,14 +423,14 @@
 			);
 			dependencies = (
 			);
-			name = "Mac@IBM Notifications";
+			name = "IBM Notifier";
 			packageProductDependencies = (
 				B9B1720224F6C28800DF656A /* Signals */,
 				B9A1425725D68DC500E87AD6 /* SwiftJWT */,
 				B97F10C325DD682900E15245 /* SwiftyMarkdown */,
 			);
 			productName = "Notification Agent";
-			productReference = F47F5536249B8C1B006A0754 /* Mac@IBM Notifications.app */;
+			productReference = F47F5536249B8C1B006A0754 /* IBM Notifier.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F47F5547249B8C1C006A0754 /* NotificationAgentTests */ = {
@@ -479,7 +488,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */,
+				F47F5535249B8C1B006A0754 /* IBM Notifier */,
 				F47F5547249B8C1C006A0754 /* NotificationAgentTests */,
 			);
 		};
@@ -490,10 +499,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9AD2C0F268B64E200A158B2 /* TERMS AND CONDITIONS.rtf in Resources */,
 				B9A8854C25B9C68200081C8D /* OnboardingPageViewController.xib in Resources */,
 				B9EDC98924EC0D05004F6108 /* InfoPopOverViewController.xib in Resources */,
 				F47F553E249B8C1B006A0754 /* Assets.xcassets in Resources */,
 				B9C8C42A25C83D11008EDCFD /* OnboardingViewController.xib in Resources */,
+				B9AD2C13268B653F00A158B2 /* PRIVACY POLICY.rtf in Resources */,
+				B9AD2C11268B652C00A158B2 /* NOTICES.rtf in Resources */,
 				B9524D3124E15DA9007662C8 /* Localizable.strings in Resources */,
 				B9EDC98A24EC0D05004F6108 /* InfoPopOverStackItem.xib in Resources */,
 				F47F5541249B8C1B006A0754 /* Main.storyboard in Resources */,
@@ -634,7 +646,7 @@
 /* Begin PBXTargetDependency section */
 		F47F554A249B8C1C006A0754 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F47F5535249B8C1B006A0754 /* Mac@IBM Notifications */;
+			target = F47F5535249B8C1B006A0754 /* IBM Notifier */;
 			targetProxy = F47F5549249B8C1C006A0754 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -780,11 +792,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Notification Agent/IBM Notifier.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -795,7 +807,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -806,11 +818,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Notification Agent/Mac@IBM Notifications.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Notification Agent/IBM Notifier.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent/Info.plist";
@@ -821,7 +833,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.1.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.mac-ibm-notifications";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -848,7 +860,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mac@IBM Notifications.app/Contents/MacOS/Mac@IBM Notifications";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBM Notifier.app/Contents/MacOS/IBM Notifier";
 			};
 			name = Debug;
 		};
@@ -872,7 +884,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mac@IBM Notifications.app/Contents/MacOS/Mac@IBM Notifications";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBM Notifier.app/Contents/MacOS/IBM Notifier";
 			};
 			name = Release;
 		};
@@ -888,7 +900,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "Mac@IBM Notifications" */ = {
+		F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "IBM Notifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F47F555D249B8C1C006A0754 /* Debug */,

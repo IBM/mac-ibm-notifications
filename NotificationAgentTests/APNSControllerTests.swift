@@ -9,7 +9,7 @@
 
 import Foundation
 import XCTest
-@testable import Mac_IBM_Notifications
+@testable import IBM_Notifier
 
 class APNSControllerTests: XCTestCase {
     func testObserver() {

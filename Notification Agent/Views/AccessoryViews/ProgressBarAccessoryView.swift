@@ -1,6 +1,6 @@
 //
 //  ProgressBarAccessoryView.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 10/13/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
@@ -10,7 +10,7 @@
 import Cocoa
 
 /// The delegate that will communicate outside the event of the progress bar if needed.
-protocol ProgressBarAccessoryViewDelegate: class {
+protocol ProgressBarAccessoryViewDelegate: AnyObject {
     func didFinishLoading(_ sender: ProgressBarAccessoryView)
     func didChangeEstimation(_ isIndeterminated: Bool)
 

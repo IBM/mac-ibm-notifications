@@ -1,6 +1,6 @@
 //
 //  EFCLController.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 8/26/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
@@ -43,6 +43,8 @@ final class EFCLController {
                                    "--v",
                                    "--help",
                                    "--version",
+                                   "--terms",
+                                   "--privacy",
                                    "--isRunningTestForCommandLine",
                                    "--config",
                                    "-reset",
@@ -101,16 +103,16 @@ final class EFCLController {
     func parseArguments(_ arguments: [String] = CommandLine.arguments) {
         guard isRunningCommandLineWorkflow else {
             guard DeepLinkEngine.shared.agentTriggeredByDeepLink || APNSController.shared.agentTriggeredByAPNS || CommandLine.arguments.contains("-NSDocumentRevisionsDebugMode") else {
-                logger.log(.error, "Unrecognized notification agent launch attempt with arguments: %{public}@.", CommandLine.arguments)
+                logger.log(.error, "Unrecognized IBM Notifier launch attempt with arguments: %{public}@.", CommandLine.arguments)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: { [weak self] in
                     self?.applicationExit(withReason: .invalidArgumentsSyntax)
                 })
                 return
             }
-            logger.log("Mac@IBM Notification Agent running normal workflow")
+            logger.log("IBM Notifier running normal workflow")
             return
         }
-        logger.log("Mac@IBM Notification Agent running command line workflow")
+        logger.log("IBM Notifier running command line workflow")
         do {
             checkSpecialArguments(arguments)
             try checkForConfigurationMode(arguments)
@@ -161,7 +163,7 @@ final class EFCLController {
             UserDefaults.standard.set(configSet.value, forKey: defaultsKey)
         }
         UserDefaults.standard.synchronize()
-        logger.log("Notification Agent configuration completed.")
+        logger.log("IBM Notifier configuration completed.")
         applicationExit(withReason: .untrackedSuccess)
     }
 
@@ -184,7 +186,7 @@ final class EFCLController {
             UserDefaults.standard.set(nil, forKey: defaultsKey)
         }
         UserDefaults.standard.synchronize()
-        logger.log("Notification Agent configuration reset completed.")
+        logger.log("IBM Notifier configuration reset completed.")
         applicationExit(withReason: .untrackedSuccess)
     }
 
@@ -198,6 +200,16 @@ final class EFCLController {
         }
         guard !arguments.contains("--version") else {
             HelpBuilder.printAppVersion()
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
+        guard !arguments.contains("--privacy") else {
+            HelpBuilder.printPrivacyPolicy()
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
+        guard !arguments.contains("--terms") else {
+            HelpBuilder.printTermsAndCondition()
             applicationExit(withReason: .untrackedSuccess)
             return
         }

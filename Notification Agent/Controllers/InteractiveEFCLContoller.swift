@@ -1,6 +1,6 @@
 //
 //  InteractiveEFCLContoller.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 10/15/20.
 //  Copyright © 2020 IBM Inc. All rights reserved
@@ -10,7 +10,7 @@
 import Foundation
 
 /// InteractiveEFCLController delegate
-protocol InteractiveEFCLControllerDelegate: class {
+protocol InteractiveEFCLControllerDelegate: AnyObject {
     /// Triggered when a new state for the progress bar is available.
     /// - Parameter newState: The new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState)

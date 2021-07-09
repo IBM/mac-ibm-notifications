@@ -1,6 +1,6 @@
 //
 //  InfoPopOverStackItem.swift
-//  Notification Agent
+//  IBM Notifier
 //
 //  Created by Simone Martorelli on 3/16/20.
 //  Copyright © 2020 IBM Inc. All rights reserved

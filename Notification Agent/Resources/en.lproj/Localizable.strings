@@ -1,6 +1,6 @@
 /* 
   Localizable.strings
-  Notification Agent
+  IBM Notifier
 
   Created by Simone Martorelli on 8/10/20.
   Copyright © 2020 IBM. All rights reserved.
@@ -8,8 +8,9 @@
 */
 
 // MARK: - Main popup window
-"default_popup_bar_title" = "Mac@IBM Notifications";
+"default_popup_bar_title" = "IBM Notifier";
 
 // MARK: - Buttons
 "default_main_button_label" = "OK";
 "cancel_label" = "Cancel";
+
