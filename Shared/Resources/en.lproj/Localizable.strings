@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  Notification Agent
+
+  Created by Simone Martorelli on 8/10/20.
+  Copyright © 2021 IBM Inc. All rights reserved.
+  SPDX-License-Identifier: Apache2.0
+*/
+
+// MARK: - Main popup window
+"default_popup_bar_title" = "IBM Notifier";
+
+// MARK: - Accessory views
+"accessory_view_timer_label" = "Please make a selection in %@";
+
+// MARK: - Buttons
+"default_main_button_label" = "OK";
+"cancel_label" = "Cancel";
+
+// MARK: - Accessibility
+"popup_accessibility_label_title" = "Pop-up title.";
+"popup_accessibility_label_subtitle" = "Pop-up subtitle.";
+"popup_accessibility_button_main" = "Main button of the pop-up window. It is destructive for the pop-up.";
+"popup_accessibility_button_disabled" = "Disabled.";
+"popup_accessibility_button_secondary" = "Secondary button of the pop-up window. It is destructive for the pop-up.";
+"popup_accessibility_button_tertiary" = "Tertiary button of the pop-up window.";
+"popup_accessibility_button_info" = "Info button of the pop-up window.";
+"popup_accessibility_image_left" = "Icon of the pop-up window.";
+"popup_accessibility_stackview_body" = "This is the body of the pop-up window.";
+"onboarding_accessibility_button_right_continue" = "Go to the next onboarding page.";
+"onboarding_accessibility_button_right_close" = "Close the onboarding window.";
+"onboarding_accessibility_button_left" = "Go to the previous onboarding page.";
+"onboarding_accessibility_button_center" = "Info button of the onboarding page.";
+"onboarding_accessibility_image_top" = "Top icon of the onboarding page.";
+"onboarding_accessibility_stackview_body" = "This is the body of the onboarding page.";
+"accessory_view_accessibility_markdown_textview" = "";
+"accessory_view_accessibility_html_textview" = "";
+"accessory_view_accessibility_checklist_title" = "Title of the checklist.";
+"accessory_view_accessibility_checklist_liststackview" = "Body of the checklist.";
+"accessory_view_accessibility_checklist_liststackview_element" = "Element of the checklist.";
+"accessory_view_accessibility_timer_label" = "";
+"accessory_view_accessibility_image_imageview" = "";
+"accessory_view_accessibility_video_playerView" = "";
+"accessory_view_accessibility_progressbar_toplabel" = "Top label of the progress bar.";
+"accessory_view_accessibility_progressbar_bar" = "Progress bar.";
+"accessory_view_accessibility_progressbar_bottomlabel" = "Bottom label of the progress bar.";
+"accessory_view_accessibility_input_secured_required" = "Require an input value.";
+"accessory_view_accessibility_input_secured" = "";
+"accessory_view_accessibility_input_required" = "Require an input value.";
+"accessory_view_accessibility_input" = "";
+"accessory_view_accessibility_input_title" = "Input field title.";
+"accessory_view_accessibility_dropdown" = "Dropdown selector.";
+"accessory_view_accessibility_dropdown_title" = "Dropdown selector title.";
+
