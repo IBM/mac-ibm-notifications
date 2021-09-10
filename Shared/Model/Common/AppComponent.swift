@@ -37,14 +37,8 @@ enum AppComponent {
         switch self {
         case .core:
             return ""
-        case .popup:
-            return "Components/Popup"
-        case .banner:
-            return "Components/Banner"
-        case .alert:
-            return "Components/Alert"
-        case .onboarding:
-            return "Components/Onboarding"
+        case .popup, .banner, .alert, .onboarding:
+            return "/Contents/Helpers/"
         }
     }
     private var current: AppComponent {
@@ -66,10 +60,8 @@ enum AppComponent {
     /// The local relative path for the component.
     func getRelativeComponentPath() -> String {
         guard current != .core else {
-            return Bundle.main.path(forResource: self.bundleName, ofType: "app", inDirectory: self.componentDirectory)! + self.binaryPath
+            return Bundle.main.bundlePath + self.componentDirectory + self.bundleName + ".app" + self.binaryPath
         }
-        return Bundle.main.bundlePath.replacingOccurrences(of: "\(current.componentDirectory)/\(current.bundleName).app", with: "") +
-            "\(self.componentDirectory)/\(self.bundleName).app" +
-            self.binaryPath
+        return Bundle.main.bundlePath.replacingOccurrences(of: "\(current.bundleName)", with: "\(self.bundleName)") + self.binaryPath
     }
 }
