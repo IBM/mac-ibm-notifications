@@ -139,6 +139,10 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
             if self.viewState.isIndeterminate {
                 self.progressBar.startAnimation(nil)
             }
+            
+            self.mainButtonState = newState.isUserInteractionEnabled || newState.isUserInterruptionAllowed ? .enabled : .hidden
+            self.secondaryButtonState = newState.isUserInteractionEnabled ? .enabled : .hidden
+            
             NSAnimationContext.runAnimationGroup { (context) in
                 context.duration = 0.2
                 self.topMessageLabel.animator().stringValue = self.viewState.topMessage
@@ -148,6 +152,9 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
                     self.didFinishedInteractiveUpdates()
                 } else if !self.viewState.isIndeterminate {
                     self.progressBar.animator().doubleValue = self.viewState.percent
+                    self.delegate?.accessoryViewStatusDidChange(self)
+                } else {
+                    self.delegate?.accessoryViewStatusDidChange(self)
                 }
             }
         }

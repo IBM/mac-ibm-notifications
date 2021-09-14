@@ -389,8 +389,10 @@ extension PopUpViewController: AccessoryViewDelegate {
     func accessoryViewStatusDidChange(_ sender: AccessoryView) {
         self.timeoutTimer?.invalidate()
         self.setTimeoutIfNeeded()
-        if let progressBarCompleted = (sender as? ProgressBarAccessoryView)?.progressCompleted, shouldAllowCancel {
-            self.shouldAllowCancel = !progressBarCompleted
+        if (sender as? ProgressBarAccessoryView)?.progressCompleted ?? false, shouldAllowCancel {
+            self.shouldAllowCancel = false
+        } else {
+            self.shouldAllowCancel = (sender as? ProgressBarAccessoryView)?.isUserInterruptionAllowed ?? false
         }
         checkButtonVisibility()
     }
