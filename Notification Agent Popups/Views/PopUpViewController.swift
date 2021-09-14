@@ -49,6 +49,11 @@ class PopUpViewController: NSViewController {
         super.viewWillAppear()
         view.window?.level = (notificationObject?.alwaysOnTop ?? false) ? .floating : .normal
     }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.setWindowPosition(notificationObject.position ?? .center)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

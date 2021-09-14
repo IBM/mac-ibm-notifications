@@ -26,7 +26,6 @@ extension NotificationDispatch {
                 window.styleMask.remove(.miniaturizable)
             }
             window.styleMask.remove(.closable)
-            window.setWindowPosition(object.position ?? .center)
             window.makeKeyAndOrderFront(self)
             guard object.silent == false else { return }
             NSSound(named: .init("Funk"))?.play()
