@@ -36,6 +36,7 @@
 		B920D4F8265F90FF00437BE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B9524D3324E15DA9007662C8 /* Localizable.strings */; };
 		B920D502265F927B00437BE6 /* NotificationDispatch-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920D501265F927B00437BE6 /* NotificationDispatch-Extension.swift */; };
 		B920D504265F939800437BE6 /* IBM Notifier Alert.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = B920D4B9265F8FC600437BE6 /* IBM Notifier Alert.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B92C37772701D933006114A3 /* InteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A624267C7DFB00657930 /* InteractiveEFCLContoller.swift */; };
 		B92D021C25ED50900076C452 /* NAMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D021B25ED50900076C452 /* NAMedia.swift */; };
 		B92E6708253893D900F39949 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6707253893D900F39949 /* ProgressState.swift */; };
 		B9360EA7268A006300217247 /* EFCLController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9360EA5268A005C00217247 /* EFCLController-Extension.swift */; };
@@ -101,7 +102,7 @@
 		B961A503267A498200657930 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = B961A502267A498200657930 /* SwiftyMarkdown */; };
 		B961A50F267A4D3C00657930 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
 		B961A510267A4D4400657930 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BC85FA2626D802000C9DBD /* Context.swift */; };
-		B961A511267A4D5600657930 /* InteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6700253882EA00F39949 /* InteractiveEFCLContoller.swift */; };
+		B961A511267A4D5600657930 /* PopupInteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */; };
 		B961A512267A4D5900657930 /* NALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8A24F7E5E5009A4554 /* NALogger.swift */; };
 		B961A513267A4D5F00657930 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A03A9A24B76511005BB90E /* NotificationObject.swift */; };
 		B961A514267A4D6100657930 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6707253893D900F39949 /* ProgressState.swift */; };
@@ -296,7 +297,7 @@
 		B920D4C5265F8FC700437BE6 /* Notification_Agent_Alerts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notification_Agent_Alerts.entitlements; sourceTree = "<group>"; };
 		B920D501265F927B00437BE6 /* NotificationDispatch-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationDispatch-Extension.swift"; sourceTree = "<group>"; };
 		B92D021B25ED50900076C452 /* NAMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMedia.swift; sourceTree = "<group>"; };
-		B92E6700253882EA00F39949 /* InteractiveEFCLContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveEFCLContoller.swift; sourceTree = "<group>"; };
+		B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupInteractiveEFCLContoller.swift; sourceTree = "<group>"; };
 		B92E6707253893D900F39949 /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		B9360EA5268A005C00217247 /* EFCLController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFCLController-Extension.swift"; sourceTree = "<group>"; };
 		B9360EAA268A024600217247 /* EFCLController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFCLController-Extension.swift"; sourceTree = "<group>"; };
@@ -709,7 +710,7 @@
 		B9DE2EF126A181330098C6A8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B92E6700253882EA00F39949 /* InteractiveEFCLContoller.swift */,
+				B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1082,7 +1083,7 @@
 				B961A516267A4D6600657930 /* OnboardingData.swift in Sources */,
 				B961A524267A4D8F00657930 /* MarkdownTextView.swift in Sources */,
 				B961A512267A4D5900657930 /* NALogger.swift in Sources */,
-				B961A511267A4D5600657930 /* InteractiveEFCLContoller.swift in Sources */,
+				B961A511267A4D5600657930 /* PopupInteractiveEFCLContoller.swift in Sources */,
 				B961A525267A4D8F00657930 /* VideoAccessoryView.swift in Sources */,
 				B961A539267A4DD600657930 /* Decodable-Extensions.swift in Sources */,
 				B94BDAD72684C1BB00663D21 /* Token.swift in Sources */,
@@ -1114,6 +1115,7 @@
 				B961A52D267A4D9B00657930 /* InfoPopOverViewController.swift in Sources */,
 				B961A51D267A4D7D00657930 /* NAMedia.swift in Sources */,
 				B961A517267A4D6800657930 /* NotificationButton.swift in Sources */,
+				B92C37772701D933006114A3 /* InteractiveEFCLContoller.swift in Sources */,
 				B961A629267C80C000657930 /* TaskManager.swift in Sources */,
 				B961A53C267A4DDF00657930 /* Utils.swift in Sources */,
 				B961A52B267A4D8F00657930 /* DropDownAccessoryView.swift in Sources */,

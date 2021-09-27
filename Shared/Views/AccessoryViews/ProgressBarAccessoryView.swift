@@ -28,7 +28,7 @@ class ProgressBarAccessoryView: AccessoryView {
     private var viewWidthAnchor: NSLayoutConstraint!
     private var shouldQuitObservation = false
     private var viewState: ProgressState!
-    private var interactiveEFCLController: InteractiveEFCLController
+    private var interactiveEFCLController: PopupInteractiveEFCLController!
 
     // MARK: - Public viariables
 
@@ -47,9 +47,9 @@ class ProgressBarAccessoryView: AccessoryView {
     // MARK: - Initializers
 
     init(_ payload: String? = nil) {
-        interactiveEFCLController = InteractiveEFCLController()
         super.init(frame: .zero)
         viewState = ProgressState(payload)
+        interactiveEFCLController = PopupInteractiveEFCLController(viewState)
         interactiveEFCLController.delegate = self
         configureView()
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
@@ -61,16 +61,12 @@ class ProgressBarAccessoryView: AccessoryView {
         return nil
     }
 
-    deinit {
-        interactiveEFCLController.stopObservingForProgressBarUpdates()
-    }
-
     // MARK: - Instance methods
 
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         adjustViewSize()
-        interactiveEFCLController.startObservingForProgressBarUpdates(viewState)
+        interactiveEFCLController.startObservingStandardInput()
         configureAccessibilityElements()
     }
 
@@ -129,7 +125,7 @@ class ProgressBarAccessoryView: AccessoryView {
     }
 }
 
-extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
+extension ProgressBarAccessoryView: PopupInteractiveEFCLControllerDelegate {
     /// Update the UI for the new state received.
     /// - Parameter newState: the new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState) {

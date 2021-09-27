@@ -18,8 +18,12 @@ final class TaskManager {
         runningUITasks.forEach({ $0.interrupt() })
     }
 
-    func runSyncTaskOnComponent(_ component: AppComponent, with jsonObject: Data, completion: (Int32) -> Void) -> Int32 {
+    func runSyncTaskOnComponent(_ component: AppComponent, with jsonObject: Data, isInteractive: Bool = false, completion: (Int32) -> Void) -> Int32 {
         let task = buildTask(for: component, with: jsonObject)
+        if isInteractive {
+            interactiveInputController = InteractiveEFCLController(for: task)
+            interactiveInputController?.startObservingStandardInput()
+        }
         task.launch()
         runningUITasks.insert(task)
         task.waitUntilExit()
@@ -35,8 +39,12 @@ final class TaskManager {
         return task.terminationStatus
     }
     
-    func runAsyncTaskOnComponent(_ component: AppComponent, with jsonObject: Data, completion: @escaping (Int32) -> Void) {
+    func runAsyncTaskOnComponent(_ component: AppComponent, with jsonObject: Data, isInteractive: Bool = false, completion: @escaping (Int32) -> Void) {
         let task = buildTask(for: component, with: jsonObject)
+        if isInteractive {
+            interactiveInputController = InteractiveEFCLController(for: task)
+            interactiveInputController?.startObservingStandardInput()
+        }
         task.launch()
         runningUITasks.insert(task)
         task.waitUntilExit()
@@ -65,8 +73,6 @@ final class TaskManager {
         task.standardOutput = outputPipe
         task.standardError = errorPipe
         task.standardInput = inputPipe
-        interactiveInputController = InteractiveEFCLController(for: task)
-        interactiveInputController?.startObservingStandardInput()
         if let loggedInUser = loggedUser() {
             let suArgsString = "'" + component.getRelativeComponentPath() + "'" + " " + jsonObject.base64EncodedString()
             var suArgsArray: [String] = [suArgsString]

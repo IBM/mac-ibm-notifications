@@ -29,7 +29,16 @@ extension NotificationDispatch {
                 exit(terminationStatus)
             }
         case .popup:
-            taskManager.runAsyncTaskOnComponent(.popup, with: jsonData) { terminationStatus in
+            var isInteractive: Bool {
+                var int = false
+                object.notification.accessoryViews?.forEach({ accessoryView in
+                    if accessoryView.type == .progressbar {
+                        int = true
+                    }
+                })
+                return int
+            }
+            taskManager.runAsyncTaskOnComponent(.popup, with: jsonData, isInteractive: isInteractive) { terminationStatus in
                 exit(terminationStatus)
             }
         case .onboarding:
