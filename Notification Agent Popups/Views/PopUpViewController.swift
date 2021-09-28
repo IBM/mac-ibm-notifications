@@ -105,15 +105,12 @@ class PopUpViewController: NSViewController {
 
     /// This method load and set the icon if a custom one was defined.
     private func setIconIfNeeded() {
-        func loadIcon(from filePath: String) {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)),
+        if let iconPath = notificationObject.iconPath,
+           FileManager.default.fileExists(atPath: iconPath) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: iconPath)),
                let image = NSImage(data: data) {
                 iconView.image = image
             }
-        }
-        if let iconPath = notificationObject.iconPath,
-           FileManager.default.fileExists(atPath: iconPath) {
-            loadIcon(from: iconPath)
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
         }

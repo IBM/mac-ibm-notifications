@@ -32,6 +32,8 @@ public final class OnboardingPage: Codable {
     var pageMedia: NAMedia?
     /// The info section showed with the click on the info button.
     var infoSection: InfoSection?
+    /// The path for a custom icon on top of the page
+    var topIcon: String?
 
     public func isValidPage() -> Bool {
         return title != nil || subtitle != nil || body != nil || pageMedia != nil
@@ -46,6 +48,7 @@ public final class OnboardingPage: Codable {
         case mediaType
         case mediaPayload
         case infoSection
+        case topIcon
     }
 
     required public init(from decoder: Decoder) throws {
@@ -59,6 +62,7 @@ public final class OnboardingPage: Codable {
             self.pageMedia = NAMedia(type: mediaType, from: mediaPayload)
         }
         self.infoSection = try container.decodeIfPresent(InfoSection.self, forKey: .infoSection)
+        self.topIcon = try container.decodeIfPresent(String.self, forKey: .topIcon)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -70,6 +74,7 @@ public final class OnboardingPage: Codable {
         try container.encodeIfPresent(self.pageMedia?.mediaType.rawValue, forKey: .mediaType)
         try container.encodeIfPresent(self.pageMedia?.mediaPayload, forKey: .mediaPayload)
         try container.encodeIfPresent(self.infoSection, forKey: .infoSection)
+        try container.encodeIfPresent(self.topIcon, forKey: .topIcon)
     }
 
     // MARK: Codable protocol conformity - END
