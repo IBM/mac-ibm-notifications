@@ -26,7 +26,6 @@ class ProgressBarAccessoryView: AccessoryView {
     private var topMessageLabel: NSTextField!
     private var bottomMessageLabel: NSTextField!
     private var viewWidthAnchor: NSLayoutConstraint!
-    private var shouldQuitObservation = false
     private var viewState: ProgressState!
     private var interactiveEFCLController: PopupInteractiveEFCLController!
 
@@ -163,6 +162,12 @@ extension ProgressBarAccessoryView: PopupInteractiveEFCLControllerDelegate {
             self.progressBar.doubleValue = 100
             self.progressBar.stopAnimation(nil)
             self.progressCompleted = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            guard !self.viewState.exitOnCompletion else {
+                EFCLController.shared.applicationExit(withReason: .mainButtonClicked)
+                return
+            }
             self.mainButtonState = .enabled
             self.secondaryButtonState = .enabled
             self.delegate?.accessoryViewStatusDidChange(self)
