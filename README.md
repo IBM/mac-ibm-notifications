@@ -1,4 +1,4 @@
-# mac-ibm-notifications
+# IBM Notifier
 
 [![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
 ![License](https://img.shields.io/badge/license-Apache%202-blue)
