@@ -37,7 +37,7 @@ struct ProgressState: Equatable {
         guard let payload = payload else { return }
         let splittedStrings = payload.split(separator: "/")
         for string in splittedStrings {
-            guard let argument = string.split(separator: " ", maxSplits: 1).first,
+            guard let argument = string.split(separator: " ", maxSplits: 1).first?.lowercased(),
                   var value = string.split(separator: " ", maxSplits: 1).last else { continue }
             if value.last == " " {
                 value.removeLast()

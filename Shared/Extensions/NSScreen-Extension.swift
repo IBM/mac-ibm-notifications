@@ -23,10 +23,10 @@ extension NSWindow {
             self.center()
             return
         }
-        let minX = mainScreen.frame.minX + 30
-        let minY = mainScreen.frame.minY + 80 + self.frame.size.height
-        let maxX = mainScreen.frame.maxX - 30 - self.frame.size.width
-        let maxY = mainScreen.frame.maxY - 60
+        let minX = mainScreen.visibleFrame.minX + 30
+        let minY = mainScreen.visibleFrame.minY + 30 + self.frame.size.height
+        let maxX = mainScreen.visibleFrame.maxX - 30 - self.frame.size.width
+        let maxY = mainScreen.visibleFrame.maxY - 30
         switch position {
         case .topRight:
             self.setFrameTopLeftPoint(CGPoint(x: maxX, y: maxY))

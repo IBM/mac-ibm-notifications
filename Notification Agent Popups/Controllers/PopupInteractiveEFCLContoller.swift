@@ -45,7 +45,7 @@ final class PopupInteractiveEFCLController: InteractiveEFCLController {
                       self.delegate?.didFinishedInteractiveUpdates()
                       return
                   }
-            let newState = ProgressState(strData.trimmingCharacters(in: CharacterSet.newlines).lowercased(), currentState: currentState)
+            let newState = ProgressState(strData.trimmingCharacters(in: CharacterSet.newlines), currentState: currentState)
             guard newState != currentState else {
                 inputPipe.waitForDataInBackgroundAndNotify()
                 return
