@@ -49,6 +49,11 @@ class PopUpViewController: NSViewController {
         super.viewWillAppear()
         view.window?.level = (notificationObject?.alwaysOnTop ?? false) ? .floating : .normal
     }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.setWindowPosition(notificationObject.position ?? .center)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,15 +105,12 @@ class PopUpViewController: NSViewController {
 
     /// This method load and set the icon if a custom one was defined.
     private func setIconIfNeeded() {
-        func loadIcon(from filePath: String) {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)),
+        if let iconPath = notificationObject.iconPath,
+           FileManager.default.fileExists(atPath: iconPath) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: iconPath)),
                let image = NSImage(data: data) {
                 iconView.image = image
             }
-        }
-        if let iconPath = notificationObject.iconPath,
-           FileManager.default.fileExists(atPath: iconPath) {
-            loadIcon(from: iconPath)
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
         }
@@ -384,8 +386,10 @@ extension PopUpViewController: AccessoryViewDelegate {
     func accessoryViewStatusDidChange(_ sender: AccessoryView) {
         self.timeoutTimer?.invalidate()
         self.setTimeoutIfNeeded()
-        if let progressBarCompleted = (sender as? ProgressBarAccessoryView)?.progressCompleted, shouldAllowCancel {
-            self.shouldAllowCancel = !progressBarCompleted
+        if (sender as? ProgressBarAccessoryView)?.progressCompleted ?? false, shouldAllowCancel {
+            self.shouldAllowCancel = false
+        } else {
+            self.shouldAllowCancel = (sender as? ProgressBarAccessoryView)?.isUserInterruptionAllowed ?? false
         }
         checkButtonVisibility()
     }

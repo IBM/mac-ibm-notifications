@@ -92,6 +92,7 @@ final class OnboardingPageViewController: NSViewController {
         self.setupStackViewLayout()
         self.setupButtonsLayout()
         self.configureAccessibilityElements()
+        self.setIconIfNeeded()
     }
 
     // MARK: - Private methods
@@ -153,6 +154,19 @@ final class OnboardingPageViewController: NSViewController {
             centerButton.image = NSImage(named: "info.circle")
         } else {
             centerButton.isHidden = true
+        }
+    }
+    
+    /// This method load and set the icon if a custom one was defined.
+    private func setIconIfNeeded() {
+        if let iconPath = page.topIcon,
+           FileManager.default.fileExists(atPath: iconPath) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: iconPath)),
+               let image = NSImage(data: data) {
+                topIconImageView.image = image
+            }
+        } else {
+            topIconImageView.image = NSImage(named: NSImage.Name("default_icon"))
         }
     }
 

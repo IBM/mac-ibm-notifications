@@ -23,16 +23,21 @@ struct ProgressState: Equatable {
     var isUserInteractionEnabled = false
     /// If the popop should allow user interruption during progressbar loading.
     var isUserInterruptionAllowed = false
-
+    /// If the popup should automatically close at the end of the progress.
+    var exitOnCompletion: Bool = false
+    
     init(_ payload: String? = nil, currentState: ProgressState? = nil) {
         self.percent = currentState?.percent ?? 0
         self.topMessage = currentState?.topMessage ?? ""
         self.bottomMessage =  currentState?.bottomMessage ?? ""
         self.isIndeterminate = currentState?.isIndeterminate ?? false
+        self.isUserInteractionEnabled = currentState?.isUserInteractionEnabled ?? false
+        self.isUserInterruptionAllowed = currentState?.isUserInterruptionAllowed ?? false
+        self.exitOnCompletion = currentState?.exitOnCompletion ?? false
         guard let payload = payload else { return }
         let splittedStrings = payload.split(separator: "/")
         for string in splittedStrings {
-            guard let argument = string.split(separator: " ", maxSplits: 1).first,
+            guard let argument = string.split(separator: " ", maxSplits: 1).first?.lowercased(),
                   var value = string.split(separator: " ", maxSplits: 1).last else { continue }
             if value.last == " " {
                 value.removeLast()
@@ -54,6 +59,8 @@ struct ProgressState: Equatable {
                 self.isUserInteractionEnabled = value.lowercased() == "true" ? true : false
             case "user_interruption_allowed":
                 self.isUserInterruptionAllowed = value.lowercased() == "true" ? true : false
+            case "exit_on_completion":
+                self.exitOnCompletion = value.lowercased() == "true" ? true : false
             default:
                 continue
             }

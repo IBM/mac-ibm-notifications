@@ -26,9 +26,8 @@ class ProgressBarAccessoryView: AccessoryView {
     private var topMessageLabel: NSTextField!
     private var bottomMessageLabel: NSTextField!
     private var viewWidthAnchor: NSLayoutConstraint!
-    private var shouldQuitObservation = false
     private var viewState: ProgressState!
-    private var interactiveEFCLController: InteractiveEFCLController
+    private var interactiveEFCLController: PopupInteractiveEFCLController!
 
     // MARK: - Public viariables
 
@@ -47,9 +46,9 @@ class ProgressBarAccessoryView: AccessoryView {
     // MARK: - Initializers
 
     init(_ payload: String? = nil) {
-        interactiveEFCLController = InteractiveEFCLController()
         super.init(frame: .zero)
         viewState = ProgressState(payload)
+        interactiveEFCLController = PopupInteractiveEFCLController(viewState)
         interactiveEFCLController.delegate = self
         configureView()
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
@@ -61,16 +60,12 @@ class ProgressBarAccessoryView: AccessoryView {
         return nil
     }
 
-    deinit {
-        interactiveEFCLController.stopObservingForProgressBarUpdates()
-    }
-
     // MARK: - Instance methods
 
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         adjustViewSize()
-        interactiveEFCLController.startObservingForProgressBarUpdates(viewState)
+        interactiveEFCLController.startObservingStandardInput()
         configureAccessibilityElements()
     }
 
@@ -129,7 +124,7 @@ class ProgressBarAccessoryView: AccessoryView {
     }
 }
 
-extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
+extension ProgressBarAccessoryView: PopupInteractiveEFCLControllerDelegate {
     /// Update the UI for the new state received.
     /// - Parameter newState: the new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState) {
@@ -139,6 +134,10 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
             if self.viewState.isIndeterminate {
                 self.progressBar.startAnimation(nil)
             }
+            
+            self.mainButtonState = newState.isUserInteractionEnabled || newState.isUserInterruptionAllowed ? .enabled : .hidden
+            self.secondaryButtonState = newState.isUserInteractionEnabled ? .enabled : .hidden
+            
             NSAnimationContext.runAnimationGroup { (context) in
                 context.duration = 0.2
                 self.topMessageLabel.animator().stringValue = self.viewState.topMessage
@@ -148,6 +147,9 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
                     self.didFinishedInteractiveUpdates()
                 } else if !self.viewState.isIndeterminate {
                     self.progressBar.animator().doubleValue = self.viewState.percent
+                    self.delegate?.accessoryViewStatusDidChange(self)
+                } else {
+                    self.delegate?.accessoryViewStatusDidChange(self)
                 }
             }
         }
@@ -160,6 +162,12 @@ extension ProgressBarAccessoryView: InteractiveEFCLControllerDelegate {
             self.progressBar.doubleValue = 100
             self.progressBar.stopAnimation(nil)
             self.progressCompleted = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            guard !self.viewState.exitOnCompletion else {
+                EFCLController.shared.applicationExit(withReason: .mainButtonClicked)
+                return
+            }
             self.mainButtonState = .enabled
             self.secondaryButtonState = .enabled
             self.delegate?.accessoryViewStatusDidChange(self)

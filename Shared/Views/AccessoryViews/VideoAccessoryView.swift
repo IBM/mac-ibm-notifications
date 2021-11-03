@@ -43,6 +43,8 @@ final class VideoAccessoryView: AccessoryView {
         playerView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         playerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         playerView.player = media.player!
+        playerView.player?.allowsExternalPlayback = false
+        playerView.allowsPictureInPicturePlayback = true
         playerView.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: CMTimeScale(1)), queue: .main, using: { _ in
             self.delegate?.accessoryViewStatusDidChange(self)
         })
