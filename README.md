@@ -1,13 +1,13 @@
 # IBM Notifier
 
 [![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
-![License](https://img.shields.io/badge/license-Apache%202-blue)
-![Swift version](https://img.shields.io/badge/swift-5-EA392B)
+![License](https://img.shields.io/badge/license-Apache%202-1984E5)
+![Swift version](https://img.shields.io/badge/swift-5-1984E5)
 ![Xcode version](https://img.shields.io/badge/xcode-13-1984E5)
-![Project version](https://img.shields.io/badge/version-2.4.1-bright%20green)  
-![macOS](https://img.shields.io/badge/os-macOS%20Catalina-green)  
-![macOS](https://img.shields.io/badge/os-macOS%20Big%20Sur-green)  
-![macOS](https://img.shields.io/badge/os-macOS%20Monterey-green)
+![Project version](https://img.shields.io/badge/version-2.4.1-1984E5)  
+![macOS](https://img.shields.io/badge/os-macOS%20Catalina-bright%20green)  
+![macOS](https://img.shields.io/badge/os-macOS%20Big%20Sur-bright%20green)  
+![macOS](https://img.shields.io/badge/os-macOS%20Monterey-bright%20green)
 ## Scope
 
 The purpose of this project is to provide an useful tool to system administrators to trigger interactive popups and notification banners to the end user.
