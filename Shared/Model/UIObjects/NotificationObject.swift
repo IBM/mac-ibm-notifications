@@ -65,8 +65,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var payload: OnboardingData?
     /// The desired pop-up window position on screen.
     var position: NSWindow.WindowPosition?
-    /// A boolean value that set if the pop-up must be miniaturizable.
+    /// A boolean value that define wheter the pop-up must be miniaturizable.
     var isMiniaturizable: Bool?
+    /// A boolean value that define wheter the UI must be force in light mode.
+    var forceLightMode: Bool?
     
     // MARK: - Initializers
     
@@ -150,6 +152,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.isMiniaturizable = false
         }
+        if let forceLightModeRaw = dict["force_light_mode"] as? String {
+            self.forceLightMode = forceLightModeRaw.lowercased() == "true"
+        }
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
         }
@@ -213,6 +218,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case position
         case miniaturizable
         case payload
+        case forceLightMode
     }
     
     required public init(from decoder: Decoder) throws {
@@ -236,6 +242,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
         self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
         self.isMiniaturizable = try container.decodeIfPresent(Bool.self, forKey: .miniaturizable)
+        self.forceLightMode = try container.decodeIfPresent(Bool.self, forKey: .forceLightMode)
         self.payload = try container.decodeIfPresent(OnboardingData.self, forKey: .payload)
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
@@ -261,6 +268,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
         try container.encodeIfPresent(self.silent, forKey: .silent)
         try container.encodeIfPresent(self.isMiniaturizable, forKey: .miniaturizable)
+        try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
     }
@@ -314,6 +322,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: isMiniaturizable)
             coder.encode(number, forKey: NOCodingKeys.miniaturizable.rawValue)
         }
+        if let forceLightMode = self.forceLightMode {
+            let number = NSNumber(booleanLiteral: forceLightMode)
+            coder.encode(number, forKey: NOCodingKeys.forceLightMode.rawValue)
+        }
         if let position = self.position?.rawValue {
             coder.encode(position, forKey: NOCodingKeys.position.rawValue)
         }
@@ -337,6 +349,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
         self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool
         self.isMiniaturizable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.miniaturizable.rawValue) as? Bool
+        self.forceLightMode = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.forceLightMode.rawValue) as? Bool
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }

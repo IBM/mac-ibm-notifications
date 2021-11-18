@@ -46,7 +46,7 @@ final class EFCLController {
                                    "--config",
                                    "-reset",
                                    "sudo"]
-    static let standaloneBooleanArguments = ["always_on_top", "silent", "miniaturizable"]
+    static let standaloneBooleanArguments = ["always_on_top", "silent", "miniaturizable", "force_light_mode"]
     // MARK: - Variables
 
     let context = Context.main

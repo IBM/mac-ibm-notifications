@@ -20,6 +20,9 @@ extension NotificationDispatch {
         let onboardingViewController = OnboardingViewController(with: pages)
         let window = NSWindow(contentViewController: onboardingViewController)
         window.styleMask.remove(.resizable)
+        if object.forceLightMode ?? false {
+            window.appearance = NSAppearance(named: .aqua)
+        }
         window.title = ""
         window.titlebarAppearsTransparent = true
         window.center()

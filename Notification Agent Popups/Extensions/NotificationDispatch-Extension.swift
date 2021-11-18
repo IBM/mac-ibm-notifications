@@ -21,6 +21,9 @@ extension NotificationDispatch {
             guard let popUpViewController = storyboard.instantiateController(withIdentifier: PopUpViewController.identifier) as? PopUpViewController else { return }
             popUpViewController.notificationObject = object
             let window = NSWindow(contentViewController: popUpViewController)
+            if object.forceLightMode ?? false {
+                window.appearance = NSAppearance(named: .aqua)
+            }
             window.styleMask.remove(.resizable)
             if !(object.isMiniaturizable ?? false) {
                 window.styleMask.remove(.miniaturizable)
