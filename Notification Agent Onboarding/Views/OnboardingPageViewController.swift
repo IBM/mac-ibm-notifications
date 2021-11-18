@@ -108,6 +108,7 @@ final class OnboardingPageViewController: NSViewController {
         if let title = page.title {
             titleLabel = NSTextField(wrappingLabelWithString: title)
             titleLabel.font = NSFont.systemFont(ofSize: 32)
+            titleLabel.alignment = .center
             bodyStackView.insertView(titleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= titleLabel.intrinsicContentSize.height+12
@@ -115,6 +116,7 @@ final class OnboardingPageViewController: NSViewController {
         if let subtitle = page.subtitle {
             subtitleLabel = NSTextField(wrappingLabelWithString: subtitle)
             subtitleLabel.font = NSFont.systemFont(ofSize: 18)
+            subtitleLabel.alignment = .center
             bodyStackView.insertView(subtitleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= subtitleLabel.intrinsicContentSize.height+12
