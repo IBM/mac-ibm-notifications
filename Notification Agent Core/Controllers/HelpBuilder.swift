@@ -47,7 +47,8 @@ public final class HelpBuilder {
                                             "-secondary_button_cta_payload".yellow(),
                                             "-tertiary_button_label".yellow(),
                                             "-tertiary_button_cta_type".yellow(),
-                                            "-tertiary_button_cta_payload".yellow()]
+                                            "-tertiary_button_cta_payload".yellow(),
+                                            "-notification_image".yellow()]
     static let onboardingArguments: [String] = ["-type".green(),
                                                 "-payload".green()]
     static let popupDescriptions: [String] = ["[ popup ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
@@ -88,7 +89,8 @@ public final class HelpBuilder {
                                                "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -secondary_button_cta_payload \"URL\"",
                                                "\n      The label of the tertiary button.\n      Example: -tertiary_button_label \"Tertiary button title\"",
                                                "[ none | link ]".red() + "\n      The call to action type for the tertiary button.\n      Example: -tertiary_button_cta_type link",
-                                               "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -tertiary_button_cta_payload \"URL\""]
+                                               "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -tertiary_button_cta_payload \"URL\"",
+                                               "\n      The path (local or remote) or the base64 encoded representation of the image attached to this notification.\n      Example: -notification_image \"~/Icon/Path.png\""]
     static let onboardingDescriptions: [String] = ["[ onboarding ]".red() + "\n      The UI type of the notification.\n      Example: -type onboarding",
                                               "\n      The json payload for the \"onboarding\" UI type.\n      Example: -payload \"{ \"pages\": [\n                                      {\n                                         \"title\": \"Some title\",\n                                         \"subtitle\": \"Some subtitle\",\n                                         \"body\": \"Some body\",\n                                         \"mediaType\": \"[ image | video ]\",\n                                         \"mediaPayload\": \"Some URL\"\n                                      }\n                                    ]\n                         }\"\n      Please see more about this feature on the project wiki."]
     static let popupSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle | -accessory_view_type + -accessory_view_payload ] ".red() + "must be defined to present a pop-up.",

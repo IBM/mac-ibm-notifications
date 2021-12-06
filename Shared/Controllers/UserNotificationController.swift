@@ -6,6 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
+//  swiftlint:disable function_body_length
 
 import Foundation
 import Cocoa
@@ -59,7 +60,6 @@ class UserNotificationController: NSObject {
             guard success else { return }
             let userNotificationContent = UNMutableNotificationContent()
             let userNotificationRequestIdentifier = notificationObject.identifier.uuidString
-
             userNotificationContent.title = notificationObject.title ?? ""
             userNotificationContent.body = notificationObject.subtitle ?? ""
             var actions: [UNNotificationAction] = []
@@ -81,19 +81,40 @@ class UserNotificationController: NSObject {
                 EFCLController.shared.applicationExit(withReason: .internalError)
                 return
             }
+            if let imagePath = notificationObject.notificationImage {
+                var imageData: Data? {
+                    if FileManager.default.fileExists(atPath: imagePath),
+                       let data = try? Data(contentsOf: URL(fileURLWithPath: imagePath)) {
+                        return data
+                    } else if imagePath.isValidURL,
+                              let url = URL(string: imagePath),
+                              let data = try? Data(contentsOf: url) {
+                        return data
+                    } else if let data = Data(base64Encoded: imagePath, options: .ignoreUnknownCharacters) {
+                        return data
+                    } else {
+                        return nil
+                    }
+                }
+                do {
+                    if let data = imageData,
+                       let attachment = try UNNotificationAttachment.create(imageFileIdentifier: "image.png", data: data as NSData, options: nil) {
+                        userNotificationContent.attachments = [attachment]
+                    }
+                } catch {
+                    NALogger.shared.log("")
+                }
+            }
             userNotificationContent.userInfo = ["notificationObject": data]
             let category = UNNotificationCategory(identifier: UUID().uuidString, actions: actions, intentIdentifiers: [], options: [.customDismissAction])
             UNUserNotificationCenter.current().setNotificationCategories([category])
 
             userNotificationContent.categoryIdentifier = category.identifier
             userNotificationContent.sound = UNNotificationSound.default
-
             let userNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
-
             let request = UNNotificationRequest(identifier: userNotificationRequestIdentifier,
                                                 content: userNotificationContent,
                                                 trigger: userNotificationTrigger)
-
             UNUserNotificationCenter.current().add(request) { error in
                 guard error == nil else {
                     NALogger.shared.log(.error,

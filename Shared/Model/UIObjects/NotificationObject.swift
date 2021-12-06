@@ -43,6 +43,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var subtitle: String?
     /// Custom icon path defined for this notification object (Available only for popup UIType).
     var iconPath: String?
+    /// Custom notification alert/banner attachment (image). It supports remote link, local path and base64 encoded image.
+    var notificationImage: String?
     /// The accessory views that needs to be added to the notification. This will be used only for "popup" notification type.
     var accessoryViews: [NotificationAccessoryElement]?
     /// The main button of the notification that needs to be showed to the user.
@@ -89,6 +91,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.title = dict["title"] as? String
         self.subtitle = dict["subtitle"] as? String
         self.iconPath = dict["icon_path"] as? String ?? ConfigurableParameters.defaultPopupIconPath
+        self.notificationImage = dict["notification_image"] as? String
         if let payloadRawData = dict["payload"] as? String {
             switch type {
             case .onboarding:
@@ -207,6 +210,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case title
         case subtitle
         case iconPath
+        case notificationAttachment
         case accessoryViews
         case mainButton
         case secondaryButton
@@ -233,6 +237,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.title = try container.decodeIfPresent(String.self, forKey: .title)
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
+        self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
         self.accessoryViews = try container.decodeIfPresent([NotificationAccessoryElement].self, forKey: .accessoryViews)
         self.mainButton = try container.decode(NotificationButton.self, forKey: .mainButton)
         self.secondaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .secondaryButton)
@@ -259,6 +264,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.title, forKey: .title)
         try container.encodeIfPresent(self.subtitle, forKey: .subtitle)
         try container.encodeIfPresent(self.iconPath, forKey: .iconPath)
+        try container.encodeIfPresent(self.notificationImage, forKey: .notificationAttachment)
         try container.encodeIfPresent(self.accessoryViews, forKey: .accessoryViews)
         try container.encode(self.mainButton, forKey: .mainButton)
         try container.encodeIfPresent(self.secondaryButton, forKey: .secondaryButton)
@@ -293,6 +299,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
         if let iconPath = self.iconPath {
             coder.encode(iconPath, forKey: NOCodingKeys.iconPath.rawValue)
+        }
+        if let notificationAttachment = self.notificationImage {
+            coder.encode(notificationAttachment, forKey: NOCodingKeys.notificationAttachment.rawValue)
         }
         if let accessoryViews = self.accessoryViews, !accessoryViews.isEmpty {
             coder.encode(accessoryViews, forKey: NOCodingKeys.accessoryViews.rawValue)
@@ -340,6 +349,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.title = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.title.rawValue) as String?
         self.subtitle = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.subtitle.rawValue) as String?
         self.iconPath = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconPath.rawValue) as String?
+        self.notificationImage = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.notificationAttachment.rawValue) as String?
         self.accessoryViews = coder.decodeObject(of: [NotificationAccessoryElement.self], forKey: NOCodingKeys.accessoryViews.rawValue) as? [NotificationAccessoryElement]
         self.mainButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.mainButton.rawValue)!
         self.secondaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.secondaryButton.rawValue)
