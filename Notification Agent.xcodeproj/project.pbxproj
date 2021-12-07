@@ -204,7 +204,6 @@
 		B961A629267C80C000657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
 		B961A62A267C80C100657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
 		B961A62D267C9DC900657930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B961A62B267C9DA200657930 /* Assets.xcassets */; };
-		B961A62E267C9DCD00657930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B961A62C267C9DA800657930 /* Assets.xcassets */; };
 		B9710AB624A0F184000B5A67 /* DeepLinkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */; };
 		B97583C22673643F0038A99F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97583C02673643F0038A99F /* Main.storyboard */; };
 		B97583D1267364D70038A99F /* NotificationDispatch-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97583D0267364CE0038A99F /* NotificationDispatch-Extension.swift */; };
@@ -348,7 +347,6 @@
 		B961A624267C7DFB00657930 /* InteractiveEFCLContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveEFCLContoller.swift; sourceTree = "<group>"; };
 		B961A626267C80BA00657930 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		B961A62B267C9DA200657930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B961A62C267C9DA800657930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B96AE19524F52A2300C99A5E /* ReplyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyHandler.swift; sourceTree = "<group>"; };
 		B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkEngine.swift; sourceTree = "<group>"; };
 		B97583B82673643E0038A99F /* IBM Notifier Banner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM Notifier Banner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -569,7 +567,6 @@
 				B961A54E267A4E5500657930 /* Notification_Agent_Onboarding.entitlements */,
 				B961A57E267A594300657930 /* AppDelegate.swift */,
 				B961A54A267A4E5500657930 /* Main.storyboard */,
-				B961A62C267C9DA800657930 /* Assets.xcassets */,
 				B9360EB9268A049800217247 /* Extensions */,
 				B961A5F9267B8B9E00657930 /* Views */,
 			);
@@ -980,7 +977,6 @@
 				B961A5ED267B8A1F00657930 /* InfoPopOverStackItem.xib in Resources */,
 				B961A5B3267B44E000657930 /* OnboardingViewController.xib in Resources */,
 				B961A5EF267B8A1F00657930 /* InfoPopOverViewController.xib in Resources */,
-				B961A62E267C9DCD00657930 /* Assets.xcassets in Resources */,
 				B961A584267A5CE100657930 /* Localizable.strings in Resources */,
 				B9B4E22D26E918B2001D2D89 /* Assets.xcassets in Resources */,
 				B9B4E22E26E918C6001D2D89 /* Assets.xcassets in Resources */,
