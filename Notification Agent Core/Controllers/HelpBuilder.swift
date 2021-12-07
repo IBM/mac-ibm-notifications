@@ -13,6 +13,7 @@ public final class HelpBuilder {
     static let popupArguments: [String] = ["-type".green(),
                                            "-bar_title".yellow(),
                                            "-title".yellow(),
+                                           "-title_size".yellow(),
                                            "-subtitle".yellow(),
                                            "-icon_path".yellow(),
                                            "-accessory_view_type".yellow(),
@@ -54,6 +55,7 @@ public final class HelpBuilder {
     static let popupDescriptions: [String] = ["[ popup ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
                                               "\n      The bar title.\n      Example: -bar_title \"Bar Title\"",
                                               "\n      The title of the notification.\n      Suggested length < 120 characters.\n      Allowed length < 240 characters.\n      Example: -title \"Title\"",
+                                              "\n      The title font size.\n      Example: -title_size \"20\"",
                                               "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
                                               "\n      The custom icon path defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                               "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
@@ -77,7 +79,6 @@ public final class HelpBuilder {
                                               "\n      Flag that allows the UI to show the \"miniaturize\" button for the pop-up window.\n      Example: -miniaturizable",
                                               "\n      Flag that force the UI in light mode.\n      Example: -force_light_mode",
                                               "[ center | top_right | top_left | bottom_right | bottom_left ]".red() + "\n      Tells the app where to place the pop-up window.\n      Example: -position center"]
-    
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",

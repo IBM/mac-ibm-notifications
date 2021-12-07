@@ -20,6 +20,11 @@ Here you can find the updated changelog [CHANGELOG.md](CHANGELOG.md)
 
 For detailed usage of this tool please refer to the [official wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Usage)
 
+## As seen on
+
+[JNUC 2021 Session 1167](https://www.youtube.com/watch?v=Cn5wIuB90t8&list=PLlxHm_Px-Ie1EIRlDHG2lW5H7c2UYvops&index=14)  
+[JNUC 2021 Session 1171](https://www.youtube.com/watch?v=BOPAa8QZw0o&list=PLlxHm_Px-Ie1EIRlDHG2lW5H7c2UYvops&index=17)
+
 ## Notes
 
 If you have any questions or issues you can create a new issue [here](https://github.com/IBM/mac-ibm-notifications/issues/new/choose).
