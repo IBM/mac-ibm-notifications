@@ -27,7 +27,9 @@ class PopUpViewController: NSViewController {
     @IBOutlet weak var secondaryButton: NSButton!
     @IBOutlet weak var tertiaryButton: NSButton!
     @IBOutlet weak var popupElementsStackView: NSStackView!
-
+    @IBOutlet weak var iconViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var iconViewWidth: NSLayoutConstraint!
+    
     // MARK: - Variables
 
     var notificationObject: NotificationObject!
@@ -114,53 +116,19 @@ class PopUpViewController: NSViewController {
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
         }
-        
-        // set icon width and height if specified
-        var changedIconWidth = false
-        var changedIconHeight = false
-        var newIconHeight: CGFloat = 0
-        for constraint in iconView.constraints {
-            if constraint.identifier == "iconWidth" {
-                if let iconWidthAsString = notificationObject.iconWidth {
-                    if let customWidth = NumberFormatter().number(from: iconWidthAsString) {
-                        let iconWidth = CGFloat(truncating: customWidth)
-                        constraint.constant = iconWidth
-                        changedIconWidth = true
-                    }
-                }
-            } else if constraint.identifier == "iconHeight" {
-                if let iconHeightAsString = notificationObject.iconHeight {
-                    if let customHeight = NumberFormatter().number(from: iconHeightAsString) {
-                        let iconHeight = CGFloat(truncating: customHeight)
-                        constraint.constant = iconHeight
-                        changedIconHeight = true
-                        newIconHeight = iconHeight
-                    }
-                }
-            }
+        // Set icon width and height if specified
+        if let iconWidthAsString = notificationObject.iconWidth,
+           let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+            iconViewWidth.constant = CGFloat(truncating: customWidth)
         }
-        
-        if changedIconHeight {
-            // make room in the popup for the icon
-            for constraint in popupElementsStackView.constraints {
-                if constraint.identifier == "popupHeight" {
-                    constraint.constant = newIconHeight
-                    break
-                }
-            }
+        if let iconHeightAsString = notificationObject.iconHeight,
+           let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+            iconViewHeight.constant = CGFloat(truncating: customHeight)
         }
-        
-        if changedIconWidth || changedIconHeight {
-            for constraint in iconView.constraints {
-                if constraint.identifier == "iconAspect" {
-                    iconView.removeConstraint(constraint) // remove the 1:1 constraint
-                    iconView.imageScaling = .scaleAxesIndependently
-                    iconView.image?.resizingMode = .stretch
-                    break
-                }
-            }
+        if iconViewHeight.constant != iconViewWidth.constant {
+            iconView.imageScaling = .scaleAxesIndependently
+            iconView.image?.resizingMode = .stretch
         }
-        
         iconView.layout()
     }
     
