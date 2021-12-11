@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -675,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Mac_IBM_Notifications" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="IBM_Notifier_Popup" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,17 +684,17 @@
         <!--Pop Up View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="Mac_IBM_Notifications" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="529" height="129"/>
+                <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="IBM_Notifier_Popup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="579" height="129"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vWd-KW-45q">
                                 <rect key="frame" x="23" y="55" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="0O6-CR-q6S"/>
-                                    <constraint firstAttribute="width" constant="60" id="Jvn-G7-sZe"/>
-                                    <constraint firstAttribute="width" secondItem="vWd-KW-45q" secondAttribute="height" multiplier="1:1" id="LaC-Ei-O4H"/>
+                                    <constraint firstAttribute="height" constant="60" identifier="iconHeight" id="0O6-CR-q6S"/>
+                                    <constraint firstAttribute="width" constant="60" identifier="iconWidth" id="Jvn-G7-sZe"/>
+                                    <constraint firstAttribute="width" secondItem="vWd-KW-45q" secondAttribute="height" multiplier="1:1" identifier="iconAspect" id="LaC-Ei-O4H"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="default_icon" id="6x1-Vi-I8C"/>
                             </imageView>
@@ -757,7 +757,7 @@ DQ
                                 <rect key="frame" x="106" y="54" width="400" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="400" id="AVV-Tp-h11"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="veM-10-l1l"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" identifier="popupHeight" id="veM-10-l1l"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -796,6 +796,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="default_icon" width="1024" height="1024"/>
+        <image name="default_icon" width="512" height="512"/>
     </resources>
 </document>

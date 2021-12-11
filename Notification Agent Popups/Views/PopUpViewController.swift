@@ -114,6 +114,54 @@ class PopUpViewController: NSViewController {
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
         }
+        
+        // set icon width and height if specified
+        var changedIconWidth = false
+        var changedIconHeight = false
+        var newIconHeight: CGFloat = 0
+        for constraint in iconView.constraints {
+            if constraint.identifier == "iconWidth" {
+                if let iconWidthAsString = notificationObject.iconWidth {
+                    if let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+                        let iconWidth = CGFloat(truncating: customWidth)
+                        constraint.constant = iconWidth
+                        changedIconWidth = true
+                    }
+                }
+            } else if constraint.identifier == "iconHeight" {
+                if let iconHeightAsString = notificationObject.iconHeight {
+                    if let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+                        let iconHeight = CGFloat(truncating: customHeight)
+                        constraint.constant = iconHeight
+                        changedIconHeight = true
+                        newIconHeight = iconHeight
+                    }
+                }
+            }
+        }
+        
+        if changedIconHeight {
+            // make room in the popup for the icon
+            for constraint in popupElementsStackView.constraints {
+                if constraint.identifier == "popupHeight" {
+                    constraint.constant = newIconHeight
+                    break
+                }
+            }
+        }
+        
+        if changedIconWidth || changedIconHeight {
+            for constraint in iconView.constraints {
+                if constraint.identifier == "iconAspect" {
+                    iconView.removeConstraint(constraint) // remove the 1:1 constraint
+                    iconView.imageScaling = .scaleAxesIndependently
+                    iconView.image?.resizingMode = .stretch
+                    break
+                }
+            }
+        }
+        
+        iconView.layout()
     }
     
     /// Set the needed buttons in the popup's window.
