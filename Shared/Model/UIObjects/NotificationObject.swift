@@ -39,6 +39,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var barTitle: String?
     /// The title of the notification.
     var title: String?
+    /// The title's font size
+    var titleFontSize: String?
     /// The subtitle of the notification.
     var subtitle: String?
     /// Custom icon path defined for this notification object (Available only for popup UIType).
@@ -89,6 +91,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.notificationID = dict["notification_id"] as? String ?? "untracked"
         self.barTitle = dict["bar_title"] as? String ?? ConfigurableParameters.defaultPopupBarTitle
         self.title = dict["title"] as? String
+        self.titleFontSize = dict["title_size"] as? String
         self.subtitle = dict["subtitle"] as? String
         self.iconPath = dict["icon_path"] as? String ?? ConfigurableParameters.defaultPopupIconPath
         self.iconWidth = dict["icon_width"] as? String
@@ -229,6 +232,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case type
         case barTitle
         case title
+        case titleFontSize
         case subtitle
         case iconPath
         case iconWidth
@@ -256,6 +260,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.notificationID = try container.decode(String.self, forKey: .notificationID)
         self.barTitle = try container.decodeIfPresent(String.self, forKey: .barTitle)
         self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.titleFontSize = try container.decodeIfPresent(String.self, forKey: .titleFontSize)
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
         self.iconWidth = try container.decodeIfPresent( String.self, forKey: .iconWidth)
@@ -283,6 +288,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encode(self.notificationID, forKey: .notificationID)
         try container.encode(self.topicID, forKey: .topicID)
         try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.titleFontSize, forKey: .titleFontSize)
         try container.encodeIfPresent(self.subtitle, forKey: .subtitle)
         try container.encodeIfPresent(self.iconPath, forKey: .iconPath)
         try container.encodeIfPresent(self.iconWidth, forKey: .iconWidth)
@@ -314,6 +320,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
         if let title = self.title {
             coder.encode(title, forKey: NOCodingKeys.title.rawValue)
+        }
+        if let titleFontSize = self.titleFontSize {
+            coder.encode(titleFontSize, forKey: NOCodingKeys.titleFontSize.rawValue)
         }
         if let subtitle = self.subtitle {
             coder.encode(subtitle, forKey: NOCodingKeys.subtitle.rawValue)
@@ -367,6 +376,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.topicID = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.topicID.rawValue)! as String
         self.notificationID = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.notificationID.rawValue)! as String
         self.title = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.title.rawValue) as String?
+        self.titleFontSize = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.titleFontSize.rawValue) as String?
         self.subtitle = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.subtitle.rawValue) as String?
         self.iconPath = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconPath.rawValue) as String?
         self.iconWidth = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconWidth.rawValue) as String?

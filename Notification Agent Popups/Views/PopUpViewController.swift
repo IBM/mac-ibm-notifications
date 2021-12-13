@@ -92,9 +92,16 @@ class PopUpViewController: NSViewController {
             let titleLabel = NSTextField(wrappingLabelWithString: title.localized)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.setAccessibilityLabel("popup_accessibility_label_title".localized)
-            if let fontSize = titleLabel.font?.pointSize {
+            
+            // Check to see if a custom title font size has been defined
+            if let requestedFontSize = notificationObject.titleFontSize,
+               let customFontSize = NumberFormatter().number(from: requestedFontSize) {
+                let titleFontSize = CGFloat(truncating: customFontSize)
+                titleLabel.font = .boldSystemFont(ofSize: titleFontSize)
+            } else if let fontSize = titleLabel.font?.pointSize {
                 titleLabel.font = .boldSystemFont(ofSize: fontSize)
             }
+
             self.popupElementsStackView.insertView(titleLabel, at: 0, in: .top)
         }
         if let subtitle = notificationObject?.subtitle {
