@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Kitura/BlueCryptor.git",
         "state": {
           "branch": null,
-          "revision": "ee5880e031da4c609f372cf7472476ab51d5dd19",
-          "version": "1.0.200"
+          "revision": "88fc6e132f41ece53e49acc0e4f67b0331c15b90",
+          "version": "2.0.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Kitura/BlueRSA.git",
         "state": {
           "branch": null,
-          "revision": "c885fcdbe1b04718cb46d747387137653c030f6c",
-          "version": "1.0.200"
+          "revision": "440f78db26d8bb073f29590f1c7bd31004da09ae",
+          "version": "1.0.201"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/Kitura/KituraContracts.git",
         "state": {
           "branch": null,
-          "revision": "8418006e39e2efae9b31ae92721cb597ac29c617",
-          "version": "1.2.200"
+          "revision": "8a4778c3aa7833e9e1af884e8819d436c237cd70",
+          "version": "1.2.201"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/Swift-JWT.git",
         "state": {
           "branch": null,
-          "revision": "2f2fc12ae88660e0760b04d9e6c341517b31ad7b",
-          "version": "3.6.200"
+          "revision": "47c6384b6923e9bb1f214d2ba4bd52af39440588",
+          "version": "3.6.201"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {
           "branch": null,
-          "revision": "173f567a2dfec11d74588eea82cecea555bdc0bc",
-          "version": "1.4.0"
+          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
+          "version": "1.4.2"
         }
       },
       {

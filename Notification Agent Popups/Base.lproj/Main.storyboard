@@ -685,8 +685,8 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="IBM_Notifier_Popup" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="579" height="129"/>
+                    <view key="view" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="529" height="129"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vWd-KW-45q">
@@ -694,7 +694,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" identifier="iconHeight" id="0O6-CR-q6S"/>
                                     <constraint firstAttribute="width" constant="60" identifier="iconWidth" id="Jvn-G7-sZe"/>
-                                    <constraint firstAttribute="width" secondItem="vWd-KW-45q" secondAttribute="height" multiplier="1:1" identifier="iconAspect" id="LaC-Ei-O4H"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="default_icon" id="6x1-Vi-I8C"/>
                             </imageView>
@@ -764,11 +763,11 @@ DQ
                         <constraints>
                             <constraint firstItem="Pyp-Ls-xUg" firstAttribute="leading" secondItem="vWd-KW-45q" secondAttribute="trailing" constant="23" id="2no-2A-3As"/>
                             <constraint firstAttribute="bottom" secondItem="42Z-Y4-Bak" secondAttribute="bottom" constant="20" id="BIx-Tz-Qkr"/>
-                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" secondItem="vWd-KW-45q" secondAttribute="trailing" constant="23" id="BM5-mX-Lhb"/>
                             <constraint firstItem="vWd-KW-45q" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="14" id="Chu-Oj-bMm"/>
                             <constraint firstAttribute="bottom" secondItem="cPd-kS-72Q" secondAttribute="bottom" constant="20" id="I0b-zE-vrd"/>
                             <constraint firstItem="42Z-Y4-Bak" firstAttribute="top" secondItem="Pyp-Ls-xUg" secondAttribute="bottom" constant="14" id="KFW-AJ-wHm"/>
-                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P1e-SU-bDD" secondAttribute="trailing" constant="12" symbolic="YES" id="NMV-MC-AFV"/>
+                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" secondItem="P1e-SU-bDD" secondAttribute="trailing" constant="63" id="Q2N-GY-xgv"/>
+                            <constraint firstItem="42Z-Y4-Bak" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWd-KW-45q" secondAttribute="bottom" constant="14" id="SW7-Ow-0KH"/>
                             <constraint firstAttribute="trailing" secondItem="42Z-Y4-Bak" secondAttribute="trailing" constant="23" id="Xjv-sQ-VN8"/>
                             <constraint firstItem="vWd-KW-45q" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="23" id="hgx-Sj-nf7"/>
                             <constraint firstAttribute="bottom" secondItem="P1e-SU-bDD" secondAttribute="bottom" constant="20" id="htw-SD-aob"/>
@@ -784,6 +783,8 @@ DQ
                     <connections>
                         <outlet property="helpButton" destination="P1e-SU-bDD" id="rr9-Ts-8I3"/>
                         <outlet property="iconView" destination="vWd-KW-45q" id="qXK-6w-GOt"/>
+                        <outlet property="iconViewHeight" destination="0O6-CR-q6S" id="zhb-IC-feN"/>
+                        <outlet property="iconViewWidth" destination="Jvn-G7-sZe" id="5ja-La-gqZ"/>
                         <outlet property="mainButton" destination="42Z-Y4-Bak" id="ZwR-zM-I8Y"/>
                         <outlet property="popupElementsStackView" destination="Pyp-Ls-xUg" id="PHM-jW-ofA"/>
                         <outlet property="secondaryButton" destination="afi-PD-X0x" id="fps-O0-BFp"/>

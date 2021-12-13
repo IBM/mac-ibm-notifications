@@ -180,6 +180,29 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
                     break
                 }
             }
+            func resetCustomIconSize(_ message: String) {
+                NALogger.shared.log("%{public}@", [message])
+                iconWidth = nil
+                iconHeight = nil
+            }
+            if let iconWidthAsString = iconWidth {
+                if let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+                    if CGFloat(truncating: customWidth) > 150 {
+                        resetCustomIconSize("The desired custom icon size exceed the limits (Width: 150px, Height: 300px)")
+                    }
+                } else {
+                    resetCustomIconSize("Please check the format of -icon_width argument.")
+                }
+            }
+            if let iconHeightAsString = iconHeight {
+                if let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+                    if CGFloat(truncating: customHeight) > 300 {
+                        resetCustomIconSize("The desired custom icon size exceed the limits (Width: 150px, Height: 300px)")
+                    }
+                } else {
+                    resetCustomIconSize("Please check the format of -icon_height argument.")
+                }
+            }
         case .onboarding:
             guard self.payload != nil else {
                 throw NAError.dataFormat(type: .invalidOnboardingPayload)
