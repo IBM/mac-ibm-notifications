@@ -47,6 +47,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var iconPath: String?
     /// Custom notification alert/banner attachment (image). It supports remote link, local path and base64 encoded image.
     var notificationImage: String?
+    /// Custom icon width
+    var iconWidth: String?
+    /// Custom icon height
+    var iconHeight: String?
     /// The accessory views that needs to be added to the notification. This will be used only for "popup" notification type.
     var accessoryViews: [NotificationAccessoryElement]?
     /// The main button of the notification that needs to be showed to the user.
@@ -95,6 +99,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.subtitle = dict["subtitle"] as? String
         self.iconPath = dict["icon_path"] as? String ?? ConfigurableParameters.defaultPopupIconPath
         self.notificationImage = dict["notification_image"] as? String
+        self.iconWidth = dict["icon_width"] as? String
+        self.iconHeight = dict["icon_height"] as? String
         if let payloadRawData = dict["payload"] as? String {
             switch type {
             case .onboarding:
@@ -185,6 +191,29 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
                     break
                 }
             }
+            func resetCustomIconSize(_ message: String) {
+                NALogger.shared.log("%{public}@", [message])
+                iconWidth = nil
+                iconHeight = nil
+            }
+            if let iconWidthAsString = iconWidth {
+                if let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+                    if CGFloat(truncating: customWidth) > 150 {
+                        resetCustomIconSize("The desired custom icon size exceed the limits (Width: 150px, Height: 300px)")
+                    }
+                } else {
+                    resetCustomIconSize("Please check the format of -icon_width argument.")
+                }
+            }
+            if let iconHeightAsString = iconHeight {
+                if let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+                    if CGFloat(truncating: customHeight) > 300 {
+                        resetCustomIconSize("The desired custom icon size exceed the limits (Width: 150px, Height: 300px)")
+                    }
+                } else {
+                    resetCustomIconSize("Please check the format of -icon_height argument.")
+                }
+            }
         case .onboarding:
             guard self.payload != nil else {
                 throw NAError.dataFormat(type: .invalidOnboardingPayload)
@@ -215,6 +244,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case subtitle
         case iconPath
         case notificationAttachment
+        case iconWidth
+        case iconHeight
         case accessoryViews
         case mainButton
         case secondaryButton
@@ -243,6 +274,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
         self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
+        self.iconWidth = try container.decodeIfPresent( String.self, forKey: .iconWidth)
+        self.iconHeight = try container.decodeIfPresent( String.self, forKey: .iconHeight)
         self.accessoryViews = try container.decodeIfPresent([NotificationAccessoryElement].self, forKey: .accessoryViews)
         self.mainButton = try container.decode(NotificationButton.self, forKey: .mainButton)
         self.secondaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .secondaryButton)
@@ -271,6 +304,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.subtitle, forKey: .subtitle)
         try container.encodeIfPresent(self.iconPath, forKey: .iconPath)
         try container.encodeIfPresent(self.notificationImage, forKey: .notificationAttachment)
+        try container.encodeIfPresent(self.iconWidth, forKey: .iconWidth)
+        try container.encodeIfPresent(self.iconHeight, forKey: .iconHeight)
         try container.encodeIfPresent(self.accessoryViews, forKey: .accessoryViews)
         try container.encode(self.mainButton, forKey: .mainButton)
         try container.encodeIfPresent(self.secondaryButton, forKey: .secondaryButton)
@@ -311,6 +346,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
         if let notificationAttachment = self.notificationImage {
             coder.encode(notificationAttachment, forKey: NOCodingKeys.notificationAttachment.rawValue)
+        }
+        if let iconWidth = self.iconWidth {
+            coder.encode(iconWidth, forKey: NOCodingKeys.iconWidth.rawValue)
+        }
+        if let iconHeight = self.iconHeight {
+            coder.encode(iconHeight, forKey: NOCodingKeys.iconHeight.rawValue)
         }
         if let accessoryViews = self.accessoryViews, !accessoryViews.isEmpty {
             coder.encode(accessoryViews, forKey: NOCodingKeys.accessoryViews.rawValue)
@@ -360,6 +401,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.subtitle = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.subtitle.rawValue) as String?
         self.iconPath = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconPath.rawValue) as String?
         self.notificationImage = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.notificationAttachment.rawValue) as String?
+        self.iconWidth = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconWidth.rawValue) as String?
+        self.iconHeight = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconHeight.rawValue) as String?
         self.accessoryViews = coder.decodeObject(of: [NotificationAccessoryElement.self], forKey: NOCodingKeys.accessoryViews.rawValue) as? [NotificationAccessoryElement]
         self.mainButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.mainButton.rawValue)!
         self.secondaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.secondaryButton.rawValue)

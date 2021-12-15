@@ -27,7 +27,9 @@ class PopUpViewController: NSViewController {
     @IBOutlet weak var secondaryButton: NSButton!
     @IBOutlet weak var tertiaryButton: NSButton!
     @IBOutlet weak var popupElementsStackView: NSStackView!
-
+    @IBOutlet weak var iconViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var iconViewWidth: NSLayoutConstraint!
+    
     // MARK: - Variables
 
     var notificationObject: NotificationObject!
@@ -121,6 +123,20 @@ class PopUpViewController: NSViewController {
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
         }
+        // Set icon width and height if specified
+        if let iconWidthAsString = notificationObject.iconWidth,
+           let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+            iconViewWidth.constant = CGFloat(truncating: customWidth)
+        }
+        if let iconHeightAsString = notificationObject.iconHeight,
+           let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+            iconViewHeight.constant = CGFloat(truncating: customHeight)
+        }
+        if iconViewHeight.constant != iconViewWidth.constant {
+            iconView.imageScaling = .scaleAxesIndependently
+            iconView.image?.resizingMode = .stretch
+        }
+        iconView.layout()
     }
     
     /// Set the needed buttons in the popup's window.
