@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable function_body_length type_body_length
+//  swiftlint:disable function_body_length type_body_length file_length
 
 import Foundation
 import Cocoa
@@ -77,6 +77,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var isMiniaturizable: Bool?
     /// A boolean value that define wheter the UI must be force in light mode.
     var forceLightMode: Bool?
+    /// The payload with the configuration of the pop-up reminder if set.
+    var popupReminder: PopupReminder?
     
     // MARK: - Initializers
     
@@ -170,6 +172,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
         }
+        if let popupReminderPayload = dict["popup_reminder"] as? String {
+            let popupReminderObj = try PopupReminder(with: popupReminderPayload)
+            self.popupReminder = popupReminderObj
+        }
         super.init()
         try checkObjectConsistency()
     }
@@ -258,6 +264,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case miniaturizable
         case payload
         case forceLightMode
+        case popupReminder
     }
     
     required public init(from decoder: Decoder) throws {
@@ -290,6 +297,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
         }
+        self.popupReminder = try container.decodeIfPresent(PopupReminder.self, forKey: .popupReminder)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -318,6 +326,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
+        try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
     }
     
     // MARK: Codable protocol conformity - END
@@ -388,6 +397,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let position = self.position?.rawValue {
             coder.encode(position, forKey: NOCodingKeys.position.rawValue)
         }
+        if let popupReminder = self.popupReminder {
+            coder.encode(popupReminder, forKey: NOCodingKeys.popupReminder.rawValue)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -416,6 +428,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }
+        self.popupReminder = coder.decodeObject(of: PopupReminder.self, forKey: NOCodingKeys.popupReminder.rawValue)
     }
     
     // MARK: - NSSecureCoding protocol conformity - END

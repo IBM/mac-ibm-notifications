@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B9013A8D24F80C0F009A4554 /* HelpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */; };
+		B9064C0D276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
+		B9064C0E276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
+		B9064C0F276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
+		B9064C10276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
+		B9064C11276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
 		B920D4C3265F8FC700437BE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B920D4C1265F8FC700437BE6 /* Main.storyboard */; };
 		B920D4CE265F90C700437BE6 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
 		B920D4D2265F90D200437BE6 /* NALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8A24F7E5E5009A4554 /* NALogger.swift */; };
@@ -295,6 +300,7 @@
 		B9013A8524F6CFE0009A4554 /* EFCLController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFCLController-Extension.swift"; sourceTree = "<group>"; };
 		B9013A8A24F7E5E5009A4554 /* NALogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NALogger.swift; sourceTree = "<group>"; };
 		B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBuilder.swift; sourceTree = "<group>"; };
+		B9064C0C276BAF240085FA31 /* PopupReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupReminder.swift; sourceTree = "<group>"; };
 		B920D4B9265F8FC600437BE6 /* IBM Notifier Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM Notifier Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B920D4C2265F8FC700437BE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B920D4C4265F8FC700437BE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -665,6 +671,7 @@
 				B9A03A9A24B76511005BB90E /* NotificationObject.swift */,
 				B92E6707253893D900F39949 /* ProgressState.swift */,
 				B9A03A9E24B779B8005BB90E /* NotificationAccessoryElement.swift */,
+				B9064C0C276BAF240085FA31 /* PopupReminder.swift */,
 				B9A8852125B9B10600081C8D /* OnboardingData.swift */,
 				B9A03AA224B779F5005BB90E /* NotificationButton.swift */,
 				B9D58830250A1410009F93C0 /* ConfigurableParameters.swift */,
@@ -1058,6 +1065,7 @@
 				B94BDAD52684C1AB00663D21 /* Token.swift in Sources */,
 				B920D4E1265F90E200437BE6 /* LoadableNib.swift in Sources */,
 				B9C711832681DBC200A3E898 /* TaskObject.swift in Sources */,
+				B9064C0E276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B9360EC1268A08FE00217247 /* AppComponent.swift in Sources */,
 				B961A627267C80BF00657930 /* TaskManager.swift in Sources */,
 				B920D4E6265F90E200437BE6 /* InfoSection.swift in Sources */,
@@ -1120,6 +1128,7 @@
 				B961A52D267A4D9B00657930 /* InfoPopOverViewController.swift in Sources */,
 				B961A51D267A4D7D00657930 /* NAMedia.swift in Sources */,
 				B961A517267A4D6800657930 /* NotificationButton.swift in Sources */,
+				B9064C10276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B92C37772701D933006114A3 /* InteractiveEFCLContoller.swift in Sources */,
 				B961A629267C80C000657930 /* TaskManager.swift in Sources */,
 				B961A53C267A4DDF00657930 /* Utils.swift in Sources */,
@@ -1161,6 +1170,7 @@
 				B961A5F2267B8A2600657930 /* NoBackgroundScroller.swift in Sources */,
 				B961A5D1267B89AC00657930 /* NALogger.swift in Sources */,
 				B961A5DA267B89CE00657930 /* InfoSection.swift in Sources */,
+				B9064C11276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B961A5E6267B8A1500657930 /* HTMLAccessoryView.swift in Sources */,
 				B961A5B7267B457D00657930 /* Environment.swift in Sources */,
 				B961A5E2267B8A1500657930 /* VideoAccessoryView.swift in Sources */,
@@ -1211,6 +1221,7 @@
 				B961A4B72673677C00657930 /* String-Extension.swift in Sources */,
 				B9C711842681DBC200A3E898 /* TaskObject.swift in Sources */,
 				B9360EC2268A08FE00217247 /* AppComponent.swift in Sources */,
+				B9064C0F276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B961A628267C80C000657930 /* TaskManager.swift in Sources */,
 				B961A4B22673676000657930 /* ProgressState.swift in Sources */,
 				B961A4B32673676000657930 /* CrossfadeSegue.swift in Sources */,
@@ -1231,6 +1242,7 @@
 			files = (
 				B9A03AA324B779F5005BB90E /* NotificationButton.swift in Sources */,
 				B9360EA7268A006300217247 /* EFCLController-Extension.swift in Sources */,
+				B9064C0D276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B961A4CA26736D3200657930 /* AppDelegate.swift in Sources */,
 				B9013A8D24F80C0F009A4554 /* HelpBuilder.swift in Sources */,
 				B94389F2262889FB008E314A /* NSColor-Extension.swift in Sources */,
