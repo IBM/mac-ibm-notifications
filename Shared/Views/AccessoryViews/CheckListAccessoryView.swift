@@ -28,6 +28,7 @@ final class CheckListAccessoryView: AccessoryView {
     var elements: [NSButton] = []
     var isRequired: Bool = false
     var needCompletion: Bool = false
+    var useRadioButtons: Bool = false
     var selectedIndexes: [Int] = []
     
     // MARK: - Initializers
@@ -55,7 +56,7 @@ final class CheckListAccessoryView: AccessoryView {
     
     private func configureView(with payload: String) throws {
         self.elements = try parsePayload(payload)
-        self.mainButtonState = !(self.isRequired || self.needCompletion) ? .enabled : .disabled
+        self.mainButtonState = !(self.isRequired || self.needCompletion || self.useRadioButtons) ? .enabled : .disabled
         listStackView.distribution = .fill
         listStackView.orientation = .vertical
         listStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,11 +103,21 @@ final class CheckListAccessoryView: AccessoryView {
                 self.isRequired = true
             case "complete":
                 self.needCompletion = true
+            case "radio":
+                self.useRadioButtons = true
             default:
                 if index < splittedStrings.count-1 {
                     splittedStrings[index+1] = Substring(splittedStrings[index+1].appending("/\(splittedStrings[index])"))
                 }
             }
+        }
+        if useRadioButtons {
+            let radioButtons = buttons.map({ checkboxButton -> NSButton in
+                let radioButton = NSButton(radioButtonWithTitle: checkboxButton.title, target: self, action: #selector(didChangeCheckBoxSelection(_:)))
+                radioButton.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview_element".localized)
+                return radioButton
+            })
+            return radioButtons
         }
         return buttons
     }
@@ -166,7 +177,7 @@ final class CheckListAccessoryView: AccessoryView {
                 selectedIndexes.append(index)
             }
             mainButtonState = flag ? .enabled : .disabled
-        } else if isRequired {
+        } else if isRequired || useRadioButtons {
             var flag: Bool = false
             selectedIndexes = []
             for index in elements.indices {

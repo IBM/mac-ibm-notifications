@@ -17,6 +17,11 @@
 "default_main_button_label" = "OK";
 "cancel_label" = "Cancel";
 
+// MARK: - Onboarding
+"onboarding_page_continue_button" = "Continue";
+"onboarding_page_back_button" = "Back";
+"onboarding_page_close_button" = "Close";
+
 // MARK: - Accessibility
 "popup_accessibility_label_title" = "Pop-up title.";
 "popup_accessibility_label_subtitle" = "Pop-up subtitle.";

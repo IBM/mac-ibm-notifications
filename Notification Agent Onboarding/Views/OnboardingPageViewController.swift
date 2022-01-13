@@ -19,25 +19,18 @@ final class OnboardingPageViewController: NSViewController {
         case last
         case middle
         case singlePage
-        var rightButtonImage: NSImage {
+        var rightButtonTitle: String {
             switch self {
             case .first:
-                return NSImage(named: "arrow.right.circle")!
+                return "onboarding_page_continue_button".localized
             case .middle:
-                return NSImage(named: "arrow.right.circle")!
+                return "onboarding_page_continue_button".localized
             case .last, .singlePage:
-                return NSImage(named: "checkmark.circle")!
+                return "onboarding_page_close_button".localized
             }
         }
-        var leftButtonImage: NSImage {
-            switch self {
-            case .first, .singlePage:
-                return NSImage()
-            case .middle:
-                return NSImage(named: "arrow.left.circle")!
-            case .last:
-                return NSImage(named: "arrow.left.circle")!
-            }
+        var leftButtonTitle: String {
+            return "onboarding_page_back_button".localized
         }
         var isRightButtonHidden: Bool {
             switch self {
@@ -61,7 +54,7 @@ final class OnboardingPageViewController: NSViewController {
     @IBOutlet weak var bodyStackView: NSStackView!
     @IBOutlet weak var rightButton: NSButton!
     @IBOutlet weak var leftButton: NSButton!
-    @IBOutlet weak var centerButton: NSButton!
+    @IBOutlet weak var helpButton: NSButton!
 
     // MARK: - Variables
 
@@ -107,21 +100,23 @@ final class OnboardingPageViewController: NSViewController {
         var topGravityAreaIndex = 0
         if let title = page.title {
             titleLabel = NSTextField(wrappingLabelWithString: title)
-            titleLabel.font = NSFont.systemFont(ofSize: 32)
+            titleLabel.font = NSFont.boldSystemFont(ofSize: 26)
+            titleLabel.alignment = .center
             bodyStackView.insertView(titleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= titleLabel.intrinsicContentSize.height+12
         }
         if let subtitle = page.subtitle {
             subtitleLabel = NSTextField(wrappingLabelWithString: subtitle)
-            subtitleLabel.font = NSFont.systemFont(ofSize: 18)
+            subtitleLabel.font = NSFont.systemFont(ofSize: 16, weight: .semibold)
+            subtitleLabel.alignment = .center
             bodyStackView.insertView(subtitleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= subtitleLabel.intrinsicContentSize.height+12
         }
         if let pageMedia = page.pageMedia {
             if let body = page.body {
-                bodyTextView = MarkdownTextView(withText: body, maxViewHeight: remainingSpace)
+                bodyTextView = MarkdownTextView(withText: body, maxViewHeight: remainingSpace, alignment: .center)
                 bodyStackView.insertView(bodyTextView, at: 0, in: .center)
                 remainingSpace -= bodyTextView.fittingSize.height+12
             }
@@ -137,7 +132,7 @@ final class OnboardingPageViewController: NSViewController {
             }
         } else {
             if let body = page.body {
-                bodyTextView = MarkdownTextView(withText: body, maxViewHeight: remainingSpace)
+                bodyTextView = MarkdownTextView(withText: body, maxViewHeight: remainingSpace, alignment: .center)
                 bodyStackView.insertView(bodyTextView, at: topGravityAreaIndex, in: .top)
             }
         }
@@ -147,14 +142,9 @@ final class OnboardingPageViewController: NSViewController {
     private func setupButtonsLayout() {
         rightButton.isHidden = position.isRightButtonHidden
         leftButton.isHidden = position.isLeftButtonHidden
-        rightButton.image = position.rightButtonImage
-        leftButton.image = position.leftButtonImage
-        if page.infoSection != nil {
-            centerButton.isHidden = false
-            centerButton.image = NSImage(named: "info.circle")
-        } else {
-            centerButton.isHidden = true
-        }
+        rightButton.title = position.rightButtonTitle
+        leftButton.title = position.leftButtonTitle
+        helpButton.isHidden = !(page.infoSection != nil)
     }
     
     /// This method load and set the icon if a custom one was defined.
@@ -186,7 +176,7 @@ final class OnboardingPageViewController: NSViewController {
     private func configureAccessibilityElements() {
         self.rightButton.setAccessibilityLabel(position == .last ? "onboarding_accessibility_button_right_close".localized : "onboarding_accessibility_button_right_continue".localized)
         self.leftButton.setAccessibilityLabel("onboarding_accessibility_button_left".localized)
-        self.centerButton.setAccessibilityLabel("onboarding_accessibility_button_center".localized)
+        self.helpButton.setAccessibilityLabel("onboarding_accessibility_button_center".localized)
         self.bodyStackView.setAccessibilityLabel("onboarding_accessibility_stackview_body".localized)
         self.topIconImageView.setAccessibilityLabel("onboarding_accessibility_image_top".localized)
     }
@@ -215,7 +205,7 @@ final class OnboardingPageViewController: NSViewController {
         }
     }
 
-    @IBAction func didPressCenterButton(_ sender: NSButton) {
+    @IBAction func didPressHelpButton(_ sender: NSButton) {
         guard let infos = page.infoSection else { return }
         let infoPopupViewController = InfoPopOverViewController(with: infos)
         self.present(infoPopupViewController,

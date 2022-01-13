@@ -52,6 +52,7 @@ extension NAError.Enums {
         case invalidJSONDecoding(errorDescription: String)
         case invalidOnboardingPayload
         case noPresetDefined
+        case invalidReminderPayload
     }
 }
 
@@ -76,6 +77,8 @@ extension NAError.Enums.ModelError: LocalizedError {
             return "Invalid onboarding payload."
         case .noPresetDefined:
             return "No preset defined with the defined key."
+        case .invalidReminderPayload:
+            return "Invalid reminder payload. Please check the documentation."
         }
     }
 }

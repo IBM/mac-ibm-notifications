@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable function_body_length type_body_length
+//  swiftlint:disable function_body_length type_body_length file_length
 
 import Cocoa
 import os.log
@@ -34,6 +34,7 @@ class PopUpViewController: NSViewController {
 
     var notificationObject: NotificationObject!
     var timeoutTimer: Timer?
+    var reminderTimer: Timer?
     var replyHandler = ReplyHandler.shared
     let context = Context.main
     var shouldAllowCancel: Bool = false {
@@ -77,6 +78,7 @@ class PopUpViewController: NSViewController {
 
         checkStackViewLayout()
         setTimeoutIfNeeded()
+        setRemindTimerIfNeeded()
         checkButtonVisibility()
         configureAccessibilityElements()
     }
@@ -92,7 +94,6 @@ class PopUpViewController: NSViewController {
             let titleLabel = NSTextField(wrappingLabelWithString: title.localized)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.setAccessibilityLabel("popup_accessibility_label_title".localized)
-            
             // Check to see if a custom title font size has been defined
             if let requestedFontSize = notificationObject.titleFontSize,
                let customFontSize = NumberFormatter().number(from: requestedFontSize) {
@@ -101,7 +102,6 @@ class PopUpViewController: NSViewController {
             } else if let fontSize = titleLabel.font?.pointSize {
                 titleLabel.font = .boldSystemFont(ofSize: fontSize)
             }
-
             self.popupElementsStackView.insertView(titleLabel, at: 0, in: .top)
         }
         if let subtitle = notificationObject?.subtitle {
@@ -243,6 +243,23 @@ class PopUpViewController: NSViewController {
                                                     self?.triggerAction(ofType: .timeout)
             })
         } 
+    }
+    
+    /// If needed to set a pop-up reminder timeout for the user this method set the related actions and fire a timer.
+    private func setRemindTimerIfNeeded(_ repeated: Bool = false) {
+        guard let popupReminder = notificationObject.popupReminder,
+              notificationObject.alwaysOnTop == false else { return }
+        if repeated {
+            guard popupReminder.repeatReminder else { return }
+        }
+        reminderTimer = Timer.scheduledTimer(withTimeInterval: popupReminder.timeInterval,
+                                           repeats: false, block: { [weak self] _ in
+            self?.view.window?.orderFrontRegardless()
+            if self?.notificationObject.silent == false && !popupReminder.silent {
+                NSSound(named: .init("Funk"))?.play()
+            }
+            self?.setRemindTimerIfNeeded(true)
+        })
     }
     
     private func checkButtonVisibility() {

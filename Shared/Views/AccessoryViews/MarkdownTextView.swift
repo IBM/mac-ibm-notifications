@@ -64,18 +64,19 @@ final class MarkdownTextView: AccessoryView {
 
     // MARK: - Initializers
 
-    init(withText text: String, drawsBackground: Bool = false, maxViewHeight: CGFloat = 300) {
+    init(withText text: String, drawsBackground: Bool = false, maxViewHeight: CGFloat = 300, alignment: NSTextAlignment = .left) {
         self.maxViewHeight = maxViewHeight
         super.init(frame: .zero)
-
+        
         let textStorage = NSTextStorage()
         let layoutManager = NSLayoutManager()
         let textContainer = NSTextContainer(size: .zero)
         textContainer.lineBreakMode = .byWordWrapping
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
-
+        
         textView = .init(frame: .zero, textContainer: textContainer)
+        textView.alignment = alignment
         textView.isEditable = false
         textView.isSelectable = true
         textView.translatesAutoresizingMaskIntoConstraints = false

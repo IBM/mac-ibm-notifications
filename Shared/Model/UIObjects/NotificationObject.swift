@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable function_body_length type_body_length
+//  swiftlint:disable function_body_length type_body_length file_length
 
 import Foundation
 import Cocoa
@@ -45,6 +45,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var subtitle: String?
     /// Custom icon path defined for this notification object (Available only for popup UIType).
     var iconPath: String?
+    /// Custom notification alert/banner attachment (image). It supports remote link, local path and base64 encoded image.
+    var notificationImage: String?
     /// Custom icon width
     var iconWidth: String?
     /// Custom icon height
@@ -71,8 +73,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var payload: OnboardingData?
     /// The desired pop-up window position on screen.
     var position: NSWindow.WindowPosition?
-    /// A boolean value that set if the pop-up must be miniaturizable.
+    /// A boolean value that define wheter the pop-up must be miniaturizable.
     var isMiniaturizable: Bool?
+    /// A boolean value that define wheter the UI must be force in light mode.
+    var forceLightMode: Bool?
+    /// The payload with the configuration of the pop-up reminder if set.
+    var popupReminder: PopupReminder?
     
     // MARK: - Initializers
     
@@ -94,6 +100,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.titleFontSize = dict["title_size"] as? String
         self.subtitle = dict["subtitle"] as? String
         self.iconPath = dict["icon_path"] as? String ?? ConfigurableParameters.defaultPopupIconPath
+        self.notificationImage = dict["notification_image"] as? String
         self.iconWidth = dict["icon_width"] as? String
         self.iconHeight = dict["icon_height"] as? String
         if let payloadRawData = dict["payload"] as? String {
@@ -159,8 +166,15 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.isMiniaturizable = false
         }
+        if let forceLightModeRaw = dict["force_light_mode"] as? String {
+            self.forceLightMode = forceLightModeRaw.lowercased() == "true"
+        }
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
+        }
+        if let popupReminderPayload = dict["popup_reminder"] as? String {
+            let popupReminderObj = try PopupReminder(with: popupReminderPayload)
+            self.popupReminder = popupReminderObj
         }
         super.init()
         try checkObjectConsistency()
@@ -235,6 +249,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case titleFontSize
         case subtitle
         case iconPath
+        case notificationAttachment
         case iconWidth
         case iconHeight
         case accessoryViews
@@ -248,6 +263,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case position
         case miniaturizable
         case payload
+        case forceLightMode
+        case popupReminder
     }
     
     required public init(from decoder: Decoder) throws {
@@ -263,6 +280,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.titleFontSize = try container.decodeIfPresent(String.self, forKey: .titleFontSize)
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
+        self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
         self.iconWidth = try container.decodeIfPresent( String.self, forKey: .iconWidth)
         self.iconHeight = try container.decodeIfPresent( String.self, forKey: .iconHeight)
         self.accessoryViews = try container.decodeIfPresent([NotificationAccessoryElement].self, forKey: .accessoryViews)
@@ -274,10 +292,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
         self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
         self.isMiniaturizable = try container.decodeIfPresent(Bool.self, forKey: .miniaturizable)
+        self.forceLightMode = try container.decodeIfPresent(Bool.self, forKey: .forceLightMode)
         self.payload = try container.decodeIfPresent(OnboardingData.self, forKey: .payload)
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
         }
+        self.popupReminder = try container.decodeIfPresent(PopupReminder.self, forKey: .popupReminder)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -291,6 +311,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.titleFontSize, forKey: .titleFontSize)
         try container.encodeIfPresent(self.subtitle, forKey: .subtitle)
         try container.encodeIfPresent(self.iconPath, forKey: .iconPath)
+        try container.encodeIfPresent(self.notificationImage, forKey: .notificationAttachment)
         try container.encodeIfPresent(self.iconWidth, forKey: .iconWidth)
         try container.encodeIfPresent(self.iconHeight, forKey: .iconHeight)
         try container.encodeIfPresent(self.accessoryViews, forKey: .accessoryViews)
@@ -302,8 +323,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
         try container.encodeIfPresent(self.silent, forKey: .silent)
         try container.encodeIfPresent(self.isMiniaturizable, forKey: .miniaturizable)
+        try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
+        try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
     }
     
     // MARK: Codable protocol conformity - END
@@ -329,6 +352,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
         if let iconPath = self.iconPath {
             coder.encode(iconPath, forKey: NOCodingKeys.iconPath.rawValue)
+        }
+        if let notificationAttachment = self.notificationImage {
+            coder.encode(notificationAttachment, forKey: NOCodingKeys.notificationAttachment.rawValue)
         }
         if let iconWidth = self.iconWidth {
             coder.encode(iconWidth, forKey: NOCodingKeys.iconWidth.rawValue)
@@ -364,8 +390,15 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: isMiniaturizable)
             coder.encode(number, forKey: NOCodingKeys.miniaturizable.rawValue)
         }
+        if let forceLightMode = self.forceLightMode {
+            let number = NSNumber(booleanLiteral: forceLightMode)
+            coder.encode(number, forKey: NOCodingKeys.forceLightMode.rawValue)
+        }
         if let position = self.position?.rawValue {
             coder.encode(position, forKey: NOCodingKeys.position.rawValue)
+        }
+        if let popupReminder = self.popupReminder {
+            coder.encode(popupReminder, forKey: NOCodingKeys.popupReminder.rawValue)
         }
     }
     
@@ -379,6 +412,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.titleFontSize = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.titleFontSize.rawValue) as String?
         self.subtitle = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.subtitle.rawValue) as String?
         self.iconPath = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconPath.rawValue) as String?
+        self.notificationImage = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.notificationAttachment.rawValue) as String?
         self.iconWidth = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconWidth.rawValue) as String?
         self.iconHeight = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.iconHeight.rawValue) as String?
         self.accessoryViews = coder.decodeObject(of: [NotificationAccessoryElement.self], forKey: NOCodingKeys.accessoryViews.rawValue) as? [NotificationAccessoryElement]
@@ -390,9 +424,11 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
         self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool
         self.isMiniaturizable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.miniaturizable.rawValue) as? Bool
+        self.forceLightMode = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.forceLightMode.rawValue) as? Bool
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }
+        self.popupReminder = coder.decodeObject(of: PopupReminder.self, forKey: NOCodingKeys.popupReminder.rawValue)
     }
     
     // MARK: - NSSecureCoding protocol conformity - END
