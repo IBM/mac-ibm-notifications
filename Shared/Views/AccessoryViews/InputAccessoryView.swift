@@ -65,7 +65,7 @@ class InputAccessoryView: AccessoryView {
     
     private func configureView(with payload: String?) throws {
         guard let payload = payload else { return }
-        guard payload.contains("/placeholder") || payload.contains("/required") || payload.contains("/title") else {
+        guard payload.contains("/placeholder") || payload.contains("/required") || payload.contains("/title") || payload.contains("/value") else {
             self.inputTextField.placeholderString = payload
             NALogger.shared.deprecationLog(since: AppVersion(major: 2, release: 6, fix: 0), deprecatedArgument: "input/secured input accessory view payload")
             return
@@ -93,6 +93,9 @@ class InputAccessoryView: AccessoryView {
                 fieldTopAnchor.isActive = true
             case "placeholder":
                 self.inputTextField.placeholderString = value
+            case "value":
+                guard let value = value else { continue }
+                self.inputTextField.stringValue = value
             case "required":
                 self.isRequired = true
             default:
@@ -101,7 +104,7 @@ class InputAccessoryView: AccessoryView {
                 }
             }
         }
-        self.mainButtonState = self.isRequired ? .disabled : .enabled
+        self.mainButtonState = (self.isRequired && self.inputTextField.stringValue.isEmpty) ? .disabled : .enabled
     }
     
     private func adjustViewSize() {
