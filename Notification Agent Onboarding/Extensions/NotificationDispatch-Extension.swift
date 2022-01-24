@@ -17,7 +17,7 @@ extension NotificationDispatch {
     func receivedNotification(_ notification: Notification) {
         guard let object = notification.userInfo?["object"] as? NotificationObject else { return }
         guard let pages = object.payload?.pages else { return }
-        let onboardingViewController = OnboardingViewController(with: pages)
+        let onboardingViewController = OnboardingViewController(with: pages, alwaysOnTop: object.alwaysOnTop ?? false)
         let window = NSWindow(contentViewController: onboardingViewController)
         window.styleMask.remove(.resizable)
         if object.forceLightMode ?? false {

@@ -19,6 +19,7 @@ class OnboardingViewController: NSViewController {
     // MARK: - Variables
 
     private var pages: [OnboardingPage]
+    private var alwaysOnTop: Bool
     private var presentedVC: NSViewController?
     private var presentedPageIndex: Int = 0
     let context = Context.main
@@ -26,14 +27,14 @@ class OnboardingViewController: NSViewController {
 
     // MARK: - Initializers
 
-    init(with pages: [OnboardingPage]) {
+    init(with pages: [OnboardingPage], alwaysOnTop: Bool = false) {
         self.pages = pages
+        self.alwaysOnTop = alwaysOnTop
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
-        self.pages = []
-        super.init(nibName: nil, bundle: nil)
+        return nil
     }
 
     // MARK: - Instance methods
@@ -42,6 +43,11 @@ class OnboardingViewController: NSViewController {
         super.viewDidLoad()
         checkPagesConsistency()
         setupLayout()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        self.view.window?.level = alwaysOnTop ? .floating : .normal
     }
 
     // MARK: - Private methods
