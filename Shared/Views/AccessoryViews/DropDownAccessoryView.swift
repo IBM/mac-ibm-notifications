@@ -16,8 +16,9 @@ class DropDownAccessoryView: AccessoryView {
     
     private var dropDown: NSComboBox
     private var defaultIndex: Int?
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var dropDownTopAnchor: NSLayoutConstraint!
     
@@ -26,12 +27,14 @@ class DropDownAccessoryView: AccessoryView {
     var selectedItem: Int {
         return dropDown.indexOfSelectedItem
     }
+    var hasTitle: Bool = false
     
     // MARK: - Initializers
     
-    init(with payload: String) throws {
+    init(with payload: String, containerWidth: CGFloat? = nil) throws {
         dropDown = NSComboBox()
         dropDown.isSelectable = false
+        _containerWidth = containerWidth
         super.init(frame: .zero)
         dropDown.delegate = self
         dropDown.translatesAutoresizingMaskIntoConstraints = false
@@ -50,10 +53,17 @@ class DropDownAccessoryView: AccessoryView {
     
     // MARK: - Instance methods
     
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
+    override func adjustViewSize() {
+        self.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
+    }
+    
+    override func configureAccessibilityElements() {
+        dropDown.setAccessibilityLabel("\(dropDown.placeholderString ?? ""). \("accessory_view_accessibility_dropdown".localized)")
+    }
+    
+    override func displayStoredData(_ data: String) {
+        guard let index = Int(data) else { return }
+        self.dropDown.selectItem(at: index)
     }
     
     // MARK: - Private methods
@@ -79,6 +89,7 @@ class DropDownAccessoryView: AccessoryView {
                 dropDownTopAnchor.isActive = false
                 dropDownTopAnchor = dropDown.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4)
                 dropDownTopAnchor.isActive = true
+                hasTitle = true
             case "placeholder":
                 self.dropDown.placeholderString = value
             case "list":
@@ -96,15 +107,6 @@ class DropDownAccessoryView: AccessoryView {
             self.dropDown.selectItem(at: index)
         }
         self.mainButtonState = self.selectedItem >= 0 ? .enabled : .disabled
-    }
-    
-    /// Adjust the view size based on the superview width and on the video height.
-    private func adjustViewSize() {
-        self.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
-    }
-    
-    private func configureAccessibilityElements() {
-        dropDown.setAccessibilityLabel("\(dropDown.placeholderString ?? ""). \("accessory_view_accessibility_dropdown".localized)")
     }
 }
 

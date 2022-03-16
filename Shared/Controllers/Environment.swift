@@ -13,6 +13,7 @@ import Foundation
 struct Constants {
     static internal var environmentUDKey: String = "environment"
     static internal var loginItemEnabledUDKey = "loginItemEnabled"
+    static internal let storeFileName = "IBM_Notifier_Onboarding.plist"
 }
 
 struct AppVersion: Comparable, Equatable {
@@ -25,8 +26,8 @@ struct AppVersion: Comparable, Equatable {
         let components = appVersion.split(separator: ".")
         guard components.count == 3,
               let major = Int(components[0]),
-              let release = Int(components[0]),
-              let fix = Int(components[0]) else { return nil }
+              let release = Int(components[1]),
+              let fix = Int(components[2]) else { return nil }
         return AppVersion(major: major, release: release, fix: fix)
     }
     

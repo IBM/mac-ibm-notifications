@@ -23,4 +23,21 @@ class AccessoryView: NSView {
     var mainButtonState: ButtonState = .enabled
     var secondaryButtonState: ButtonState = .enabled
     weak var delegate: AccessoryViewDelegate?
+    
+    // MARK: - Instance methods
+    
+    override func viewDidMoveToSuperview() {
+        super.viewDidMoveToSuperview()
+        adjustViewSize()
+        configureAccessibilityElements()
+    }
+
+    // MARK: - Public methods
+    
+    /// Adjust the view size based on the superview width and on the video height.
+    func adjustViewSize() {}
+
+    func configureAccessibilityElements() {}
+
+    func displayStoredData(_ data: String) {}
 }

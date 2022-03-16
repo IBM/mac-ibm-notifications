@@ -27,7 +27,7 @@ class ProgressBarAccessoryView: AccessoryView {
     private var bottomMessageLabel: NSTextField!
     private var viewWidthAnchor: NSLayoutConstraint!
     private var viewState: ProgressState!
-    private var interactiveEFCLController: PopupInteractiveEFCLController!
+    private var interactiveEFCLController: ProgressBarInteractiveEFCLController!
 
     // MARK: - Public viariables
 
@@ -48,7 +48,7 @@ class ProgressBarAccessoryView: AccessoryView {
     init(_ payload: String? = nil) {
         super.init(frame: .zero)
         viewState = ProgressState(payload)
-        interactiveEFCLController = PopupInteractiveEFCLController(viewState)
+        interactiveEFCLController = ProgressBarInteractiveEFCLController(viewState)
         interactiveEFCLController.delegate = self
         configureView()
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
@@ -64,9 +64,20 @@ class ProgressBarAccessoryView: AccessoryView {
 
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        adjustViewSize()
         interactiveEFCLController.startObservingStandardInput()
-        configureAccessibilityElements()
+    }
+    
+    override func adjustViewSize() {
+        viewWidthAnchor?.isActive = false
+        viewWidthAnchor = progressBar.widthAnchor.constraint(equalToConstant: self.containerWidth)
+        viewWidthAnchor.isActive = true
+        progressBar.isBezeled = true
+    }
+    
+    override func configureAccessibilityElements() {
+        topMessageLabel.setAccessibilityLabel("accessory_view_accessibility_progressbar_toplabel".localized)
+        progressBar.setAccessibilityLabel("accessory_view_accessibility_progressbar_bar".localized)
+        bottomMessageLabel.setAccessibilityLabel("accessory_view_accessibility_progressbar_bottomlabel".localized)
     }
 
     // MARK: - Private methods
@@ -108,23 +119,9 @@ class ProgressBarAccessoryView: AccessoryView {
         bottomMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         bottomMessageLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
     }
-    
-    /// Adjust the view size based on the superview width.
-    private func adjustViewSize() {
-        viewWidthAnchor?.isActive = false
-        viewWidthAnchor = progressBar.widthAnchor.constraint(equalToConstant: self.containerWidth)
-        viewWidthAnchor.isActive = true
-        progressBar.isBezeled = true
-    }
-    
-    private func configureAccessibilityElements() {
-        topMessageLabel.setAccessibilityLabel("accessory_view_accessibility_progressbar_toplabel".localized)
-        progressBar.setAccessibilityLabel("accessory_view_accessibility_progressbar_bar".localized)
-        bottomMessageLabel.setAccessibilityLabel("accessory_view_accessibility_progressbar_bottomlabel".localized)
-    }
 }
 
-extension ProgressBarAccessoryView: PopupInteractiveEFCLControllerDelegate {
+extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate {
     /// Update the UI for the new state received.
     /// - Parameter newState: the new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState) {

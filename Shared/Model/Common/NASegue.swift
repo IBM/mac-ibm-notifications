@@ -1,5 +1,5 @@
 //
-//  CrossfadeSegue.swift
+//  NASegue.swift
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 01/02/2021.
@@ -10,7 +10,7 @@
 import Cocoa
 
 /// Override for StoryBoardSegue to control the animation of transitioning between views.
-final class CrossfadeSegue: NSStoryboardSegue {
+final class NASegue: NSStoryboardSegue {
     override func perform() {
         guard let sourceViewController = self.sourceController as? NSViewController,
               let destinationViewController = self.destinationController as? NSViewController else { return }
@@ -29,10 +29,8 @@ final class CrossfadeSegue: NSStoryboardSegue {
         var transitionOption = NSViewController.TransitionOptions.slideForward
 
         switch destinationID {
-        case "goToNextPage" :
-            transitionOption = NSViewController.TransitionOptions.slideForward
-        case "backToPreviousPage":
-            transitionOption = NSViewController.TransitionOptions.slideBackward
+        case "goToNextPage", "backToPreviousPage" :
+            transitionOption = []
         default :
             transitionOption = NSViewController.TransitionOptions.slideForward
         }

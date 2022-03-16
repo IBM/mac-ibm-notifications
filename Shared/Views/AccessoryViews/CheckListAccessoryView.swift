@@ -15,8 +15,9 @@ final class CheckListAccessoryView: AccessoryView {
     // MARK: Variables
     
     private var scrollView: NSScrollView!
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var scrollViewHeightAnchor: NSLayoutConstraint!
     private var stackViewHeightAnchor: NSLayoutConstraint!
@@ -37,19 +38,67 @@ final class CheckListAccessoryView: AccessoryView {
         return nil
     }
     
-    init(with payload: String, maxViewHeight: CGFloat = 300) throws {
+    init(with payload: String, maxViewHeight: CGFloat = 300, containerWidth: CGFloat? = nil) throws {
         self.maxViewHeight = maxViewHeight
         self.listStackView = FlippedStackView()
+        self._containerWidth = containerWidth
         super.init(frame: .zero)
         try configureView(with: payload)
     }
     
     // MARK: - Instance methods
     
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
+    override func adjustViewSize() {
+        let tempStackView = NSStackView()
+        tempStackView.distribution = .fill
+        tempStackView.orientation = .vertical
+        tempStackView.alignment = .leading
+        for element in elements {
+            tempStackView.addArrangedSubview(element)
+        }
+        if let title = title {
+            tempStackView.insertArrangedSubview(title, at: 0)
+        }
+        let stackViewHeight = tempStackView.fittingSize.height
+        let scrollViewHeight = min(stackViewHeight, maxViewHeight)
+        scrollViewHeightAnchor?.isActive = false
+        scrollViewHeightAnchor = scrollView.heightAnchor.constraint(equalToConstant: scrollViewHeight)
+        scrollViewHeightAnchor?.isActive = true
+        stackViewWidthAnchor?.isActive = false
+        stackViewWidthAnchor = listStackView.widthAnchor.constraint(equalToConstant: max(containerWidth-12, 0))
+        stackViewWidthAnchor?.isActive = true
+        stackViewHeightAnchor?.isActive = false
+        stackViewHeightAnchor = listStackView.heightAnchor.constraint(equalToConstant: stackViewHeight)
+        stackViewHeightAnchor?.isActive = true
+        for element in elements {
+            listStackView.addArrangedSubview(element)
+        }
+        if let title = title {
+            listStackView.insertArrangedSubview(title, at: 0)
+        }
+    }
+    
+    override func configureAccessibilityElements() {
+        title?.setAccessibilityLabel("accessory_view_accessibility_checklist_title".localized)
+        listStackView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
+        scrollView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
+    }
+    
+    override func displayStoredData(_ data: String) {
+        let arrayOfStrings = data.split(separator: " ")
+        var arrayOfIndexes: [Int] = []
+        for string in arrayOfStrings {
+            guard !string.isEmpty, let index = Int(string) else {
+                continue
+            }
+            arrayOfIndexes.append(index)
+        }
+        for (index, element) in elements.enumerated() {
+            if arrayOfIndexes.contains(index) {
+                element.state = .on
+                selectedIndexes.append(index)
+            }
+        }
     }
     
     // MARK: - Private methods
@@ -120,43 +169,6 @@ final class CheckListAccessoryView: AccessoryView {
             return radioButtons
         }
         return buttons
-    }
-    
-    /// Adjust the view size based on the superview width and on the elements list height.
-    private func adjustViewSize() {
-        let tempStackView = NSStackView()
-        tempStackView.distribution = .fill
-        tempStackView.orientation = .vertical
-        tempStackView.alignment = .leading
-        for element in elements {
-            tempStackView.addArrangedSubview(element)
-        }
-        if let title = title {
-            tempStackView.insertArrangedSubview(title, at: 0)
-        }
-        let stackViewHeight = tempStackView.fittingSize.height
-        let scrollViewHeight = min(stackViewHeight, maxViewHeight)
-        scrollViewHeightAnchor?.isActive = false
-        scrollViewHeightAnchor = scrollView.heightAnchor.constraint(equalToConstant: scrollViewHeight)
-        scrollViewHeightAnchor?.isActive = true
-        stackViewWidthAnchor?.isActive = false
-        stackViewWidthAnchor = listStackView.widthAnchor.constraint(equalToConstant: max(containerWidth-12, 0))
-        stackViewWidthAnchor?.isActive = true
-        stackViewHeightAnchor?.isActive = false
-        stackViewHeightAnchor = listStackView.heightAnchor.constraint(equalToConstant: stackViewHeight)
-        stackViewHeightAnchor?.isActive = true
-        for element in elements {
-            listStackView.addArrangedSubview(element)
-        }
-        if let title = title {
-            listStackView.insertArrangedSubview(title, at: 0)
-        }
-    }
-    
-    private func configureAccessibilityElements() {
-        title?.setAccessibilityLabel("accessory_view_accessibility_checklist_title".localized)
-        listStackView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
-        scrollView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
     }
     
     // MARK: - Actions

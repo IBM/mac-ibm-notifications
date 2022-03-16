@@ -17,8 +17,9 @@ class InputAccessoryView: AccessoryView {
     private var inputTextField: NSTextField
     private var fieldTopAnchor: NSLayoutConstraint!
     private var isRequired: Bool = false
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
 
     // MARK: - Variables
@@ -27,19 +28,21 @@ class InputAccessoryView: AccessoryView {
         return inputTextField.stringValue
     }
     var isSecure: Bool
+    var hasTitle: Bool = false
 
     // MARK: - Initializers
 
-    init(with payload: String? = nil, isSecure: Bool = false) throws {
+    init(with payload: String? = nil, isSecure: Bool = false, containerWidth: CGFloat? = nil) throws {
         if isSecure {
             inputTextField = NSSecureTextField()
         } else {
             inputTextField = NSTextField()
         }
         self.isSecure = isSecure
-        inputTextField.translatesAutoresizingMaskIntoConstraints = false
+        _containerWidth = containerWidth
         super.init(frame: .zero)
         self.addSubview(inputTextField)
+        inputTextField.translatesAutoresizingMaskIntoConstraints = false
         fieldTopAnchor = inputTextField.topAnchor.constraint(equalTo: self.topAnchor)
         fieldTopAnchor.isActive = true
         inputTextField.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -54,11 +57,20 @@ class InputAccessoryView: AccessoryView {
     }
     
     // MARK: - Instance methods
-        
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
+    
+    override func adjustViewSize() {
+        inputTextField.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
+    }
+    
+    override func configureAccessibilityElements() {
+        let accessibilityLabel = isSecure ?
+            isRequired ? "accessory_view_accessibility_input_secured_required".localized : "accessory_view_accessibility_input_secured".localized :
+            isRequired ? "accessory_view_accessibility_input_required".localized : "accessory_view_accessibility_input".localized
+        inputTextField.setAccessibilityLabel("\(inputTextField.placeholderString ?? ""). \(accessibilityLabel)")
+    }
+    
+    override func displayStoredData(_ data: String) {
+        inputTextField.stringValue = data
     }
     
     // MARK: - Private methods
@@ -67,7 +79,7 @@ class InputAccessoryView: AccessoryView {
         guard let payload = payload else { return }
         guard payload.contains("/placeholder") || payload.contains("/required") || payload.contains("/title") || payload.contains("/value") else {
             self.inputTextField.placeholderString = payload
-            NALogger.shared.deprecationLog(since: AppVersion(major: 2, release: 6, fix: 0), deprecatedArgument: "input/secured input accessory view payload")
+            NALogger.shared.deprecationLog(since: AppVersion(major: 3, release: 0, fix: 0), deprecatedArgument: "input/secured input accessory view payload as placeholder without keys ex. '/placeholder'")
             return
         }
         var splittedStrings = payload.split(separator: "/")
@@ -91,6 +103,7 @@ class InputAccessoryView: AccessoryView {
                 fieldTopAnchor.isActive = false
                 fieldTopAnchor = inputTextField.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4)
                 fieldTopAnchor.isActive = true
+                hasTitle = true
             case "placeholder":
                 self.inputTextField.placeholderString = value
             case "value":
@@ -105,17 +118,6 @@ class InputAccessoryView: AccessoryView {
             }
         }
         self.mainButtonState = (self.isRequired && self.inputTextField.stringValue.isEmpty) ? .disabled : .enabled
-    }
-    
-    private func adjustViewSize() {
-        inputTextField.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
-    }
-    
-    private func configureAccessibilityElements() {
-        let accessibilityLabel = isSecure ?
-            isRequired ? "accessory_view_accessibility_input_secured_required".localized : "accessory_view_accessibility_input_secured".localized :
-            isRequired ? "accessory_view_accessibility_input_required".localized : "accessory_view_accessibility_input".localized
-        inputTextField.setAccessibilityLabel("\(inputTextField.placeholderString ?? ""). \(accessibilityLabel)")
     }
 }
 

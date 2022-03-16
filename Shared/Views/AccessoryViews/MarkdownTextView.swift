@@ -16,9 +16,10 @@ final class MarkdownTextView: AccessoryView {
     // MARK: - Private variables
 
     private var scrollView: NSScrollView!
-    private var textView: NSTextView!
+    var textView: NSTextView!
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var scrollViewHeightAnchor: NSLayoutConstraint!
     private var textViewWidthAnchor: NSLayoutConstraint!
@@ -64,17 +65,22 @@ final class MarkdownTextView: AccessoryView {
 
     // MARK: - Initializers
 
-    init(withText text: String, drawsBackground: Bool = false, maxViewHeight: CGFloat = 300, alignment: NSTextAlignment = .left) {
+    init(withText text: String,
+         drawsBackground: Bool = false,
+         maxViewHeight: CGFloat = 300,
+         alignment: NSTextAlignment = .left,
+         containerWidth: CGFloat? = nil) {
         self.maxViewHeight = maxViewHeight
+        self._containerWidth = containerWidth
         super.init(frame: .zero)
-        
+
         let textStorage = NSTextStorage()
         let layoutManager = NSLayoutManager()
         let textContainer = NSTextContainer(size: .zero)
         textContainer.lineBreakMode = .byWordWrapping
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
-        
+
         textView = .init(frame: .zero, textContainer: textContainer)
         textView.alignment = alignment
         textView.isEditable = false
@@ -112,38 +118,8 @@ final class MarkdownTextView: AccessoryView {
     }
 
     // MARK: - Instance methods
-
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
-    }
-
-    // MARK: - Public methods
-
-    /// Set the text and eventually handle hyperlinks.
-    /// - Parameter text: the text that needs to be displayed.
-    func setText(_ text: String) {
-        let markdownText = SwiftyMarkdown(string: text)
-        markdownText.setFontColorForAllStyles(with: textView.drawsBackground ? .black : .labelColor)
-        markdownText.h1.fontSize = 20
-        markdownText.h1.fontStyle = .bold
-        markdownText.h2.fontSize = 18
-        markdownText.h2.fontStyle = .bold
-        markdownText.h3.fontSize = 16
-        markdownText.h3.fontStyle = .bold
-        
-        markdownText.code.color = .gray
-        markdownText.code.fontName = "CourierNewPSMT"
-        
-        let attributedString = markdownText.attributedString()
-        self.textView.textStorage?.setAttributedString(attributedString)
-    }
-
-    // MARK: - Private methods
-
-    /// Adjust the view size based on the superview width and on the textView height.
-    private func adjustViewSize() {
+    
+    override func adjustViewSize() {
         let textField = NSTextField(labelWithAttributedString: self.textView.attributedString())
         textField.lineBreakMode = .byCharWrapping
         textField.sizeToFit()
@@ -164,7 +140,28 @@ final class MarkdownTextView: AccessoryView {
         textView.textContainer?.size = CGSize(width: textViewSize.width-12, height: textViewSize.height)
     }
     
-    private func configureAccessibilityElements() {
+    override func configureAccessibilityElements() {
         textView.setAccessibilityLabel("accessory_view_accessibility_markdown_textview".localized)
+    }
+
+    // MARK: - Private methods
+    
+    /// Set the text and eventually handle hyperlinks.
+    /// - Parameter text: the text that needs to be displayed.
+    private func setText(_ text: String) {
+        let markdownText = SwiftyMarkdown(string: text)
+        markdownText.setFontColorForAllStyles(with: textView.drawsBackground ? .black : .labelColor)
+        markdownText.h1.fontSize = 20
+        markdownText.h1.fontStyle = .bold
+        markdownText.h2.fontSize = 18
+        markdownText.h2.fontStyle = .bold
+        markdownText.h3.fontSize = 16
+        markdownText.h3.fontStyle = .bold
+        
+        markdownText.code.color = .gray
+        markdownText.code.fontName = "CourierNewPSMT"
+        
+        let attributedString = markdownText.attributedString()
+        self.textView.textStorage?.setAttributedString(attributedString)
     }
 }

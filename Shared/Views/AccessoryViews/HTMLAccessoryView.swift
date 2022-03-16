@@ -16,8 +16,9 @@ final class HTMLAccessoryView: AccessoryView {
     
     private var scrollView: NSScrollView!
     private var textView: NSTextView!
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var scrollViewHeightAnchor: NSLayoutConstraint!
     private var textViewWidthAnchor: NSLayoutConstraint!
@@ -65,8 +66,9 @@ final class HTMLAccessoryView: AccessoryView {
     
     // MARK: - Initializers
     
-    init(withText text: String, drawsBackground: Bool = false, maxViewHeight: CGFloat = 300) {
+    init(withText text: String, drawsBackground: Bool = false, maxViewHeight: CGFloat = 300, containerWidth: CGFloat? = nil) {
         self.maxViewHeight = maxViewHeight
+        self._containerWidth = containerWidth
         super.init(frame: .zero)
         
         let textStorage = NSTextStorage()
@@ -113,32 +115,7 @@ final class HTMLAccessoryView: AccessoryView {
     
     // MARK: - Instance methods
     
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
-    }
-    
-    // MARK: - Public methods
-    
-    /// Translate the html string in a Swift attributed string.
-    /// - Parameter text: the text that needs to be displayed.
-    func setText(_ html: String) {
-        let baseTextColorCode = self.textViewBackgroundColor == .white ? NSColor.black : NSColor.labelColor
-        let newHtml = #"<span style="color:"# + baseTextColorCode.hexString + #"">"# + html + "</span>"
-        let data = Data(newHtml.utf8)
-        do {
-            let attributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .defaultAttributes: defaultAttributes], documentAttributes: nil)
-            self.textView.textStorage?.setAttributedString(attributedString)
-        } catch {
-            NALogger.shared.log("Unable to parse the given HTML. No text will be shown. %{public}@", [error.localizedDescription])
-        }
-    }
-    
-    // MARK: - Private methods
-    
-    /// Adjust the view size based on the superview width and on the textView height.
-    private func adjustViewSize() {
+    override func adjustViewSize() {
         let textField = NSTextField(labelWithAttributedString: self.textView.attributedString())
         textField.lineBreakMode = .byWordWrapping
         textField.sizeToFit()
@@ -160,7 +137,23 @@ final class HTMLAccessoryView: AccessoryView {
         textView.textContainer?.size = CGSize(width: textViewSize.width-12, height: textViewSize.height)
     }
     
-    private func configureAccessibilityElements() {
+    override func configureAccessibilityElements() {
         textView.setAccessibilityLabel("accessory_view_accessibility_html_textview".localized)
+    }
+    
+    // MARK: - Private methods
+    
+    /// Translate the html string in a Swift attributed string.
+    /// - Parameter text: the text that needs to be displayed.
+    private func setText(_ html: String) {
+        let baseTextColorCode = self.textViewBackgroundColor == .white ? NSColor.black : NSColor.labelColor
+        let newHtml = #"<span style="color:"# + baseTextColorCode.hexString + #"">"# + html + "</span>"
+        let data = Data(newHtml.utf8)
+        do {
+            let attributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .defaultAttributes: defaultAttributes], documentAttributes: nil)
+            self.textView.textStorage?.setAttributedString(attributedString)
+        } catch {
+            NALogger.shared.log("Unable to parse the given HTML. No text will be shown. %{public}@", [error.localizedDescription])
+        }
     }
 }
