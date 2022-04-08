@@ -38,16 +38,16 @@ class UserNotificationController: NSObject {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if let error = error {
                 NALogger.shared.log(.error,
-                       "Rich notification autorization request ended with error: %{public}@",
+                       "Rich notification authorization request ended with error: %{public}@",
                        [error.localizedDescription])
                 EFCLController.shared.applicationExit(withReason: .internalError)
                 completion(false)
             }
             if granted {
-                NALogger.shared.log("Rich notification autorization granted")
+                NALogger.shared.log("Rich notification authorization granted")
                 completion(true)
             } else {
-                NALogger.shared.log("Rich notification autorization not granted")
+                NALogger.shared.log("Rich notification authorization not granted")
                 completion(false)
             }
         }
