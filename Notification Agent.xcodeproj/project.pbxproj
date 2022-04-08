@@ -568,7 +568,6 @@
 				B961A62B267C9DA200657930 /* Assets.xcassets */,
 				B9360EBA268A04A900217247 /* Extensions */,
 				B961A5F8267B8B7800657930 /* Views */,
-				B9DE2EF126A181330098C6A8 /* Controllers */,
 			);
 			path = "Notification Agent Popups";
 			sourceTree = "<group>";
@@ -723,13 +722,6 @@
 				B94D3E46263DAEE5006BB5C6 /* FlippedStackView.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		B9DE2EF126A181330098C6A8 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B9E98E8324B88782002FAABD /* Extensions */ = {

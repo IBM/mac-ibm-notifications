@@ -61,7 +61,7 @@ public final class HelpBuilder {
                                               "\n      The title of the notification.\n      Suggested length < 120 characters.\n      Allowed length < 240 characters.\n      Example: -title \"Title\"",
                                               "\n      The title font size.\n      Example: -title_size \"20\"",
                                               "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
-                                              "\n      The custom icon path defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
+                                              "\n      The local or remote URL for a custom icon defined for this notification. Despite the name it does accept also base64 encoded images.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                               "\n      The custom icon width defined for this notification. Max. width = 150\n      Example: -icon_width \"150\"",
                                               "\n      The custom icon height defined for this notification. Max. height = 300\n      Example: -icon_height \"150\"",
                                               "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
