@@ -16,6 +16,7 @@ class InputAccessoryView: AccessoryView {
 
     private var inputTextField: NSTextField
     private var fieldTopAnchor: NSLayoutConstraint!
+    private var textFieldHeightAnchor: NSLayoutConstraint!
     private var isRequired: Bool = false
     private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
@@ -28,17 +29,19 @@ class InputAccessoryView: AccessoryView {
         return inputTextField.stringValue
     }
     var isSecure: Bool
+    var preventResize: Bool
     var hasTitle: Bool = false
 
     // MARK: - Initializers
 
-    init(with payload: String? = nil, isSecure: Bool = false, containerWidth: CGFloat? = nil) throws {
+    init(with payload: String? = nil, isSecure: Bool = false, containerWidth: CGFloat? = nil, preventResize: Bool = false) throws {
         if isSecure {
             inputTextField = NSSecureTextField()
         } else {
             inputTextField = NSTextField()
         }
         self.isSecure = isSecure
+        self.preventResize = preventResize
         _containerWidth = containerWidth
         super.init(frame: .zero)
         self.addSubview(inputTextField)
@@ -49,6 +52,8 @@ class InputAccessoryView: AccessoryView {
         inputTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         inputTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         inputTextField.delegate = self
+        inputTextField.lineBreakMode = .byCharWrapping
+        inputTextField.usesSingleLineMode = false
         try configureView(with: payload)
     }
     
@@ -117,13 +122,19 @@ class InputAccessoryView: AccessoryView {
                 }
             }
         }
-        self.mainButtonState = (self.isRequired && self.inputTextField.stringValue.isEmpty) ? .disabled : .enabled
+        self.mainButtonState = (self.isRequired && self.inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) ? .disabled : .enabled
     }
 }
 
 extension InputAccessoryView: NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        self.mainButtonState = inputTextField.stringValue.isEmpty ? .disabled : .enabled
+        self.mainButtonState = (inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && isRequired) ? .disabled : .enabled
+        let height = inputTextField.sizeThatFits(NSSize(width: inputTextField.bounds.width, height: 0)).height
+        if height != inputTextField.bounds.height && !preventResize {
+            self.textFieldHeightAnchor?.isActive = false
+            self.textFieldHeightAnchor = self.inputTextField.heightAnchor.constraint(equalToConstant: min(height, 200))
+            self.textFieldHeightAnchor.isActive = true
+        }
         delegate?.accessoryViewStatusDidChange(self)
     }
 }

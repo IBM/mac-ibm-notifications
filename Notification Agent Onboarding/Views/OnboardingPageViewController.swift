@@ -233,7 +233,8 @@ final class OnboardingPageViewController: NSViewController {
             do {
                 let inputAccessoryView = try InputAccessoryView(with: accessoryView.payload ?? "",
                                                                 isSecure: accessoryView.type == .securedinput || accessoryView.type == .secureinput,
-                                                                containerWidth: dedicatedWidth)
+                                                                containerWidth: dedicatedWidth,
+                                                                preventResize: true)
                 inputAccessoryView.delegate = self
                 add(inputAccessoryView)
                 self.accessoryViews.append(inputAccessoryView)
