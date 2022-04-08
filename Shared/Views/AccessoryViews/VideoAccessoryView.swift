@@ -42,6 +42,7 @@ final class VideoAccessoryView: AccessoryView {
         playerView = AVPlayerView()
         playerView.translatesAutoresizingMaskIntoConstraints = false
         playerView.videoGravity = .resizeAspect
+        playerView.controlsStyle = .minimal
         self.addSubview(playerView)
         playerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         playerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -52,6 +53,8 @@ final class VideoAccessoryView: AccessoryView {
         playerView.allowsPictureInPicturePlayback = true
         playerView.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: CMTimeScale(1)), queue: .main, using: { _ in
             self.delegate?.accessoryViewStatusDidChange(self)
+            guard self.playerView.controlsStyle != .inline else { return }
+            self.playerView.controlsStyle = .inline
         })
         videoResolution = media.videoResolution ?? .zero
     }
