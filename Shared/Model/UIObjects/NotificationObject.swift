@@ -79,6 +79,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var forceLightMode: Bool?
     /// The payload with the configuration of the pop-up reminder if set.
     var popupReminder: PopupReminder?
+    /// A boolean value that define wheter the onboarding must show the title bar buttons.
+    var hideTitleBarButtons: Bool?
     
     // MARK: - Initializers
     
@@ -166,8 +168,15 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.isMiniaturizable = false
         }
+        if let hideTitleBarButtons = dict["hide_title_bar_buttons"] as? String {
+            self.hideTitleBarButtons = hideTitleBarButtons.lowercased() == "true"
+        } else {
+            self.hideTitleBarButtons = false
+        }
         if let forceLightModeRaw = dict["force_light_mode"] as? String {
             self.forceLightMode = forceLightModeRaw.lowercased() == "true"
+        } else {
+            self.forceLightMode = false
         }
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
@@ -265,6 +274,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case payload
         case forceLightMode
         case popupReminder
+        case hideTitleBarButtons
     }
     
     required public init(from decoder: Decoder) throws {
@@ -292,6 +302,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
         self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
         self.isMiniaturizable = try container.decodeIfPresent(Bool.self, forKey: .miniaturizable)
+        self.hideTitleBarButtons = try container.decodeIfPresent(Bool.self, forKey: .hideTitleBarButtons)
         self.forceLightMode = try container.decodeIfPresent(Bool.self, forKey: .forceLightMode)
         self.payload = try container.decodeIfPresent(OnboardingData.self, forKey: .payload)
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
@@ -323,6 +334,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
         try container.encodeIfPresent(self.silent, forKey: .silent)
         try container.encodeIfPresent(self.isMiniaturizable, forKey: .miniaturizable)
+        try container.encodeIfPresent(self.hideTitleBarButtons, forKey: .hideTitleBarButtons)
         try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
@@ -390,6 +402,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: isMiniaturizable)
             coder.encode(number, forKey: NOCodingKeys.miniaturizable.rawValue)
         }
+        if let hideTitleBarButtons = self.hideTitleBarButtons {
+            let number = NSNumber(booleanLiteral: hideTitleBarButtons)
+            coder.encode(number, forKey: NOCodingKeys.hideTitleBarButtons.rawValue)
+        }
         if let forceLightMode = self.forceLightMode {
             let number = NSNumber(booleanLiteral: forceLightMode)
             coder.encode(number, forKey: NOCodingKeys.forceLightMode.rawValue)
@@ -424,6 +440,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
         self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool
         self.isMiniaturizable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.miniaturizable.rawValue) as? Bool
+        self.hideTitleBarButtons = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.hideTitleBarButtons.rawValue) as? Bool
         self.forceLightMode = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.forceLightMode.rawValue) as? Bool
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)

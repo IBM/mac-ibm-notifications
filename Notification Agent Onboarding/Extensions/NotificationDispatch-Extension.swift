@@ -23,6 +23,9 @@ extension NotificationDispatch {
         if object.payload?.progressBarPayload != nil {
             window.styleMask.remove(.closable)
             window.styleMask.remove(.miniaturizable)
+        } else if object.hideTitleBarButtons ?? false {
+            window.styleMask.remove(.closable)
+            window.styleMask.remove(.miniaturizable)
         }
         if object.forceLightMode ?? false {
             window.appearance = NSAppearance(named: .aqua)
