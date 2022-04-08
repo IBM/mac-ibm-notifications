@@ -39,7 +39,8 @@ public final class HelpBuilder {
                                            "-miniaturizable".yellow(),
                                            "-force_light_mode".yellow(),
                                            "-position".yellow(),
-                                           "-popup_reminder".yellow()]
+                                           "-popup_reminder".yellow(),
+                                           "-retain_values".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -99,7 +100,8 @@ public final class HelpBuilder {
                                               "\n      Flag that allows the UI to show the \"miniaturize\" button for the pop-up window.\n      Example: -miniaturizable",
                                               "\n      Flag that force the UI in light mode.\n      Example: -force_light_mode",
                                               "[ center | top_right | top_left | bottom_right | bottom_left ]".red() + "\n      Tells the app where to place the pop-up window.\n      Example: -position center",
-                                              "\n      A text payload to define the behavior of an optional reminder for the pop-up. The reminder is basically a timer at the end of which the pop-up is pushed again on top of the view hierarchy on screen. The payload format is: " + "\"/timeinterval <TIME_IN_SECONDS> /silent /repeat\" ".green() + "\n      Example: -popup_reminder \"/timeinterval 300\""]
+                                              "\n      A text payload to define the behavior of an optional reminder for the pop-up. The reminder is basically a timer at the end of which the pop-up is pushed again on top of the view hierarchy on screen. The payload format is: " + "\"/timeinterval <TIME_IN_SECONDS> /silent /repeat\" ".green() + "\n      Example: -popup_reminder \"/timeinterval 300\"",
+                                              "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked)."]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",

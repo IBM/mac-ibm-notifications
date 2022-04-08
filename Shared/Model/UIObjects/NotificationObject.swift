@@ -81,6 +81,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var popupReminder: PopupReminder?
     /// A boolean value that define wheter the onboarding must show the title bar buttons.
     var hideTitleBarButtons: Bool?
+    /// A boolean value that define if to print the available accessory view outputs on the secondary button click.
+    var retainValues: Bool?
     
     // MARK: - Initializers
     
@@ -177,6 +179,11 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.forceLightMode = forceLightModeRaw.lowercased() == "true"
         } else {
             self.forceLightMode = false
+        }
+        if let retainValuesRaw = dict["retain_Values"] as? String {
+            self.retainValues = retainValuesRaw.lowercased() == "true"
+        } else {
+            self.retainValues = false
         }
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
@@ -275,6 +282,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case forceLightMode
         case popupReminder
         case hideTitleBarButtons
+        case retainValues
     }
     
     required public init(from decoder: Decoder) throws {
@@ -304,6 +312,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.isMiniaturizable = try container.decodeIfPresent(Bool.self, forKey: .miniaturizable)
         self.hideTitleBarButtons = try container.decodeIfPresent(Bool.self, forKey: .hideTitleBarButtons)
         self.forceLightMode = try container.decodeIfPresent(Bool.self, forKey: .forceLightMode)
+        self.retainValues = try container.decodeIfPresent(Bool.self, forKey: .retainValues)
         self.payload = try container.decodeIfPresent(OnboardingData.self, forKey: .payload)
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
@@ -336,6 +345,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.isMiniaturizable, forKey: .miniaturizable)
         try container.encodeIfPresent(self.hideTitleBarButtons, forKey: .hideTitleBarButtons)
         try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
+        try container.encodeIfPresent(self.retainValues, forKey: .retainValues)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
         try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
@@ -410,6 +420,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: forceLightMode)
             coder.encode(number, forKey: NOCodingKeys.forceLightMode.rawValue)
         }
+        if let retainValues = self.retainValues {
+            let number = NSNumber(booleanLiteral: retainValues)
+            coder.encode(number, forKey: NOCodingKeys.retainValues.rawValue)
+        }
         if let position = self.position?.rawValue {
             coder.encode(position, forKey: NOCodingKeys.position.rawValue)
         }
@@ -442,6 +456,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.isMiniaturizable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.miniaturizable.rawValue) as? Bool
         self.hideTitleBarButtons = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.hideTitleBarButtons.rawValue) as? Bool
         self.forceLightMode = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.forceLightMode.rawValue) as? Bool
+        self.retainValues = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.retainValues.rawValue) as? Bool
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }
