@@ -180,7 +180,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.forceLightMode = false
         }
-        if let retainValuesRaw = dict["retain_Values"] as? String {
+        if let retainValuesRaw = dict["retain_values"] as? String {
             self.retainValues = retainValuesRaw.lowercased() == "true"
         } else {
             self.retainValues = false
