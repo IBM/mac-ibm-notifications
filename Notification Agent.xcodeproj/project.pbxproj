@@ -27,7 +27,7 @@
 		B920D4DE265F90D800437BE6 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A03AA224B779F5005BB90E /* NotificationButton.swift */; };
 		B920D4E0265F90E200437BE6 /* NAMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D021B25ED50900076C452 /* NAMedia.swift */; };
 		B920D4E1265F90E200437BE6 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDC98B24EC0D3E004F6108 /* LoadableNib.swift */; };
-		B920D4E2265F90E200437BE6 /* CrossfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */; };
+		B920D4E2265F90E200437BE6 /* NASegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* NASegue.swift */; };
 		B920D4E5265F90E200437BE6 /* NAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E98E8A24BCA983002FAABD /* NAError.swift */; };
 		B920D4E6265F90E200437BE6 /* InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDC98D24EC0D91004F6108 /* InfoSection.swift */; };
 		B920D4E7265F90EB00437BE6 /* Notification-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E98E8424B887A2002FAABD /* Notification-Extension.swift */; };
@@ -90,7 +90,7 @@
 		B961A4AF2673676000657930 /* NAMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92D021B25ED50900076C452 /* NAMedia.swift */; };
 		B961A4B02673676000657930 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDC98B24EC0D3E004F6108 /* LoadableNib.swift */; };
 		B961A4B22673676000657930 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6707253893D900F39949 /* ProgressState.swift */; };
-		B961A4B32673676000657930 /* CrossfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */; };
+		B961A4B32673676000657930 /* NASegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* NASegue.swift */; };
 		B961A4B42673676000657930 /* NALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8A24F7E5E5009A4554 /* NALogger.swift */; };
 		B961A4B52673676000657930 /* ReplyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96AE19524F52A2300C99A5E /* ReplyHandler.swift */; };
 		B961A4B62673677C00657930 /* NSScreen-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B985DAC9263854EA004F3470 /* NSScreen-Extension.swift */; };
@@ -112,7 +112,7 @@
 		B961A503267A498200657930 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = B961A502267A498200657930 /* SwiftyMarkdown */; };
 		B961A50F267A4D3C00657930 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
 		B961A510267A4D4400657930 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BC85FA2626D802000C9DBD /* Context.swift */; };
-		B961A511267A4D5600657930 /* PopupInteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */; };
+		B961A511267A4D5600657930 /* ProgressBarInteractiveEFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6700253882EA00F39949 /* ProgressBarInteractiveEFCLController.swift */; };
 		B961A512267A4D5900657930 /* NALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8A24F7E5E5009A4554 /* NALogger.swift */; };
 		B961A513267A4D5F00657930 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A03A9A24B76511005BB90E /* NotificationObject.swift */; };
 		B961A514267A4D6100657930 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6707253893D900F39949 /* ProgressState.swift */; };
@@ -173,7 +173,7 @@
 		B961A5D0267B899600657930 /* EFCLController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8524F6CFE0009A4554 /* EFCLController-Extension.swift */; };
 		B961A5D1267B89AC00657930 /* NALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8A24F7E5E5009A4554 /* NALogger.swift */; };
 		B961A5D3267B89CE00657930 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A8852125B9B10600081C8D /* OnboardingData.swift */; };
-		B961A5D4267B89CE00657930 /* CrossfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */; };
+		B961A5D4267B89CE00657930 /* NASegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* NASegue.swift */; };
 		B961A5D6267B89CE00657930 /* NAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E98E8A24BCA983002FAABD /* NAError.swift */; };
 		B961A5D7267B89CE00657930 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A03A9A24B76511005BB90E /* NotificationObject.swift */; };
 		B961A5D8267B89CE00657930 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6707253893D900F39949 /* ProgressState.swift */; };
@@ -241,7 +241,7 @@
 		B9C7118C2681DC2800A3E898 /* SharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C711882681DC2800A3E898 /* SharedSettings.swift */; };
 		B9C7118D2681DC2800A3E898 /* SharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C711882681DC2800A3E898 /* SharedSettings.swift */; };
 		B9C7A9CA24D16F790038D4A7 /* NotificationDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */; };
-		B9C8C41C25C828A7008EDCFD /* CrossfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */; };
+		B9C8C41C25C828A7008EDCFD /* NASegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8C41B25C828A7008EDCFD /* NASegue.swift */; };
 		B9D58831250A1410009F93C0 /* ConfigurableParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D58830250A1410009F93C0 /* ConfigurableParameters.swift */; };
 		B9DA1199267CA08000A38B3B /* Claims.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1198267CA08000A38B3B /* Claims.swift */; };
 		B9DC84612639C26B00D2BBA6 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
@@ -251,6 +251,13 @@
 		B9EDC98E24EC0D91004F6108 /* InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDC98D24EC0D91004F6108 /* InfoSection.swift */; };
 		F47F553E249B8C1B006A0754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47F553D249B8C1B006A0754 /* Assets.xcassets */; };
 		F47F5541249B8C1B006A0754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47F553F249B8C1B006A0754 /* Main.storyboard */; };
+		FD18021A27E1DA4900FC995A /* ProgressBarInteractiveEFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E6700253882EA00F39949 /* ProgressBarInteractiveEFCLController.swift */; };
+		FD18021B27E1DA8C00FC995A /* CheckListAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D3E40263C56AE006BB5C6 /* CheckListAccessoryView.swift */; };
+		FD18021C27E1DA8E00FC995A /* TimerAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9524D2B24E1591E007662C8 /* TimerAccessoryView.swift */; };
+		FD18021D27E1DA9300FC995A /* ProgressBarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99D1E8D2535F68900661954 /* ProgressBarAccessoryView.swift */; };
+		FD18021E27E1DA9A00FC995A /* DropDownAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94389D92626F2CC008E314A /* DropDownAccessoryView.swift */; };
+		FD18021F27E1DA9A00FC995A /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA46A125516523001AA69B /* InputAccessoryView.swift */; };
+		FD18022027E1DF3E00FC995A /* InteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A624267C7DFB00657930 /* InteractiveEFCLContoller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -307,7 +314,7 @@
 		B920D4C5265F8FC700437BE6 /* Notification_Agent_Alerts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notification_Agent_Alerts.entitlements; sourceTree = "<group>"; };
 		B920D501265F927B00437BE6 /* NotificationDispatch-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationDispatch-Extension.swift"; sourceTree = "<group>"; };
 		B92D021B25ED50900076C452 /* NAMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMedia.swift; sourceTree = "<group>"; };
-		B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupInteractiveEFCLContoller.swift; sourceTree = "<group>"; };
+		B92E6700253882EA00F39949 /* ProgressBarInteractiveEFCLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarInteractiveEFCLController.swift; sourceTree = "<group>"; };
 		B92E6707253893D900F39949 /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		B9360EA5268A005C00217247 /* EFCLController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFCLController-Extension.swift"; sourceTree = "<group>"; };
 		B9360EAA268A024600217247 /* EFCLController-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFCLController-Extension.swift"; sourceTree = "<group>"; };
@@ -384,7 +391,7 @@
 		B9C711882681DC2800A3E898 /* SharedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSettings.swift; sourceTree = "<group>"; };
 		B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationController.swift; sourceTree = "<group>"; };
 		B9C7A9C924D16F790038D4A7 /* NotificationDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDispatch.swift; sourceTree = "<group>"; };
-		B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossfadeSegue.swift; sourceTree = "<group>"; };
+		B9C8C41B25C828A7008EDCFD /* NASegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASegue.swift; sourceTree = "<group>"; };
 		B9C8C42525C83D11008EDCFD /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B9C8C42625C83D11008EDCFD /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		B9D58830250A1410009F93C0 /* ConfigurableParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableParameters.swift; sourceTree = "<group>"; };
@@ -561,7 +568,6 @@
 				B961A62B267C9DA200657930 /* Assets.xcassets */,
 				B9360EBA268A04A900217247 /* Extensions */,
 				B961A5F8267B8B7800657930 /* Views */,
-				B9DE2EF126A181330098C6A8 /* Controllers */,
 			);
 			path = "Notification Agent Popups";
 			sourceTree = "<group>";
@@ -642,6 +648,7 @@
 				B9BC85FA2626D802000C9DBD /* Context.swift */,
 				B96AE19524F52A2300C99A5E /* ReplyHandler.swift */,
 				B9013A8A24F7E5E5009A4554 /* NALogger.swift */,
+				B92E6700253882EA00F39949 /* ProgressBarInteractiveEFCLController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -692,7 +699,7 @@
 				B92D021B25ED50900076C452 /* NAMedia.swift */,
 				B9EDC98B24EC0D3E004F6108 /* LoadableNib.swift */,
 				B9EDC98D24EC0D91004F6108 /* InfoSection.swift */,
-				B9C8C41B25C828A7008EDCFD /* CrossfadeSegue.swift */,
+				B9C8C41B25C828A7008EDCFD /* NASegue.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -715,14 +722,6 @@
 				B94D3E46263DAEE5006BB5C6 /* FlippedStackView.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		B9DE2EF126A181330098C6A8 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				B92E6700253882EA00F39949 /* PopupInteractiveEFCLContoller.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B9E98E8324B88782002FAABD /* Extensions */ = {
@@ -1032,7 +1031,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#Support for M1 Macs Homebrew location\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1044,7 +1043,7 @@
 				B9360EC7268A0B2B00217247 /* NotificationDispatch.swift in Sources */,
 				B920D4DC265F90D800437BE6 /* ConfigurableParameters.swift in Sources */,
 				B920D4DA265F90D800437BE6 /* ProgressState.swift in Sources */,
-				B920D4E2265F90E200437BE6 /* CrossfadeSegue.swift in Sources */,
+				B920D4E2265F90E200437BE6 /* NASegue.swift in Sources */,
 				B920D4D2265F90D200437BE6 /* NALogger.swift in Sources */,
 				B920D4DB265F90D800437BE6 /* OnboardingData.swift in Sources */,
 				B920D4DE265F90D800437BE6 /* NotificationButton.swift in Sources */,
@@ -1095,7 +1094,7 @@
 				B961A516267A4D6600657930 /* OnboardingData.swift in Sources */,
 				B961A524267A4D8F00657930 /* MarkdownTextView.swift in Sources */,
 				B961A512267A4D5900657930 /* NALogger.swift in Sources */,
-				B961A511267A4D5600657930 /* PopupInteractiveEFCLContoller.swift in Sources */,
+				B961A511267A4D5600657930 /* ProgressBarInteractiveEFCLController.swift in Sources */,
 				B961A525267A4D8F00657930 /* VideoAccessoryView.swift in Sources */,
 				B961A539267A4DD600657930 /* Decodable-Extensions.swift in Sources */,
 				B94BDAD72684C1BB00663D21 /* Token.swift in Sources */,
@@ -1158,11 +1157,14 @@
 				B961A62A267C80C100657930 /* TaskManager.swift in Sources */,
 				B961A55C267A4F2700657930 /* NotificationDispatch-Extension.swift in Sources */,
 				B961A5E4267B8A1500657930 /* AccessoryView.swift in Sources */,
+				FD18021D27E1DA9300FC995A /* ProgressBarAccessoryView.swift in Sources */,
 				B961A5B2267B44E000657930 /* OnboardingPageViewController.swift in Sources */,
 				B9C7118D2681DC2800A3E898 /* SharedSettings.swift in Sources */,
+				FD18021F27E1DA9A00FC995A /* InputAccessoryView.swift in Sources */,
 				B9360EC4268A08FE00217247 /* AppComponent.swift in Sources */,
 				B961A5A8267B44B400657930 /* NSColor-Extension.swift in Sources */,
 				B94BDAD82684C1BC00663D21 /* Token.swift in Sources */,
+				FD18021B27E1DA8C00FC995A /* CheckListAccessoryView.swift in Sources */,
 				B961A5D8267B89CE00657930 /* ProgressState.swift in Sources */,
 				B961A5A4267B44B400657930 /* Notification-Extension.swift in Sources */,
 				B9360EA9268A00E100217247 /* EFCLController.swift in Sources */,
@@ -1170,10 +1172,13 @@
 				B961A5F2267B8A2600657930 /* NoBackgroundScroller.swift in Sources */,
 				B961A5D1267B89AC00657930 /* NALogger.swift in Sources */,
 				B961A5DA267B89CE00657930 /* InfoSection.swift in Sources */,
+				FD18021A27E1DA4900FC995A /* ProgressBarInteractiveEFCLController.swift in Sources */,
+				FD18022027E1DF3E00FC995A /* InteractiveEFCLContoller.swift in Sources */,
 				B9064C11276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B961A5E6267B8A1500657930 /* HTMLAccessoryView.swift in Sources */,
 				B961A5B7267B457D00657930 /* Environment.swift in Sources */,
 				B961A5E2267B8A1500657930 /* VideoAccessoryView.swift in Sources */,
+				FD18021E27E1DA9A00FC995A /* DropDownAccessoryView.swift in Sources */,
 				B9C711862681DBC200A3E898 /* TaskObject.swift in Sources */,
 				B961A5D9267B89CE00657930 /* LoadableNib.swift in Sources */,
 				B961A5DC267B89CE00657930 /* NAMedia.swift in Sources */,
@@ -1182,9 +1187,10 @@
 				B961A5A7267B44B400657930 /* Decodable-Extensions.swift in Sources */,
 				B961A5A6267B44B400657930 /* String-Extension.swift in Sources */,
 				B961A5F1267B8A2600657930 /* HorizontalLine.swift in Sources */,
+				FD18021C27E1DA8E00FC995A /* TimerAccessoryView.swift in Sources */,
 				B9504D28275EA00B00DD78C5 /* UNNotificationAttachment-Extension.swift in Sources */,
 				B961A5B0267B44E000657930 /* OnboardingViewController.swift in Sources */,
-				B961A5D4267B89CE00657930 /* CrossfadeSegue.swift in Sources */,
+				B961A5D4267B89CE00657930 /* NASegue.swift in Sources */,
 				B961A5E1267B89F900657930 /* ReplyHandler.swift in Sources */,
 				B961A5D7267B89CE00657930 /* NotificationObject.swift in Sources */,
 				B961A582267A5CDA00657930 /* Utils.swift in Sources */,
@@ -1224,7 +1230,7 @@
 				B9064C0F276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B961A628267C80C000657930 /* TaskManager.swift in Sources */,
 				B961A4B22673676000657930 /* ProgressState.swift in Sources */,
-				B961A4B32673676000657930 /* CrossfadeSegue.swift in Sources */,
+				B961A4B32673676000657930 /* NASegue.swift in Sources */,
 				B961A4B42673676000657930 /* NALogger.swift in Sources */,
 				B961A4A72673676000657930 /* NotificationObject.swift in Sources */,
 				B97583D1267364D70038A99F /* NotificationDispatch-Extension.swift in Sources */,
@@ -1276,7 +1282,7 @@
 				B961A4D42677AFB000657930 /* EFCLController.swift in Sources */,
 				B961A4F42679F50E00657930 /* TaskManager.swift in Sources */,
 				B9524D2E24E15B1F007662C8 /* String-Extension.swift in Sources */,
-				B9C8C41C25C828A7008EDCFD /* CrossfadeSegue.swift in Sources */,
+				B9C8C41C25C828A7008EDCFD /* NASegue.swift in Sources */,
 				B9A03A9F24B779B8005BB90E /* NotificationAccessoryElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1344,7 +1350,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Alerts/Info.plist";
@@ -1353,7 +1359,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1372,7 +1378,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Alerts/Info.plist";
@@ -1381,7 +1387,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1400,7 +1406,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Popups/Info.plist";
@@ -1409,7 +1415,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1428,7 +1434,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Popups/Info.plist";
@@ -1437,7 +1443,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1456,7 +1462,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Onboarding/Info.plist";
@@ -1465,7 +1471,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1483,7 +1489,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Onboarding/Info.plist";
@@ -1492,7 +1498,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1510,7 +1516,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Banners/Info.plist";
@@ -1519,7 +1525,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1538,7 +1544,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Banners/Info.plist";
@@ -1547,7 +1553,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1683,7 +1689,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Core/Info.plist";
@@ -1692,7 +1698,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1710,7 +1716,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Core/Info.plist";
@@ -1719,7 +1725,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1809,7 +1815,7 @@
 			repositoryURL = "https://github.com/IBM-Swift/BlueSignals.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.21;
+				minimumVersion = 2.0.1;
 			};
 		};
 		B9BC86212626D865000C9DBD /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {

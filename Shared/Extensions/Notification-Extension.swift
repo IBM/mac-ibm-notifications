@@ -11,4 +11,5 @@ import Foundation
 
 extension Notification.Name {
     static let showNotification = Notification.Name(rawValue: "showNotification")
+    static let onboardingParentStatusDidChange = Notification.Name(rawValue: "onboardingParentStatusDidChange")
 }

@@ -42,7 +42,10 @@ extension NotificationDispatch {
                 exit(terminationStatus)
             }
         case .onboarding:
-            taskManager.runAsyncTaskOnComponent(.onboarding, with: jsonData) { terminationStatus in
+            var isInteractive: Bool {
+                return object.notification.payload?.progressBarPayload != nil
+            }
+            taskManager.runAsyncTaskOnComponent(.onboarding, with: jsonData, isInteractive: isInteractive) { terminationStatus in
                 exit(terminationStatus)
             }
         case .alert:

@@ -17,8 +17,9 @@ final class VideoAccessoryView: AccessoryView {
 
     private var playerView: AVPlayerView!
     private var videoResolution: CGSize!
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var playerViewWidthAnchor: NSLayoutConstraint!
     private var playerViewHeightAnchor: NSLayoutConstraint!
@@ -29,14 +30,19 @@ final class VideoAccessoryView: AccessoryView {
 
     // MARK: - Initializers
 
-    init(with media: NAMedia, preferredSize: CGSize = .zero, needsFullWidth: Bool = true) {
+    init(with media: NAMedia,
+         preferredSize: CGSize = .zero,
+         needsFullWidth: Bool = true,
+         containerWidth: CGFloat? = nil) {
         self.needsFullWidth = needsFullWidth
         self.preferredSize = preferredSize
         self.media = media
+        self._containerWidth = containerWidth
         super.init(frame: .zero)
         playerView = AVPlayerView()
         playerView.translatesAutoresizingMaskIntoConstraints = false
         playerView.videoGravity = .resizeAspect
+        playerView.controlsStyle = .minimal
         self.addSubview(playerView)
         playerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         playerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -47,6 +53,8 @@ final class VideoAccessoryView: AccessoryView {
         playerView.allowsPictureInPicturePlayback = true
         playerView.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: CMTimeScale(1)), queue: .main, using: { _ in
             self.delegate?.accessoryViewStatusDidChange(self)
+            guard self.playerView.controlsStyle != .inline else { return }
+            self.playerView.controlsStyle = .inline
         })
         videoResolution = media.videoResolution ?? .zero
     }
@@ -59,8 +67,6 @@ final class VideoAccessoryView: AccessoryView {
 
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
         if media.autoplay {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(media.autoplayDelay)) {
                 self.playerView.player?.play()
@@ -68,15 +74,12 @@ final class VideoAccessoryView: AccessoryView {
         }
     }
 
-    // MARK: - Private methods
-
-    /// Adjust the view size based on the superview width and on the video height.
-    private func adjustViewSize() {
+    override func adjustViewSize() {
         guard needsFullWidth else {
             if preferredSize != .zero {
                 playerView.heightAnchor.constraint(equalToConstant: preferredSize.height).isActive = true
+                playerView.widthAnchor.constraint(equalToConstant: preferredSize.height*videoResolution.width/videoResolution.height).isActive = true
             }
-            playerView.widthAnchor.constraint(equalTo: playerView.heightAnchor, multiplier: videoResolution.width/videoResolution.height).isActive = true
             return
         }
         guard containerWidth > 0 else { return }
@@ -94,7 +97,7 @@ final class VideoAccessoryView: AccessoryView {
         playerViewHeightAnchor?.isActive = true
     }
     
-    private func configureAccessibilityElements() {
+    override func configureAccessibilityElements() {
         playerView.setAccessibilityLabel("accessory_view_accessibility_video_playerView".localized)
     }
 }

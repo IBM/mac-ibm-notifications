@@ -114,11 +114,21 @@ class PopUpViewController: NSViewController {
 
     /// This method load and set the icon if a custom one was defined.
     private func setIconIfNeeded() {
-        if let iconPath = notificationObject.iconPath,
-           FileManager.default.fileExists(atPath: iconPath) {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: iconPath)),
-               let image = NSImage(data: data) {
+        if let iconPath = notificationObject.iconPath {
+            if FileManager.default.fileExists(atPath: iconPath),
+               let data = try? Data(contentsOf: URL(fileURLWithPath: iconPath)) {
+                let image = NSImage(data: data)
                 iconView.image = image
+            } else if iconPath.isValidURL,
+                      let url = URL(string: iconPath),
+                      let data = try? Data(contentsOf: url) {
+                let image = NSImage(data: data)
+                iconView.image = image
+            } else if let imageData = Data(base64Encoded: iconPath, options: .ignoreUnknownCharacters),
+                      let image = NSImage(data: imageData) {
+                iconView.image = image
+            } else {
+                NALogger.shared.log("Unable to load image from %{public}@", [iconPath])
             }
         } else {
             iconView.image = NSImage(named: NSImage.Name("default_icon"))
@@ -343,11 +353,8 @@ class PopUpViewController: NSViewController {
         self.iconView.setAccessibilityLabel("popup_accessibility_image_left".localized)
         self.popupElementsStackView.setAccessibilityLabel("popup_accessibility_stackview_body".localized)
     }
-
-    // MARK: - Actions
-
-    /// User clicked the main button.
-    @IBAction func didClickedMainButton(_ sender: NSButton) {
+    
+    private func printOutputIfAvailable() {
         for accessoryView in accessoryViews.reversed() {
             switch accessoryView.self {
             case is InputAccessoryView:
@@ -370,11 +377,21 @@ class PopUpViewController: NSViewController {
                 break
             }
         }
+    }
+
+    // MARK: - Actions
+
+    /// User clicked the main button.
+    @IBAction func didClickedMainButton(_ sender: NSButton) {
+        self.printOutputIfAvailable()
         self.triggerAction(ofType: shouldAllowCancel ? .cancel : .main)
     }
 
     /// User clicked the secondary button.
     @IBAction func didClickedSecondaryButton(_ sender: NSButton) {
+        if self.notificationObject.retainValues ?? false {
+            self.printOutputIfAvailable()
+        }
         self.triggerAction(ofType: .secondary)
     }
 

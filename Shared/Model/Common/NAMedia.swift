@@ -91,7 +91,7 @@ public final class NAMedia {
                 }
             }
             guard !setupPlayer(with: string) else {
-                NALogger.shared.deprecationLog(since: AppVersion(major: 2, release: 6, fix: 0), deprecatedArgument: "video accessory view payload")
+                NALogger.shared.deprecationLog(since: AppVersion(major: 3, release: 0, fix: 0), deprecatedArgument: "video accessory view payload without payload keys ex. '/url'")
                 return
             }
             var splittedStrings = string.split(separator: "/")
@@ -109,7 +109,13 @@ public final class NAMedia {
                         NALogger.shared.log("Unable to load video from payload %{public}@", [string])
                         return nil
                     }
-                    guard setupPlayer(with: value) else {
+                    var checkedValue = value
+                    if value.contains("https:/") {
+                        checkedValue = value.replacingOccurrences(of: "https:/", with: "https://")
+                    } else if value.contains("http:/") {
+                        checkedValue = value.replacingOccurrences(of: "http:/", with: "http://")
+                    }
+                    guard setupPlayer(with: checkedValue) else {
                         return nil
                     }
                 case "autoplay":

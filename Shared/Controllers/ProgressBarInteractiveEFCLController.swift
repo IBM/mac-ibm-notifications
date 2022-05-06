@@ -1,5 +1,5 @@
 //
-//  InteractiveEFCLContoller.swift
+//  ProgressBarInteractiveEFCLController.swift
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 10/15/20.
@@ -10,7 +10,7 @@
 import Foundation
 
 /// InteractiveEFCLController delegate
-protocol PopupInteractiveEFCLControllerDelegate: AnyObject {
+protocol ProgressBarInteractiveEFCLControllerDelegate: AnyObject {
     /// Triggered when a new state for the progress bar is available.
     /// - Parameter newState: The new state to be showed.
     func didReceivedNewStateforProgressBar(_ newState: ProgressState)
@@ -19,11 +19,11 @@ protocol PopupInteractiveEFCLControllerDelegate: AnyObject {
 }
 
 /// This controller handle the background observation for interactive input from command line execution of the agent.
-final class PopupInteractiveEFCLController: InteractiveEFCLController {
+final class ProgressBarInteractiveEFCLController: InteractiveEFCLController {
 
     // MARK: - Public variables
     
-    weak var delegate: PopupInteractiveEFCLControllerDelegate?
+    weak var delegate: ProgressBarInteractiveEFCLControllerDelegate?
     
     // MARK: - Private variables
     

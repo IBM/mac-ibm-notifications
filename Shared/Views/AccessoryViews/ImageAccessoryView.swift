@@ -15,8 +15,9 @@ final class ImageAccessoryView: AccessoryView {
     // MARK: - Private variables
 
     private var imageView: NSImageView!
+    private var _containerWidth: CGFloat?
     private var containerWidth: CGFloat {
-        return self.superview?.bounds.width ?? 0
+        return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var imageViewWidthAnchor: NSLayoutConstraint!
     private var imageViewHeightAnchor: NSLayoutConstraint!
@@ -26,9 +27,13 @@ final class ImageAccessoryView: AccessoryView {
 
     // MARK: - Initializers
 
-    init(with media: NAMedia, preferredSize: CGSize = .zero, needsFullWidth: Bool = true) {
+    init(with media: NAMedia,
+         preferredSize: CGSize = .zero,
+         needsFullWidth: Bool = true,
+         containerWidth: CGFloat? = nil) {
         self.needsFullWidth = needsFullWidth
         self.preferredSize = preferredSize
+        self._containerWidth = containerWidth
         super.init(frame: .zero)
         imageView = NSImageView()
         imageView.imageScaling = .scaleProportionallyUpOrDown
@@ -46,17 +51,8 @@ final class ImageAccessoryView: AccessoryView {
     }
 
     // MARK: - Instance methods
-
-    override func viewDidMoveToSuperview() {
-        super.viewDidMoveToSuperview()
-        adjustViewSize()
-        configureAccessibilityElements()
-    }
-
-    // MARK: - Private methods
-
-    /// Adjust the view size based on the superview width and on the image height.
-    private func adjustViewSize() {
+    
+    override func adjustViewSize() {
         guard needsFullWidth else {
             if preferredSize != .zero {
                 imageView.heightAnchor.constraint(equalToConstant: preferredSize.height).isActive = true
@@ -76,7 +72,7 @@ final class ImageAccessoryView: AccessoryView {
         imageViewHeightAnchor.isActive = true
     }
     
-    private func configureAccessibilityElements() {
+    override func configureAccessibilityElements() {
         imageView.setAccessibilityLabel("accessory_view_accessibility_image_imageview".localized)
     }
 }

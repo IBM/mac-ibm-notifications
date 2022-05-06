@@ -41,7 +41,7 @@ enum AppComponent {
             return "/Contents/Helpers/"
         }
     }
-    private var current: AppComponent {
+    static var current: AppComponent {
         switch Bundle.main.bundleIdentifier! {
         case "com.ibm.cio.notifier":
             return .core
@@ -59,9 +59,17 @@ enum AppComponent {
     }
     /// The local relative path for the component.
     func getRelativeComponentPath() -> String {
-        guard current != .core else {
+        guard Self.current != .core else {
             return Bundle.main.bundlePath + self.componentDirectory + self.bundleName + ".app" + self.binaryPath
         }
-        return Bundle.main.bundlePath.replacingOccurrences(of: "\(current.bundleName)", with: "\(self.bundleName)") + self.binaryPath
+        return Bundle.main.bundlePath.replacingOccurrences(of: "\(Self.current.bundleName)", with: "\(self.bundleName)") + self.binaryPath
+    }
+    func cleanSavedFiles() {
+        switch self {
+        case .onboarding:
+            Utils.delete(Constants.storeFileName)
+        case .popup, .alert, .banner, .core:
+            break
+        }
     }
 }

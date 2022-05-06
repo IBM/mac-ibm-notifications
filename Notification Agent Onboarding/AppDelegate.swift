@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.activate(ignoringOtherApps: true)
         notificationDispatch.startObservingForNotifications()
         efclController.parseArguments()
+        AppComponent.current.cleanSavedFiles()
         completion()
     }
 

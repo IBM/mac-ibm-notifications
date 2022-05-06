@@ -45,6 +45,12 @@ final class TimerAccessoryView: AccessoryView {
     required init?(coder: NSCoder) {
         return nil
     }
+    
+    // MARK: - Instance methods
+    
+    override func configureAccessibilityElements() {
+        timerLabel.setAccessibilityLabel("accessory_view_accessibility_timer_label".localized)
+    }
 
     // MARK: - Private methods
 
@@ -78,9 +84,5 @@ final class TimerAccessoryView: AccessoryView {
             return
         }
         self.countDown -= 1
-    }
-    
-    private func configureAccessibilityElements() {
-        timerLabel.setAccessibilityLabel("accessory_view_accessibility_timer_label".localized)
     }
 }
