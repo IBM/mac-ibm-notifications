@@ -10,7 +10,7 @@ packaging==20.4
 pluggy==0.13.1
 py==1.10.0
 pycparser==2.20
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.6.0
 pyparsing==2.4.7
 pytest==6.1.2
