@@ -686,11 +686,11 @@
             <objects>
                 <viewController identifier="popUpViewController" storyboardIdentifier="popUpViewController" id="XfG-lQ-9wD" customClass="PopUpViewController" customModule="IBM_Notifier_Popup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="529" height="129"/>
+                        <rect key="frame" x="0.0" y="0.0" width="529" height="128"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vWd-KW-45q">
-                                <rect key="frame" x="23" y="55" width="60" height="60"/>
+                                <rect key="frame" x="23" y="54" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" identifier="iconHeight" id="0O6-CR-q6S"/>
                                     <constraint firstAttribute="width" constant="60" identifier="iconWidth" id="Jvn-G7-sZe"/>
@@ -752,9 +752,8 @@ DQ
                                     <action selector="didClickedHelpButton:" target="XfG-lQ-9wD" id="Z2Y-Or-hKJ"/>
                                 </connections>
                             </button>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" id="Pyp-Ls-xUg">
-                                <rect key="frame" x="106" y="54" width="400" height="61"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <stackView orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pyp-Ls-xUg">
+                                <rect key="frame" x="106" y="54" width="400" height="60"/>
                             </stackView>
                         </subviews>
                         <constraints>
@@ -790,7 +789,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="229"/>
+            <point key="canvasLocation" x="74.5" y="228.5"/>
         </scene>
     </scenes>
     <resources>
