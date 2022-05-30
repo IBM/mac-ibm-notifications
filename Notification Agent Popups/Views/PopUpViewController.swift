@@ -90,6 +90,12 @@ class PopUpViewController: NSViewController {
 
     /// Set the title and the description of the popup if defined.
     private func configureMainLabels() {
+        if let subtitle = notificationObject?.subtitle {
+            let maxSubtitleHeight: CGFloat = !(notificationObject.accessoryViews?.isEmpty ?? true) ? 200 : 450
+            let textView = MarkdownTextView(withText: subtitle.localized, maxViewHeight: maxSubtitleHeight)
+            textView.setAccessibilityLabel("popup_accessibility_label_subtitle".localized)
+            self.popupElementsStackView.insertView(textView, at: 0, in: .top)
+        }
         if let title = notificationObject?.title {
             let titleLabel = NSTextField(wrappingLabelWithString: title.localized)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -103,12 +109,8 @@ class PopUpViewController: NSViewController {
                 titleLabel.font = .boldSystemFont(ofSize: fontSize)
             }
             self.popupElementsStackView.insertView(titleLabel, at: 0, in: .top)
-        }
-        if let subtitle = notificationObject?.subtitle {
-            let maxSubtitleHeight: CGFloat = !(notificationObject.accessoryViews?.isEmpty ?? true) ? 200 : 450
-            let textView = MarkdownTextView(withText: subtitle.localized, maxViewHeight: maxSubtitleHeight)
-            textView.setAccessibilityLabel("popup_accessibility_label_subtitle".localized)
-            self.popupElementsStackView.insertView(textView, at: 0, in: .center)
+            let fitHeight: CGFloat = titleLabel.sizeThatFits(NSSize(width: popupElementsStackView.bounds.width, height: 0)).height
+            titleLabel.heightAnchor.constraint(equalToConstant: fitHeight).isActive = true
         }
     }
 
@@ -136,11 +138,15 @@ class PopUpViewController: NSViewController {
         // Set icon width and height if specified
         if let iconWidthAsString = notificationObject.iconWidth,
            let customWidth = NumberFormatter().number(from: iconWidthAsString) {
+            iconViewWidth.isActive = false
             iconViewWidth.constant = CGFloat(truncating: customWidth)
+            iconViewWidth.isActive = true
         }
         if let iconHeightAsString = notificationObject.iconHeight,
            let customHeight = NumberFormatter().number(from: iconHeightAsString) {
+            iconViewHeight.isActive = false
             iconViewHeight.constant = CGFloat(truncating: customHeight)
+            iconViewHeight.isActive = true
         }
         if iconViewHeight.constant != iconViewWidth.constant {
             iconView.imageScaling = .scaleAxesIndependently
@@ -177,13 +183,13 @@ class PopUpViewController: NSViewController {
             let timerAccessoryView = TimerAccessoryView(withTimeInSeconds: time, label: accessoryView.payload ?? "")
             timerAccessoryView.translatesAutoresizingMaskIntoConstraints = false
             timerAccessoryView.timerDelegate = self
-            self.popupElementsStackView.insertView(timerAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(timerAccessoryView, at: 0, in: .center)
         case .whitebox:
             let markdownTextView = MarkdownTextView(withText: accessoryView.payload ?? "", drawsBackground: true)
-            self.popupElementsStackView.insertView(markdownTextView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(markdownTextView, at: 0, in: .center)
         case .progressbar:
             let progressBarAccessoryView = ProgressBarAccessoryView(accessoryView.payload)
-            self.popupElementsStackView.insertView(progressBarAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(progressBarAccessoryView, at: 0, in: .center)
             progressBarAccessoryView.progressBarDelegate = self
             progressBarAccessoryView.delegate = self
             self.accessoryViews.append(progressBarAccessoryView)
@@ -191,17 +197,17 @@ class PopUpViewController: NSViewController {
         case .image:
             guard let media = accessoryView.media, media.image != nil else { return }
             let imageAccessoryView = ImageAccessoryView(with: media)
-            self.popupElementsStackView.insertView(imageAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(imageAccessoryView, at: 0, in: .center)
         case .video:
             guard let media = accessoryView.media, media.player != nil else { return }
             let videoAccessoryView = VideoAccessoryView(with: media)
             videoAccessoryView.delegate = self
-            self.popupElementsStackView.insertView(videoAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(videoAccessoryView, at: 0, in: .center)
         case .input, .securedinput, .secureinput:
             do {
                 let inputAccessoryView = try InputAccessoryView(with: accessoryView.payload ?? "", isSecure: accessoryView.type == .securedinput || accessoryView.type == .secureinput)
                 inputAccessoryView.delegate = self
-                self.popupElementsStackView.insertView(inputAccessoryView, at: 0, in: .bottom)
+                self.popupElementsStackView.insertView(inputAccessoryView, at: 0, in: .center)
                 self.accessoryViews.append(inputAccessoryView)
             } catch {
                 NALogger.shared.log("Error while creating accessory view: %{public}@", [error.localizedDescription])
@@ -209,7 +215,7 @@ class PopUpViewController: NSViewController {
         case .dropdown:
             do {
                 let dropDownAccessoryView = try DropDownAccessoryView(with: accessoryView.payload ?? "")
-                self.popupElementsStackView.insertView(dropDownAccessoryView, at: 0, in: .bottom)
+                self.popupElementsStackView.insertView(dropDownAccessoryView, at: 0, in: .center)
                 dropDownAccessoryView.delegate = self
                 self.accessoryViews.append(dropDownAccessoryView)
             } catch {
@@ -217,14 +223,14 @@ class PopUpViewController: NSViewController {
             }
         case .html:
             let htmlAccessoryView = HTMLAccessoryView(withText: accessoryView.payload ?? "", drawsBackground: false)
-            self.popupElementsStackView.insertView(htmlAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(htmlAccessoryView, at: 0, in: .center)
         case .htmlwhitebox:
             let htmlAccessoryView = HTMLAccessoryView(withText: accessoryView.payload ?? "", drawsBackground: true)
-            self.popupElementsStackView.insertView(htmlAccessoryView, at: 0, in: .bottom)
+            self.popupElementsStackView.insertView(htmlAccessoryView, at: 0, in: .center)
         case .checklist:
             do {
                 let checklistAccessoryView = try CheckListAccessoryView(with: accessoryView.payload ?? "")
-                self.popupElementsStackView.insertView(checklistAccessoryView, at: 0, in: .bottom)
+                self.popupElementsStackView.insertView(checklistAccessoryView, at: 0, in: .center)
                 checklistAccessoryView.delegate = self
                 self.accessoryViews.append(checklistAccessoryView)
             } catch {
@@ -235,10 +241,8 @@ class PopUpViewController: NSViewController {
 
     /// Check the stack view distribution based on the number of the arrangedSubviews.
     private func checkStackViewLayout() {
-        if self.popupElementsStackView.arrangedSubviews.count == 1 {
-            self.popupElementsStackView.distribution = .equalSpacing
-        } else {
-            self.popupElementsStackView.distribution = .gravityAreas
+        if self.accessoryViews.isEmpty {
+            self.popupElementsStackView.distribution = .fillEqually
         }
     }
 
