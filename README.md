@@ -5,11 +5,11 @@
 ![Swift version](https://img.shields.io/badge/swift-5-1984E5)
 ![Xcode version](https://img.shields.io/badge/xcode-13-1984E5)
 ![Project version](https://img.shields.io/badge/version-2.7.1-1984E5)
+![macOS](https://img.shields.io/badge/os-macOS%2010.15+-bright%20green)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5823/badge)](https://bestpractices.coreinfrastructure.org/projects/5823)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)    
-![macOS](https://img.shields.io/badge/os-macOS%20Catalina-bright%20green)  
-![macOS](https://img.shields.io/badge/os-macOS%20Big%20Sur-bright%20green)  
-![macOS](https://img.shields.io/badge/os-macOS%20Monterey-bright%20green)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)  
 ## Scope
 
 The purpose of this project is to provide an useful tool to system administrators to trigger interactive popups and notification banners to the end user.
