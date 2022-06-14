@@ -111,6 +111,7 @@ final class MarkdownTextView: AccessoryView {
             textColor = .labelColor
         }
         self.setText(text)
+        self.identifier = NSUserInterfaceItemIdentifier("markdown_accessoryview")
     }
 
     required init?(coder: NSCoder) {
@@ -141,7 +142,9 @@ final class MarkdownTextView: AccessoryView {
     }
     
     override func configureAccessibilityElements() {
+        self.setAccessibilityElement(false)
         textView.setAccessibilityLabel("accessory_view_accessibility_markdown_textview".localized)
+        textView.setAccessibilityIdentifier("accessory_view_accessibility_markdown_textview")
     }
 
     // MARK: - Private methods

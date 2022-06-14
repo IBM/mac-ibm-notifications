@@ -48,6 +48,7 @@ extension EFCLController {
     /// Check if the app is running testes for other workflows, debug or different workflow and if not start parsing the launch arguments.
     func parseArguments(_ arguments: [String] = CommandLine.arguments) {
         do {
+            guard !arguments.contains("--isRunningTest") else { return }
             guard let base64EncodedData = arguments.last,
                   let data = Data(base64Encoded: base64EncodedData) else {
                 applicationExit(withReason: .internalError)

@@ -45,6 +45,7 @@ class DropDownAccessoryView: AccessoryView {
         dropDown.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         dropDown.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         try configureDropDown(with: payload)
+        self.identifier = NSUserInterfaceItemIdentifier("dropdown_accessoryview")
     }
     
     required init?(coder: NSCoder) {

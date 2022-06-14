@@ -44,6 +44,7 @@ final class CheckListAccessoryView: AccessoryView {
         self._containerWidth = containerWidth
         super.init(frame: .zero)
         try configureView(with: payload)
+        self.identifier = NSUserInterfaceItemIdentifier("checklist_accessoryview")
     }
     
     // MARK: - Instance methods
@@ -79,9 +80,13 @@ final class CheckListAccessoryView: AccessoryView {
     }
     
     override func configureAccessibilityElements() {
+        self.setAccessibilityElement(false)
         title?.setAccessibilityLabel("accessory_view_accessibility_checklist_title".localized)
+        title?.setAccessibilityIdentifier("accessory_view_accessibility_checklist_title")
         listStackView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
+        listStackView.setAccessibilityIdentifier("accessory_view_accessibility_checklist_liststackview")
         scrollView.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview".localized)
+        scrollView.setAccessibilityIdentifier("accessory_view_accessibility_checklist_liststackview")
     }
     
     override func displayStoredData(_ data: String) {

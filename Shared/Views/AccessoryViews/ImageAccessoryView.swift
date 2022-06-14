@@ -44,6 +44,7 @@ final class ImageAccessoryView: AccessoryView {
         imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         imageView.image = media.image!
+        self.identifier = NSUserInterfaceItemIdentifier("image_accessoryview")
     }
 
     required init?(coder: NSCoder) {

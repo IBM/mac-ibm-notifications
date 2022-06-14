@@ -34,7 +34,7 @@ final class ProgressBarInteractiveEFCLController: InteractiveEFCLController {
         super.init()
     }
     
-    // MARK: - Private methods
+    // MARK: - Public methods
     
     /// Process the new data from the standard input
     override func processInput(_ notification: Notification) {

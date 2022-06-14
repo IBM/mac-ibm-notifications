@@ -47,6 +47,7 @@ extension EFCLController {
     
     /// Check if the app is running testes for other workflows, debug or different workflow and if not start parsing the launch arguments.
     func parseArguments(_ arguments: [String] = CommandLine.arguments) {
+        guard !arguments.contains("--isRunningTest") else { return }
         guard !UserNotificationController.shared.agentTriggeredByNotificationCenter else { return }
         do {
             guard let base64EncodedData = arguments.last,

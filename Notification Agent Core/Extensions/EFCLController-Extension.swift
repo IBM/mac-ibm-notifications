@@ -48,9 +48,8 @@ extension EFCLController {
     
     /// Check if the app is running testes for other workflows, debug or different workflow and if not start parsing the launch arguments.
     func parseArguments(_ arguments: [String] = CommandLine.arguments) {
-        guard !DeepLinkEngine.shared.agentTriggeredByDeepLink else {
-            return
-        }
+        guard !arguments.contains("--isRunningTest") else { return }
+        guard !DeepLinkEngine.shared.agentTriggeredByDeepLink else { return }
         logger.log("Running command line workflow")
         do {
             checkSpecialArguments(arguments)

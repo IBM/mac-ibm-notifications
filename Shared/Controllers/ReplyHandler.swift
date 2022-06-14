@@ -76,7 +76,7 @@ public final class ReplyHandler {
             NALogger.shared.log("Failed to create a valid URL or App path from payload: %{public}@", [link])
             return
         }
-        if ProcessInfo.processInfo.environment["--isRunningTestForCommandLine"] == nil {
+        if ProcessInfo.processInfo.environment["--isRunningTest"] == nil {
             NSWorkspace.shared.open(url)
         }
     }

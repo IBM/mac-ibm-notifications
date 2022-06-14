@@ -34,9 +34,7 @@ open class InteractiveEFCLController {
         NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: nil, queue: .main, using: self.processInput(_:))
         inputPipe.waitForDataInBackgroundAndNotify()
     }
-    
-    // MARK: - Private methods
-    
+        
     /// Process the new data from the standard input
     func processInput(_ notification: Notification) {
         let inputData = inputPipe.availableData

@@ -107,6 +107,7 @@ final class HTMLAccessoryView: AccessoryView {
             textColor = .labelColor
         }
         self.setText(text)
+        self.identifier = NSUserInterfaceItemIdentifier("html_accessoryview")
     }
     
     required init?(coder: NSCoder) {
@@ -138,7 +139,9 @@ final class HTMLAccessoryView: AccessoryView {
     }
     
     override func configureAccessibilityElements() {
+        self.setAccessibilityElement(false)
         textView.setAccessibilityLabel("accessory_view_accessibility_html_textview".localized)
+        textView.setAccessibilityIdentifier("accessory_view_accessibility_html_textview")
     }
     
     // MARK: - Private methods

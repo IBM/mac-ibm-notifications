@@ -54,6 +54,7 @@ class ProgressBarAccessoryView: AccessoryView {
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
         mainButtonState = self.isUserInterruptionAllowed || self.isUserInteractionEnabled ? .enabled : .hidden
         adjustViewSize()
+        self.identifier = NSUserInterfaceItemIdentifier("progressbar_accessoryview")
     }
 
     required init?(coder: NSCoder) {

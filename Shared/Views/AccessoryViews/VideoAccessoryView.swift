@@ -57,6 +57,7 @@ final class VideoAccessoryView: AccessoryView {
             self.playerView.controlsStyle = .inline
         })
         videoResolution = media.videoResolution ?? .zero
+        self.identifier = NSUserInterfaceItemIdentifier("video_accessoryview")
     }
 
     required init?(coder: NSCoder) {

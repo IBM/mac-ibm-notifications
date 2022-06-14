@@ -46,13 +46,19 @@ final class EFCLController {
                                    "--config",
                                    "-reset",
                                    "sudo"]
-    static let standaloneBooleanArguments = ["always_on_top", "silent", "miniaturizable", "force_light_mode", "hide_title_bar_buttons", "retain_values"]
+    static let standaloneBooleanArguments = ["always_on_top",
+                                             "silent",
+                                             "miniaturizable",
+                                             "force_light_mode",
+                                             "hide_title_bar_buttons",
+                                             "retain_values"
+    ]
     
     // MARK: - Variables
 
     let context = Context.main
     let logger = NALogger.shared
     var isRunningTestForEFCL: Bool {
-        return CommandLine.arguments.contains("--isRunningTestForCommandLine")
+        return CommandLine.arguments.contains("--isRunningTest")
     }
 }

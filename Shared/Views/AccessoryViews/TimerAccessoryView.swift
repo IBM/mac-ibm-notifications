@@ -40,6 +40,7 @@ final class TimerAccessoryView: AccessoryView {
         super.init(frame: .zero)
         self.startTimer()
         self.buildView()
+        self.identifier = NSUserInterfaceItemIdentifier("timer_accessoryview")
     }
 
     required init?(coder: NSCoder) {
