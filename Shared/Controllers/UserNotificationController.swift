@@ -40,7 +40,7 @@ class UserNotificationController: NSObject {
                 NALogger.shared.log(.error,
                        "Rich notification authorization request ended with error: %{public}@",
                        [error.localizedDescription])
-                EFCLController.shared.applicationExit(withReason: .internalError)
+                Utils.applicationExit(withReason: .internalError)
                 completion(false)
             }
             if granted {
@@ -78,7 +78,7 @@ class UserNotificationController: NSObject {
             // Archiving notification object inside a Data object in order to add it to the userinfo of the UNMutableNotificationContent.
             guard let data = try? NSKeyedArchiver.archivedData(withRootObject: notificationObject, requiringSecureCoding: true) else {
                 NALogger.shared.log("Unable to encode notification object for UNNotificationContent userinfo")
-                EFCLController.shared.applicationExit(withReason: .internalError)
+                Utils.applicationExit(withReason: .internalError)
                 return
             }
             if let imagePath = notificationObject.notificationImage {
@@ -119,7 +119,7 @@ class UserNotificationController: NSObject {
                 guard error == nil else {
                     NALogger.shared.log(.error,
                                     "Rich notification center failed to send request: %{public}@", [request.description])
-                    EFCLController.shared.applicationExit(withReason: .internalError)
+                    Utils.applicationExit(withReason: .internalError)
                     return
                 }
                 NALogger.shared.log("Rich notification center sent request: %{public}@", [request.description])
@@ -137,7 +137,7 @@ extension UserNotificationController: UNUserNotificationCenterDelegate {
         NALogger.shared.log("Rich notification user response: %{public}@", [response.actionIdentifier])
         guard let notificationObjectData = response.notification.request.content.userInfo["notificationObject"] as? Data,
               let notificationObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NotificationObject.self, from: notificationObjectData) else {
-            EFCLController.shared.applicationExit(withReason: .untrackedSuccess)
+            Utils.applicationExit(withReason: .untrackedSuccess)
             return
         }
         var actionType: UserReplyType!
@@ -154,7 +154,7 @@ extension UserNotificationController: UNUserNotificationCenterDelegate {
             actionType = .tertiary
         default:
             NALogger.shared.log("User triggered action with untracked identifier, inspect the case with the developers. Identifier: %{public}@", [response.actionIdentifier])
-            EFCLController.shared.applicationExit(withReason: .untrackedSuccess)
+            Utils.applicationExit(withReason: .untrackedSuccess)
             return
         }
         replyHandler.handleResponse(ofType: actionType, for: notificationObject)

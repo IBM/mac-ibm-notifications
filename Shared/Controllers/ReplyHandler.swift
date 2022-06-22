@@ -32,7 +32,7 @@ public final class ReplyHandler {
     ///   - object: the notification showed to the user.
     func handleResponse(ofType type: UserReplyType, for object: NotificationObject) {
         var triggerButton: NotificationButton?
-        var exitReason: EFCLController.ExitReason?
+        var exitReason: Utils.ExitReason?
 
         switch type {
         case .main:
@@ -49,11 +49,11 @@ public final class ReplyHandler {
         case .help:
             triggerButton = object.helpButton
         case .dismiss:
-            self.efclController.applicationExit(withReason: .userDismissedNotification)
+            Utils.applicationExit(withReason: .userDismissedNotification)
         case .cancel:
-            self.efclController.applicationExit(withReason: .cancelPressed)
+            Utils.applicationExit(withReason: .cancelPressed)
         case .timeout:
-            self.efclController.applicationExit(withReason: .timeout)
+            Utils.applicationExit(withReason: .timeout)
         }
 
         guard let button = triggerButton else { return }
@@ -64,7 +64,7 @@ public final class ReplyHandler {
             fallthrough
         default:
             guard let reason = exitReason else { return }
-            self.efclController.applicationExit(withReason: reason)
+            Utils.applicationExit(withReason: reason)
         }
     }
 

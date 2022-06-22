@@ -77,7 +77,7 @@ class OnboardingViewController: NSViewController {
         for page in self.pages {
             guard page.isValidPage() else {
                 logger.log("One or more of the provided onboarding pages doesnt provide any information.")
-                EFCLController.shared.applicationExit(withReason: .internalError)
+                Utils.applicationExit(withReason: .internalError)
                 return
             }
         }
@@ -148,14 +148,14 @@ extension OnboardingViewController: OnboardingNavigationDelegate {
     func shouldCloseOnboardingWindow(_ sender: OnboardingPageViewController) {
         store[presentedPageIndex] = sender.collectData()
         writeStoreOnDevice()
-        EFCLController.shared.applicationExit(withReason: .userFinishedOnboarding)
+        Utils.applicationExit(withReason: .userFinishedOnboarding)
     }
 }
 
 // MARK: - NSWindowDelegate implementation
 extension OnboardingViewController: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
-        EFCLController.shared.applicationExit(withReason: .userDismissedOnboarding)
+        Utils.applicationExit(withReason: .userDismissedOnboarding)
     }
 }
 

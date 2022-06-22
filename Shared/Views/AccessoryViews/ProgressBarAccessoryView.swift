@@ -163,7 +163,7 @@ extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             guard !self.viewState.exitOnCompletion else {
-                EFCLController.shared.applicationExit(withReason: .mainButtonClicked)
+                Utils.applicationExit(withReason: .mainButtonClicked)
                 return
             }
             self.mainButtonState = .enabled

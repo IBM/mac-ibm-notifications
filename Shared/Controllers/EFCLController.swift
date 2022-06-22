@@ -12,26 +12,6 @@ import Foundation
 /// ExecutionFromCommandLineController handle the launch of the agent from command line.
 final class EFCLController {
 
-    // MARK: - Enums
-
-    /// Exit reasons based on errors or user interactions.
-    enum ExitReason {
-        case untrackedSuccess
-        case mainButtonClicked
-        case secondaryButtonClicked
-        case tertiaryButtonClicked
-        case userDismissedNotification
-        case userDismissedOnboarding
-        case userFinishedOnboarding
-        case invalidArgumentsSyntax
-        case invalidArgumentFormat
-        case internalError
-        case cancelPressed
-        case receivedSigInt
-        case unableToLoadResources
-        case timeout
-    }
-
     // MARK: - Static variables
 
     static let shared = EFCLController()
