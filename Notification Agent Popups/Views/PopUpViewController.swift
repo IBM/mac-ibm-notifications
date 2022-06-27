@@ -93,12 +93,16 @@ class PopUpViewController: NSViewController {
         if let subtitle = notificationObject?.subtitle {
             let maxSubtitleHeight: CGFloat = !(notificationObject.accessoryViews?.isEmpty ?? true) ? 200 : 450
             let textView = MarkdownTextView(withText: subtitle.localized, maxViewHeight: maxSubtitleHeight)
+            textView.setAccessibilityElement(true)
+            textView.setAccessibilityIdentifier("subtitle_textfield")
             textView.setAccessibilityLabel("popup_accessibility_label_subtitle".localized)
             self.popupElementsStackView.insertView(textView, at: 0, in: .top)
         }
         if let title = notificationObject?.title {
             let titleLabel = NSTextField(wrappingLabelWithString: title.localized)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.setAccessibilityElement(true)
+            titleLabel.setAccessibilityIdentifier("title_textfield")
             titleLabel.setAccessibilityLabel("popup_accessibility_label_title".localized)
             // Check to see if a custom title font size has been defined
             if let requestedFontSize = notificationObject.titleFontSize,
@@ -351,11 +355,16 @@ class PopUpViewController: NSViewController {
     
     private func configureAccessibilityElements() {
         self.mainButton.setAccessibilityLabel("\("popup_accessibility_button_main".localized). \(self.mainButton.isEnabled ? "" : "popup_accessibility_button_disabled".localized)")
+        self.mainButton.setAccessibilityIdentifier("main_button")
         self.secondaryButton.setAccessibilityLabel("popup_accessibility_button_secondary".localized)
+        self.secondaryButton.setAccessibilityIdentifier("secondary_button")
         self.tertiaryButton.setAccessibilityLabel("popup_accessibility_button_tertiary".localized)
+        self.tertiaryButton.setAccessibilityIdentifier("tertiary_button")
         self.helpButton.setAccessibilityLabel("popup_accessibility_button_info".localized)
+        self.helpButton.setAccessibilityIdentifier("help_button")
         self.iconView.setAccessibilityLabel("popup_accessibility_image_left".localized)
-        self.popupElementsStackView.setAccessibilityLabel("popup_accessibility_stackview_body".localized)
+        self.iconView.setAccessibilityIdentifier("popup_icon")
+        self.popupElementsStackView.setAccessibilityElement(false)
     }
     
     private func printOutputIfAvailable() {

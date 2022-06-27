@@ -10,6 +10,8 @@
 import Foundation
 
 struct Utils {
+    
+    // MARK: - Enums
     enum InterfaceStyle: String {
         case dark = "Dark"
         case light = "Light"
@@ -19,9 +21,33 @@ struct Utils {
             self = InterfaceStyle(rawValue: type)!
         }
     }
+    
+    /// Exit reasons based on errors or user interactions.
+    enum ExitReason {
+        case untrackedSuccess
+        case mainButtonClicked
+        case secondaryButtonClicked
+        case tertiaryButtonClicked
+        case userDismissedNotification
+        case userDismissedOnboarding
+        case userFinishedOnboarding
+        case invalidArgumentsSyntax
+        case invalidArgumentFormat
+        case internalError
+        case cancelPressed
+        case receivedSigInt
+        case unableToLoadResources
+        case timeout
+    }
+    
+    // MARK: - Static Variables
+    
     static var currentInterfaceStyle: InterfaceStyle {
         return InterfaceStyle()
     }
+    
+    // MARK: - Static Methods
+    
     static func runCommand(_ command: String, needAuthorize: Bool) -> String? {
         let scriptWithAuthorization = """
         do shell script "\(command)" with administrator privileges
@@ -43,10 +69,12 @@ struct Utils {
         
         return result.stringValue ?? ""
     }
+    
     static func getDeviceUDID() -> String? {
         let command = String(#"ioreg -l | grep IOPlatformUUID | awk 'NR==1{print $4}' | sed 's/\"//g'"#)
         return Self.runCommand(command, needAuthorize: false)
     }
+    
     static func write(_ dictionary: NSDictionary, to fileName: String) {
         let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".ibmnotifier")
         if !FileManager.default.fileExists(atPath: mainDirectory.path) {
@@ -63,6 +91,7 @@ struct Utils {
             return
         }
     }
+    
     static func delete(_ fileName: String) {
         let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".ibmnotifier")
         if FileManager.default.fileExists(atPath: mainDirectory.path) {
@@ -75,6 +104,36 @@ struct Utils {
                     return
                 }
             }
+        }
+    }
+    
+    /// Exit the app with the related reason code.
+    /// - Parameter reason: reason why the application should exit.
+    /// - Returns: never.
+    static func applicationExit(withReason reason: ExitReason) {
+        switch reason {
+        case .untrackedSuccess:
+            exit(200)
+        case .mainButtonClicked, .userFinishedOnboarding:
+            exit(0)
+        case .secondaryButtonClicked:
+            exit(2)
+        case .tertiaryButtonClicked:
+            exit(3)
+        case .userDismissedNotification, .userDismissedOnboarding:
+            exit(239)
+        case .invalidArgumentsSyntax:
+            exit(250)
+        case .invalidArgumentFormat:
+            exit(255)
+        case .internalError, .cancelPressed:
+            exit(1)
+        case .receivedSigInt:
+            exit(201)
+        case .unableToLoadResources:
+            exit(260)
+        case .timeout:
+            exit(4)
         }
     }
 }

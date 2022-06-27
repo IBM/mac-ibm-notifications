@@ -12,7 +12,9 @@ import os.log
 
 /// A simple class based on Apple os.log that handle normal and verbose logs.
 public final class NALogger {
+    
     static let shared = NALogger()
+    
     func log(_ type: OSLogType, _ message: StaticString, _ args: [String] = []) {
         if #available(OSX 11.0, *) {
             Logger().log(level: type,
@@ -24,6 +26,7 @@ public final class NALogger {
             self.verbose(type, message, args)
         }
     }
+    
     func log(_ message: StaticString, _ args: [String] = []) {
         if #available(OSX 11.0, *) {
             Logger().log(level: .default,
@@ -35,6 +38,7 @@ public final class NALogger {
             self.verbose(.default, message, args)
         }
     }
+    
     func deprecationLog(since version: AppVersion, deprecatedArgument: String) {
         if version.isFinalDeprecatedVersion() {
             self.log(.error, "The following argument has been deprecated: %{public}@. Please update your workflow.", [deprecatedArgument])
@@ -42,6 +46,7 @@ public final class NALogger {
             self.log("The following argument has been deprecated and will not be supported anymore soon: %{public}@. Make sure to update your workflow as soon as possible.", [deprecatedArgument])
         }
     }
+    
     private func verbose(_ type: OSLogType, _ message: StaticString, _ args: [String] = []) {
         let message = type == .error ?
             message.description.replacingOccurrences(of: "{public}", with: "").red() :
@@ -49,4 +54,5 @@ public final class NALogger {
         
         print(String(format: message, arguments: args))
     }
+    
 }

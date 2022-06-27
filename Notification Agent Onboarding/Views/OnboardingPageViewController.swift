@@ -112,6 +112,7 @@ final class OnboardingPageViewController: NSViewController {
             titleLabel = NSTextField(wrappingLabelWithString: title)
             titleLabel.font = NSFont.boldSystemFont(ofSize: 26)
             titleLabel.alignment = .center
+            titleLabel.setAccessibilityIdentifier("onboarding_accessibility_title")
             bodyStackView.insertView(titleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= titleLabel.intrinsicContentSize.height+12
@@ -120,6 +121,7 @@ final class OnboardingPageViewController: NSViewController {
             subtitleLabel = NSTextField(wrappingLabelWithString: subtitle)
             subtitleLabel.font = NSFont.systemFont(ofSize: 16, weight: .semibold)
             subtitleLabel.alignment = .center
+            subtitleLabel.setAccessibilityIdentifier("onboarding_accessibility_subtitle")
             bodyStackView.insertView(subtitleLabel, at: topGravityAreaIndex, in: .top)
             topGravityAreaIndex += 1
             remainingSpace -= subtitleLabel.intrinsicContentSize.height+12
@@ -319,10 +321,15 @@ final class OnboardingPageViewController: NSViewController {
     
     private func configureAccessibilityElements() {
         self.rightButton.setAccessibilityLabel(position == .last ? "onboarding_accessibility_button_right_close".localized : "onboarding_accessibility_button_right_continue".localized)
+        self.rightButton.setAccessibilityIdentifier("onboarding_accessibility_button_right")
         self.leftButton.setAccessibilityLabel("onboarding_accessibility_button_left".localized)
+        self.leftButton.setAccessibilityIdentifier("onboarding_accessibility_button_left")
         self.helpButton.setAccessibilityLabel("onboarding_accessibility_button_center".localized)
+        self.helpButton.setAccessibilityIdentifier("onboarding_accessibility_button_center")
         self.bodyStackView.setAccessibilityLabel("onboarding_accessibility_stackview_body".localized)
+        self.bodyStackView.setAccessibilityElement(false)
         self.topIconImageView.setAccessibilityLabel("onboarding_accessibility_image_top".localized)
+        self.topIconImageView.setAccessibilityIdentifier("onboarding_accessibility_image_top")
     }
     
     @objc

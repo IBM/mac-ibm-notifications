@@ -54,6 +54,7 @@ class ProgressBarAccessoryView: AccessoryView {
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
         mainButtonState = self.isUserInterruptionAllowed || self.isUserInteractionEnabled ? .enabled : .hidden
         adjustViewSize()
+        self.identifier = NSUserInterfaceItemIdentifier("progressbar_accessoryview")
     }
 
     required init?(coder: NSCoder) {
@@ -162,7 +163,7 @@ extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             guard !self.viewState.exitOnCompletion else {
-                EFCLController.shared.applicationExit(withReason: .mainButtonClicked)
+                Utils.applicationExit(withReason: .mainButtonClicked)
                 return
             }
             self.mainButtonState = .enabled

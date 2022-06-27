@@ -1,0 +1,77 @@
+{
+  "configurations" : [
+    {
+      "id" : "7C58656A-37CF-4D8F-A85F-0955CCB89DF0",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "--isRunningTest"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Notification Agent.xcodeproj",
+      "identifier" : "F47F5535249B8C1B006A0754",
+      "name" : "IBM Notifier"
+    },
+    "uiTestingScreenshotsLifetime" : "keepNever",
+    "userAttachmentLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5372857CE3D009C1880",
+        "name" : "Notification Agent Core Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5762857D71F009C1880",
+        "name" : "Notification Agent Alert Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5832857D798009C1880",
+        "name" : "Notification Agent Banner Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5902857DC81009C1880",
+        "name" : "Notification Agent Popup Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5AC2857DD10009C1880",
+        "name" : "Notification Agent Onboarding Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA59D2857DCC3009C1880",
+        "name" : "Notification Agent Popup UI Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Notification Agent.xcodeproj",
+        "identifier" : "FDFCA5B92857DD62009C1880",
+        "name" : "Notification Agent Onboarding UI Tests"
+      }
+    }
+  ],
+  "version" : 1
+}

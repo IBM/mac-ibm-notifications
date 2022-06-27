@@ -16,7 +16,19 @@ final class Context {
 
     // MARK: - Variables
     
-    var sharedSettings: SharedSettings?
+    private var _sharedSettings: SharedSettings?
+    var sharedSettings: SharedSettings? {
+        get {
+            guard let settings = _sharedSettings else {
+                return SharedSettings(isVerboseModeEnabled: false,
+                                     environment: Environment.current)
+            }
+            return settings
+        }
+        set {
+            _sharedSettings = newValue
+        }
+    }
     
     // MARK: - Initializers
     

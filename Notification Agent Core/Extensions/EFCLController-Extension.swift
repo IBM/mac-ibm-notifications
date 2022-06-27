@@ -16,41 +16,17 @@ extension EFCLController {
     /// Exit the app with the related reason code.
     /// - Parameter reason: reason why the application should exit.
     /// - Returns: never.
-    internal func applicationExit(withReason reason: ExitReason) {
+    internal func applicationExit(withReason reason: Utils.ExitReason) {
         guard !isRunningTestForEFCL else { return }
-        switch reason {
-        case .untrackedSuccess:
-            exit(200)
-        case .mainButtonClicked, .userFinishedOnboarding:
-            exit(0)
-        case .secondaryButtonClicked:
-            exit(2)
-        case .tertiaryButtonClicked:
-            exit(3)
-        case .userDismissedNotification, .userDismissedOnboarding:
-            exit(239)
-        case .invalidArgumentsSyntax:
-            exit(250)
-        case .invalidArgumentFormat:
-            exit(255)
-        case .internalError, .cancelPressed:
-            exit(1)
-        case .receivedSigInt:
-            exit(201)
-        case .unableToLoadResources:
-            exit(260)
-        case .timeout:
-            exit(4)
-        }
+        Utils.applicationExit(withReason: reason)
     }
     
     // MARK: - Methods
     
     /// Check if the app is running testes for other workflows, debug or different workflow and if not start parsing the launch arguments.
     func parseArguments(_ arguments: [String] = CommandLine.arguments) {
-        guard !DeepLinkEngine.shared.agentTriggeredByDeepLink else {
-            return
-        }
+        guard !arguments.contains("--isRunningTest") else { return }
+        guard !DeepLinkEngine.shared.agentTriggeredByDeepLink else { return }
         logger.log("Running command line workflow")
         do {
             checkSpecialArguments(arguments)

@@ -12,26 +12,6 @@ import Foundation
 /// ExecutionFromCommandLineController handle the launch of the agent from command line.
 final class EFCLController {
 
-    // MARK: - Enums
-
-    /// Exit reasons based on errors or user interactions.
-    enum ExitReason {
-        case untrackedSuccess
-        case mainButtonClicked
-        case secondaryButtonClicked
-        case tertiaryButtonClicked
-        case userDismissedNotification
-        case userDismissedOnboarding
-        case userFinishedOnboarding
-        case invalidArgumentsSyntax
-        case invalidArgumentFormat
-        case internalError
-        case cancelPressed
-        case receivedSigInt
-        case unableToLoadResources
-        case timeout
-    }
-
     // MARK: - Static variables
 
     static let shared = EFCLController()
@@ -46,13 +26,19 @@ final class EFCLController {
                                    "--config",
                                    "-reset",
                                    "sudo"]
-    static let standaloneBooleanArguments = ["always_on_top", "silent", "miniaturizable", "force_light_mode", "hide_title_bar_buttons", "retain_values"]
+    static let standaloneBooleanArguments = ["always_on_top",
+                                             "silent",
+                                             "miniaturizable",
+                                             "force_light_mode",
+                                             "hide_title_bar_buttons",
+                                             "retain_values"
+    ]
     
     // MARK: - Variables
 
     let context = Context.main
     let logger = NALogger.shared
     var isRunningTestForEFCL: Bool {
-        return CommandLine.arguments.contains("--isRunningTestForCommandLine")
+        return CommandLine.arguments.contains("--isRunningTest")
     }
 }

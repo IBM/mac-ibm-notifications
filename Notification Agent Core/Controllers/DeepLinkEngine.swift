@@ -24,7 +24,7 @@ final class DeepLinkEngine {
     let context = Context.main
     var agentTriggeredByDeepLink: Bool = false
 
-    // MARK: - Methods
+    // MARK: - Public Methods
 
     /// Process the received url and propagate a notification if can build a correct notification object from it.
     /// - Parameter url: the received url.
@@ -40,12 +40,14 @@ final class DeepLinkEngine {
             NALogger.shared.log("Error: %{public}@. No UI will be showed for the URL", [error.localizedDescription])
         }
     }
+    
+    // MARK: - Private Methods
 
     /// Parse the received url and returns a notification object.
     /// - Parameter url: url received.
     /// - Throws: parsing errors.
     /// - Returns: notification object to be showed to the user.
-    func parse(_ url: URL) throws -> NotificationObject {
+    private func parse(_ url: URL) throws -> NotificationObject {
         // Parse the URL - BEGIN
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) else {
             throw NAError.deepLinkHandling(type: .failedToGetComponents)
@@ -78,7 +80,7 @@ final class DeepLinkEngine {
         return notificationObject
     }
 
-    func verifyToken(token: Token) -> Bool {
+    private func verifyToken(token: Token) -> Bool {
         guard let publicKeyString = UserDefaults.standard.string(forKey: "deeplinkSecurityKey"),
               let publickKeyData = publicKeyString.data(using: .utf8) else { return false }
         let jwtVerifier = JWTVerifier.rs256(publicKey: publickKeyData)

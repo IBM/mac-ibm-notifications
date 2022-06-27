@@ -55,6 +55,7 @@ class InputAccessoryView: AccessoryView {
         inputTextField.lineBreakMode = .byCharWrapping
         inputTextField.usesSingleLineMode = false
         try configureView(with: payload)
+        self.identifier = NSUserInterfaceItemIdentifier("input_accessoryview")
     }
     
     required init?(coder: NSCoder) {

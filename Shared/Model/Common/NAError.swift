@@ -29,7 +29,7 @@ extension NAError: LocalizedError {
             return type.localizedDescription
         }
     }
-    var efclExitReason: EFCLController.ExitReason {
+    var efclExitReason: Utils.ExitReason {
         switch self {
         case .efclController(let type):
             return type.efclExitReason
@@ -133,7 +133,7 @@ extension NAError.Enums.EFCLControllerError: LocalizedError {
             return "Invalid accessory view payload defined."
         }
     }
-    var efclExitReason: EFCLController.ExitReason {
+    var efclExitReason: Utils.ExitReason {
         switch self {
         case .invalidArgumentsSyntax:
             return .invalidArgumentsSyntax
