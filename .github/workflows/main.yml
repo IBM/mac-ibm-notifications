@@ -16,6 +16,10 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
+      - name: Xcode Setup
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
       - name: Checkout project
         uses: actions/checkout@v3
       - name: Run Xcodebuild Test, Build
