@@ -297,7 +297,6 @@ class PopUpViewController: NSViewController {
         self.interactiveUpdatesObserver?.startObservingStandardInput()
     }
 
-    
     private func checkButtonVisibility() {
         var mainButtonState: AccessoryView.ButtonState = .enabled
         var secondaryButtonState: AccessoryView.ButtonState = .enabled
