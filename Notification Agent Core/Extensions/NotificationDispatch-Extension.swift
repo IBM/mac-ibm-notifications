@@ -36,6 +36,7 @@ extension NotificationDispatch {
                         int = true
                     }
                 })
+                int = int || object.notification.warningButton != nil
                 return int
             }
             taskManager.runAsyncTaskOnComponent(.popup, with: jsonData, isInteractive: isInteractive) { terminationStatus in

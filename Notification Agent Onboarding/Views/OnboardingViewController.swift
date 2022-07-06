@@ -25,6 +25,7 @@ class OnboardingViewController: NSViewController {
     private var presentedVC: NSViewController?
     private var presentedPageIndex: Int = 0
     private var commonProgressBar: ProgressBarAccessoryView!
+    private var interactiveUpdatesObserver: OnboardingInteractiveEFCLController?
     let context = Context.main
     let logger = NALogger.shared
     var isClosable: Bool = true
@@ -96,6 +97,8 @@ class OnboardingViewController: NSViewController {
         commonProgressBar.delegate = self
         isClosable = false
         self.view.addSubview(commonProgressBar)
+        interactiveUpdatesObserver = OnboardingInteractiveEFCLController()
+        interactiveUpdatesObserver?.startObservingStandardInput()
     }
     
     /// Write the saved store on a file on the user device.

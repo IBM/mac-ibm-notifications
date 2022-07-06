@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -739,21 +738,48 @@ DQ
                                     <action selector="didClickedTertiaryButton:" target="XfG-lQ-9wD" id="wjc-hN-kQK"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-SU-bDD">
-                                <rect key="frame" x="20" y="16" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="P1e-SU-bDD" secondAttribute="height" multiplier="1:1" id="WNP-UT-F6F"/>
-                                </constraints>
-                                <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="pVj-HJ-2Zr">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="didClickedHelpButton:" target="XfG-lQ-9wD" id="Z2Y-Or-hKJ"/>
-                                </connections>
-                            </button>
                             <stackView orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pyp-Ls-xUg">
                                 <rect key="frame" x="106" y="54" width="400" height="60"/>
+                            </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="juK-Ig-cFb">
+                                <rect key="frame" x="23" y="20" width="0.0" height="20"/>
+                                <subviews>
+                                    <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-SU-bDD">
+                                        <rect key="frame" x="-3" y="-9" width="25" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="6vi-7e-sJu"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="pVj-HJ-2Zr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didClickedHelpButton:" target="XfG-lQ-9wD" id="Z2Y-Or-hKJ"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aq4-aY-nhV">
+                                        <rect key="frame" x="-3" y="-8" width="31" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="APJ-2D-W5l"/>
+                                            <constraint firstAttribute="height" constant="25" id="FFg-Ak-Zjp"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="round" bezelStyle="circular" image="exclamationmark" catalog="system" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="cOC-dc-3IA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didClickedWarningButton:" target="XfG-lQ-9wD" id="vIW-EC-pem"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
@@ -762,15 +788,15 @@ DQ
                             <constraint firstItem="vWd-KW-45q" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="14" id="Chu-Oj-bMm"/>
                             <constraint firstAttribute="bottom" secondItem="cPd-kS-72Q" secondAttribute="bottom" constant="20" id="I0b-zE-vrd"/>
                             <constraint firstItem="42Z-Y4-Bak" firstAttribute="top" secondItem="Pyp-Ls-xUg" secondAttribute="bottom" constant="14" id="KFW-AJ-wHm"/>
-                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" secondItem="P1e-SU-bDD" secondAttribute="trailing" constant="63" id="Q2N-GY-xgv"/>
                             <constraint firstItem="42Z-Y4-Bak" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWd-KW-45q" secondAttribute="bottom" constant="14" id="SW7-Ow-0KH"/>
+                            <constraint firstItem="cPd-kS-72Q" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="106" id="WXZ-39-o4k"/>
+                            <constraint firstAttribute="bottom" secondItem="juK-Ig-cFb" secondAttribute="bottom" constant="20" id="Wq1-u1-Zv1"/>
                             <constraint firstAttribute="trailing" secondItem="42Z-Y4-Bak" secondAttribute="trailing" constant="23" id="Xjv-sQ-VN8"/>
+                            <constraint firstItem="juK-Ig-cFb" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="23" id="a2d-cB-738"/>
+                            <constraint firstItem="juK-Ig-cFb" firstAttribute="height" secondItem="cPd-kS-72Q" secondAttribute="height" id="dVS-WC-u7H"/>
                             <constraint firstItem="vWd-KW-45q" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="23" id="hgx-Sj-nf7"/>
-                            <constraint firstAttribute="bottom" secondItem="P1e-SU-bDD" secondAttribute="bottom" constant="20" id="htw-SD-aob"/>
-                            <constraint firstItem="P1e-SU-bDD" firstAttribute="height" secondItem="cPd-kS-72Q" secondAttribute="height" id="mWi-AL-0Gj"/>
                             <constraint firstAttribute="bottom" secondItem="afi-PD-X0x" secondAttribute="bottom" constant="20" id="mZ6-KX-r8D"/>
                             <constraint firstAttribute="trailing" secondItem="Pyp-Ls-xUg" secondAttribute="trailing" constant="23" id="mp1-7g-epC"/>
-                            <constraint firstItem="P1e-SU-bDD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="23" id="mzi-pN-NuJ"/>
                             <constraint firstItem="42Z-Y4-Bak" firstAttribute="leading" secondItem="afi-PD-X0x" secondAttribute="trailing" constant="15" id="uaO-xw-qBQ"/>
                             <constraint firstItem="afi-PD-X0x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cPd-kS-72Q" secondAttribute="trailing" constant="15" id="wxM-Zf-g6V"/>
                             <constraint firstItem="Pyp-Ls-xUg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="14" id="x6t-VE-TJw"/>
@@ -785,14 +811,16 @@ DQ
                         <outlet property="popupElementsStackView" destination="Pyp-Ls-xUg" id="PHM-jW-ofA"/>
                         <outlet property="secondaryButton" destination="afi-PD-X0x" id="fps-O0-BFp"/>
                         <outlet property="tertiaryButton" destination="cPd-kS-72Q" id="3f0-x8-Ey5"/>
+                        <outlet property="warningButton" destination="Aq4-aY-nhV" id="phO-Wu-4tT"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74.5" y="228.5"/>
+            <point key="canvasLocation" x="74.5" y="228"/>
         </scene>
     </scenes>
     <resources>
         <image name="default_icon" width="512" height="512"/>
+        <image name="exclamationmark" catalog="system" width="5" height="15"/>
     </resources>
 </document>

@@ -63,6 +63,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     /// The help button of the notification that needs to be showed to the user.
     /// For this button the label value will be ignored since the button is represented by a question mark icon.
     var helpButton: NotificationButton?
+    /// The warning button of the notification that needs to be showed to the user.
+    /// For this button the label value will be ignored since the button is represented by a question mark icon.
+    var warningButton: DynamicNotificationButton?
     /// The timeout for the notification. After this amount of seconds past a default action is triggered.
     var timeout: String?
     /// A boolean value that set if the pop-up window if always on top of the window hierarchy.
@@ -148,10 +151,20 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let helpButtonTypeRawValue = dict["help_button_cta_type"] as? String,
            let helpButtonCTAType = NotificationButton.CTAType(rawValue: helpButtonTypeRawValue.lowercased()),
             let helpButtonCTAPayload = dict["help_button_cta_payload"] as? String {
-            guard type != .banner else {
+            guard type != .banner && type != .alert else {
                 throw NAError.dataFormat(type: .noHelpButtonAllowedInNotification)
             }
             self.helpButton = NotificationButton(with: "", callToActionType: helpButtonCTAType, callToActionPayload: helpButtonCTAPayload)
+        }
+        
+        if let warningButtonTypeRawValue = dict["warning_button_cta_type"] as? String,
+           let warningButtonCTAType = NotificationButton.CTAType(rawValue: warningButtonTypeRawValue.lowercased()),
+            let warningButtonCTAPayload = dict["warning_button_cta_payload"] as? String {
+            guard type != .banner && type != .alert else {
+                throw NAError.dataFormat(type: .noHelpButtonAllowedInNotification)
+            }
+            let isHidden = (dict["warning_button_visibility"] as? String ?? "visible") == "hidden"
+            self.warningButton = DynamicNotificationButton(with: "", callToActionType: warningButtonCTAType, callToActionPayload: warningButtonCTAPayload, isVisible: !isHidden)
         }
 
         self.timeout = dict["timeout"] as? String ?? ConfigurableParameters.defaultPopupTimeout?.description
@@ -273,6 +286,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case secondaryButton
         case tertiaryButton
         case helpButton
+        case warningButton
         case timeout
         case alwaysOnTop
         case silent
@@ -306,6 +320,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.secondaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .secondaryButton)
         self.tertiaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .tertiaryButton)
         self.helpButton = try container.decodeIfPresent(NotificationButton.self, forKey: .helpButton)
+        self.warningButton = try container.decodeIfPresent(DynamicNotificationButton.self, forKey: .warningButton)
         self.timeout = try container.decodeIfPresent(String.self, forKey: .timeout)
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
         self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
@@ -339,6 +354,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.secondaryButton, forKey: .secondaryButton)
         try container.encodeIfPresent(self.tertiaryButton, forKey: .tertiaryButton)
         try container.encodeIfPresent(self.helpButton, forKey: .helpButton)
+        try container.encodeIfPresent(self.warningButton, forKey: .warningButton)
         try container.encodeIfPresent(self.timeout, forKey: .timeout)
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
         try container.encodeIfPresent(self.silent, forKey: .silent)
@@ -397,6 +413,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let helpButton = self.helpButton {
             coder.encode(helpButton, forKey: NOCodingKeys.helpButton.rawValue)
         }
+        if let warningButton = self.warningButton {
+            coder.encode(warningButton, forKey: NOCodingKeys.warningButton.rawValue)
+        }
         if let timeout = self.timeout {
             coder.encode(timeout, forKey: NOCodingKeys.timeout.rawValue)
         }
@@ -450,6 +469,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.secondaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.secondaryButton.rawValue)
         self.tertiaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.tertiaryButton.rawValue)
         self.helpButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.helpButton.rawValue)
+        self.warningButton = coder.decodeObject(of: DynamicNotificationButton.self, forKey: NOCodingKeys.warningButton.rawValue)
         self.timeout = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.timeout.rawValue) as String?
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
         self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool

@@ -47,6 +47,7 @@ extension NAError.Enums {
         case noInfoToShow
         case noButtonDefined
         case noHelpButtonAllowedInNotification
+        case noWarningButtonAllowedInNotification
         case invalidJSONPayload
         case invalidJSONFilepath
         case invalidJSONDecoding(errorDescription: String)
@@ -66,7 +67,9 @@ extension NAError.Enums.ModelError: LocalizedError {
         case .noButtonDefined:
             return "No button defined"
         case .noHelpButtonAllowedInNotification:
-            return "It's not allowed to define an help button in a \"banner\" UI type style."
+            return "It's not allowed to define an help button in a \"banner/alert\" UI type style."
+        case .noWarningButtonAllowedInNotification:
+            return "It's not allowed to define a warning button in a \"banner/alert\" UI type style."
         case .invalidJSONPayload:
             return "Invalid JSON payload."
         case .invalidJSONFilepath:
