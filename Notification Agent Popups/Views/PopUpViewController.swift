@@ -284,6 +284,7 @@ class PopUpViewController: NSViewController {
         reminderTimer = Timer.scheduledTimer(withTimeInterval: popupReminder.timeInterval,
                                            repeats: false, block: { [weak self] _ in
             self?.view.window?.orderFrontRegardless()
+            self?.view.window?.setWindowPosition(self?.notificationObject.position ?? .center)
             if self?.notificationObject.silent == false && !popupReminder.silent {
                 NSSound(named: .init("Funk"))?.play()
             }
