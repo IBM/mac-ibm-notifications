@@ -111,7 +111,7 @@ final class CheckListAccessoryView: AccessoryView {
     private func configureView(with payload: String) throws {
         try parsePayload(payload) { (elements, predefinedvalues) in
             self.elements = elements
-            guard !predefinedvalues.isEmpty && !self.useRadioButtons else { return }
+            guard !predefinedvalues.isEmpty else { return }
             self.displayStoredData(predefinedvalues)
         }
         self.mainButtonState = !(self.isRequired || self.needCompletion || self.useRadioButtons) ? .enabled : .disabled
