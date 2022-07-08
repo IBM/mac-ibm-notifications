@@ -109,7 +109,11 @@ final class CheckListAccessoryView: AccessoryView {
     // MARK: - Private methods
     
     private func configureView(with payload: String) throws {
-        self.elements = try parsePayload(payload)
+        try parsePayload(payload) { (elements, predefinedvalues) in
+            self.elements = elements
+            guard !predefinedvalues.isEmpty && !self.useRadioButtons else { return }
+            self.displayStoredData(predefinedvalues)
+        }
         self.mainButtonState = !(self.isRequired || self.needCompletion || self.useRadioButtons) ? .enabled : .disabled
         listStackView.distribution = .fill
         listStackView.orientation = .vertical
@@ -130,12 +134,11 @@ final class CheckListAccessoryView: AccessoryView {
         scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
-    private func parsePayload(_ payload: String) throws -> [NSButton] {
+    private func parsePayload(_ payload: String, completion: @escaping (_ elements: [NSButton], _ predefinedValues: String) -> Void) throws {
         var buttons: [NSButton] = []
+        var predefinedvalues: String = ""
         var splittedStrings = payload.split(separator: "/")
-        guard splittedStrings.count > 0 else {
-            throw NAError.efclController(type: .invalidAccessoryViewPayload)
-        }
+        guard splittedStrings.count > 0 else { throw NAError.efclController(type: .invalidAccessoryViewPayload) }
         splittedStrings.reverse()
         for index in 0..<splittedStrings.count {
             guard let argument = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true).first?.lowercased() else { continue }
@@ -145,9 +148,7 @@ final class CheckListAccessoryView: AccessoryView {
                 guard let value = value else { continue }
                 title = NSTextField(wrappingLabelWithString: value)
             case "list":
-                guard let value = value else {
-                    throw NAError.efclController(type: .invalidAccessoryViewPayload)
-                }
+                guard let value = value else { throw NAError.efclController(type: .invalidAccessoryViewPayload) }
                 for line in value.description.lines {
                     let button = NSButton(checkboxWithTitle: line, target: self, action: #selector(didChangeCheckBoxSelection(_:)))
                     button.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview_element".localized)
@@ -159,6 +160,9 @@ final class CheckListAccessoryView: AccessoryView {
                 self.needCompletion = true
             case "radio":
                 self.useRadioButtons = true
+            case "preselection":
+                guard let value = value else { throw NAError.efclController(type: .invalidAccessoryViewPayload) }
+                predefinedvalues = value
             default:
                 if index < splittedStrings.count-1 {
                     splittedStrings[index+1] = Substring(splittedStrings[index+1].appending("/\(splittedStrings[index])"))
@@ -171,9 +175,10 @@ final class CheckListAccessoryView: AccessoryView {
                 radioButton.setAccessibilityLabel("accessory_view_accessibility_checklist_liststackview_element".localized)
                 return radioButton
             })
-            return radioButtons
+            completion(radioButtons, predefinedvalues)
+            return
         }
-        return buttons
+        completion(buttons, predefinedvalues)
     }
     
     // MARK: - Actions

@@ -79,7 +79,7 @@ public final class HelpBuilder {
                                               "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type.\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /selected INT /placeholder TEXT /title TEXT\" ".green() + "for " + "[ dropdown ]".red() + " view type;\n      " +
                                               "- Text with HTML format for " + "[ html | htmlwhitebox ]".red() + " view type;\n      " +
-                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX  /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
                                               "Example 1: -accessory_view_payload \"This is the time left: %@\"\n      " +
                                               "Example 2: -accessory_view_payload \"/percent 0 /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
