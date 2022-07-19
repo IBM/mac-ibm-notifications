@@ -9,14 +9,16 @@ Then run  and follow instructions
 `./jwtgenerator.py -h`
 
 To quickly generate json web token run  
-`./jwtgenerator.py resources/certificates/private.key`
+`./jwtgenerator.py path/to/example_private.key`
 
 By default the token expiration is set to 600 seconds
 
 To change token expiration run  
-`./jwtgenerator.py resources/certificates/private.key -e SECONDS`
+`./jwtgenerator.py path/to/example_private.key -e SECONDS`
 
  To generate new production ready public/private key pair with strong encryption run   
  `./keygen.sh`
  
  It will generate and also print out both private  and public key.  
+
+To see detailed step by step tutorial about deep links please see ***[Wiki](https://github.com/IBM/mac-ibm-notifications/wiki/Deep-link-usage)***

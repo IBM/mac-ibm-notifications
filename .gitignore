@@ -22,5 +22,6 @@ fastlane/test_output/
 fastlane/report.xml
 fastlane/README.md
 Gemfile.lock
-.idea/
+jwt-generator/.idea
 Notification Agent.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+./vscode
