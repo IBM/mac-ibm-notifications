@@ -1,4 +1,4 @@
-Generates signed JWT with specific claims for Mac@IBM Notifications Deep Link engine and optional custom validity
+Generates signed JWT with specific claims for IBM Notifier Deep Link engine and optional custom validity
 
 **Usage**  
 This project uses Python 3 and Pipenv for dependency management.  
