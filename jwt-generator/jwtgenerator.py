@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+"""Helper tool for quick JWT generation"""
 from argparse import ArgumentParser
 from datetime import datetime, timedelta
-from jwt import encode
-from os import system
+import jwt
 
 
 class NotificationAgentClaim:
+    """Initializes Agent Claims"""
     def __init__(self, expiration_in_seconds: int) -> None:
         self.sub = 'notification-agent'
         self.iss = 'mac-at-ibm'
@@ -13,6 +14,7 @@ class NotificationAgentClaim:
 
 
 class JwtGenerator:
+    """Generator class"""
     _ALGORITHM = 'RS256'
 
     def __init__(self, path_to_private_key: str, expiration_time: int):
@@ -43,7 +45,7 @@ class JwtGenerator:
 
     def generate(self) -> str:
         payload = NotificationAgentClaim(self.expiration)
-        return encode(payload.__dict__, key=self.key, algorithm=self._ALGORITHM).decode('utf-8')
+        return jwt.encode(payload.__dict__, key=self.key, algorithm=self._ALGORITHM)
 
 
 def parse_args():
