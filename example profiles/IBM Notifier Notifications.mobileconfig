@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>NotificationSettings</key>
+			<array>
+				<dict>
+					<key>AlertType</key>
+					<integer>1</integer>
+					<key>BadgesEnabled</key>
+					<false/>
+					<key>BundleIdentifier</key>
+					<string>com.ibm.cio.notifier.banner</string>
+					<key>CriticalAlertEnabled</key>
+					<true/>
+					<key>NotificationsEnabled</key>
+					<true/>
+					<key>ShowInLockScreen</key>
+					<true/>
+					<key>ShowInNotificationCenter</key>
+					<true/>
+					<key>SoundsEnabled</key>
+					<true/>
+				</dict>
+				<dict>
+					<key>AlertType</key>
+					<integer>2</integer>
+					<key>BadgesEnabled</key>
+					<false/>
+					<key>BundleIdentifier</key>
+					<string>com.ibm.cio.notifier.alert</string>
+					<key>CriticalAlertEnabled</key>
+					<true/>
+					<key>NotificationsEnabled</key>
+					<true/>
+					<key>ShowInLockScreen</key>
+					<true/>
+					<key>ShowInNotificationCenter</key>
+					<true/>
+					<key>SoundsEnabled</key>
+					<true/>
+				</dict>
+			</array>
+			<key>PayloadDisplayName</key>
+			<string>Notifications Payload</string>
+			<key>PayloadIdentifier</key>
+			<string>3A419F1D-183B-4A43-9094-C961B500C496</string>
+			<key>PayloadOrganization</key>
+			<string>JAMF Software</string>
+			<key>PayloadType</key>
+			<string>com.apple.notificationsettings</string>
+			<key>PayloadUUID</key>
+			<string>ABA14240-E3D6-4A5A-958F-3224E9F27A45</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string></string>
+	<key>PayloadDisplayName</key>
+	<string>IBM Notifier Notifications</string>
+	<key>PayloadIdentifier</key>
+	<string>673C0CEE-5FBE-4723-88D4-82496B5FDBF6</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>673C0CEE-5FBE-4723-88D4-82496B5FDBF6</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
