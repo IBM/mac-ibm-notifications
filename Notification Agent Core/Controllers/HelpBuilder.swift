@@ -136,11 +136,15 @@ public final class HelpBuilder {
                                              "--version".blue(),
                                              "--terms".blue(),
                                              "--privacy".blue(),
+                                             "--resetBanners".blue(),
+                                             "--resetAlerts".blue(),
                                              "--v".blue()]
     static let specialArgumentsDescriptions: [String] = ["Show help's page",
                                                          "Show app's version",
                                                          "Shows the Terms & Conditions",
                                                          "Shows the Privacy Policy",
+                                                         "Delete all the app's banners from Notification Center",
+                                                         "Delete all the app's alerts from Notification Center",
                                                          "Verbose mode"]
     static let configurableParameters: [String] = ["-default_popup_bar_title".yellow(),
                                                    "-default_popup_icon_path".yellow(),

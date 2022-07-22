@@ -23,6 +23,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case onboarding // Onboarding window.
         case alert // Persistent user notification banner.
     }
+    
+    /// A set of predefined workflow
+    enum PredefinedWorkflow: String {
+        case resetBanners // Delete all the Notification Center banners
+        case resetAlerts // Delete all the Notification Center alerts
+    }
 
     // MARK: - Variables
     
@@ -86,6 +92,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var hideTitleBarButtons: Bool?
     /// A boolean value that define if to print the available accessory view outputs on the secondary button click.
     var retainValues: Bool?
+    /// If defined the app should just run the predefined workflow
+    var workflow: PredefinedWorkflow?
     
     // MARK: - Initializers
     
@@ -205,6 +213,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let popupReminderObj = try PopupReminder(with: popupReminderPayload)
             self.popupReminder = popupReminderObj
         }
+        if let workflowRawValue = dict["workflow"] as? String {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
+        }
         super.init()
         try checkObjectConsistency()
     }
@@ -212,7 +223,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     private func checkObjectConsistency() throws {
         switch type {
         case .popup, .banner, .alert:
-            guard self.title != nil || self.subtitle != nil || !(self.accessoryViews?.isEmpty ?? true) else {
+            guard self.title != nil || self.subtitle != nil || !(self.accessoryViews?.isEmpty ?? true) || self.workflow != nil else {
                 throw NAError.dataFormat(type: .noInfoToShow)
             }
             if let title = self.title {
@@ -250,7 +261,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
                 }
             }
         case .onboarding:
-            guard self.payload != nil else {
+            guard self.payload != nil || self.workflow != nil else {
                 throw NAError.dataFormat(type: .invalidOnboardingPayload)
             }
         }
@@ -297,6 +308,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case popupReminder
         case hideTitleBarButtons
         case retainValues
+        case workflow
     }
     
     required public init(from decoder: Decoder) throws {
@@ -333,6 +345,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
         }
         self.popupReminder = try container.decodeIfPresent(PopupReminder.self, forKey: .popupReminder)
+        if let workflowRawValue = try container.decodeIfPresent(String.self, forKey: .workflow) {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -365,6 +380,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
         try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
+        try container.encodeIfPresent(self.workflow?.rawValue, forKey: .workflow)
     }
     
     // MARK: Codable protocol conformity - END
@@ -449,6 +465,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let popupReminder = self.popupReminder {
             coder.encode(popupReminder, forKey: NOCodingKeys.popupReminder.rawValue)
         }
+        if let workflowRawValue = self.workflow?.rawValue {
+            coder.encode(workflowRawValue, forKey: NOCodingKeys.workflow.rawValue)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -481,6 +500,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }
         self.popupReminder = coder.decodeObject(of: PopupReminder.self, forKey: NOCodingKeys.popupReminder.rawValue)
+        if let workflowRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.workflow.rawValue) {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue as String)
+        }
     }
     
     // MARK: - NSSecureCoding protocol conformity - END
