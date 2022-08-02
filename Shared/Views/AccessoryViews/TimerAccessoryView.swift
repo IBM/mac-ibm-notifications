@@ -29,6 +29,9 @@ final class TimerAccessoryView: AccessoryView {
             }
         }
     }
+    private var containerWidth: CGFloat {
+            return self.superview?.bounds.width ?? 0
+    }
 
     // MARK: - Initializers
 
@@ -51,6 +54,11 @@ final class TimerAccessoryView: AccessoryView {
     
     override func configureAccessibilityElements() {
         timerLabel.setAccessibilityLabel("accessory_view_accessibility_timer_label".localized)
+    }
+    
+    /// Adjust the view size based on the superview width
+    override func adjustViewSize() {
+        self.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
     }
 
     // MARK: - Private methods
