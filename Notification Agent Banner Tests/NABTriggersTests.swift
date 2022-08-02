@@ -14,7 +14,8 @@ class NABTriggersTests: XCTestCase {
     let worker = TestWorker()
     let parserUseCases = [["type" : "banner", "title" : "This is a title"],
                           ["type" : "banner", "subtitle" : "This is a subtitle"],
-                          ["type" : "banner", "title" : "This is a title", "subtitle" : "This is a subtitle"]]
+                          ["type" : "banner", "title" : "This is a title", "subtitle" : "This is a subtitle"],
+                          ["type" : "banner", "workflow" : "resetBanners"]]
     
     override func setUpWithError() throws {
         worker.startObservation()

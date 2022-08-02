@@ -48,6 +48,8 @@ public final class ReplyHandler {
             }
         case .help:
             triggerButton = object.helpButton
+        case .warning:
+            triggerButton = object.warningButton
         case .dismiss:
             Utils.applicationExit(withReason: .userDismissedNotification)
         case .cancel:

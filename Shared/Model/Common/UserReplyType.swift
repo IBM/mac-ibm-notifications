@@ -15,6 +15,7 @@ enum UserReplyType: String {
     case secondary // Click on the secondary button.
     case tertiary // Click on the tertiary button.
     case help // Click on the help button. Help button type "infoPopup" is managed in the viewController itself.
+    case warning // Click on the warning button. Warning button type "infoPopup" is managed in the viewController itself.
     case dismiss // "banner" UI type UI dismissed.
     case cancel // "Cancel" button pressed on popup.
     case timeout // Timeout.

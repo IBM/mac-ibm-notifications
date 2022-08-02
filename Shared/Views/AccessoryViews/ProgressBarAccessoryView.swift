@@ -15,7 +15,7 @@ protocol ProgressBarAccessoryViewDelegate: AnyObject {
 }
 
 /// This view show a progress bar and handle the interactive UI updates for it.
-class ProgressBarAccessoryView: AccessoryView {
+class ProgressBarAccessoryView: AccessoryView, InteractiveObjectProtocol {
 
     // MARK: - Private variables
 
@@ -27,7 +27,6 @@ class ProgressBarAccessoryView: AccessoryView {
     private var bottomMessageLabel: NSTextField!
     private var viewWidthAnchor: NSLayoutConstraint!
     private var viewState: ProgressState!
-    private var interactiveEFCLController: ProgressBarInteractiveEFCLController!
 
     // MARK: - Public viariables
 
@@ -48,8 +47,6 @@ class ProgressBarAccessoryView: AccessoryView {
     init(_ payload: String? = nil) {
         super.init(frame: .zero)
         viewState = ProgressState(payload)
-        interactiveEFCLController = ProgressBarInteractiveEFCLController(viewState)
-        interactiveEFCLController.delegate = self
         configureView()
         secondaryButtonState = self.isUserInteractionEnabled ? .enabled : .hidden
         mainButtonState = self.isUserInterruptionAllowed || self.isUserInteractionEnabled ? .enabled : .hidden
@@ -60,12 +57,16 @@ class ProgressBarAccessoryView: AccessoryView {
     required init?(coder: NSCoder) {
         return nil
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(self.objectIdentifier), object: nil)
+    }
 
     // MARK: - Instance methods
 
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        interactiveEFCLController.startObservingStandardInput()
+        self.startObservingForUpdates()
     }
     
     override func adjustViewSize() {
@@ -120,12 +121,10 @@ class ProgressBarAccessoryView: AccessoryView {
         bottomMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         bottomMessageLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
     }
-}
-
-extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate {
+    
     /// Update the UI for the new state received.
     /// - Parameter newState: the new state to be showed.
-    func didReceivedNewStateforProgressBar(_ newState: ProgressState) {
+    private func didReceivedNewStateforProgressBar(_ newState: ProgressState) {
         DispatchQueue.main.async {
             self.viewState = newState
             self.progressBar.isIndeterminate = self.viewState.isIndeterminate
@@ -154,7 +153,7 @@ extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate
     }
 
     /// Interactive updates ended.
-    func didFinishedInteractiveUpdates() {
+    private func didFinishedInteractiveUpdates() {
         DispatchQueue.main.async {
             self.progressBar.isIndeterminate = false
             self.progressBar.doubleValue = 100
@@ -171,4 +170,24 @@ extension ProgressBarAccessoryView: ProgressBarInteractiveEFCLControllerDelegate
             self.delegate?.accessoryViewStatusDidChange(self)
         }
     }
+    
+    // MARK: InteractiveObjectProtocol protocol conformity - START
+    
+    var objectIdentifier: String = "progressbar_interactive_updates"
+    
+    func processInput(_ notification: Notification) {
+        guard let inputData = notification.userInfo?["data"] as? Data else { return }
+        if !inputData.isEmpty {
+            guard let strData = String(data: inputData, encoding: String.Encoding.utf8),
+                  strData.trimmingCharacters(in: CharacterSet.newlines).lowercased() != "end" else {
+                self.didFinishedInteractiveUpdates()
+                return
+            }
+            let newState = ProgressState(strData.trimmingCharacters(in: CharacterSet.newlines), currentState: viewState)
+            guard newState != viewState else { return }
+            self.didReceivedNewStateforProgressBar(newState)
+        }
+    }
+    
+    // MARK: InteractiveObjectProtocol protocol conformity - END
 }

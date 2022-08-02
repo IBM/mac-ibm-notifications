@@ -23,6 +23,7 @@ class PopUpViewController: NSViewController {
 
     @IBOutlet weak var iconView: NSImageView!
     @IBOutlet weak var helpButton: NSButton!
+    @IBOutlet weak var warningButton: NSButton!
     @IBOutlet weak var mainButton: NSButton!
     @IBOutlet weak var secondaryButton: NSButton!
     @IBOutlet weak var tertiaryButton: NSButton!
@@ -45,6 +46,8 @@ class PopUpViewController: NSViewController {
         }
     }
     var accessoryViews: [AccessoryView] = []
+    var interactiveUpdatesObserver: PopupInteractiveEFCLController?
+    var warningPopoverViewController: InfoPopOverViewController!
 
     // MARK: - Instance methods
     
@@ -79,6 +82,7 @@ class PopUpViewController: NSViewController {
         checkStackViewLayout()
         setTimeoutIfNeeded()
         setRemindTimerIfNeeded()
+        setInteractiveUpdatesIfNeeded()
         checkButtonVisibility()
         configureAccessibilityElements()
     }
@@ -163,6 +167,12 @@ class PopUpViewController: NSViewController {
     private func configureButtons() {
         self.helpButton.isHidden = notificationObject?.helpButton == nil
         
+        if let warningButton = notificationObject.warningButton {
+            warningButton.startObservingForUpdates()
+            warningButton.delegate = self
+            self.warningButton.isHidden = !warningButton.isVisible
+        }
+        
         let defaultTitle = ConfigurableParameters.defaultMainButtonLabel
         self.mainButton.title = notificationObject?.mainButton.label.localized ?? defaultTitle
         
@@ -196,6 +206,7 @@ class PopUpViewController: NSViewController {
             self.popupElementsStackView.insertView(progressBarAccessoryView, at: 0, in: .center)
             progressBarAccessoryView.progressBarDelegate = self
             progressBarAccessoryView.delegate = self
+            progressBarAccessoryView.startObservingForUpdates()
             self.accessoryViews.append(progressBarAccessoryView)
             self.shouldAllowCancel = progressBarAccessoryView.isUserInterruptionAllowed
         case .image:
@@ -273,6 +284,7 @@ class PopUpViewController: NSViewController {
         reminderTimer = Timer.scheduledTimer(withTimeInterval: popupReminder.timeInterval,
                                            repeats: false, block: { [weak self] _ in
             self?.view.window?.orderFrontRegardless()
+            self?.view.window?.setWindowPosition(self?.notificationObject.position ?? .center)
             if self?.notificationObject.silent == false && !popupReminder.silent {
                 NSSound(named: .init("Funk"))?.play()
             }
@@ -280,6 +292,12 @@ class PopUpViewController: NSViewController {
         })
     }
     
+    private func setInteractiveUpdatesIfNeeded() {
+        guard notificationObject.accessoryViews?.contains(where: { $0.type == .progressbar }) ?? false || notificationObject.warningButton != nil else { return }
+        self.interactiveUpdatesObserver = PopupInteractiveEFCLController()
+        self.interactiveUpdatesObserver?.startObservingStandardInput()
+    }
+
     private func checkButtonVisibility() {
         var mainButtonState: AccessoryView.ButtonState = .enabled
         var secondaryButtonState: AccessoryView.ButtonState = .enabled
@@ -423,10 +441,32 @@ class PopUpViewController: NSViewController {
             self.present(infoPopupViewController,
                          asPopoverRelativeTo: sender.convert(sender.bounds, to: self.view),
                          of: self.view,
-                         preferredEdge: .maxX,
-                         behavior: .semitransient)
+                         preferredEdge: .minY,
+                         behavior: .transient)
         default:
             self.triggerAction(ofType: .help)
+        }
+    }
+    
+    /// User clicked the help button.
+    @IBAction func didClickedWarningButton(_ sender: NSButton) {
+        guard let warningButtonObject = notificationObject?.warningButton else { return }
+        switch warningButtonObject.callToActionType {
+        case .infopopup:
+            if warningPopoverViewController != nil {
+                guard warningPopoverViewController.presentingViewController == nil else {
+                    return
+                }
+            }
+            let infos = InfoSection(fields: [InfoField(label: warningButtonObject.callToActionPayload)])
+            warningPopoverViewController = InfoPopOverViewController(with: infos)
+            self.present(warningPopoverViewController,
+                         asPopoverRelativeTo: sender.convert(sender.bounds, to: self.view),
+                         of: self.view,
+                         preferredEdge: .minY,
+                         behavior: .transient)
+        default:
+            self.triggerAction(ofType: .warning)
         }
     }
 }
@@ -462,5 +502,31 @@ extension PopUpViewController: AccessoryViewDelegate {
             self.shouldAllowCancel = (sender as? ProgressBarAccessoryView)?.isUserInterruptionAllowed ?? false
         }
         checkButtonVisibility()
+    }
+}
+
+// MARK: - DynamicNotificationButtonDelegate methods implementation.
+extension PopUpViewController: DynamicNotificationButtonDelegate {
+    func didReceivedNewStateForWarningButton(_ isVisible: Bool, isExpanded: Bool) {
+        let queue = OperationQueue.main
+        let visibilityOperation = BlockOperation {
+            self.warningButton.isHidden = !isVisible
+        }
+        queue.addOperation(visibilityOperation)
+        if isExpanded {
+            let expandOperation = BlockOperation {
+                self.didClickedWarningButton(self.warningButton)
+            }
+            queue.addOperation(expandOperation)
+        } else {
+            if self.warningPopoverViewController?.presentingViewController != nil {
+                guard !isVisible else { return }
+                let dismissOperation = BlockOperation {
+                    self.warningPopoverViewController.dismiss(nil)
+                }
+                queue.addOperation(dismissOperation)
+            }
+        }
+        
     }
 }

@@ -23,6 +23,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case onboarding // Onboarding window.
         case alert // Persistent user notification banner.
     }
+    
+    /// A set of predefined workflow
+    enum PredefinedWorkflow: String {
+        case resetBanners // Delete all the Notification Center banners
+        case resetAlerts // Delete all the Notification Center alerts
+    }
 
     // MARK: - Variables
     
@@ -63,6 +69,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     /// The help button of the notification that needs to be showed to the user.
     /// For this button the label value will be ignored since the button is represented by a question mark icon.
     var helpButton: NotificationButton?
+    /// The warning button of the notification that needs to be showed to the user.
+    /// For this button the label value will be ignored since the button is represented by a question mark icon.
+    var warningButton: DynamicNotificationButton?
     /// The timeout for the notification. After this amount of seconds past a default action is triggered.
     var timeout: String?
     /// A boolean value that set if the pop-up window if always on top of the window hierarchy.
@@ -83,6 +92,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var hideTitleBarButtons: Bool?
     /// A boolean value that define if to print the available accessory view outputs on the secondary button click.
     var retainValues: Bool?
+    /// If defined the app should just run the predefined workflow
+    var workflow: PredefinedWorkflow?
     
     // MARK: - Initializers
     
@@ -148,10 +159,20 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let helpButtonTypeRawValue = dict["help_button_cta_type"] as? String,
            let helpButtonCTAType = NotificationButton.CTAType(rawValue: helpButtonTypeRawValue.lowercased()),
             let helpButtonCTAPayload = dict["help_button_cta_payload"] as? String {
-            guard type != .banner else {
+            guard type != .banner && type != .alert else {
                 throw NAError.dataFormat(type: .noHelpButtonAllowedInNotification)
             }
             self.helpButton = NotificationButton(with: "", callToActionType: helpButtonCTAType, callToActionPayload: helpButtonCTAPayload)
+        }
+        
+        if let warningButtonTypeRawValue = dict["warning_button_cta_type"] as? String,
+           let warningButtonCTAType = NotificationButton.CTAType(rawValue: warningButtonTypeRawValue.lowercased()),
+            let warningButtonCTAPayload = dict["warning_button_cta_payload"] as? String {
+            guard type != .banner && type != .alert else {
+                throw NAError.dataFormat(type: .noHelpButtonAllowedInNotification)
+            }
+            let isHidden = (dict["warning_button_visibility"] as? String ?? "visible") == "hidden"
+            self.warningButton = DynamicNotificationButton(with: "", callToActionType: warningButtonCTAType, callToActionPayload: warningButtonCTAPayload, isVisible: !isHidden)
         }
 
         self.timeout = dict["timeout"] as? String ?? ConfigurableParameters.defaultPopupTimeout?.description
@@ -192,6 +213,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let popupReminderObj = try PopupReminder(with: popupReminderPayload)
             self.popupReminder = popupReminderObj
         }
+        if let workflowRawValue = dict["workflow"] as? String {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
+        }
         super.init()
         try checkObjectConsistency()
     }
@@ -199,7 +223,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     private func checkObjectConsistency() throws {
         switch type {
         case .popup, .banner, .alert:
-            guard self.title != nil || self.subtitle != nil || !(self.accessoryViews?.isEmpty ?? true) else {
+            guard self.title != nil || self.subtitle != nil || !(self.accessoryViews?.isEmpty ?? true) || self.workflow != nil else {
                 throw NAError.dataFormat(type: .noInfoToShow)
             }
             if let title = self.title {
@@ -237,7 +261,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
                 }
             }
         case .onboarding:
-            guard self.payload != nil else {
+            guard self.payload != nil || self.workflow != nil else {
                 throw NAError.dataFormat(type: .invalidOnboardingPayload)
             }
         }
@@ -273,6 +297,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case secondaryButton
         case tertiaryButton
         case helpButton
+        case warningButton
         case timeout
         case alwaysOnTop
         case silent
@@ -283,6 +308,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case popupReminder
         case hideTitleBarButtons
         case retainValues
+        case workflow
     }
     
     required public init(from decoder: Decoder) throws {
@@ -306,6 +332,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.secondaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .secondaryButton)
         self.tertiaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .tertiaryButton)
         self.helpButton = try container.decodeIfPresent(NotificationButton.self, forKey: .helpButton)
+        self.warningButton = try container.decodeIfPresent(DynamicNotificationButton.self, forKey: .warningButton)
         self.timeout = try container.decodeIfPresent(String.self, forKey: .timeout)
         self.alwaysOnTop = try container.decodeIfPresent(Bool.self, forKey: .alwaysOnTop)
         self.silent = try container.decodeIfPresent(Bool.self, forKey: .silent)
@@ -318,6 +345,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
         }
         self.popupReminder = try container.decodeIfPresent(PopupReminder.self, forKey: .popupReminder)
+        if let workflowRawValue = try container.decodeIfPresent(String.self, forKey: .workflow) {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -339,6 +369,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.secondaryButton, forKey: .secondaryButton)
         try container.encodeIfPresent(self.tertiaryButton, forKey: .tertiaryButton)
         try container.encodeIfPresent(self.helpButton, forKey: .helpButton)
+        try container.encodeIfPresent(self.warningButton, forKey: .warningButton)
         try container.encodeIfPresent(self.timeout, forKey: .timeout)
         try container.encodeIfPresent(self.alwaysOnTop, forKey: .alwaysOnTop)
         try container.encodeIfPresent(self.silent, forKey: .silent)
@@ -349,6 +380,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
         try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
+        try container.encodeIfPresent(self.workflow?.rawValue, forKey: .workflow)
     }
     
     // MARK: Codable protocol conformity - END
@@ -397,6 +429,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let helpButton = self.helpButton {
             coder.encode(helpButton, forKey: NOCodingKeys.helpButton.rawValue)
         }
+        if let warningButton = self.warningButton {
+            coder.encode(warningButton, forKey: NOCodingKeys.warningButton.rawValue)
+        }
         if let timeout = self.timeout {
             coder.encode(timeout, forKey: NOCodingKeys.timeout.rawValue)
         }
@@ -430,6 +465,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let popupReminder = self.popupReminder {
             coder.encode(popupReminder, forKey: NOCodingKeys.popupReminder.rawValue)
         }
+        if let workflowRawValue = self.workflow?.rawValue {
+            coder.encode(workflowRawValue, forKey: NOCodingKeys.workflow.rawValue)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -450,6 +488,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.secondaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.secondaryButton.rawValue)
         self.tertiaryButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.tertiaryButton.rawValue)
         self.helpButton = coder.decodeObject(of: NotificationButton.self, forKey: NOCodingKeys.helpButton.rawValue)
+        self.warningButton = coder.decodeObject(of: DynamicNotificationButton.self, forKey: NOCodingKeys.warningButton.rawValue)
         self.timeout = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.timeout.rawValue) as String?
         self.alwaysOnTop = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.alwaysOnTop.rawValue) as? Bool
         self.silent = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.silent.rawValue) as? Bool
@@ -461,6 +500,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }
         self.popupReminder = coder.decodeObject(of: PopupReminder.self, forKey: NOCodingKeys.popupReminder.rawValue)
+        if let workflowRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.workflow.rawValue) {
+            self.workflow = PredefinedWorkflow(rawValue: workflowRawValue as String)
+        }
     }
     
     // MARK: - NSSecureCoding protocol conformity - END

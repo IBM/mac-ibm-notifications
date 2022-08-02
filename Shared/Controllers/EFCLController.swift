@@ -24,6 +24,8 @@ final class EFCLController {
                                    "--privacy",
                                    "--isRunningTestForCommandLine",
                                    "--config",
+                                   "--resetBanners",
+                                   "--resetAlerts",
                                    "-reset",
                                    "sudo"]
     static let standaloneBooleanArguments = ["always_on_top",

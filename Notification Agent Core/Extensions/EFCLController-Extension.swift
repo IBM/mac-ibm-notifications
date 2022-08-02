@@ -128,6 +128,32 @@ extension EFCLController {
             applicationExit(withReason: .untrackedSuccess)
             return
         }
+        guard !arguments.contains("--resetBanners") else {
+            guard let notificationObject = try? NotificationObject(from: ["type" : "banner", "workflow" : "resetBanners"]) else {
+                return
+            }
+            let object = TaskObject(notification: notificationObject, settings: Context.main.sharedSettings)
+            guard let jsonData = try? JSONEncoder().encode(object) else {
+                EFCLController.shared.applicationExit(withReason: .internalError)
+                return
+            }
+            TaskManager().runUntrackedTaskOnComponent(.banner, with: jsonData)
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
+        guard !arguments.contains("--resetAlerts") else {
+            guard let notificationObject = try? NotificationObject(from: ["type" : "alert", "workflow" : "resetAlerts"]) else {
+                return
+            }
+            let object = TaskObject(notification: notificationObject, settings: Context.main.sharedSettings)
+            guard let jsonData = try? JSONEncoder().encode(object) else {
+                EFCLController.shared.applicationExit(withReason: .internalError)
+                return
+            }
+            TaskManager().runUntrackedTaskOnComponent(.alert, with: jsonData)
+            applicationExit(withReason: .untrackedSuccess)
+            return
+        }
         context.sharedSettings.isVerboseModeEnabled = arguments.contains("--v")
     }
     

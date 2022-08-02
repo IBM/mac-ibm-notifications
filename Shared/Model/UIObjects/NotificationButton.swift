@@ -9,7 +9,7 @@
 
 import Foundation
 
-/// This struct describe a button that needs to be added to the view showed to the user.
+/// This struct describe a button that can be added to the view showed to the user.
 public class NotificationButton: NSObject, Codable, NSSecureCoding {
 
     // MARK: - Enums

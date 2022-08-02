@@ -33,6 +33,9 @@ public final class HelpBuilder {
                                            "-tertiary_button_cta_payload".yellow(),
                                            "-help_button_cta_type".yellow(),
                                            "-help_button_cta_payload".yellow(),
+                                           "-warning_button_cta_type".yellow(),
+                                           "-warning_button_cta_payload".yellow(),
+                                           "-warning_button_visibility".yellow(),
                                            "-timeout".yellow(),
                                            "-always_on_top".yellow(),
                                            "-silent".yellow(),
@@ -76,7 +79,7 @@ public final class HelpBuilder {
                                               "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type.\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /selected INT /placeholder TEXT /title TEXT\" ".green() + "for " + "[ dropdown ]".red() + " view type;\n      " +
                                               "- Text with HTML format for " + "[ html | htmlwhitebox ]".red() + " view type;\n      " +
-                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX  /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
                                               "Example 1: -accessory_view_payload \"This is the time left: %@\"\n      " +
                                               "Example 2: -accessory_view_payload \"/percent 0 /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
@@ -94,6 +97,9 @@ public final class HelpBuilder {
                                               "\n      A mandatory URL if " + "[ link ]".red() + " cta type defined, optional if " + "[ exitlink ]".red() + " cta defined.\n      Example: -tertiary_button_cta_payload \"URL\"",
                                               "[ link | infopopup ]".red() + "\n      The call to action type for the help button.\n      Example: -help_button_cta_type link",
                                               "\n      An URL for " + "[ link ]".red() + " cta type or text for " + "[ infopopup ]".red() + " cta type.\n      Example: -help_button_cta_payload \"URL\"",
+                                              "\n      Same as for help_button_cta_type argument.",
+                                              "\n      Same as for help_button_cta_payload argument.",
+                                              "[ hidden | visible ]".red() + "\n      Since the warning button visibility is interactive it needs an initial state.\n      Example: -help_button_cta_type hidden",
                                               "\n      The timeout for the notification. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300",
                                               "\n      Flag that tells the agent to keep the pop-up always on top of the window hierarchy.\n      Example: -always_on_top",
                                               "\n      Flag that tells the agent to not reproduce any sound when the pop-up appear.\n      Example: -silent",
@@ -130,11 +136,15 @@ public final class HelpBuilder {
                                              "--version".blue(),
                                              "--terms".blue(),
                                              "--privacy".blue(),
+                                             "--resetBanners".blue(),
+                                             "--resetAlerts".blue(),
                                              "--v".blue()]
     static let specialArgumentsDescriptions: [String] = ["Show help's page",
                                                          "Show app's version",
                                                          "Shows the Terms & Conditions",
                                                          "Shows the Privacy Policy",
+                                                         "Delete all the app's banners from Notification Center",
+                                                         "Delete all the app's alerts from Notification Center",
                                                          "Verbose mode"]
     static let configurableParameters: [String] = ["-default_popup_bar_title".yellow(),
                                                    "-default_popup_icon_path".yellow(),

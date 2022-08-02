@@ -14,7 +14,8 @@ class NAATriggersTests: XCTestCase {
     let worker = TestWorker()
     let parserUseCases = [["type" : "alert", "title" : "This is a title"],
                           ["type" : "alert", "subtitle" : "This is a subtitle"],
-                          ["type" : "alert", "title" : "This is a title", "subtitle" : "This is a subtitle"]]
+                          ["type" : "alert", "title" : "This is a title", "subtitle" : "This is a subtitle"],
+                          ["type" : "alert", "workflow" : "resetAlerts"]]
     
     override func setUpWithError() throws {
         worker.startObservation()
