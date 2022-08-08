@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-Apache%202-1984E5)
 ![Swift version](https://img.shields.io/badge/swift-5-1984E5)
 ![Xcode version](https://img.shields.io/badge/xcode-13-1984E5)
-![Project version](https://img.shields.io/badge/version-2.7.1-1984E5)
+![Project version](https://img.shields.io/badge/version-2.8.0-1984E5)
 ![macOS](https://img.shields.io/badge/os-macOS%2010.15+-bright%20green)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5823/badge)](https://bestpractices.coreinfrastructure.org/projects/5823)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)
