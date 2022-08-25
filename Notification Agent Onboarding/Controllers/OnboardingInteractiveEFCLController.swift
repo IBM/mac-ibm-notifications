@@ -23,7 +23,7 @@ final class OnboardingInteractiveEFCLController: InteractiveEFCLController {
                 }
                 switch argument {
                 case "percent", "top_message", "bottom_message", "user_interaction_enabled", "user_interruption_allowed", "exit_on_completion":
-                    NotificationCenter.default.post(name: Notification.Name("progressbar_interactive_updates"), object: ["data" : inputData])
+                    NotificationCenter.default.post(name: Notification.Name("progressbar_interactive_updates"), object: nil, userInfo: ["data" : inputData])
                 default:
                     continue
                 }
