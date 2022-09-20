@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable type_body_length
+//  swiftlint:disable type_body_length file_length
 import Foundation
 
 public final class HelpBuilder {
@@ -61,6 +61,21 @@ public final class HelpBuilder {
                                                 "-payload".green(),
                                                 "-always_on_top".yellow(),
                                                 "-hide_title_bar_buttons".yellow()]
+    static let systemAlertArguments: [String] = ["-type".green(),
+                                                 "-title".yellow(),
+                                                 "-subtitle".yellow(),
+                                                 "-icon_path".yellow(),
+                                                 "-main_button_label".yellow(),
+                                                 "-main_button_cta_type".yellow(),
+                                                 "-main_button_cta_payload".yellow(),
+                                                 "-secondary_button_label".yellow(),
+                                                 "-secondary_button_cta_type".yellow(),
+                                                 "-secondary_button_cta_payload".yellow(),
+                                                 "-tertiary_button_label".yellow(),
+                                                 "-tertiary_button_cta_type".yellow(),
+                                                 "-tertiary_button_cta_payload".yellow(),
+                                                 "-silent".yellow(),
+                                                 "-showSuppressionButton".yellow()]
     static let popupDescriptions: [String] = ["[ popup ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
                                               "\n      The bar title.\n      Example: -bar_title \"Bar Title\"",
                                               "\n      The title of the notification.\n      Suggested length < 120 characters.\n      Allowed length < 240 characters.\n      Example: -title \"Title\"",
@@ -125,12 +140,29 @@ public final class HelpBuilder {
                                                    "\n      The json payload for the \"onboarding\" UI type.\n      Example: -payload \"{ \"pages\": [\n                                      {\n                                         \"title\": \"Some title\",\n                                         \"subtitle\": \"Some subtitle\",\n                                         \"body\": \"Some body\",\n                                         \"accessoryViews\": \"[\n                                                               [\n                                                                  {\n                                                                     \"type\": \"input\"\n                                                                     \"payload\": \"/placeholder Something /title First\"\n                                                                  },\n                                                                  {\n                                                                     \"type\": \"input\"\n                                                                     \"payload\": \"/placeholder Something /title Second\"\n                                                                  }\n                                                               ],\n                                                               [\n                                                                  {\n                                                                     \"type\": \"image\"\n                                                                     \"payload\": \"/local/or/remote/path/to/image.png\"\n                                                                  },\n                                                                  {\n                                                                     \"type\": \"video\"\n                                                                     \"payload\": \"/local/or/remote/path/to/video.mov\"\n                                                                  }\n                                                               ]\n                                                            ]\n                                      }\n                                    ]\n                         }\"\n      Please see more about this feature on the project wiki.",
                                                    "\n      Flag that tells the agent to keep the Onbording UI always on top of the window hierarchy.\n      Example: -always_on_top",
                                                    "\n      Flag that tells the agent to remove the title bar buttons for the Onbording UI.\n      Example: -hide_title_bar_buttons"]
+    static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
+                                                    "\n      The title of the notification.\n      Example: -title \"Title\"",
+                                                    "\n      The subtitle of the notification.\n      Example: -subtitle \"Subtitle\"",
+                                                    "\n      The custom icon path defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
+                                                    "\n      The label of the main button.\n      Example: -main_button_label \"Main button title\"",
+                                                    "[ none | link ]".red() + "\n      The call to action type for the main button (default: none -> exit).\n      Example: -main_button_cta_type link",
+                                                    "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -main_button_cta_payload \"URL\"",
+                                                    "\n      The label of the secondary button.\n      Example: -secondary_button_label \"Secondary button title\"",
+                                                    "[ none | link ]".red() + "\n      The call to action type for the secondary button (default: none -> exit).\n      Example: -secondary_button_cta_type link",
+                                                    "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -secondary_button_cta_payload \"URL\"",
+                                                    "\n      The label of the tertiary button.\n      Example: -tertiary_button_label \"Tertiary button title\"",
+                                                    "[ link | exitlink ]".red() + "\n      The call to action type for the tertiary button.\n      Example: -tertiary_button_cta_type link",
+                                                    "\n      A mandatory URL if " + "[ link ]".red() + " cta type defined, optional if " + "[ exitlink ]".red() + " cta defined.\n      Example: -tertiary_button_cta_payload \"URL\"",
+                                                    "\n      Flag that tells the agent to not reproduce any sound when the pop-up appear.\n      Example: -silent",
+                                                    "\n      Flag that tells the agent to show the suppression future notifications button on the UI. If checked by the user the agent will print \"suppressed\" in the output before exit.\n      Example: -showSuppressionButton"]
     static let popupSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle | -accessory_view_type + -accessory_view_payload ] ".red() + "must be defined to present a pop-up.",
                                                 "By default tertiary button is not destructive. Use " + "[ exitlink ]".red() + " cta type to trigger a link (optional) and make it destructive for the pop-up.",
                                                 "In general if a call to action type is defined for a button, must be defined also the related payload. Except for the cta types " + "[ none | exitlink ]".red() + "."]
     static let bannerSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle ] ".red() + "must be defined to present a banner.",
                                                  "In general if a call to action type is defined for a button, must be defined also the related payload."]
+    static let systemAlertSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle ] ".red() + "must be defined to present a systemAlert."]
     static let popupNotes: [String] = ["If no call to action type defined for a button the default one is " + "[ none ]".red() + ", that simply return the exit code related to the clicked button.\n- \"/selected\" and \"/placeholder\" keys for " + "[ dropdown ]".red() + " accessory view payload are mutually exclusive."]
+    static let systemAlertNotes: [String] = ["If no call to action type defined for a button the default one is " + "[ none ]".red()]
     static let bannerNotes: [String] = ["If no call to action type defined for a button the default one is " + "[ none ]".red() + ", that simply return the exit code related to the clicked button.\nAlert UI require additional configurations to work properly. Please refer to the related Github Wiki Page."]
     static let specialArguments: [String] = ["--help".blue(),
                                              "--version".blue(),
@@ -196,10 +228,11 @@ public final class HelpBuilder {
                                                    "239".bold()]
     static let onboardingReturnValuesDescription: [String] = ["User did finish onboarding.",
                                                               "User dimissed the onboarding window."]
-    static let examplePopup: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type popup -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\" -help_button_cta_type infopopup -help_button_cta_payload \"Test help text\"]"
+    static let examplePopup: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type popup -title \"Test title\" -subtitle \"Test subtitle\" -accessory_view_type whitebox -accessory_view_payload \"Test accessory view\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\" -help_button_cta_type infopopup -help_button_cta_payload \"Test help text\""
     static let exampleBanner: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type banner -title \"Test title\" -subtitle \"Test subtitle\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\""
     static let exampleAlert: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type alert -title \"Test title\" -subtitle \"Test subtitle\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\""
     static let exampleOnboarding: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type onboarding -payload \"{\\\"pages\\\":[{\\\"title\\\":\\\"First page's title\\\",\\\"subtitle\\\":\\\"First page's subtitle\\\",\\\"body\\\":\\\"First page's body\\\"}]}\""
+    static let exampleSystemAlert: String = "~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier -type popup -title \"Test title\" -subtitle \"Test subtitle\" -icon_path \"path/to/icon.png\" -main_button_label \"Main button\" -secondary_button_label \"Secondary button\" -tertiary_button_label \"Tertiary button\" -tertiary_button_cta_type link -tertiary_button_cta_payload \"https://www.ibm.com\" -silent -showSuppressionButton"
     
     static func printHelp(_ arguments: [String]) {
         guard !arguments.contains("-popup") else {
@@ -218,12 +251,16 @@ public final class HelpBuilder {
             Self.printOnboardingHelp()
             return
         }
+        guard !arguments.contains("-systemAlert") else {
+            Self.printSystemAlertHelp()
+            return
+        }
         guard !arguments.contains("-configuration") else {
             Self.printConfigurationHelp()
             return
         }
         print("\nIBM Notifier Help Page".bold().blue() + "\n")
-        print("You can use:\n     --help -popup - To show help page about the pop-up UI;\n     --help -banner - To show help page about the banner (temporary banner notification) UI;\n     --help -alert - To show help page about the alert (persistent banner notification) UI;\n     --help -onboarding - To show help page about the onboarding UI;\n     --help -configuration - To show help page about the configuration mode.\n")
+        print("You can use:\n     --help -popup - To show help page about the pop-up UI;\n     --help -banner - To show help page about the banner (temporary banner notification) UI;\n     --help -alert - To show help page about the alert (persistent banner notification) UI;\n     --help -onboarding - To show help page about the onboarding UI;\n     --help -systemAlert - To show help page about the system alert UI;\n     --help -configuration - To show help page about the configuration mode.\n")
     }
     
     static func printPopupHelp() {
@@ -317,6 +354,36 @@ public final class HelpBuilder {
         for index in configurableParameters.indices {
             print("\(configurableParameters[index]):\n      \(configurableParametersDescriptions[index])")
         }
+    }
+    
+    static func printSystemAlertHelp() {
+        print("\nIBM Notifier System Alert UI".bold().blue() + "\n")
+        var argumentsString = ""
+        for argument in systemAlertArguments {
+            argumentsString += "[\(argument)] "
+        }
+        print("Usage: ".cyan().bold() + "\n~/IBM\\ Notifier.app/Contents/MacOS/IBM\\ Notifier " + argumentsString + "\n")
+        print("Color Legend: ".cyan().bold())
+        print("Mandatory value".green() + " " + "Optional value".yellow() + "\n")
+        print("Arguments details:".cyan().bold())
+        for index in systemAlertArguments.indices {
+            print("\(systemAlertArguments[index]): \(systemAlertDescriptions[index])")
+        }
+        print("\nSyntactic rules:".bold().cyan())
+        for index in systemAlertSyntacticRules.indices {
+            print("- \(systemAlertSyntacticRules[index])")
+        }
+        print("\nBe aware of:".bold().cyan())
+        for index in systemAlertNotes.indices {
+            print("- \(systemAlertNotes[index])")
+        }
+        print("\nReturn values:".bold().cyan())
+        for index in popupReturnValues.indices {
+            print("\(popupReturnValues[index]) - \(popupReturnValuesDescription[index])")
+        }
+        print("\nUsage examples:".bold().cyan())
+        print("- System Alert UI - ".blue() + exampleSystemAlert)
+        print("\n")
     }
     
     static func printNoArgumentsPage() {

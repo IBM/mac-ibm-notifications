@@ -22,6 +22,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case banner // Temporary user notification banner.
         case onboarding // Onboarding window.
         case alert // Persistent user notification banner.
+        case systemalert // Standard system Alert pop-up.
     }
     
     /// A set of predefined workflow
@@ -92,6 +93,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var hideTitleBarButtons: Bool?
     /// A boolean value that define if to print the available accessory view outputs on the secondary button click.
     var retainValues: Bool?
+    /// A boolean value that define if to show the suppress notification checkbox on the systemAlert UI. Works only with systemAlert UI type.
+    var showSuppressionButton: Bool?
     /// If defined the app should just run the predefined workflow
     var workflow: PredefinedWorkflow?
     
@@ -206,6 +209,11 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         } else {
             self.retainValues = false
         }
+        if let showSuppressionButtonRaw = dict["show_suppression_button"] as? String {
+            self.showSuppressionButton = showSuppressionButtonRaw.lowercased() == "true"
+        } else {
+            self.showSuppressionButton = false
+        }
         if let positionRaw = dict["position"] as? String {
             self.position = NSWindow.WindowPosition(rawValue: positionRaw)
         }
@@ -222,7 +230,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     
     private func checkObjectConsistency() throws {
         switch type {
-        case .popup, .banner, .alert:
+        case .popup, .banner, .alert, .systemalert:
             guard self.title != nil || self.subtitle != nil || !(self.accessoryViews?.isEmpty ?? true) || self.workflow != nil else {
                 throw NAError.dataFormat(type: .noInfoToShow)
             }
@@ -308,6 +316,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case popupReminder
         case hideTitleBarButtons
         case retainValues
+        case showSuppressionButton
         case workflow
     }
     
@@ -340,6 +349,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.hideTitleBarButtons = try container.decodeIfPresent(Bool.self, forKey: .hideTitleBarButtons)
         self.forceLightMode = try container.decodeIfPresent(Bool.self, forKey: .forceLightMode)
         self.retainValues = try container.decodeIfPresent(Bool.self, forKey: .retainValues)
+        self.showSuppressionButton = try container.decodeIfPresent(Bool.self, forKey: .showSuppressionButton)
         self.payload = try container.decodeIfPresent(OnboardingData.self, forKey: .payload)
         if let positionRawValue = try container.decodeIfPresent(String.self, forKey: .position) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue)
@@ -377,6 +387,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.hideTitleBarButtons, forKey: .hideTitleBarButtons)
         try container.encodeIfPresent(self.forceLightMode, forKey: .forceLightMode)
         try container.encodeIfPresent(self.retainValues, forKey: .retainValues)
+        try container.encodeIfPresent(self.showSuppressionButton, forKey: .showSuppressionButton)
         try container.encodeIfPresent(self.payload, forKey: .payload)
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
         try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
@@ -459,6 +470,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             let number = NSNumber(booleanLiteral: retainValues)
             coder.encode(number, forKey: NOCodingKeys.retainValues.rawValue)
         }
+        if let showSuppressionButton = self.showSuppressionButton {
+            let number = NSNumber(booleanLiteral: showSuppressionButton)
+            coder.encode(number, forKey: NOCodingKeys.showSuppressionButton.rawValue)
+        }
         if let position = self.position?.rawValue {
             coder.encode(position, forKey: NOCodingKeys.position.rawValue)
         }
@@ -496,6 +511,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.hideTitleBarButtons = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.hideTitleBarButtons.rawValue) as? Bool
         self.forceLightMode = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.forceLightMode.rawValue) as? Bool
         self.retainValues = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.retainValues.rawValue) as? Bool
+        self.showSuppressionButton = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.showSuppressionButton.rawValue) as? Bool
         if let positionRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.position.rawValue) {
             self.position = NSWindow.WindowPosition(rawValue: positionRawValue as String)
         }

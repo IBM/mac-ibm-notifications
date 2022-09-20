@@ -33,8 +33,9 @@ final class EFCLController {
                                              "miniaturizable",
                                              "force_light_mode",
                                              "hide_title_bar_buttons",
-                                             "retain_values"
-    ]
+                                             "retain_values",
+                                             "retain_values",
+                                             "show_suppression_button"]
     
     // MARK: - Variables
 

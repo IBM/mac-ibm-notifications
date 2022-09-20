@@ -28,7 +28,7 @@ extension NotificationDispatch {
             taskManager.runAsyncTaskOnComponent(.banner, with: jsonData) { terminationStatus in
                 exit(terminationStatus)
             }
-        case .popup:
+        case .popup, .systemalert:
             var isInteractive: Bool {
                 var int = false
                 object.notification.accessoryViews?.forEach({ accessoryView in

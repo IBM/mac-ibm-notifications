@@ -247,6 +247,8 @@
 		B9EDC98E24EC0D91004F6108 /* InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDC98D24EC0D91004F6108 /* InfoSection.swift */; };
 		F47F553E249B8C1B006A0754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47F553D249B8C1B006A0754 /* Assets.xcassets */; };
 		F47F5541249B8C1B006A0754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47F553F249B8C1B006A0754 /* Main.storyboard */; };
+		FD0D02D528D9F8AE00A167B7 /* SystemAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0D02D428D9F8AE00A167B7 /* SystemAlertController.swift */; };
+		FD0D02D628D9F8AE00A167B7 /* SystemAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0D02D428D9F8AE00A167B7 /* SystemAlertController.swift */; };
 		FD1730032875B02F00781A69 /* OnboardingInteractiveEFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1730022875B02F00781A69 /* OnboardingInteractiveEFCLController.swift */; };
 		FD1730042875B02F00781A69 /* OnboardingInteractiveEFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1730022875B02F00781A69 /* OnboardingInteractiveEFCLController.swift */; };
 		FD1730072875B0D200781A69 /* PopupInteractiveEFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1730062875B0D200781A69 /* PopupInteractiveEFCLController.swift */; };
@@ -750,6 +752,7 @@
 		F47F553D249B8C1B006A0754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F47F5540249B8C1B006A0754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47F5542249B8C1B006A0754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD0D02D428D9F8AE00A167B7 /* SystemAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAlertController.swift; sourceTree = "<group>"; };
 		FD1730022875B02F00781A69 /* OnboardingInteractiveEFCLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractiveEFCLController.swift; sourceTree = "<group>"; };
 		FD1730062875B0D200781A69 /* PopupInteractiveEFCLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupInteractiveEFCLController.swift; sourceTree = "<group>"; };
 		FD1730092875B82000781A69 /* DynamicNotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotificationButton.swift; sourceTree = "<group>"; };
@@ -970,6 +973,7 @@
 				B961A5B4267B451400657930 /* Main.storyboard */,
 				B961A62B267C9DA200657930 /* Assets.xcassets */,
 				FD1730062875B0D200781A69 /* PopupInteractiveEFCLController.swift */,
+				FD0D02D728D9F8B500A167B7 /* Controllers */,
 				B9360EBA268A04A900217247 /* Extensions */,
 				B961A5F8267B8B7800657930 /* Views */,
 			);
@@ -1208,6 +1212,14 @@
 				B9B4E20B26E8AE6B001D2D89 /* Resources */,
 			);
 			path = "Notification Agent Core";
+			sourceTree = "<group>";
+		};
+		FD0D02D728D9F8B500A167B7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD0D02D428D9F8AE00A167B7 /* SystemAlertController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		FD1730052875B04600781A69 /* Controllers */ = {
@@ -1966,6 +1978,7 @@
 				B961A52B267A4D8F00657930 /* DropDownAccessoryView.swift in Sources */,
 				B961A533267A4DC700657930 /* HorizontalLine.swift in Sources */,
 				B961A50F267A4D3C00657930 /* Environment.swift in Sources */,
+				FD0D02D528D9F8AE00A167B7 /* SystemAlertController.swift in Sources */,
 				B961A527267A4D8F00657930 /* HTMLAccessoryView.swift in Sources */,
 				FD1730182875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 			);
@@ -2286,6 +2299,7 @@
 				FDC3474B2858C4E8001F2212 /* PopUpViewController.swift in Sources */,
 				FDC346A72858C42A001F2212 /* ReplyHandler.swift in Sources */,
 				FDC346E12858C459001F2212 /* UserReplyType.swift in Sources */,
+				FD0D02D628D9F8AE00A167B7 /* SystemAlertController.swift in Sources */,
 				FDC347062858C476001F2212 /* InfoPopOverStackItem.swift in Sources */,
 				FDC347292858C494001F2212 /* Decodable-Extensions.swift in Sources */,
 				FDC3473E2858C4AF001F2212 /* InteractiveEFCLContoller.swift in Sources */,
