@@ -1302,7 +1302,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B920D4C6265F8FC700437BE6 /* Build configuration list for PBXNativeTarget "IBM Notifier Alert" */;
 			buildPhases = (
-				FD0D02D028D9CA5000A167B7 /* Increase Build Number */,
 				B920D4B5265F8FC600437BE6 /* Sources */,
 				B920D4B6265F8FC600437BE6 /* Frameworks */,
 				B920D4B7265F8FC600437BE6 /* Resources */,
@@ -1322,7 +1321,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B961A4ED2678F4F800657930 /* Build configuration list for PBXNativeTarget "IBM Notifier Popup" */;
 			buildPhases = (
-				FD0D02D228D9CA7900A167B7 /* Increase Build Number */,
 				B961A4DC2678F4F400657930 /* Sources */,
 				B961A4DD2678F4F400657930 /* Frameworks */,
 				B961A4DE2678F4F400657930 /* Resources */,
@@ -1344,7 +1342,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B961A54F267A4E5500657930 /* Build configuration list for PBXNativeTarget "IBM Notifier Onboarding" */;
 			buildPhases = (
-				FD0D02D328D9CA8F00A167B7 /* Increase Build Number */,
 				B961A53E267A4E5200657930 /* Sources */,
 				B961A53F267A4E5200657930 /* Frameworks */,
 				B961A540267A4E5200657930 /* Resources */,
@@ -1365,7 +1362,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B97583C52673643F0038A99F /* Build configuration list for PBXNativeTarget "IBM Notifier Banner" */;
 			buildPhases = (
-				FD0D02D128D9CA6200A167B7 /* Increase Build Number */,
 				B97583B42673643E0038A99F /* Sources */,
 				B97583B52673643E0038A99F /* Frameworks */,
 				B97583B62673643E0038A99F /* Resources */,
@@ -1386,7 +1382,6 @@
 			buildConfigurationList = F47F555C249B8C1C006A0754 /* Build configuration list for PBXNativeTarget "IBM Notifier" */;
 			buildPhases = (
 				B9710AB424A0A584000B5A67 /* SwiftLint */,
-				FD0D02CF28D9CA2400A167B7 /* Increase Build Number */,
 				F47F5532249B8C1B006A0754 /* Sources */,
 				F47F5533249B8C1B006A0754 /* Frameworks */,
 				F47F5534249B8C1B006A0754 /* Resources */,
@@ -1778,101 +1773,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#Support for M1 Macs Homebrew location\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		FD0D02CF28D9CA2400A167B7 /* Increase Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increase Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"----\"\necho \"Info.plist for target: ${PRODUCT_SETTINGS_PATH}\"\n\nbuildNum=$(/usr/libexec/Plistbuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Notification Agent Core/Info.plist\")\necho \"Current build #: $buildNum\"\n\nif [ -z \"$buildNum\" ]; then\necho \"No build number found in $PRODUCT_SETTINGS_PATH\"\nexit 2\nfi\n\nbuildNum=$(expr $buildNum + 1)\necho \"Build # incremented to: $buildNum\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"$PRODUCT_SETTINGS_PATH\"\necho \"----\"\nexit 0\n\n";
-		};
-		FD0D02D028D9CA5000A167B7 /* Increase Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increase Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"----\"\necho \"Info.plist for target: ${PRODUCT_SETTINGS_PATH}\"\n\nbuildNum=$(/usr/libexec/Plistbuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Notification Agent Core/Info.plist\")\necho \"Current build #: $buildNum\"\n\nif [ -z \"$buildNum\" ]; then\necho \"No build number found in $PRODUCT_SETTINGS_PATH\"\nexit 2\nfi\n\nbuildNum=$(expr $buildNum + 1)\necho \"Build # incremented to: $buildNum\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"$PRODUCT_SETTINGS_PATH\"\necho \"----\"\nexit 0\n";
-		};
-		FD0D02D128D9CA6200A167B7 /* Increase Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increase Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"----\"\necho \"Info.plist for target: ${PRODUCT_SETTINGS_PATH}\"\n\nbuildNum=$(/usr/libexec/Plistbuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Notification Agent Core/Info.plist\")\necho \"Current build #: $buildNum\"\n\nif [ -z \"$buildNum\" ]; then\necho \"No build number found in $PRODUCT_SETTINGS_PATH\"\nexit 2\nfi\n\nbuildNum=$(expr $buildNum + 1)\necho \"Build # incremented to: $buildNum\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"$PRODUCT_SETTINGS_PATH\"\necho \"----\"\nexit 0\n";
-		};
-		FD0D02D228D9CA7900A167B7 /* Increase Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increase Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"----\"\necho \"Info.plist for target: ${PRODUCT_SETTINGS_PATH}\"\n\nbuildNum=$(/usr/libexec/Plistbuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Notification Agent Core/Info.plist\")\necho \"Current build #: $buildNum\"\n\nif [ -z \"$buildNum\" ]; then\necho \"No build number found in $PRODUCT_SETTINGS_PATH\"\nexit 2\nfi\n\nbuildNum=$(expr $buildNum + 1)\necho \"Build # incremented to: $buildNum\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"$PRODUCT_SETTINGS_PATH\"\necho \"----\"\nexit 0\n";
-		};
-		FD0D02D328D9CA8F00A167B7 /* Increase Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increase Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"----\"\necho \"Info.plist for target: ${PRODUCT_SETTINGS_PATH}\"\n\nbuildNum=$(/usr/libexec/Plistbuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Notification Agent Core/Info.plist\")\necho \"Current build #: $buildNum\"\n\nif [ -z \"$buildNum\" ]; then\necho \"No build number found in $PRODUCT_SETTINGS_PATH\"\nexit 2\nfi\n\nbuildNum=$(expr $buildNum + 1)\necho \"Build # incremented to: $buildNum\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"$PRODUCT_SETTINGS_PATH\"\necho \"----\"\nexit 0\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2544,6 +2444,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Alerts/Info.plist";
@@ -2559,6 +2460,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2571,6 +2473,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Alerts/Info.plist";
@@ -2586,6 +2489,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2598,6 +2502,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Popups/Info.plist";
@@ -2613,6 +2518,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2625,6 +2531,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Popups/Info.plist";
@@ -2640,6 +2547,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2652,6 +2560,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Onboarding/Info.plist";
@@ -2666,6 +2575,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2678,6 +2588,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Onboarding/Info.plist";
@@ -2692,6 +2603,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2704,6 +2616,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Banners/Info.plist";
@@ -2719,6 +2632,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2731,6 +2645,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Notification Agent Banners/Info.plist";
@@ -2746,6 +2661,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2875,6 +2791,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -2890,6 +2807,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2902,6 +2820,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -2917,6 +2836,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2926,7 +2846,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2947,7 +2867,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2968,7 +2888,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2989,7 +2909,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3010,7 +2930,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3031,7 +2951,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3052,7 +2972,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3073,7 +2993,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3093,7 +3013,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3113,7 +3033,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3134,7 +3054,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3155,7 +3075,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3175,7 +3095,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -3193,7 +3113,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 96;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
