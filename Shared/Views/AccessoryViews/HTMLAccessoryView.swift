@@ -153,7 +153,7 @@ final class HTMLAccessoryView: AccessoryView {
         let newHtml = #"<span style="color:"# + baseTextColorCode.hexString + #"">"# + html + "</span>"
         let data = Data(newHtml.utf8)
         do {
-            let attributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .defaultAttributes: defaultAttributes], documentAttributes: nil)
+            let attributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .defaultAttributes: defaultAttributes, .textEncodingName: "UTF8"], documentAttributes: nil)
             self.textView.textStorage?.setAttributedString(attributedString)
         } catch {
             NALogger.shared.log("Unable to parse the given HTML. No text will be shown. %{public}@", [error.localizedDescription])
