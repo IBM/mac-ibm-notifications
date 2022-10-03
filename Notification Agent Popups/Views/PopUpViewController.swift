@@ -206,7 +206,6 @@ class PopUpViewController: NSViewController {
             self.popupElementsStackView.insertView(progressBarAccessoryView, at: 0, in: .center)
             progressBarAccessoryView.progressBarDelegate = self
             progressBarAccessoryView.delegate = self
-            progressBarAccessoryView.startObservingForUpdates()
             self.accessoryViews.append(progressBarAccessoryView)
             self.shouldAllowCancel = progressBarAccessoryView.isUserInterruptionAllowed
         case .image:

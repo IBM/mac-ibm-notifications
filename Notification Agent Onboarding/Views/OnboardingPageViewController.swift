@@ -89,8 +89,8 @@ final class OnboardingPageViewController: NSViewController {
     
     // MARK: - Instance methods
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setupStackViewLayout()
         self.setupButtonsLayout()
         self.configureAccessibilityElements()

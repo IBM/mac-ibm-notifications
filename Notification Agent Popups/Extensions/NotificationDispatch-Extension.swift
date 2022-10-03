@@ -16,22 +16,32 @@ extension NotificationDispatch {
     @objc
     func receivedNotification(_ notification: Notification) {
         guard let object = notification.userInfo?["object"] as? NotificationObject else { return }
-        DispatchQueue.main.async {
-            let storyboard = NSStoryboard(name: "Main", bundle: nil)
-            guard let popUpViewController = storyboard.instantiateController(withIdentifier: PopUpViewController.identifier) as? PopUpViewController else { return }
-            popUpViewController.notificationObject = object
-            let window = NSWindow(contentViewController: popUpViewController)
-            if object.forceLightMode ?? false {
-                window.appearance = NSAppearance(named: .aqua)
+        switch object.type {
+        case .systemalert:
+            DispatchQueue.main.async {
+                let alertController = SystemAlertController(object)
+                alertController.showAlert()
             }
-            window.styleMask.remove(.resizable)
-            if !(object.isMiniaturizable ?? false) {
-                window.styleMask.remove(.miniaturizable)
+        case .popup:
+            DispatchQueue.main.async {
+                let storyboard = NSStoryboard(name: "Main", bundle: nil)
+                guard let popUpViewController = storyboard.instantiateController(withIdentifier: PopUpViewController.identifier) as? PopUpViewController else { return }
+                popUpViewController.notificationObject = object
+                let window = NSWindow(contentViewController: popUpViewController)
+                if object.forceLightMode ?? false {
+                    window.appearance = NSAppearance(named: .aqua)
+                }
+                window.styleMask.remove(.resizable)
+                if !(object.isMiniaturizable ?? false) {
+                    window.styleMask.remove(.miniaturizable)
+                }
+                window.styleMask.remove(.closable)
+                window.makeKeyAndOrderFront(self)
+                guard object.silent == false else { return }
+                NSSound(named: .init("Funk"))?.play()
             }
-            window.styleMask.remove(.closable)
-            window.makeKeyAndOrderFront(self)
-            guard object.silent == false else { return }
-            NSSound(named: .init("Funk"))?.play()
+        default:
+            Utils.applicationExit(withReason: .internalError)
         }
     }
 }

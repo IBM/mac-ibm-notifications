@@ -59,7 +59,7 @@ class ProgressBarAccessoryView: AccessoryView, InteractiveObjectProtocol {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(self.objectIdentifier), object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Instance methods

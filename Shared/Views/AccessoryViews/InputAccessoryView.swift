@@ -66,6 +66,7 @@ class InputAccessoryView: AccessoryView {
     
     override func adjustViewSize() {
         inputTextField.widthAnchor.constraint(equalToConstant: containerWidth).isActive = true
+        adjustTextAreaHeight()
     }
     
     override func configureAccessibilityElements() {
@@ -109,6 +110,7 @@ class InputAccessoryView: AccessoryView {
                 fieldTopAnchor.isActive = false
                 fieldTopAnchor = inputTextField.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4)
                 fieldTopAnchor.isActive = true
+                fieldTopAnchor.priority = .defaultHigh
                 hasTitle = true
             case "placeholder":
                 self.inputTextField.placeholderString = value
@@ -125,17 +127,22 @@ class InputAccessoryView: AccessoryView {
         }
         self.mainButtonState = (self.isRequired && self.inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) ? .disabled : .enabled
     }
-}
-
-extension InputAccessoryView: NSTextFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
-        self.mainButtonState = (inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && isRequired) ? .disabled : .enabled
+    
+    private func adjustTextAreaHeight() {
         let height = inputTextField.sizeThatFits(NSSize(width: inputTextField.bounds.width, height: 0)).height
         if height != inputTextField.bounds.height && !preventResize {
             self.textFieldHeightAnchor?.isActive = false
             self.textFieldHeightAnchor = self.inputTextField.heightAnchor.constraint(equalToConstant: min(height, 200))
             self.textFieldHeightAnchor.isActive = true
+            self.textFieldHeightAnchor.priority = .required
         }
+    }
+}
+
+extension InputAccessoryView: NSTextFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        self.mainButtonState = (inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && isRequired) ? .disabled : .enabled
+        self.adjustTextAreaHeight()
         delegate?.accessoryViewStatusDidChange(self)
     }
 }

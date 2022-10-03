@@ -25,7 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         isConfigured = true
-        NSApplication.shared.activate(ignoringOtherApps: true)
         notificationDispatch.startObservingForNotifications()
         guard !UserNotificationController.shared.agentTriggeredByNotificationCenter else {
             completion()
