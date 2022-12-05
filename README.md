@@ -35,6 +35,8 @@ If you have any questions or issues you can create a new issue [here](https://gi
 
 You can also find a list of the maintainers of this repo [here](MAINTAINERS.md).
 
+Don't forget to join the community in the `#mac-ibm-open-source` channel in the [MacAdmins Slack Workspace](https://www.macadmins.org).
+
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
 example:
