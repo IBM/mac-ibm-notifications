@@ -1,14 +1,22 @@
-# Version 2.8.0 Build 87
+# Version 2.9.1 Build 96
 
 ## Pop-up
-### Enhanchements
-* New warning button have been added to the Pop-up UI - [Doc](https://github.com/IBM/mac-ibm-notifications/wiki/Usage)
-* `-popup_reminder` now respect the `-position` flag #80
-* `checklist` accessory view now accept pre-selected values #85 - [Doc](https://github.com/IBM/mac-ibm-notifications/wiki/Pop-up-UI-Accessory-Views)
+### Enhancements
+* The default Pop-up UI icon resolution have been optimised - Close #116 
 ### Resolved in this build
-* `-icon_width` doesn't properly set Pop-up Icon width
-* `timer` accessory view issue with long text #106
+* Fixed: `secureinput` accessory view appear higher than normal when used in some scenarios - Close #112 
+* Fixed: main button still shows "Cancel" label when progress bar end - Close #128  
+* Fixed: issue with the representation of UTF8 special characters in `html`/`htmlwhitebox` Accessory Views
 
 ## Alert/Banner
+### Resolved in this build
+* Fixed: Notification Center Alerts/Banners not pull attention away from keyboard when appears - Close #98 
+
+## Onboarding
+### Resolved in this build
+* Fixed: duplication of the onboarding page content when window is minimised - Close #121  
+* Fixed: missing update of common Onboarding UI progress bar - Close #114 
+
+## SystemAlert
 ### Enhanchements
-* New workflow to clean presented alerts/banners from Notification Center using `--resetBanners` and `--resetAlerts` special arguments #74 - [Doc](https://github.com/IBM/mac-ibm-notifications/wiki/Special-arguments)
+* New SystemAlert UI available - [Doc](https://github.com/IBM/mac-ibm-notifications/wiki/Usage)
