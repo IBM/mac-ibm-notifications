@@ -6,7 +6,6 @@
 //  Copyright © 2021 IBM Inc. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable identifier_name
 
 import Foundation
 
@@ -49,6 +48,8 @@ struct AppVersion: Comparable, Equatable {
     }
 }
 
+//  swiftlint:disable identifier_name
+
 enum Environment: String, Codable {
     case eng
     case qa
@@ -63,3 +64,5 @@ enum Environment: String, Codable {
         }
     }
 }
+
+//  swiftlint:enable identifier_name

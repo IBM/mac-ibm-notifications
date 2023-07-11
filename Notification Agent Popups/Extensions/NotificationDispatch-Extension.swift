@@ -9,6 +9,7 @@
 
 import Foundation
 import Cocoa
+import SwiftUI
 
 extension NotificationDispatch {
     /// Handle the received notification and send the notification object to the correct controller.
@@ -24,20 +25,40 @@ extension NotificationDispatch {
             }
         case .popup:
             DispatchQueue.main.async {
-                let storyboard = NSStoryboard(name: "Main", bundle: nil)
-                guard let popUpViewController = storyboard.instantiateController(withIdentifier: PopUpViewController.identifier) as? PopUpViewController else { return }
-                popUpViewController.notificationObject = object
-                let window = NSWindow(contentViewController: popUpViewController)
+                let mainWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 520, height: 130), styleMask: .titled, backing: .buffered, defer: false)
+                let viewModel = PopUpViewModel(object, window: mainWindow)
+                let contentView = PopUpView(viewModel: viewModel)
+                let hostingView = NSHostingView(rootView: contentView)
+                mainWindow.contentView = hostingView
+                mainWindow.title = object.barTitle ?? ConfigurableParameters.defaultPopupBarTitle
+                mainWindow.setWindowPosition(object.position ?? .center)
+                mainWindow.styleMask.remove(.resizable)
+                mainWindow.styleMask.remove(.closable)
+                mainWindow.canBecomeVisibleWithoutLogin = true
+                mainWindow.setAccessibilityIdentifier("main_window")
+                
+                if let backgroundPanelStyle = object.backgroundPanel {
+                    mainWindow.level = .init(Int(CGWindowLevelForKey(.maximumWindow)) + 2)
+                    mainWindow.isMovable = false
+                    mainWindow.collectionBehavior = [.stationary, .canJoinAllSpaces]
+                    Context.main.backgroundPanelsController = BackPanelController(backgroundPanelStyle)
+                    Context.main.backgroundPanelsController?.showBackgroundWindows()
+                } else {
+                    mainWindow.isMovable = object.isMovable
+                    mainWindow.level = object.alwaysOnTop ?? false ? .floating : .normal
+                }
+                
                 if object.forceLightMode ?? false {
-                    window.appearance = NSAppearance(named: .aqua)
+                    NSApp.appearance = NSAppearance(named: .aqua)
                 }
-                window.styleMask.remove(.resizable)
                 if !(object.isMiniaturizable ?? false) {
-                    window.styleMask.remove(.miniaturizable)
+                    mainWindow.styleMask.remove(.miniaturizable)
                 }
-                window.styleMask.remove(.closable)
-                window.makeKeyAndOrderFront(self)
+                
+                mainWindow.makeKeyAndOrderFront(self)
+                
                 guard object.silent == false else { return }
+                guard Utils.UISoundEffectStatusEnable else { return }
                 NSSound(named: .init("Funk"))?.play()
             }
         default:

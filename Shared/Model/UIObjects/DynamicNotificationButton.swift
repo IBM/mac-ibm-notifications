@@ -10,6 +10,7 @@
 import Foundation
 
 protocol DynamicNotificationButtonDelegate: AnyObject {
+    @MainActor
     func didReceivedNewStateForWarningButton(_ isVisible: Bool, isExpanded: Bool)
 }
 
@@ -37,6 +38,7 @@ public class DynamicNotificationButton: NotificationButton, InteractiveObjectPro
 
     var objectIdentifier: String = "dynamic_button_updates"
 
+    @MainActor
     func processInput(_ notification: Notification) {
         guard let inputData = notification.userInfo?["data"] as? Data else { return }
         if !inputData.isEmpty {

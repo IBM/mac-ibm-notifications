@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Notification Agent
 
@@ -23,37 +23,12 @@
 "onboarding_page_close_button" = "Close";
 
 // MARK: - Accessibility
-"popup_accessibility_label_title" = "Pop-up title.";
-"popup_accessibility_label_subtitle" = "Pop-up subtitle.";
-"popup_accessibility_button_main" = "Main button of the pop-up window. It is destructive for the pop-up.";
-"popup_accessibility_button_disabled" = "Disabled.";
-"popup_accessibility_button_secondary" = "Secondary button of the pop-up window. It is destructive for the pop-up.";
-"popup_accessibility_button_tertiary" = "Tertiary button of the pop-up window.";
-"popup_accessibility_button_info" = "Info button of the pop-up window.";
-"popup_accessibility_image_left" = "Icon of the pop-up window.";
-"popup_accessibility_stackview_body" = "This is the body of the pop-up window.";
-"onboarding_accessibility_button_right_continue" = "Go to the next onboarding page.";
-"onboarding_accessibility_button_right_close" = "Close the onboarding window.";
-"onboarding_accessibility_button_left" = "Go to the previous onboarding page.";
-"onboarding_accessibility_button_center" = "Info button of the onboarding page.";
-"onboarding_accessibility_image_top" = "Top icon of the onboarding page.";
-"onboarding_accessibility_stackview_body" = "This is the body of the onboarding page.";
-"accessory_view_accessibility_markdown_textview" = "";
-"accessory_view_accessibility_html_textview" = "";
-"accessory_view_accessibility_checklist_title" = "Title of the checklist.";
-"accessory_view_accessibility_checklist_liststackview" = "Body of the checklist.";
-"accessory_view_accessibility_checklist_liststackview_element" = "Element of the checklist.";
-"accessory_view_accessibility_timer_label" = "";
-"accessory_view_accessibility_image_imageview" = "";
-"accessory_view_accessibility_video_playerView" = "";
-"accessory_view_accessibility_progressbar_toplabel" = "Top label of the progress bar.";
-"accessory_view_accessibility_progressbar_bar" = "Progress bar.";
-"accessory_view_accessibility_progressbar_bottomlabel" = "Bottom label of the progress bar.";
-"accessory_view_accessibility_input_secured_required" = "Require an input value.";
-"accessory_view_accessibility_input_secured" = "";
-"accessory_view_accessibility_input_required" = "Require an input value.";
-"accessory_view_accessibility_input" = "";
-"accessory_view_accessibility_input_title" = "Input field title.";
-"accessory_view_accessibility_dropdown" = "Dropdown selector.";
-"accessory_view_accessibility_dropdown_title" = "Dropdown selector title.";
+"help_button_label" = "Help";
+"warning_button_label" = "Warning";
+"button_hint_link" = "A click on this button will open a link";
+"button_hint_text" = "A click on this button will show additional text";
+"button_hint_link_destructive" = "A click on this button will open a link and close the window";
+"button_hint_destructive" = "A click on this button will close the window";
 
+"onboarding_button_primary_hint" = "A click on this button will show a new page";
+"onboarding_button_secondary_hint" = "A click on this button will show the previous page";

@@ -6,7 +6,6 @@
 //  Copyright © 2021 IBM Inc. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable function_body_length
 
 import Cocoa
 import AVFoundation
@@ -40,6 +39,8 @@ public final class NAMedia {
     private(set) var autoplayDelay: Int = 1
 
     // MARK: - Initializers
+
+    //  swiftlint:disable function_body_length
 
     init?(type: MediaType, from string: String) {
         self.mediaType = type
@@ -86,7 +87,6 @@ public final class NAMedia {
                     self.player = plr
                     return true
                 } else {
-                    NALogger.shared.log("Unable to load video from resource %{public}@", [resource])
                     return false
                 }
             }
@@ -137,6 +137,8 @@ public final class NAMedia {
             }
         }
     }
+
+    //  swiftlint:enable function_body_length
 
     convenience init?(type: String, from string: String) {
         if let mediaType = MediaType(rawValue: type) {

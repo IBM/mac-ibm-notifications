@@ -22,7 +22,7 @@ final class OnboardingInteractiveEFCLController: InteractiveEFCLController {
                     value.removeLast()
                 }
                 switch argument {
-                case "percent", "top_message", "bottom_message", "user_interaction_enabled", "user_interruption_allowed", "exit_on_completion":
+                case "percent", "top_message", "bottom_message", "user_interaction_enabled", "user_interruption_allowed", "exit_on_completion", "end":
                     NotificationCenter.default.post(name: Notification.Name("progressbar_interactive_updates"), object: nil, userInfo: ["data" : inputData])
                 default:
                     continue

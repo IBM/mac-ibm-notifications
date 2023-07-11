@@ -43,7 +43,9 @@ public final class HelpBuilder {
                                            "-force_light_mode".yellow(),
                                            "-position".yellow(),
                                            "-popup_reminder".yellow(),
-                                           "-retain_values".yellow()]
+                                           "-retain_values".yellow(),
+                                           "-background_panel".yellow(),
+                                           "-unmovable".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -60,7 +62,10 @@ public final class HelpBuilder {
     static let onboardingArguments: [String] = ["-type".green(),
                                                 "-payload".green(),
                                                 "-always_on_top".yellow(),
-                                                "-hide_title_bar_buttons".yellow()]
+                                                "-hide_title_bar_buttons".yellow(),
+                                                "-background_panel".yellow(),
+                                                "-unmovable".yellow(),
+                                                "-timeout".yellow()]
     static let systemAlertArguments: [String] = ["-type".green(),
                                                  "-title".yellow(),
                                                  "-subtitle".yellow(),
@@ -75,26 +80,27 @@ public final class HelpBuilder {
                                                  "-tertiary_button_cta_type".yellow(),
                                                  "-tertiary_button_cta_payload".yellow(),
                                                  "-silent".yellow(),
-                                                 "-showSuppressionButton".yellow()]
+                                                 "-show_suppression_button".yellow()]
     static let popupDescriptions: [String] = ["[ popup ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
                                               "\n      The bar title.\n      Example: -bar_title \"Bar Title\"",
                                               "\n      The title of the notification.\n      Suggested length < 120 characters.\n      Allowed length < 240 characters.\n      Example: -title \"Title\"",
                                               "\n      The title font size.\n      Example: -title_size \"20\"",
                                               "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
-                                              "\n      The local or remote URL for a custom icon defined for this notification. Despite the name it does accept also base64 encoded images.\n      Example: -icon_path \"~/Icon/Path.png\"",
+                                              "\n      The custom icon path/URL/SF Symbol name defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                               "\n      The custom icon width defined for this notification. Max. width = 150\n      Example: -icon_width \"150\"",
                                               "\n      The custom icon height defined for this notification. Max. height = 300\n      Example: -icon_height \"150\"",
-                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
+                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist | datepicker ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
                                               "\n      The payload for the accessory view:\n      " +
                                               "- Text for " + "[ whitebox ]".red() + " view type;\n      " +
                                               "- Text for " + "[ timer ]".red() + " view type. This will be timer's label. Use \"%@\" to define timer's position inside the label. Use " + "[ -timeout ]".yellow() + " argument to define timer's duration;\n      " +
                                               "- File path/link for " + "[ image ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/url TEXT /autoplay /delay INT\" ".green() + "for " + "[ video ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/percent DOUBLE /top_message TEXT /bottom_message TEXT /user_interaction_enabled BOOL /user_interruption_allowed BOOL\" ".green() + "for " + "[ progressbar ]".red() + " view type;\n      " +
-                                              "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type.\n      " +
+                                              "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /selected INT /placeholder TEXT /title TEXT\" ".green() + "for " + "[ dropdown ]".red() + " view type;\n      " +
                                               "- Text with HTML format for " + "[ html | htmlwhitebox ]".red() + " view type;\n      " +
-                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX  /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/title TEXT /preselection DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /style TEXT /components TEXT\" ".green() + "for " + "[ datepicker ]".red() + " view type. To read more about the usage of /style and /components look at the project wiki;\n      " +
                                               "Example 1: -accessory_view_payload \"This is the time left: %@\"\n      " +
                                               "Example 2: -accessory_view_payload \"/percent 0 /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
@@ -122,7 +128,10 @@ public final class HelpBuilder {
                                               "\n      Flag that force the UI in light mode.\n      Example: -force_light_mode",
                                               "[ center | top_right | top_left | bottom_right | bottom_left ]".red() + "\n      Tells the app where to place the pop-up window.\n      Example: -position center",
                                               "\n      A text payload to define the behavior of an optional reminder for the pop-up. The reminder is basically a timer at the end of which the pop-up is pushed again on top of the view hierarchy on screen. The payload format is: " + "\"/timeinterval <TIME_IN_SECONDS> /silent /repeat\" ".green() + "\n      Example: -popup_reminder \"/timeinterval 300\"",
-                                              "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked)."]
+                                              "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked).",
+                                              "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
+                                              "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable"]
+    
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
@@ -137,13 +146,16 @@ public final class HelpBuilder {
                                                "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -tertiary_button_cta_payload \"URL\"",
                                                "\n      The path (local or remote) or the base64 encoded representation of the image attached to this notification.\n      Example: -notification_image \"~/Icon/Path.png\""]
     static let onboardingDescriptions: [String] = ["[ onboarding ]".red() + "\n      The UI type of the notification.\n      Example: -type onboarding",
-                                                   "\n      The json payload for the \"onboarding\" UI type.\n      Example: -payload \"{ \"pages\": [\n                                      {\n                                         \"title\": \"Some title\",\n                                         \"subtitle\": \"Some subtitle\",\n                                         \"body\": \"Some body\",\n                                         \"accessoryViews\": \"[\n                                                               [\n                                                                  {\n                                                                     \"type\": \"input\"\n                                                                     \"payload\": \"/placeholder Something /title First\"\n                                                                  },\n                                                                  {\n                                                                     \"type\": \"input\"\n                                                                     \"payload\": \"/placeholder Something /title Second\"\n                                                                  }\n                                                               ],\n                                                               [\n                                                                  {\n                                                                     \"type\": \"image\"\n                                                                     \"payload\": \"/local/or/remote/path/to/image.png\"\n                                                                  },\n                                                                  {\n                                                                     \"type\": \"video\"\n                                                                     \"payload\": \"/local/or/remote/path/to/video.mov\"\n                                                                  }\n                                                               ]\n                                                            ]\n                                      }\n                                    ]\n                         }\"\n      Please see more about this feature on the project wiki.",
+                                                   "\n      The json payload for the \"onboarding\" UI type. Please see more about this feature on the project wiki.",
                                                    "\n      Flag that tells the agent to keep the Onbording UI always on top of the window hierarchy.\n      Example: -always_on_top",
-                                                   "\n      Flag that tells the agent to remove the title bar buttons for the Onbording UI.\n      Example: -hide_title_bar_buttons"]
-    static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type popup",
+                                                   "\n      Flag that tells the agent to remove the title bar buttons for the Onbording UI.\n      Example: -hide_title_bar_buttons",
+                                                   "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
+                                                   "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
+                                                   "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300"]
+    static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type systemAlert",
                                                     "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                     "\n      The subtitle of the notification.\n      Example: -subtitle \"Subtitle\"",
-                                                    "\n      The custom icon path defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
+                                                    "\n      The custom icon path defined for this notification or an SF Symbol name.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                                     "\n      The label of the main button.\n      Example: -main_button_label \"Main button title\"",
                                                     "[ none | link ]".red() + "\n      The call to action type for the main button (default: none -> exit).\n      Example: -main_button_cta_type link",
                                                     "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -main_button_cta_payload \"URL\"",
@@ -262,7 +274,7 @@ public final class HelpBuilder {
         print("\nIBM Notifier Help Page".bold().blue() + "\n")
         print("You can use:\n     --help -popup - To show help page about the pop-up UI;\n     --help -banner - To show help page about the banner (temporary banner notification) UI;\n     --help -alert - To show help page about the alert (persistent banner notification) UI;\n     --help -onboarding - To show help page about the onboarding UI;\n     --help -systemAlert - To show help page about the system alert UI;\n     --help -configuration - To show help page about the configuration mode.\n")
     }
-    
+
     static func printPopupHelp() {
         print("\nIBM Notifier Popup UI".bold().blue() + "\n")
         var argumentsString = ""
@@ -292,7 +304,7 @@ public final class HelpBuilder {
         print("- Popup UI - ".blue() + examplePopup)
         print("\n")
     }
-    
+
     static func printBannerHelp() {
         print("\nIBM Notifier Banner and Alert UIs".bold().blue() + "\n")
         var argumentsString = ""
@@ -319,7 +331,7 @@ public final class HelpBuilder {
         print("- Alert UI - ".blue() + exampleAlert)
         print("\n")
     }
-    
+
     static func printOnboardingHelp() {
         print("\nIBM Notifier Onboarding UI".bold().blue() + "\n")
         var argumentsString = ""
@@ -385,7 +397,7 @@ public final class HelpBuilder {
         print("- System Alert UI - ".blue() + exampleSystemAlert)
         print("\n")
     }
-    
+
     static func printNoArgumentsPage() {
         print("\nIBM Notifier".bold().blue() + "\n")
         for index in specialArguments.indices {
@@ -396,7 +408,7 @@ public final class HelpBuilder {
     static func printPrivacyPolicy() {
         guard let url = Bundle.main.url(forResource: "PRIVACY POLICY", withExtension: "rtf") else { return }
         let opts : [NSAttributedString.DocumentReadingOptionKey : Any] =
-        [.documentType : NSAttributedString.DocumentType.rtf]
+            [.documentType : NSAttributedString.DocumentType.rtf]
         var attributes : NSDictionary?
         if let attributedString = try? NSAttributedString(url: url, options: opts, documentAttributes: &attributes) {
             print(attributedString.string)
@@ -406,14 +418,16 @@ public final class HelpBuilder {
     static func printTermsAndCondition() {
         guard let url = Bundle.main.url(forResource: "TERMS AND CONDITIONS", withExtension: "rtf") else { return }
         let opts : [NSAttributedString.DocumentReadingOptionKey : Any] =
-        [.documentType : NSAttributedString.DocumentType.rtf]
+            [.documentType : NSAttributedString.DocumentType.rtf]
         var attributes : NSDictionary?
         if let attributedString = try? NSAttributedString(url: url, options: opts, documentAttributes: &attributes) {
             print(attributedString.string)
         }
     }
-    
+
     static func printAppVersion() {
         print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown")".bold())
     }
 }
+
+//  swiftlint:enable type_body_length file_length

@@ -11,7 +11,7 @@ import Foundation
 
 extension EFCLController {
     
-    // MARK: - Internal methods
+    // MARK: - Internal Methods
     
     /// Exit the app with the related reason code.
     /// - Parameter reason: reason why the application should exit.
@@ -50,7 +50,7 @@ extension EFCLController {
         }
     }
     
-    // MARK: - Private methods
+    // MARK: - Private Methods
     
     /// Check if the passed arguments are configuration.
     /// - Parameter arguments: the app's launch arguments.

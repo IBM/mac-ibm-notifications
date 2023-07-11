@@ -52,6 +52,8 @@ final class SystemAlertController {
             } else if let imageData = Data(base64Encoded: iconPath, options: .ignoreUnknownCharacters),
                       let image = NSImage(data: imageData) {
                 alert.icon = image
+            } else if let image = NSImage(systemSymbolName: iconPath, accessibilityDescription: nil) {
+                alert.icon = image
             } else {
                 NALogger.shared.log("Unable to load image from %{public}@", [iconPath])
             }

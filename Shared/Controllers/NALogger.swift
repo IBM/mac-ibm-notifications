@@ -12,25 +12,23 @@ import os.log
 
 /// A simple class based on Apple os.log that handle normal and verbose logs.
 public final class NALogger {
+    
+    // MARK: - Static Variables
+    
     static let shared = NALogger()
+    
+    // MARK: - Methods
+    
     func log(_ type: OSLogType, _ message: StaticString, _ args: [String] = []) {
-        if #available(OSX 11.0, *) {
-            Logger().log(level: type,
-                         "\(String(format: message.description.replacingOccurrences(of: "{public}", with: ""), arguments: args), privacy: .public)")
-        } else {
-            os_log(type, message, args)
-        }
+        Logger().log(level: type,
+                     "\(String(format: message.description.replacingOccurrences(of: "{public}", with: ""), arguments: args), privacy: .public)")
         if (Context.main.sharedSettings?.isVerboseModeEnabled ?? false) || type == .error {
             self.verbose(type, message, args)
         }
     }
     func log(_ message: StaticString, _ args: [String] = []) {
-        if #available(OSX 11.0, *) {
-            Logger().log(level: .default,
-                         "\(String(format: message.description.replacingOccurrences(of: "{public}", with: ""), arguments: args), privacy: .public)")
-        } else {
-            os_log(message, args)
-        }
+        Logger().log(level: .default,
+                     "\(String(format: message.description.replacingOccurrences(of: "{public}", with: ""), arguments: args), privacy: .public)")
         if Context.main.sharedSettings?.isVerboseModeEnabled ?? false {
             self.verbose(.default, message, args)
         }
@@ -42,6 +40,9 @@ public final class NALogger {
             self.log("The following argument has been deprecated and will not be supported anymore soon: %{public}@. Make sure to update your workflow as soon as possible.", [deprecatedArgument])
         }
     }
+    
+    // MARK: - Private Methods
+
     private func verbose(_ type: OSLogType, _ message: StaticString, _ args: [String] = []) {
         let message = type == .error ?
             message.description.replacingOccurrences(of: "{public}", with: "").red() :
