@@ -10,9 +10,9 @@
 import Foundation
 
 /// ExecutionFromCommandLineController handle the launch of the agent from command line.
-final class EFCLController {
-
-    // MARK: - Static variables
+class EFCLController {
+    
+    // MARK: - Static Variables
 
     static let shared = EFCLController()
     static let specialArguments = ["-NSDocumentRevisionsDebugMode",
@@ -22,7 +22,7 @@ final class EFCLController {
                                    "--version",
                                    "--terms",
                                    "--privacy",
-                                   "--isRunningTestForCommandLine",
+                                   "--isRunningTest",
                                    "--config",
                                    "--resetBanners",
                                    "--resetAlerts",
@@ -34,9 +34,8 @@ final class EFCLController {
                                              "force_light_mode",
                                              "hide_title_bar_buttons",
                                              "retain_values",
-                                             "retain_values",
-                                             "show_suppression_button"]
-    
+                                             "show_suppression_button",
+                                             "unmovable"]
     // MARK: - Variables
 
     let context = Context.main

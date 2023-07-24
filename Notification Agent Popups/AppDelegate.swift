@@ -26,10 +26,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.activate(ignoringOtherApps: true)
         notificationDispatch.startObservingForNotifications()
         efclController.parseArguments()
+
         completion()
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Intercept the command+q shortcut and modify the exit value to reflect a manual user dismission.
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+            case [.command] where event.characters == "q":
+                Utils.applicationExit(withReason: .userDismissedPopup)
+            default:
+                return event
+            }
+            return event
+        }
         configureApp()
     }
 }

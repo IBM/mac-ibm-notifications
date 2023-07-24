@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM Inc. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable function_body_length type_body_length file_length
+//  swiftlint:disable type_body_length file_length
 
 import Foundation
 import Cocoa
@@ -30,6 +30,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case resetBanners // Delete all the Notification Center banners
         case resetAlerts // Delete all the Notification Center alerts
     }
+    
+    /// Available styles for the background panel
+    enum BackgroundPanelStyle: String {
+        case translucent
+        case opaque
+    }
 
     // MARK: - Variables
     
@@ -52,12 +58,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var subtitle: String?
     /// Custom icon path defined for this notification object (Available only for popup UIType).
     var iconPath: String?
-    /// Custom notification alert/banner attachment (image). It supports remote link, local path and base64 encoded image.
-    var notificationImage: String?
     /// Custom icon width
     var iconWidth: String?
     /// Custom icon height
     var iconHeight: String?
+    /// Custom notification alert/banner attachment (image). It supports remote link, local path and base64 encoded image.
+    var notificationImage: String?
     /// The accessory views that needs to be added to the notification. This will be used only for "popup" notification type.
     var accessoryViews: [NotificationAccessoryElement]?
     /// The main button of the notification that needs to be showed to the user.
@@ -97,8 +103,14 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var showSuppressionButton: Bool?
     /// If defined the app should just run the predefined workflow
     var workflow: PredefinedWorkflow?
+    /// The style of the background panel that will cover the entire screen.
+    var backgroundPanel: BackgroundPanelStyle?
+    /// A boolean value that define if the UI should be movable for the user.
+    var isMovable: Bool = true
     
     // MARK: - Initializers
+    
+    //  swiftlint:disable function_body_length
     
     /// Create a NotificationObject starting from a dictionary of elements.
     /// - Parameter dictionary: the dictionary.
@@ -124,7 +136,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let payloadRawData = dict["payload"] as? String {
             switch type {
             case .onboarding:
-                self.payload = try? Self.loadOnboardingPayload(payloadRawData)
+                self.payload = try Self.loadOnboardingPayload(payloadRawData)
             default:
                 break
             }
@@ -142,14 +154,15 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
 
         // Main button is mandatory so if not defined from who trigger the notification will be used a default one that show a default label and trigger no actions.
         let mainButtonLabel = dict["main_button_label"] as? String ?? ConfigurableParameters.defaultMainButtonLabel
-        let mainButtonCTAType = NotificationButton.CTAType(rawValue: (dict["main_button_cta_type"] as? String ?? "none").lowercased()) ?? .none
+        var mainButtonCTAType = NotificationButton.CTAType(rawValue: (dict["main_button_cta_type"] as? String ?? "none").lowercased()) ?? .none
+        mainButtonCTAType = mainButtonCTAType == .link ? .exitlink : mainButtonCTAType
         let mainButtonCTAPayload = (dict["main_button_cta_payload"] as? String) ?? ""
         self.mainButton = NotificationButton(with: mainButtonLabel, callToActionType: mainButtonCTAType, callToActionPayload: mainButtonCTAPayload)
 
         // Secondary button is not mandatory. If found the label but not the cta type and payload it will be set to "none".
         if let secondaryButtonLabel = dict["secondary_button_label"] as? String,
             let secondaryButtonCTAType = NotificationButton.CTAType(rawValue: (dict["secondary_button_cta_type"] as? String ?? "none").lowercased()) {
-                self.secondaryButton = NotificationButton(with: secondaryButtonLabel, callToActionType: secondaryButtonCTAType, callToActionPayload: dict["secondary_button_cta_payload"] as? String ?? "")
+            self.secondaryButton = NotificationButton(with: secondaryButtonLabel, callToActionType: secondaryButtonCTAType == .link ? .exitlink : secondaryButtonCTAType, callToActionPayload: dict["secondary_button_cta_payload"] as? String ?? "")
         }
 
         if let tertiaryButtonLabel = dict["tertiary_button_label"] as? String,
@@ -224,9 +237,17 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let workflowRawValue = dict["workflow"] as? String {
             self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
         }
+        if let backgroundPanelRawValue = dict["background_panel"] as? String {
+            self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue)
+        }
+        if let isNotMovable = dict["unmovable"] as? String {
+            self.isMovable = !(isNotMovable.lowercased() == "true")
+        }
         super.init()
         try checkObjectConsistency()
     }
+    
+    //  swiftlint:enable function_body_length
     
     private func checkObjectConsistency() throws {
         switch type {
@@ -275,7 +296,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
     }
 
-    static func loadOnboardingPayload(_ payload: String) throws -> OnboardingData? {
+    static func loadOnboardingPayload(_ payload: String) throws -> OnboardingData {
         if payload.isValidURL, let url = URL(string: payload) {
             return try OnboardingData(from: url)
         } else if FileManager.default.fileExists(atPath: payload) {
@@ -318,6 +339,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case retainValues
         case showSuppressionButton
         case workflow
+        case backgroundPanel
+        case isMovable
     }
     
     required public init(from decoder: Decoder) throws {
@@ -333,9 +356,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.titleFontSize = try container.decodeIfPresent(String.self, forKey: .titleFontSize)
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
-        self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
         self.iconWidth = try container.decodeIfPresent( String.self, forKey: .iconWidth)
         self.iconHeight = try container.decodeIfPresent( String.self, forKey: .iconHeight)
+        self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
         self.accessoryViews = try container.decodeIfPresent([NotificationAccessoryElement].self, forKey: .accessoryViews)
         self.mainButton = try container.decode(NotificationButton.self, forKey: .mainButton)
         self.secondaryButton = try container.decodeIfPresent(NotificationButton.self, forKey: .secondaryButton)
@@ -358,6 +381,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let workflowRawValue = try container.decodeIfPresent(String.self, forKey: .workflow) {
             self.workflow = PredefinedWorkflow(rawValue: workflowRawValue)
         }
+        if let backgroundPanelRawValue = try container.decodeIfPresent(String.self, forKey: .backgroundPanel) {
+            self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue)
+        }
+        self.isMovable = try container.decode(Bool.self, forKey: .isMovable)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -392,6 +419,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.position?.rawValue, forKey: .position)
         try container.encodeIfPresent(self.popupReminder, forKey: .popupReminder)
         try container.encodeIfPresent(self.workflow?.rawValue, forKey: .workflow)
+        try container.encodeIfPresent(self.backgroundPanel?.rawValue, forKey: .backgroundPanel)
+        try container.encodeIfPresent(self.isMovable, forKey: .isMovable)
+
     }
     
     // MARK: Codable protocol conformity - END
@@ -399,6 +429,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     
     public static var supportsSecureCoding: Bool = true
     
+    //  swiftlint:disable function_body_length
+
     public func encode(with coder: NSCoder) {
         coder.encode(self.type.rawValue, forKey: NOCodingKeys.type.rawValue)
         coder.encode(self.notificationID, forKey: NOCodingKeys.notificationID.rawValue)
@@ -483,7 +515,14 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let workflowRawValue = self.workflow?.rawValue {
             coder.encode(workflowRawValue, forKey: NOCodingKeys.workflow.rawValue)
         }
+        if let backgroundPanelRawValue = self.backgroundPanel?.rawValue {
+            coder.encode(backgroundPanelRawValue, forKey: NOCodingKeys.backgroundPanel.rawValue)
+        }
+        let number = NSNumber(booleanLiteral: isMovable)
+        coder.encode(number, forKey: NOCodingKeys.isMovable.rawValue)
     }
+    
+    //  swiftlint:enable function_body_length
     
     public required init?(coder: NSCoder) {
         self.identifier = UUID()
@@ -519,7 +558,13 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let workflowRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.workflow.rawValue) {
             self.workflow = PredefinedWorkflow(rawValue: workflowRawValue as String)
         }
+        if let backgroundPanelRawValue = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.backgroundPanel.rawValue) {
+            self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue as String)
+        }
+        self.isMovable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.isMovable.rawValue) as? Bool ?? true
     }
     
     // MARK: - NSSecureCoding protocol conformity - END
 }
+
+//  swiftlint:enable type_body_length file_length

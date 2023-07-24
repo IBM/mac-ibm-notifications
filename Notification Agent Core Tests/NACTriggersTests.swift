@@ -16,10 +16,10 @@ class NACTriggersTests: XCTestCase {
                           ["toBeRemoved", "-type", "banner", "-title", "This is a title"],
                           ["toBeRemoved", "-type", "alert", "-title", "This is a title"],
                           ["toBeRemoved", "-type", "popup", "-title", "This is a title", "-silent", "-subtitle", "This is a subtitle"]]
-    let processerUseCases = [URL(string: "macatibm:shownotification?type=popup&title=This%20is%20a%20title")!,
-                             URL(string: "macatibm:shownotification?type=banner&title=This%20is%20a%20title")!,
-                             URL(string: "macatibm:shownotification?type=alert&title=This%20is%20a%20title")!,
-                             URL(string: "macatibm:shownotification?type=alert&title=title&silent&subtitle=This%20is%20a%20subtitle")!]
+    let processerUseCases = [URL(string: "ibmnotifier:shownotification?type=popup&title=This%20is%20a%20title")!,
+                             URL(string: "ibmnotifier:shownotification?type=banner&title=This%20is%20a%20title")!,
+                             URL(string: "ibmnotifier:shownotification?type=alert&title=This%20is%20a%20title")!,
+                             URL(string: "ibmnotifier:shownotification?type=alert&title=title&silent&subtitle=This%20is%20a%20subtitle")!]
     
     override func setUpWithError() throws {
         worker.startObservation()

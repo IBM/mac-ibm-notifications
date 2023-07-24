@@ -24,6 +24,19 @@ public class NotificationButton: NSObject, Codable, NSSecureCoding {
         case link
         case infopopup
         case exitlink
+        
+        var accessibilityHint: String {
+            switch self {
+            case .exitlink:
+                return "button_hint_link_destructive".localized
+            case .link:
+                return "button_hint_link".localized
+            case .infopopup:
+                return "button_hint_text".localized
+            case .none:
+                return "button_hint_destructive".localized
+            }
+        }
     }
 
     // MARK: - Variables
