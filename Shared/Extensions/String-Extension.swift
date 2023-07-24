@@ -156,3 +156,13 @@ extension String {
         return result
     }
 }
+
+extension String {
+    func heightThatFitsWidth(_ width: CGFloat) -> CGFloat {
+        return NSTextField(wrappingLabelWithString: self).sizeThatFits(NSSize(width: width, height: 0)).height
+    }
+    
+    func widthThatFitsHeight(_ height: CGFloat) -> CGFloat {
+        return NSTextField(wrappingLabelWithString: self).sizeThatFits(NSSize(width: 0, height: height)).width
+    }
+}

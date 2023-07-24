@@ -10,7 +10,7 @@
 import Foundation
 
 /// This struct describe an accessory view that needs to be displayed inside a popup.
-public final class NotificationAccessoryElement: NSObject, Codable, NSSecureCoding {
+public class NotificationAccessoryElement: NSObject, Codable, NSSecureCoding {
 
     // MARK: Enums
 
@@ -22,10 +22,11 @@ public final class NotificationAccessoryElement: NSObject, Codable, NSSecureCodi
     /// - video: a video.
     /// - input: an input field with a placeholder.
     /// - securedinput/secureinput: a secure input field with a placeholder.
-    /// - dropdown:
-    /// - html:
-    /// - htmlwhitebox:
-    /// - checklist:
+    /// - dropdown: a drop down menu with multiple options
+    /// - html: a view able to handle an html payload
+    /// - htmlwhitebox: a view able to handle an html payload on a white background
+    /// - checklist: a list of checkboxes
+    /// - datepicker: a date picker view
     enum ViewType: String {
         case whitebox
         case timer
@@ -39,10 +40,13 @@ public final class NotificationAccessoryElement: NSObject, Codable, NSSecureCodi
         case html
         case htmlwhitebox
         case checklist
+        case datepicker
     }
 
     // MARK: - Variables
-
+    
+    /// A unique ID to identify the accessory view between multiple with the same payload/type.
+    var id: UUID = UUID()
     /// The type of the accessory view.
     var type: ViewType
     /// The payload for the accessory view. Based on the type of the view it could be:
@@ -68,7 +72,7 @@ public final class NotificationAccessoryElement: NSObject, Codable, NSSecureCodi
         case payload
     }
 
-    public convenience init(from decoder: Decoder) throws {
+    required public convenience init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: NAVCodingKeys.self)
 
         let typeRawValue = try container.decode(String.self, forKey: .type)

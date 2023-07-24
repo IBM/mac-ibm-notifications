@@ -35,34 +35,36 @@ struct ProgressState: Equatable {
         self.isUserInterruptionAllowed = currentState?.isUserInterruptionAllowed ?? false
         self.exitOnCompletion = currentState?.exitOnCompletion ?? false
         guard let payload = payload else { return }
-        let splittedStrings = payload.split(separator: "/")
-        for string in splittedStrings {
-            guard let argument = string.split(separator: " ", maxSplits: 1).first?.lowercased(),
-                  var value = string.split(separator: " ", maxSplits: 1).last else { continue }
-            if value.last == " " {
-                value.removeLast()
-            }
+        guard payload.lowercased() != "end" else {
+            self.percent = 100
+            return
+        }
+        var splittedStrings = payload.split(separator: "/")
+        splittedStrings.reverse()
+        for index in 0..<splittedStrings.count {
+            guard let argument = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true).first?.lowercased() else { continue }
+            let value = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true).last?.trimmingCharacters(in: CharacterSet.whitespaces)
             switch argument {
             case "percent":
-                guard value != "indeterminate" else {
-                    self.isIndeterminate = true
-                    continue
-                }
-                guard let percentValue = Double(value) else { continue }
-                self.isIndeterminate = false
+                guard let value = value else { continue }
+                guard let percentValue = Double(value == "indeterminate" ? "-1" : value) else { continue }
                 self.percent = percentValue
             case "top_message":
+                guard let value = value else { continue }
                 self.topMessage = String(value != "top_message" ? value : "")
             case "bottom_message":
+                guard let value = value else { continue }
                 self.bottomMessage = String(value != "bottom_message" ? value : "")
             case "user_interaction_enabled":
-                self.isUserInteractionEnabled = value.lowercased() == "true" ? true : false
+                self.isUserInteractionEnabled = (value ?? "true").lowercased() == "true" ? true : false
             case "user_interruption_allowed":
-                self.isUserInterruptionAllowed = value.lowercased() == "true" ? true : false
+                self.isUserInterruptionAllowed = (value ?? "true").lowercased() == "true" ? true : false
             case "exit_on_completion":
-                self.exitOnCompletion = value.lowercased() == "true" ? true : false
+                self.exitOnCompletion = (value ?? "true").lowercased() == "true" ? true : false
             default:
-                continue
+                if index < splittedStrings.count-1 {
+                    splittedStrings[index+1] = Substring(splittedStrings[index+1].appending("/\(splittedStrings[index])"))
+                }
             }
         }
     }

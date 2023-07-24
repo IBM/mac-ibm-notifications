@@ -74,7 +74,6 @@ public final class ReplyHandler {
 
     private func open(_ link: String) {
         guard let url = URL(string: link) else {
-            if NSWorkspace.shared.openFile(link) { return }
             NALogger.shared.log("Failed to create a valid URL or App path from payload: %{public}@", [link])
             return
         }

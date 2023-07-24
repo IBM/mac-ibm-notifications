@@ -114,7 +114,6 @@ class UserNotificationController: NSObject {
             userNotificationContent.userInfo = ["notificationObject": data]
             let category = UNNotificationCategory(identifier: UUID().uuidString, actions: actions, intentIdentifiers: [], options: [.customDismissAction])
             UNUserNotificationCenter.current().setNotificationCategories([category])
-
             userNotificationContent.categoryIdentifier = category.identifier
             userNotificationContent.sound = UNNotificationSound.default
             let userNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
@@ -134,6 +133,8 @@ class UserNotificationController: NSObject {
         }
     }
 }
+
+//  swiftlint:enable function_body_length
 
 // MARK: - UNUserNotificationCenterDelegate
 
@@ -168,6 +169,6 @@ extension UserNotificationController: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.badge, .sound, .alert])
+        completionHandler([.badge, .sound, .banner])
     }
 }

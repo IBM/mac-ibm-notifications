@@ -7,7 +7,6 @@
 //  SPDX-License-Identifier: Apache2.0
 //
 
-import Foundation
 import UserNotifications
 
 extension UNNotificationAttachment {

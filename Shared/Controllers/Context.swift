@@ -16,7 +16,12 @@ final class Context {
 
     // MARK: - Variables
     
-    private var _sharedSettings: SharedSettings?
+    private var _sharedSettings: SharedSettings? {
+        didSet {
+            guard let newSettings = _sharedSettings else { return }
+            UserDefaults.standard.set(newSettings.environment.rawValue, forKey: "environment")
+        }
+    }
     var sharedSettings: SharedSettings? {
         get {
             guard let settings = _sharedSettings else {
@@ -29,10 +34,5 @@ final class Context {
             _sharedSettings = newValue
         }
     }
-    
-    // MARK: - Initializers
-    
-    init() {
-        
-    }
+    var backgroundPanelsController: BackPanelController?
 }

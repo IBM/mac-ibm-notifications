@@ -30,7 +30,7 @@ class NAOTriggersTests: XCTestCase {
                         ]
                     ]
                 ]
-            ],
+            ] as [String : Any],
             [
                 "title": "This is a title",
                 "subtitle": "This is a subtitle",
