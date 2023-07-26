@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 09/02/23.
-//  Copyright © 2023 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -41,6 +41,8 @@ struct AccessoryViewWrapper: View {
         case .datepicker:
             try? DatePickerView(source.accessoryView.payload ?? "", output: source.$output, mainButtonState: source.$mainButtonState, secondaryButtonState: source.$secondaryButtonState)
                 .accessibilityIdentifier("datepicker_accessory_view")
+        case .slideshow:
+            try? SlideShowView(source.accessoryView.payload ?? "")
         default:
             EmptyView()
         }

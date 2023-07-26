@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/27/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -89,7 +89,7 @@ public final class HelpBuilder {
                                               "\n      The custom icon path/URL/SF Symbol name defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                               "\n      The custom icon width defined for this notification. Max. width = 150\n      Example: -icon_width \"150\"",
                                               "\n      The custom icon height defined for this notification. Max. height = 300\n      Example: -icon_height \"150\"",
-                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist | datepicker ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
+                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist | datepicker | slideshow ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
                                               "\n      The payload for the accessory view:\n      " +
                                               "- Text for " + "[ whitebox ]".red() + " view type;\n      " +
                                               "- Text for " + "[ timer ]".red() + " view type. This will be timer's label. Use \"%@\" to define timer's position inside the label. Use " + "[ -timeout ]".yellow() + " argument to define timer's duration;\n      " +
@@ -101,10 +101,12 @@ public final class HelpBuilder {
                                               "- Text with HTML format for " + "[ html | htmlwhitebox ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
                                               "- Text with the format " + "\"/title TEXT /preselection DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /style TEXT /components TEXT\" ".green() + "for " + "[ datepicker ]".red() + " view type. To read more about the usage of /style and /components look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/images URL\\nURL\\nURL /autoplay /delay INT\" ".green() + "for " + "[ slideshow ]".red() + " view type;\n      " +
                                               "Example 1: -accessory_view_payload \"This is the time left: %@\"\n      " +
                                               "Example 2: -accessory_view_payload \"/percent 0 /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
-                                              "Example 4: -accessory_view_payload \"<h1>Hello, world!</h1>this is a line of text<br><br><code>this is a code block<br>this is the second line of a code block</code><br>this is <span style=\"color: #ff0000\">red</span> text\".",
+                                              "Example 4: -accessory_view_payload \"<h1>Hello, world!</h1>this is a line of text<br><br><code>this is a code block<br>this is the second line of a code block</code><br>this is <span style=\"color: #ff0000\">red</span> text\"\n      " +
+                                              "Example 5: -accessory_view_payload \"/images /path/to/image.jpg\\nhttps://www.url.to/image.png\\nhttps://www.url.to/image.png /autoplay /delay 3\".",
                                               "\n      Same as for accessory_view_type argument.",
                                               "\n      Same as for accessory_view_payload argument.",
                                               "\n      The label of the main button.\n      Example: -main_button_label \"Main button title\"",
@@ -205,6 +207,7 @@ public final class HelpBuilder {
                                               "4".bold(),
                                               "200".bold(),
                                               "201".bold(),
+                                              "239".bold(),
                                               "250".bold(),
                                               "255".bold(),
                                               "260".bold()]
@@ -215,6 +218,7 @@ public final class HelpBuilder {
                                                          "Timeout.",
                                                          "Untracked success.",
                                                          "Received SigInt.",
+                                                         "User dimissed the popup.",
                                                          "Invalid number of arguments.",
                                                          "Invalid arguments syntax.",
                                                          "Unable to load resources"]

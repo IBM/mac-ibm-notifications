@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 04/11/22.
-//  Copyright © 2023 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -61,7 +61,6 @@ struct PopUpView: View {
                             .accessibilityIdentifier("timer_accessory_view")
                     default:
                         AccessoryViewWrapper(source: primaryAV)
-                            .accessibilityIdentifier("primary_accessory_view")
                     }
                 }
                 if let secondaryAV = viewModel.secondaryAccessoryView {
@@ -72,7 +71,6 @@ struct PopUpView: View {
                             .accessibilityIdentifier("timer_accessory_view")
                     default:
                         AccessoryViewWrapper(source: secondaryAV)
-                            .accessibilityIdentifier("secondary_accessory_view")
                     }
                 }
                 Spacer(minLength: 12)

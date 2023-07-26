@@ -3,7 +3,7 @@
 //  Notification Agent Popup UI Tests
 //
 //  Created by Simone Martorelli on 02/06/22.
-//  Copyright © 2022 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -174,6 +174,37 @@ class NAPUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
         XCTAssert(app.staticTexts["popup_subtitle"].exists)
         XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+        app.terminate()
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// AccessoryView: slideshow with 3 images
+    func test9Popup() throws {
+        let useCase = "eyJub3RpZmljYXRpb24iOnsidG9waWNJRCI6InVudHJhY2tlZCIsIm1haW5CdXR0b24iOnsibGFiZWwiOiJQcmltYXJ5IiwiY2FsbFRvQWN0aW9uVHlwZSI6Im5vbmUiLCJjYWxsVG9BY3Rpb25QYXlsb2FkIjoiIn0sInNlY29uZGFyeUJ1dHRvbiI6eyJsYWJlbCI6IlNlY29uZGFyeSIsImNhbGxUb0FjdGlvblR5cGUiOiJub25lIiwiY2FsbFRvQWN0aW9uUGF5bG9hZCI6IiJ9LCJpY29uUGF0aCI6IiIsImhpZGVUaXRsZUJhckJ1dHRvbnMiOmZhbHNlLCJyZXRhaW5WYWx1ZXMiOmZhbHNlLCJhY2Nlc3NvcnlWaWV3cyI6W3sidHlwZSI6InNsaWRlc2hvdyIsICJwYXlsb2FkIjoiL2ltYWdlcyBodHRwczovL2Nkbi5waXhhYmF5LmNvbS9waG90by8yMDE1LzA0LzIzLzIyLzAwL3RyZWUtNzM2ODg1XzEyODAuanBnXG5odHRwczovL2Nkbi5waXhhYmF5LmNvbS9waG90by8yMDE1LzA0LzE5LzA4LzMyL3Jvc2UtNzI5NTA5Xzk2MF83MjAuanBnXG5odHRwczovL2Nkbi5waXhhYmF5LmNvbS9waG90by8yMDE1LzA3LzA1LzEwLzE4L3RyZWUtODMyMDc5Xzk2MF83MjAuanBnIn1dLCJpc01vdmFibGUiOnRydWUsImFsd2F5c09uVG9wIjpmYWxzZSwidHlwZSI6InBvcHVwIiwidGl0bGUiOiJUaGlzIGlzIGEgdGl0bGUiLCJzdWJ0aXRsZSI6IlRoaXMgaXMgYSBzdWJ0aXRsZSIsInNpbGVudCI6ZmFsc2UsInNob3dTdXBwcmVzc2lvbkJ1dHRvbiI6ZmFsc2UsIm1pbmlhdHVyaXphYmxlIjpmYWxzZSwiYmFyVGl0bGUiOiJTb21lIiwiZm9yY2VMaWdodE1vZGUiOmZhbHNlLCJub3RpZmljYXRpb25JRCI6InVudHJhY2tlZCJ9LCJzZXR0aW5ncyI6eyJpc1ZlcmJvc2VNb2RlRW5hYmxlZCI6ZmFsc2UsImVudmlyb25tZW50IjoicHJvZCJ9fQ==" // pragma: allowlist-secret
+        let app = XCUIApplication()
+        app.launchArguments = [useCase]
+        app.launch()
+        XCTAssert(app.buttons["main_button"].exists)
+        XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+        XCTAssert(app.buttons["secondary_button"].exists)
+        XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+        XCTAssert(app.staticTexts["popup_title"].exists)
+        XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+        XCTAssert(app.staticTexts["popup_subtitle"].exists)
+        XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+        XCTAssert(app.images["accessory_view_slideshow_image"].exists)
+        XCTAssert(!app.buttons["accessory_view_slideshow_backward_button"].exists)
+        XCTAssert(app.buttons["accessory_view_slideshow_forward_button"].exists)
+        app.buttons["accessory_view_slideshow_forward_button"].tap()
+        XCTAssert(app.buttons["accessory_view_slideshow_forward_button"].exists)
+        XCTAssert(app.buttons["accessory_view_slideshow_backward_button"].exists)
+        app.buttons["accessory_view_slideshow_forward_button"].tap()
+        XCTAssert(app.buttons["accessory_view_slideshow_backward_button"].exists)
+        XCTAssert(!app.buttons["accessory_view_slideshow_forward_button"].exists)
         app.terminate()
     }
 }
