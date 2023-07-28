@@ -7,7 +7,6 @@
 ![Project version](https://img.shields.io/badge/version-3.0.0-1984E5)
 ![macOS](https://img.shields.io/badge/os-macOS%2011+-bright%20green)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5823/badge)](https://bestpractices.coreinfrastructure.org/projects/5823)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=IBM_mac-ibm-notifications&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=IBM_mac-ibm-notifications)  
 ## Scope
