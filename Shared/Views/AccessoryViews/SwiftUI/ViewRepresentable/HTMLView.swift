@@ -26,12 +26,12 @@ struct HTMLView: NSViewRepresentable {
     var containerWidth: CGFloat?
     
     // MARK: - Protocol Methods
-
+    
     func makeNSView(context: NSViewRepresentableContext<HTMLView>) -> HTMLAccessoryView {
         let markdownTextView = HTMLAccessoryView(withText: text,
-                                                drawsBackground: drawsBackground ?? false,
-                                                maxViewHeight: maxViewHeight ?? 300,
-                                                containerWidth: containerWidth ?? 400)
+                                                 drawsBackground: drawsBackground ?? false,
+                                                 maxViewHeight: maxViewHeight ?? 300,
+                                                 containerWidth: containerWidth ?? 400)
         return markdownTextView
     }
     

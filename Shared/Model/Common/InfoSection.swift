@@ -11,13 +11,13 @@ import Foundation
 
 /// A single info field
 struct InfoField: Codable, Identifiable {
-    var id: String
+    var id: UUID
     var label: String
     var description: String?
     var iconName: String?
     
     init(label: String, description: String? = nil, iconName: String? = nil) {
-        self.id = label + "\(description ?? "")"
+        self.id = UUID()
         self.label = label
         self.description = description
         self.iconName = iconName
@@ -42,7 +42,7 @@ struct InfoField: Codable, Identifiable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.label = try container.decode(String.self, forKey: .label)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.id = label + "\(description ?? "")"
+        self.id = UUID()
         self.iconName = try container.decodeIfPresent(String.self, forKey: .iconName)
     }
 }
