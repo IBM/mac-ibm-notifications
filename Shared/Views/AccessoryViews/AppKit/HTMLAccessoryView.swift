@@ -21,6 +21,7 @@ final class HTMLAccessoryView: AccessoryView {
         return _containerWidth ?? (self.superview?.bounds.width ?? 0)
     }
     private var scrollViewHeightAnchor: NSLayoutConstraint!
+    private var scrollViewWidthAnchor: NSLayoutConstraint!
     private var textViewWidthAnchor: NSLayoutConstraint!
     private var textViewHeightAnchor: NSLayoutConstraint!
     private var context = Context.main
@@ -128,6 +129,9 @@ final class HTMLAccessoryView: AccessoryView {
         scrollViewHeightAnchor?.isActive = false
         scrollViewHeightAnchor = scrollView.heightAnchor.constraint(equalToConstant: scrollViewHeight)
         scrollViewHeightAnchor?.isActive = true
+        scrollViewWidthAnchor?.isActive = false
+        scrollViewWidthAnchor = scrollView.widthAnchor.constraint(equalToConstant: containerWidth)
+        scrollViewWidthAnchor?.isActive = true
         textViewWidthAnchor?.isActive = false
         textViewWidthAnchor = textView.widthAnchor.constraint(equalToConstant: max(containerWidth-12, 0))
         textViewWidthAnchor?.isActive = true
@@ -136,10 +140,6 @@ final class HTMLAccessoryView: AccessoryView {
         textViewHeightAnchor?.isActive = true
         
         textView.textContainer?.size = CGSize(width: textViewSize.width-12, height: textViewSize.height)
-    }
-    
-    override func configureAccessibilityElements() {
-
     }
     
     // MARK: - Private Methods
