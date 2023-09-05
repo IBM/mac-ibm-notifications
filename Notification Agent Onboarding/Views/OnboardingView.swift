@@ -27,9 +27,7 @@ struct OnboardingView: View {
             currentPage
                 .accessibilityElement(children: .contain)
             Spacer()
-            Rectangle()
-                .frame(height: 0.5)
-                .foregroundColor(Color(.darkGray))
+            Divider()
             HStack {
                 HStack {
                     if let infoSection = viewModel.currentPage.infoSection {
@@ -87,6 +85,7 @@ struct OnboardingView: View {
             }
             .padding()
         }
+        .frame(maxWidth: 832, maxHeight: 600)
     }
     
     var currentPage: some View {
@@ -95,7 +94,7 @@ struct OnboardingView: View {
                                           outp: $viewModel.pageOutputs,
                                           primaryButtonState: $viewModel.primaryButtonState,
                                           secondaryButtonState: $viewModel.secondaryButtonState))
-        .padding()
+        .padding([.trailing, .leading, .top], 8)
     }
 }
 

@@ -51,7 +51,7 @@ class OnboardingViewModel: NSObject, ObservableObject {
             if let page = onboardingData.pages[safe: currentIndex] {
                 primaryButtonState = .enabled
                 secondaryButtonState = .enabled
-                primaryButtonLabel = page.primaryButtonLabel ?? (isLastPage ?  "onboarding_page_close_button".localized : "onboarding_page_continue_button".localized)
+                primaryButtonLabel = page.primaryButtonLabel ?? (isLastPage ? "onboarding_page_close_button".localized : "onboarding_page_continue_button".localized)
                 secondaryButtonLabel = page.secondaryButtonLabel ?? "onboarding_page_back_button".localized
                 currentPage = page
                 guard currentIndex < outputsStore.count && currentIndex < inputsStore.count else { return }
@@ -86,7 +86,7 @@ class OnboardingViewModel: NSObject, ObservableObject {
         self.currentPage = firstPage
         self.isLastPage = onboardingData.pages.count == 1
         self.hideBackButton = true
-        self.primaryButtonLabel = firstPage.primaryButtonLabel ?? "onboarding_page_continue_button".localized
+        self.primaryButtonLabel = firstPage.primaryButtonLabel ?? (onboardingData.pages.count == 1 ? "onboarding_page_close_button".localized : "onboarding_page_continue_button".localized)
         self.secondaryButtonLabel = firstPage.secondaryButtonLabel ?? "onboarding_page_back_button".localized
         let tempMatrixArray: [[[String]]] = onboardingData.pages.map { page in
             guard page.isValidPage() else {
@@ -111,7 +111,7 @@ class OnboardingViewModel: NSObject, ObservableObject {
             self.setTimeout(timeout)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(repositionWindow), name: NSApplication.didChangeScreenParametersNotification, object: nil)
-        if let progressBarPayload = onboardingData.progressBarPayload {
+        if let progressBarPayload = onboardingData.progressBarPayload, onboardingData.pages.count > 1 {
             var payload: String = "/percent 0 /user_interaction_enabled true"
             if progressBarPayload.lowercased() == "automatic" {
                 automaticProgressBar = true
@@ -141,12 +141,14 @@ class OnboardingViewModel: NSObject, ObservableObject {
         resetTimers()
         switch type {
         case .main:
-            writeStoreOnDevice()
             if currentIndex >= (onboardingData.pages.count - 1) {
+                outputsStore[currentIndex] = self.pageOutputs
+                writeStoreOnDevice()
                 Utils.applicationExit(withReason: .userFinishedOnboarding)
             } else {
                 currentIndex += 1
             }
+            writeStoreOnDevice()
             updateProgressBarIfNeeded()
         case .secondary:
             guard currentIndex > 0 else { return }
