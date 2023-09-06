@@ -9,6 +9,7 @@
 
 import SwiftUI
 import Combine
+import RichText
 
 /// AccessoryViewWrapper is a struct that define a view that works as generic wrapper for all the available Accessory Views.
 struct AccessoryViewWrapper: View {
@@ -32,7 +33,18 @@ struct AccessoryViewWrapper: View {
             try? MediaView(source.accessoryView.payload ?? "", output: source.$output, mainButtonState: source.$mainButtonState, secondaryButtonState: source.$secondaryButtonState, legacyType: source.accessoryView.type, contentMode: contentMode)
                 .accessibilityIdentifier(source.accessoryView.type == .image ? "image_accessory_view" : "video_whitebox_accessory_view")
         case .html, .htmlwhitebox:
-            HTMLView(text: source.accessoryView.payload ?? "", drawsBackground: source.accessoryView.type == .htmlwhitebox || source.accessoryView.type == .whitebox)
+            ZStack {
+                if source.accessoryView.type == .htmlwhitebox {
+                    Color.white
+                }
+                ScrollView {
+                    RichText(html: source.accessoryView.payload ?? "")
+                        .colorScheme(source.accessoryView.type == .htmlwhitebox ? .light : .auto)
+                        .padding(source.accessoryView.type == .htmlwhitebox ? 4 : 0)
+                }
+                .frame(maxHeight: AppComponent.current == .popup ? 300 : .infinity)
+                .fixedSize(horizontal: false, vertical: true)
+            }
         case .whitebox:
             MarkdownView(text: source.accessoryView.payload?.localized ?? "", drawsBackground: true)
         case .progressbar:

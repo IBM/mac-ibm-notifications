@@ -53,7 +53,7 @@ struct PageView: View {
                 Text(title)
                     .font(.bold(.title)())
                     .multilineTextAlignment(.center)
-                    .padding(.top, 6)
+                    .padding(.top, 12)
                     .padding(.bottom, 4)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("onboarding_title")
@@ -62,7 +62,6 @@ struct PageView: View {
                 if let subtitle = viewModel.page.subtitle {
                     Text(AttributedString(markdownText(subtitle).attributedString()))
                         .multilineTextAlignment(.center)
-                        .font(.title3)
                         .accessibilityAddTraits(.isHeader)
                         .accessibilityIdentifier("onboarding_subtitle")
                 }
@@ -76,7 +75,7 @@ struct PageView: View {
                 if let subtitle = viewModel.page.subtitle {
                     Text(subtitle)
                         .multilineTextAlignment(.center)
-                        .font(.title3)
+                        .font(.title2)
                         .accessibilityAddTraits(.isHeader)
                         .accessibilityIdentifier("onboarding_subtitle")
                 }
@@ -90,9 +89,9 @@ struct PageView: View {
             }
 
             if !viewModel.accessoryViewsMatrix.isEmpty {
-                VStack {
+                VStack(alignment: .center) {
                     ForEach(viewModel.accessoryViewsMatrix, id: \.hashValue) { row in
-                        HStack {
+                        HStack(alignment: .top) {
                             ForEach(row, id: \.hashValue) { accessoryView in
                                 accessoryView
                             }
