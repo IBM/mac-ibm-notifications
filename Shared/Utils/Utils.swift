@@ -90,7 +90,7 @@ struct Utils {
     }
     
     static func write(_ dictionary: NSDictionary, to fileName: String) {
-        let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".mainotifications")
+        let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".ibmnotifier")
         if !FileManager.default.fileExists(atPath: mainDirectory.path) {
             do {
                 try FileManager.default.createDirectory(at: mainDirectory, withIntermediateDirectories: false, attributes: nil)
@@ -107,7 +107,7 @@ struct Utils {
     }
     
     static func delete(_ fileName: String) {
-        let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".mainotifications")
+        let mainDirectory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".ibmnotifier")
         if FileManager.default.fileExists(atPath: mainDirectory.path) {
             let filePath = mainDirectory.appendingPathComponent(fileName)
             if FileManager.default.fileExists(atPath: filePath.path) && FileManager.default.isDeletableFile(atPath: filePath.path) {
