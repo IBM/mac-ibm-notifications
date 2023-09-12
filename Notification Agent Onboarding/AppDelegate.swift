@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
             case [.command] where event.characters == "q":
+                guard !self.context.disableQuit else { return .none }
                 Utils.applicationExit(withReason: .userDismissedOnboarding)
             default:
                 return event

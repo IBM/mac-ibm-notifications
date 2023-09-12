@@ -35,4 +35,5 @@ final class Context {
         }
     }
     var backgroundPanelsController: BackPanelController?
+    var disableQuit: Bool = false
 }

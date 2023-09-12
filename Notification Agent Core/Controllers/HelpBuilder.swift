@@ -45,7 +45,8 @@ public final class HelpBuilder {
                                            "-popup_reminder".yellow(),
                                            "-retain_values".yellow(),
                                            "-background_panel".yellow(),
-                                           "-unmovable".yellow()]
+                                           "-unmovable".yellow(),
+                                           "-disable_quit".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -65,7 +66,8 @@ public final class HelpBuilder {
                                                 "-hide_title_bar_buttons".yellow(),
                                                 "-background_panel".yellow(),
                                                 "-unmovable".yellow(),
-                                                "-timeout".yellow()]
+                                                "-timeout".yellow(),
+                                                "-disable_quit".yellow()]
     static let systemAlertArguments: [String] = ["-type".green(),
                                                  "-title".yellow(),
                                                  "-subtitle".yellow(),
@@ -132,8 +134,8 @@ public final class HelpBuilder {
                                               "\n      A text payload to define the behavior of an optional reminder for the pop-up. The reminder is basically a timer at the end of which the pop-up is pushed again on top of the view hierarchy on screen. The payload format is: " + "\"/timeinterval <TIME_IN_SECONDS> /silent /repeat\" ".green() + "\n      Example: -popup_reminder \"/timeinterval 300\"",
                                               "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked).",
                                               "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
-                                              "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable"]
-    
+                                              "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
+                                              "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit"]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
@@ -153,7 +155,8 @@ public final class HelpBuilder {
                                                    "\n      Flag that tells the agent to remove the title bar buttons for the Onbording UI.\n      Example: -hide_title_bar_buttons",
                                                    "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
                                                    "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
-                                                   "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300"]
+                                                   "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300",
+                                                   "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit"]
     static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type systemAlert",
                                                     "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                     "\n      The subtitle of the notification.\n      Example: -subtitle \"Subtitle\"",

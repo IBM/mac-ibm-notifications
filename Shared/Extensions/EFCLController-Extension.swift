@@ -24,6 +24,7 @@ extension EFCLController {
             }
             let taskObject = try JSONDecoder().decode(TaskObject.self, from: data)
             context.sharedSettings = taskObject.settings
+            context.disableQuit = taskObject.notification.disableQuit
             NotificationCenter.default.post(name: .showNotification,
                                             object: self,
                                             userInfo: ["object": taskObject.notification])

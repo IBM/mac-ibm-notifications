@@ -107,6 +107,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var backgroundPanel: BackgroundPanelStyle?
     /// A boolean value that define if the UI should be movable for the user.
     var isMovable: Bool = true
+    /// A boolean value that define if the UI should ignore cmd+q shortcut.
+    var disableQuit: Bool = false
     
     // MARK: - Initializers
     
@@ -243,6 +245,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let isNotMovable = dict["unmovable"] as? String {
             self.isMovable = !(isNotMovable.lowercased() == "true")
         }
+        if let disableQuit = dict["disable_quit"] as? String {
+            self.disableQuit = disableQuit.lowercased() == "true"
+        }
         super.init()
         try checkObjectConsistency()
     }
@@ -341,6 +346,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case workflow
         case backgroundPanel
         case isMovable
+        case disableQuit
     }
     
     required public init(from decoder: Decoder) throws {
@@ -385,6 +391,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue)
         }
         self.isMovable = try container.decode(Bool.self, forKey: .isMovable)
+        self.disableQuit = try container.decode(Bool.self, forKey: .disableQuit)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -421,7 +428,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.workflow?.rawValue, forKey: .workflow)
         try container.encodeIfPresent(self.backgroundPanel?.rawValue, forKey: .backgroundPanel)
         try container.encodeIfPresent(self.isMovable, forKey: .isMovable)
-
+        try container.encodeIfPresent(self.disableQuit, forKey: .disableQuit)
     }
     
     // MARK: Codable protocol conformity - END
@@ -518,8 +525,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let backgroundPanelRawValue = self.backgroundPanel?.rawValue {
             coder.encode(backgroundPanelRawValue, forKey: NOCodingKeys.backgroundPanel.rawValue)
         }
-        let number = NSNumber(booleanLiteral: isMovable)
-        coder.encode(number, forKey: NOCodingKeys.isMovable.rawValue)
+        let nIsMovable = NSNumber(booleanLiteral: isMovable)
+        coder.encode(nIsMovable, forKey: NOCodingKeys.isMovable.rawValue)
+        let nDisableQuit = NSNumber(booleanLiteral: disableQuit)
+        coder.encode(nDisableQuit, forKey: NOCodingKeys.disableQuit.rawValue)
     }
     
     //  swiftlint:enable function_body_length
@@ -562,6 +571,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue as String)
         }
         self.isMovable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.isMovable.rawValue) as? Bool ?? true
+        self.disableQuit = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.disableQuit.rawValue) as? Bool ?? true
     }
     
     // MARK: - NSSecureCoding protocol conformity - END
