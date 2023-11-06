@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B4B58CC2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CD2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CE2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CF2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
 		1B5AFAEF2A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
 		1B5AFAF02A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
 		1B5AFAF12A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
@@ -744,6 +748,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSpec.swift; sourceTree = "<group>"; };
 		1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlActionClosureProtocol.swift; sourceTree = "<group>"; };
 		1B5AFAF52A52BD2F00F777E1 /* BackPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPanelController.swift; sourceTree = "<group>"; };
 		1B5AFAFE2A52EC4400F777E1 /* SwiftUIButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIButtonState.swift; sourceTree = "<group>"; };
@@ -1271,6 +1276,7 @@
 			isa = PBXGroup;
 			children = (
 				B9A03A9A24B76511005BB90E /* NotificationObject.swift */,
+				1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */,
 				B92E6707253893D900F39949 /* ProgressState.swift */,
 				B9A03A9E24B779B8005BB90E /* NotificationAccessoryElement.swift */,
 				B9A8852125B9B10600081C8D /* OnboardingData.swift */,
@@ -1727,7 +1733,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = IBM;
 				TargetAttributes = {
 					B920D4B8265F8FC600437BE6 = {
@@ -2061,6 +2067,7 @@
 				B961A531267A4DC700657930 /* FlippedStackView.swift in Sources */,
 				B9360EA8268A00E100217247 /* EFCLController.swift in Sources */,
 				B961A4F6267A483900657930 /* NotificationDispatch-Extension.swift in Sources */,
+				1B4B58CC2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				B961A51D267A4D7D00657930 /* NAMedia.swift in Sources */,
 				B961A517267A4D6800657930 /* NotificationButton.swift in Sources */,
 				B9064C10276BAF240085FA31 /* PopupReminder.swift in Sources */,
@@ -2144,6 +2151,7 @@
 				B961A5D9267B89CE00657930 /* LoadableNib.swift in Sources */,
 				B961A5DC267B89CE00657930 /* NAMedia.swift in Sources */,
 				FD1730192875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
+				1B4B58CD2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				B961A5A7267B44B400657930 /* Decodable-Extensions.swift in Sources */,
 				1B5AFAF92A52BD2F00F777E1 /* BackPanelController.swift in Sources */,
 				B961A5A6267B44B400657930 /* String-Extension.swift in Sources */,
@@ -2445,6 +2453,7 @@
 				FDC346E12858C459001F2212 /* UserReplyType.swift in Sources */,
 				FD0D02D628D9F8AE00A167B7 /* SystemAlertController.swift in Sources */,
 				FDC347292858C494001F2212 /* Decodable-Extensions.swift in Sources */,
+				1B4B58CE2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				1B5AFB402A52EE3C00F777E1 /* MarkdownView.swift in Sources */,
 				FDC3473E2858C4AF001F2212 /* InteractiveEFCLContoller.swift in Sources */,
 				1B5AFBC52A52FBD800F777E1 /* PopUpViewModel.swift in Sources */,
@@ -2537,6 +2546,7 @@
 				FDC347132858C48A001F2212 /* FlippedStackView.swift in Sources */,
 				FDC346EA2858C459001F2212 /* UserReplyType.swift in Sources */,
 				FD1730132875B82000781A69 /* DynamicNotificationButton.swift in Sources */,
+				1B4B58CF2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				FDC347142858C48A001F2212 /* HorizontalLine.swift in Sources */,
 				FDC346992858C414001F2212 /* EFCLController.swift in Sources */,
 				1B5AFB412A52EE3C00F777E1 /* MarkdownView.swift in Sources */,
@@ -2958,6 +2968,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2994,6 +3005,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3023,6 +3035,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3059,6 +3072,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

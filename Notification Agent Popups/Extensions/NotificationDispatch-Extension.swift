@@ -25,7 +25,8 @@ extension NotificationDispatch {
             }
         case .popup:
             DispatchQueue.main.async {
-                let mainWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 520, height: 130), styleMask: .titled, backing: .buffered, defer: false)
+                let windowWidth = CGFloat(truncating: NumberFormatter().number(from: object.customWidth ?? "520") ?? .init(integerLiteral: 520))
+                let mainWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: windowWidth, height: 130), styleMask: .titled, backing: .buffered, defer: false)
                 let viewModel = PopUpViewModel(object, window: mainWindow)
                 let contentView = PopUpView(viewModel: viewModel)
                 let hostingView = NSHostingView(rootView: contentView)

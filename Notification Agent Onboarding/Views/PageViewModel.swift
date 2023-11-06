@@ -19,6 +19,7 @@ final class PageViewModel: ObservableObject {
     var primaryButtonStates: [[SwiftUIButtonState]]
     var secondaryButtonStates: [[SwiftUIButtonState]]
     var accessoryViewsMatrix: [[AccessoryViewWrapper]]
+    var viewSpec: ViewSpec
     
     // MARK: - Binded Variables
     
@@ -39,6 +40,7 @@ final class PageViewModel: ObservableObject {
         self._outputs = outp
         self._primaryButtonState = primaryButtonState
         self._secondaryButtonState = secondaryButtonState
+        self.viewSpec = ViewSpec(mainViewWidth: 832, contentMode: .fit, iconSize: CGSize(width: 86, height: 86))
         
         primaryButtonStates = []
         secondaryButtonStates = []
@@ -72,7 +74,7 @@ final class PageViewModel: ObservableObject {
                     guard newValue != secondaryButtonState else { return }
                     secondaryButtonState = newValue
                     self.evaluateBindings()
-                }), accessoryView: accessoryView), contentMode: .fit))
+                }), accessoryView: accessoryView)))
             }
             primaryButtonStates.append(primaryButtonStatesRow)
             secondaryButtonStates.append(secondaryButtonStatesRow)

@@ -22,7 +22,7 @@ struct PopUpView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
             VStack(alignment: .leading) {
-                Icon(icon: viewModel.customPopupIcon, iconSize: viewModel.iconSize)
+                Icon(icon: viewModel.customPopupIcon, iconSize: viewModel.viewSpec.iconSize)
                     .accessibilityIdentifier("popup_icon")
                 Spacer(minLength: 8)
                 HStack(spacing: 4) {
@@ -52,7 +52,8 @@ struct PopUpView: View {
                 BodyLabels(title: viewModel.notificationObject.title,
                            titleFont: viewModel.titleFont,
                            subtitle: viewModel.notificationObject.subtitle)
-                Spacer(minLength: 8)
+                .environmentObject(viewModel.viewSpec)
+                .padding(.bottom, 8)
                 if let primaryAV = viewModel.primaryAccessoryView {
                     switch primaryAV.accessoryView.type {
                     case .timer:
@@ -61,6 +62,7 @@ struct PopUpView: View {
                             .accessibilityIdentifier("timer_accessory_view")
                     default:
                         AccessoryViewWrapper(source: primaryAV)
+                            .environmentObject(viewModel.viewSpec)
                     }
                 }
                 if let secondaryAV = viewModel.secondaryAccessoryView {
@@ -71,6 +73,7 @@ struct PopUpView: View {
                             .accessibilityIdentifier("timer_accessory_view")
                     default:
                         AccessoryViewWrapper(source: secondaryAV)
+                            .environmentObject(viewModel.viewSpec)
                     }
                 }
                 Spacer(minLength: 12)
@@ -95,7 +98,7 @@ struct PopUpView: View {
             }
         }
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-        .frame(width: 520)
+        .frame(width: viewModel.viewSpec.mainViewWidth)
     }
 }
 

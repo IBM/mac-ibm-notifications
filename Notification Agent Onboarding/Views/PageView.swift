@@ -94,6 +94,7 @@ struct PageView: View {
                         HStack(alignment: .top) {
                             ForEach(row, id: \.hashValue) { accessoryView in
                                 accessoryView
+                                    .environmentObject(viewModel.viewSpec)
                             }
                         }
                     }

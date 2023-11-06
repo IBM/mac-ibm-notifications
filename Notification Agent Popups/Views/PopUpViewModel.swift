@@ -62,16 +62,6 @@ class PopUpViewModel: ObservableObject {
         }
         return nil
     }
-    var iconSize: CGSize {
-        if let widthString = notificationObject.iconWidth,
-           let width = NumberFormatter().number(from: widthString),
-           let heightString = notificationObject.iconHeight,
-           let height = NumberFormatter().number(from: heightString) {
-            return CGSize(width: CGFloat(truncating: width), height: CGFloat(truncating: height))
-        } else {
-            return CGSize(width: 60, height: 60)
-        }
-    }
     
     // MARK: - Variables
     
@@ -87,6 +77,7 @@ class PopUpViewModel: ObservableObject {
     var reminderTimer: Timer?
     var timeoutTimer: Timer?
     var countDown: Int = 0
+    var viewSpec: ViewSpec
 
     // MARK: - Published Variables
     
@@ -119,6 +110,17 @@ class PopUpViewModel: ObservableObject {
         tertiaryButtonState = notificationObject.tertiaryButton != nil ? .enabled : .hidden
         helpButtonState = notificationObject.helpButton != nil ? .enabled : .hidden
         warningButtonState = notificationObject.warningButton?.isVisible ?? false ? .enabled : .hidden
+        let viewWidth = CGFloat(truncating: NumberFormatter().number(from: notificationObject.customWidth ?? "520") ?? .init(integerLiteral: 520))
+        var iconSize: CGSize = .zero
+        if let widthString = notificationObject.iconWidth,
+           let width = NumberFormatter().number(from: widthString),
+           let heightString = notificationObject.iconHeight,
+           let height = NumberFormatter().number(from: heightString) {
+            iconSize = CGSize(width: CGFloat(truncating: width), height: CGFloat(truncating: height))
+        } else {
+            iconSize = CGSize(width: 60, height: 60)
+        }
+        viewSpec = ViewSpec(mainViewWidth: viewWidth, iconSize: iconSize)
 
         NotificationCenter.default.addObserver(self, selector: #selector(repositionWindow), name: NSApplication.didChangeScreenParametersNotification, object: nil)
 

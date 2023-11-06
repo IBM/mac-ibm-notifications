@@ -13,6 +13,10 @@ import SwiftyMarkdown
 /// BodyLabels is a struct that defines a view with the title and the subtitle for the PupUpView.
 struct BodyLabels: View {
     
+    // MARK: - Environment Variables
+    
+    @EnvironmentObject var viewSpec: ViewSpec
+    
     // MARK: - Variables
     
     var title: String?
@@ -30,7 +34,7 @@ struct BodyLabels: View {
                     .accessibilityIdentifier("popup_title")
              }
             if let subtitle = subtitle {
-                MarkdownView(text: subtitle.localized, maxViewHeight: 450)
+                MarkdownView(text: subtitle.localized, maxViewHeight: 450, containerWidth: viewSpec.accessoryViewWidth)
                     .accessibilityElement()
                     .accessibilityValue(SwiftyMarkdown(string: subtitle).attributedString().string)
                     .accessibilityAddTraits(.isStaticText)

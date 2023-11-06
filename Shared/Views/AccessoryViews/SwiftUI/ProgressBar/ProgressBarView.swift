@@ -41,7 +41,7 @@ struct ProgressBarView: View {
                     .progressViewStyle(.linear)
                     .padding(.top, 0)
                     .padding(.bottom, 0)
-                    .accessibilityIdentifier("progressbar_accessory_view_progressview_indetermined")
+                    .accessibilityIdentifier("progressbar_accessory_view_progressview_indeterminate")
             }
             Text(viewModel.progressState.bottomMessage)
                 .font(.system(.footnote))

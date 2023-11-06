@@ -122,7 +122,7 @@ struct PickerView: View {
             if !title.isEmpty {
                 Text(title)
                     .fixedSize()
-                    .accessibilityIdentifier("picker_accessory_view_secure_title")
+                    .accessibilityIdentifier("picker_accessory_view_title")
             }
             switch self.type {
             case .radiobuttons:
@@ -144,6 +144,7 @@ struct PickerView: View {
                             Text(element.label.wrappedValue).tag(element.id.wrappedValue.description).fixedSize(horizontal: false, vertical: true)
                         }
                         .toggleStyle(.checkbox)
+                        .accessibilityIdentifier("picker_accessory_view_checkboxes_\(element.label.wrappedValue.trimmingCharacters(in: .whitespaces))")
                     }
                 }
                 .onAppear {
@@ -156,7 +157,6 @@ struct PickerView: View {
                     }
                     evaluateButtonState()
                 }
-                .accessibilityIdentifier("picker_accessory_view_checkboxes")
             case .dropdown:
                 Picker("", selection: self.$selectionValue.onUpdate(evaluateButtonState)) {
                     Text(placeholder).tag("-1")

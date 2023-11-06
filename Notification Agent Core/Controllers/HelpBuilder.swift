@@ -46,7 +46,8 @@ public final class HelpBuilder {
                                            "-retain_values".yellow(),
                                            "-background_panel".yellow(),
                                            "-unmovable".yellow(),
-                                           "-disable_quit".yellow()]
+                                           "-disable_quit".yellow(),
+                                           "-custom_width".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -135,7 +136,8 @@ public final class HelpBuilder {
                                               "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked).",
                                               "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
                                               "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
-                                              "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit"]
+                                              "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit",
+                                              "\n      A custom width for the UI.\n      Example: -custom_width 1000"]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",

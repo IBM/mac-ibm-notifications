@@ -12,6 +12,10 @@ import SwiftUI
 /// HTMLView is a struct that defines a SwiftUI view to display the AppKit HTMLAccessoryView view.
 struct HTMLView: NSViewRepresentable {
 
+    // MARK: - Environment Variables
+    
+    @EnvironmentObject var viewSpec: ViewSpec
+    
     // MARK: - Variables
     
     /// The raw text to be displayed in the HTMLAccessoryView.
@@ -22,8 +26,6 @@ struct HTMLView: NSViewRepresentable {
     var maxViewHeight: CGFloat?
     /// Allignement for the text in the view.
     var alignment: NSTextAlignment?
-    /// The view container width. Used to calculate the size based on the font.
-    var containerWidth: CGFloat?
     
     // MARK: - Protocol Methods
     
@@ -31,7 +33,7 @@ struct HTMLView: NSViewRepresentable {
         let markdownTextView = HTMLAccessoryView(withText: text,
                                                  drawsBackground: drawsBackground ?? false,
                                                  maxViewHeight: maxViewHeight ?? 300,
-                                                 containerWidth: containerWidth ?? 400)
+                                                 containerWidth: viewSpec.accessoryViewWidth)
         return markdownTextView
     }
     

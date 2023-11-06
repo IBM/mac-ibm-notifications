@@ -72,7 +72,7 @@ struct SlideShowView: View {
                     Image(nsImage: image)
                         .resizable()
                         .aspectRatio(images[selection].aspectRatioForMedia(), contentMode: .fit)
-                        .frame(maxWidth: .infinity, maxHeight: 300)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibilityIdentifier("accessory_view_slideshow_image")
                 } else {

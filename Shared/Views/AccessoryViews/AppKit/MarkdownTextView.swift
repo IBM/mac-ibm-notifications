@@ -87,7 +87,7 @@ final class MarkdownTextView: AccessoryView {
         textView.isEditable = false
         textView.isSelectable = true
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.setAccessibilityHidden(true)
+        textView.setAccessibilityIdentifier("markdown_accessory_view")
 
         scrollView = NSScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +114,6 @@ final class MarkdownTextView: AccessoryView {
             textColor = .labelColor
         }
         self.setText(text)
-        self.identifier = NSUserInterfaceItemIdentifier("markdown_accessory_view")
     }
 
     required init?(coder: NSCoder) {

@@ -12,36 +12,42 @@ import XCTest
 class NAOUITests: XCTestCase {
 
     /// Testing simple Onboarding UI
-    func test1Onboarding() throws {
-        let useCase = "eyJub3RpZmljYXRpb24iOnsidG9waWNJRCI6InVudHJhY2tlZCIsIm1haW5CdXR0b24iOnsibGFiZWwiOiJPSyIsImNhbGxUb0FjdGlvblR5cGUiOiJub25lIiwiY2FsbFRvQWN0aW9uUGF5bG9hZCI6IiJ9LCJub3RpZmljYXRpb25JRCI6InVudHJhY2tlZCIsInJldGFpblZhbHVlcyI6ZmFsc2UsImFjY2Vzc29yeVZpZXdzIjpbXSwicGF5bG9hZCI6eyJwYWdlcyI6W3siYm9keSI6IkZpcnN0IHBhZ2UncyBib2R5IiwidG9wSWNvbiI6InNxdWFyZS5hbmQuYXJyb3cudXAiLCJ0aXRsZSI6IkZpcnN0IHBhZ2UncyB0aXRsZSIsInN1YnRpdGxlIjoiRmlyc3QgcGFnZSdzIHN1YnRpdGxlIiwiaW5mb1NlY3Rpb24iOnsiZmllbGRzIjpbeyJpZCI6IlNvbWUgRGVzY3JpcHRpb24gU29tZSIsImxhYmVsIjoiU29tZSBEZXNjcmlwdGlvbiBTb21lIn0seyJpZCI6IlNvbWUgRGVzY3JpcHRpb24gU29tZSIsImxhYmVsIjoiU29tZSBEZXNjcmlwdGlvbiBTb21lIn0seyJpZCI6IlNvbWUgRGVzY3JpcHRpb24gU29tZSIsImxhYmVsIjoiU29tZSBEZXNjcmlwdGlvbiBTb21lIn1dfX0seyJzdWJ0aXRsZSI6IlNlY29uZCBwYWdlJ3Mgc3VidGl0bGUiLCJzaW5nbGVDaGFuZ2UiOnRydWUsInByaW1hcnlCdXR0b25MYWJlbCI6IlNvbWUiLCJ0aXRsZSI6IlNlY29uZCBwYWdlJ3MgdGl0bGUiLCJ0ZXJ0aWFyeUJ1dHRvbiI6eyJsYWJlbCI6IlRlcnRpYXJ5IiwiY2FsbFRvQWN0aW9uVHlwZSI6ImxpbmsiLCJjYWxsVG9BY3Rpb25QYXlsb2FkIjoiaHR0cHM6XC9cL3d3dy5nb29nbGUuY29tIn0sImluZm9TZWN0aW9uIjp7ImZpZWxkcyI6W3siaWQiOiJGaXJzdCBsYWJlbCBvbmx5IiwibGFiZWwiOiJGaXJzdCBsYWJlbCBvbmx5In0seyJpZCI6IlNlY29uZCBsYWJlbCBvbmx5IiwibGFiZWwiOiJTZWNvbmQgbGFiZWwgb25seSJ9LHsiaWQiOiJUaGlyZCBsYWJlbCBvbmx5IiwibGFiZWwiOiJUaGlyZCBsYWJlbCBvbmx5In1dfSwiYm9keSI6IlNlY29uZCBwYWdlJ3MgYm9keSJ9LHsiYm9keSI6IlRoaXJkIHBhZ2UncyBib2R5IiwidGl0bGUiOiJUaGlyZCBwYWdlJ3MgdGl0bGUiLCJzdWJ0aXRsZSI6IlRoaXJkIHBhZ2UncyBzdWJ0aXRsZSIsInNpbmdsZUNoYW5nZSI6dHJ1ZX0seyJ0aXRsZSI6IkZvdXJ0aCBwYWdlJ3MgdGl0bGUiLCJzdWJ0aXRsZSI6IkZvdXJ0aCBwYWdlJ3Mgc3VidGl0bGUiLCJib2R5IjoiRm91cnRoIHBhZ2UncyBib2R5In1dLCJwcm9ncmVzc0JhclBheWxvYWQiOiJhdXRvbWF0aWMifSwiaXNNb3ZhYmxlIjp0cnVlLCJhbHdheXNPblRvcCI6ZmFsc2UsInR5cGUiOiJvbmJvYXJkaW5nIiwic2lsZW50IjpmYWxzZSwic2hvd1N1cHByZXNzaW9uQnV0dG9uIjpmYWxzZSwibWluaWF0dXJpemFibGUiOmZhbHNlLCJiYXJUaXRsZSI6Ik1hY0BJQk0gTm90aWZpY2F0aW9ucyIsImZvcmNlTGlnaHRNb2RlIjpmYWxzZSwiaGlkZVRpdGxlQmFyQnV0dG9ucyI6ZmFsc2V9LCJzZXR0aW5ncyI6eyJpc1ZlcmJvc2VNb2RlRW5hYmxlZCI6ZmFsc2UsImVudmlyb25tZW50IjoicHJvZCJ9fQ==" // pragma: allowlist-secret
-        let app = XCUIApplication()
-        app.launchArguments = [useCase]
-        app.launch()
-        XCTAssert(app.staticTexts["onboarding_title"].exists)
-        XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
-        XCTAssert(app.staticTexts["onboarding_body"].exists)
-        XCTAssert(app.buttons["main_button"].exists)
-        XCTAssert(!app.buttons["secondary_button"].exists)
-        XCTAssert(app.buttons["help_button"].exists)
-        app.buttons["main_button"].tap()
-        XCTAssert(app.staticTexts["onboarding_title"].exists)
-        XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
-        XCTAssert(app.staticTexts["onboarding_body"].exists)
-        XCTAssert(app.buttons["main_button"].exists)
-        XCTAssert(app.buttons["secondary_button"].exists)
-        XCTAssert(app.buttons["tertiary_button"].exists)
-        XCTAssert(app.buttons["help_button"].exists)
-        app.buttons["main_button"].tap()
-        XCTAssert(app.staticTexts["onboarding_title"].exists)
-        XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
-        XCTAssert(app.staticTexts["onboarding_body"].exists)
-        XCTAssert(app.buttons["main_button"].exists)
-        XCTAssert(!app.buttons["secondary_button"].exists)
-        app.buttons["main_button"].tap()
-        XCTAssert(app.staticTexts["onboarding_title"].exists)
-        XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
-        XCTAssert(app.staticTexts["onboarding_body"].exists)
-        XCTAssert(app.buttons["main_button"].exists)
-        XCTAssert(!app.buttons["secondary_button"].exists)
+    func testA1Onboarding() throws {
+        let useCase = """
+{"notification":{"retainValues":false,"isMovable":true,"type":"onboarding","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"barTitle":"IBM Notifier","alwaysOnTop":false,"showSuppressionButton":false,"hideTitleBarButtons":false,"accessoryViews":[],"payload":{"pages":[{"infoSection":{"fields":[{"id":"BE8ACDC6-1159-421E-8ECA-F84B6B6785ED","label":"Some Description Some"},{"id":"4C045585-72C2-428B-B574-F55CF86E5DCA","label":"Some Description Some"},{"id":"EF546A45-64CA-473D-8BEA-4BF18C3D624F","label":"Some Description Some"}]},"topIcon":"square.and.arrow.up","subtitle":"First page's subtitle","title":"First page's title","body":"First page's body"},{"singleChange":true,"infoSection":{"fields":[{"label":"First label only","id":"031F8516-F122-4A7D-A53C-4F41C9A6C86A"},{"id":"9A2DE192-E512-484E-B42B-2215C84A0B97","label":"Second label only"},{"label":"Third label only","id":"B9F441F5-E55D-4C71-B0BC-53347A4CE6A4"}]},"tertiaryButton":{"callToActionPayload":"https:\\/\\/www.google.com","label":"Tertiary","callToActionType":"link"},"title":"Second page's title","body":"Second page's body","primaryButtonLabel":"Some","subtitle":"Second page's subtitle"},{"title":"Third page's title","body":"Third page's body","singleChange":true,"subtitle":"Third page's subtitle"},{"body":"Fourth page's body","subtitle":"Fourth page's subtitle","title":"Fourth page's title"}],"progressBarPayload":"automatic"},"silent":false,"forceLightMode":false,"disableQuit":false,"miniaturizable":false,"topicID":"untracked","notificationID":"untracked"},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+""" // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.staticTexts["onboarding_title"].exists)
+            XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
+            XCTAssert(app.staticTexts["onboarding_body"].exists)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(!app.buttons["secondary_button"].exists)
+            XCTAssert(app.buttons["help_button"].exists)
+            app.buttons["main_button"].tap()
+            XCTAssert(app.staticTexts["onboarding_title"].exists)
+            XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
+            XCTAssert(app.staticTexts["onboarding_body"].exists)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssert(app.buttons["tertiary_button"].exists)
+            XCTAssert(app.buttons["help_button"].exists)
+            app.buttons["main_button"].tap()
+            XCTAssert(app.staticTexts["onboarding_title"].exists)
+            XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
+            XCTAssert(app.staticTexts["onboarding_body"].exists)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(!app.buttons["secondary_button"].exists)
+            app.buttons["main_button"].tap()
+            XCTAssert(app.staticTexts["onboarding_title"].exists)
+            XCTAssert(app.staticTexts["onboarding_subtitle"].exists)
+            XCTAssert(app.staticTexts["onboarding_body"].exists)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(!app.buttons["secondary_button"].exists)
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
     }
 }
