@@ -21,6 +21,8 @@ struct DatePickerView: View {
         case preselection
         case components
         case style
+        case startDate = "start_date"
+        case endDate = "end_date"
     }
     
     // MARK: - Private Variables
@@ -30,6 +32,8 @@ struct DatePickerView: View {
     private var style: any DatePickerStyle
     private var components: DatePickerComponents
     private var initialDate: Date?
+    private var startDate: Date?
+    private var endDate: Date = Date(timeIntervalSinceNow: 3156600000) // ~100 years from now
     private var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -88,6 +92,14 @@ struct DatePickerView: View {
         }
         let somevalues = try decoder.decode(key: DatePickerCodingKeys.preselection, ofType: String.self, from: payload)
         initialDate = dateFormatter.date(from: output.wrappedValue.isEmpty ? somevalues : output.wrappedValue) ?? Date()
+        let selectedDateString = try decoder.decode(key: DatePickerCodingKeys.preselection, ofType: String.self, from: payload)
+        initialDate = dateFormatter.date(from: output.wrappedValue.isEmpty ? selectedDateString : output.wrappedValue) ?? Date()
+        let startDateString = try decoder.decode(key: DatePickerCodingKeys.startDate, ofType: String.self, from: payload)
+        startDate = dateFormatter.date(from: output.wrappedValue.isEmpty ? startDateString : output.wrappedValue) ?? Date()
+        let endDateString = try decoder.decode(key: DatePickerCodingKeys.endDate, ofType: String.self, from: payload)
+        if let date = dateFormatter.date(from: output.wrappedValue.isEmpty ? endDateString : output.wrappedValue) {
+            endDate = date
+        }
     }
     
     // MARK: - Views
@@ -100,16 +112,29 @@ struct DatePickerView: View {
                     .accessibilityIdentifier("datepicker_accessory_view_title")
             }
             HStack(spacing: 0) {
-                DatePicker("", selection: $selectionValue.onUpdate(evaluateButtonState), displayedComponents: components)
-                    .customDatePickerStyle(style)
-                    .labelsHidden()
-                    .onAppear {
-                        if let initialDate = initialDate {
-                            self.selectionValue = initialDate
+                if let rangeStart = startDate {
+                    DatePicker("", selection: $selectionValue.onUpdate(evaluateButtonState), in: rangeStart...endDate, displayedComponents: components)
+                        .customDatePickerStyle(style)
+                        .labelsHidden()
+                        .onAppear {
+                            if let initialDate = initialDate {
+                                self.selectionValue = initialDate
+                            }
+                            evaluateButtonState()
                         }
-                        evaluateButtonState()
-                    }
-                    .accessibilityIdentifier("datepicker_accessory_view_picker")
+                        .accessibilityIdentifier("datepicker_accessory_view_picker")
+                } else {
+                    DatePicker("", selection: $selectionValue.onUpdate(evaluateButtonState), displayedComponents: components)
+                        .customDatePickerStyle(style)
+                        .labelsHidden()
+                        .onAppear {
+                            if let initialDate = initialDate {
+                                self.selectionValue = initialDate
+                            }
+                            evaluateButtonState()
+                        }
+                        .accessibilityIdentifier("datepicker_accessory_view_picker")
+                }
                 Spacer()
             }
             .padding(0)
