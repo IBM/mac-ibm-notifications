@@ -194,28 +194,28 @@ extension EFCLController {
     
     private func buildDict(from keys: [String], and values: [String]) throws -> [String: Any] {
         var checkedValues = values
+        var checkedKeys = keys
         guard !keys.isEmpty && !values.isEmpty else {
             HelpBuilder.printNoArgumentsPage()
             throw NAError.efclController(type: .invalidArgumentsSyntax)
         }
         for arg in Self.standaloneBooleanArguments {
-            guard let index = keys.firstIndex(where: { $0 == arg }) else { continue }
-            if index > checkedValues.count {
-                checkedValues.append("true")
-            } else {
-                checkedValues.insert("true", at: index)
-            }
+            guard let index = checkedKeys.firstIndex(where: { $0 == arg }) else { continue }
+            let standAloneArgument = checkedKeys[index]
+            checkedKeys.remove(at: index)
+            checkedKeys.append(standAloneArgument)
+            checkedValues.append("true")
         }
-        guard keys.count == checkedValues.count else {
+        guard checkedKeys.count == checkedValues.count else {
             throw NAError.efclController(type: .invalidArgumentsFormat)
         }
         var dict: [String: Any] = [:]
-        for index in keys.indices {
-            dict[keys[index]] = checkedValues[index]
+        for index in checkedKeys.indices {
+            dict[checkedKeys[index]] = checkedValues[index]
         }
         return dict
     }
-    
+            
     /// Try to create a NotificationObject from the passed dictionary.
     /// - Parameter dict: the passed dictionary.
     /// - Throws: NAError.

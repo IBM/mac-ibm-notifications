@@ -980,5 +980,79 @@ class NAPUITests: XCTestCase {
             XCTAssert(false, "Failed to encode the usecase.")
         }
     }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Unmovable: true
+    func testD4Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":false,"disableQuit":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.windows["main_window"].exists)
+            XCTAssert(app.windows["main_window"].isHittable)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(app.buttons["main_button"].isEnabled)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            let initialPositionY = app.windows["main_window"].frame.minY
+            let initialPositionX = app.windows["main_window"].frame.minX
+            let coordinate = app.windows["main_window"].coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.04))
+            coordinate.click(forDuration: 1, thenDragTo: app.buttons["main_button"].coordinate(withNormalizedOffset: .zero))
+            let finalPositionY = app.windows["main_window"].frame.minY
+            let finalPositionX = app.windows["main_window"].frame.minX
+            XCTAssert(initialPositionX == finalPositionX)
+            XCTAssert(initialPositionY == finalPositionY)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Unmovable: false
+    func testD5Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.windows["main_window"].exists)
+            XCTAssert(app.windows["main_window"].isHittable)
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssert(app.buttons["main_button"].isEnabled)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            let initialPositionY = app.windows["main_window"].frame.minY
+            let initialPositionX = app.windows["main_window"].frame.minX
+            let coordinate = app.windows["main_window"].coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.04))
+            coordinate.click(forDuration: 1, thenDragTo: app.buttons["main_button"].coordinate(withNormalizedOffset: .zero))
+            let finalPositionY = app.windows["main_window"].frame.minY
+            let finalPositionX = app.windows["main_window"].frame.minX
+            XCTAssertFalse(initialPositionX == finalPositionX)
+            XCTAssertFalse(initialPositionY == finalPositionY)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
 }
 // swiftlint:enable type_body_length file_length
