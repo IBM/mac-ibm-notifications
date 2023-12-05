@@ -105,8 +105,8 @@ class PopUpViewModel: ObservableObject {
         self.notificationObject = notificationObject
         self.window = window
         mainButton = notificationObject.mainButton
-        mainButtonState = .enabled
-        secondaryButtonState = notificationObject.secondaryButton != nil ? .enabled : .hidden
+        mainButtonState = notificationObject.buttonless ? .hidden : .enabled
+        secondaryButtonState = notificationObject.secondaryButton != nil ? (notificationObject.buttonless ? .hidden : .enabled) : .hidden
         tertiaryButtonState = notificationObject.tertiaryButton != nil ? .enabled : .hidden
         helpButtonState = notificationObject.helpButton != nil ? .enabled : .hidden
         warningButtonState = notificationObject.warningButton?.isVisible ?? false ? .enabled : .hidden
@@ -179,6 +179,7 @@ class PopUpViewModel: ObservableObject {
         mainButtonState = {
             guard primaryAccessoryView != nil else { return .enabled }
             guard secondaryAccessoryView != nil else { return primaryAVMainButtonState }
+            guard !notificationObject.buttonless else { return .hidden }
             switch primaryAVMainButtonState {
             case .enabled:
                 return secondaryAVMainButtonState
@@ -194,6 +195,7 @@ class PopUpViewModel: ObservableObject {
         secondaryButtonState = {
             guard primaryAccessoryView != nil else { return .enabled }
             guard secondaryAccessoryView != nil else { return primaryAVSecButtonState }
+            guard !notificationObject.buttonless else { return .hidden }
             switch primaryAVSecButtonState {
             case .enabled:
                 return secondaryAVSecButtonState

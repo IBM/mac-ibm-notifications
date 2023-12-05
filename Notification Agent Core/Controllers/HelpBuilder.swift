@@ -137,7 +137,8 @@ public final class HelpBuilder {
                                               "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
                                               "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
                                               "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit",
-                                              "\n      A custom width for the UI.\n      Example: -custom_width 1000"]
+                                              "\n      A custom width for the UI.\n      Example: -custom_width 1000",
+                                              "\n      Flag that tells the agent to not show any destructive CTA (Button).\n      Example: -buttonless"]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
