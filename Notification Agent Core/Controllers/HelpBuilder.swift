@@ -96,7 +96,7 @@ public final class HelpBuilder {
                                               "\n      The payload for the accessory view:\n      " +
                                               "- Text for " + "[ whitebox ]".red() + " view type;\n      " +
                                               "- Text for " + "[ timer ]".red() + " view type. This will be timer's label. Use \"%@\" to define timer's position inside the label. Use " + "[ -timeout ]".yellow() + " argument to define timer's duration;\n      " +
-                                              "- File path/link for " + "[ image ]".red() + " view type;\n      " +
+                                              "- File path/link or base64 encoded string for " + "[ image ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/url TEXT /autoplay /delay INT\" ".green() + "for " + "[ video ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/percent DOUBLE /top_message TEXT /bottom_message TEXT /user_interaction_enabled BOOL /user_interruption_allowed BOOL\" ".green() + "for " + "[ progressbar ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type;\n      " +

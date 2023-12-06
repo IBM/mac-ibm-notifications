@@ -32,8 +32,14 @@ struct AccessoryViewWrapper: View {
         case .checklist, .dropdown:
             try? PickerView(source.accessoryView.payload ?? "", output: source.$output, mainButtonState: source.$mainButtonState, secondaryButtonState: source.$secondaryButtonState, legacyType: source.accessoryView.type)
         case .image, .video:
-            try? MediaView(source.accessoryView.payload ?? "", output: source.$output, mainButtonState: source.$mainButtonState, secondaryButtonState: source.$secondaryButtonState, legacyType: source.accessoryView.type, contentMode: viewSpec.contentMode)
-                .accessibilityIdentifier(source.accessoryView.type == .image ? "image_accessory_view" : "video_whitebox_accessory_view")
+            try? MediaView(source.accessoryView.payload ?? "",
+                           output: source.$output,
+                           mainButtonState: source.$mainButtonState,
+                           secondaryButtonState: source.$secondaryButtonState,
+                           legacyType: source.accessoryView.type,
+                           contentMode: viewSpec.contentMode,
+                           containerWidth: viewSpec.accessoryViewWidth)
+            .accessibilityIdentifier(source.accessoryView.type == .image ? "image_accessory_view" : "video_accessory_view")
         case .html, .htmlwhitebox:
             ZStack {
                 if source.accessoryView.type == .htmlwhitebox {

@@ -1078,5 +1078,66 @@ class NAPUITests: XCTestCase {
             XCTAssert(false, "Failed to encode the usecase.")
         }
     }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Icon: Circle SFSymbol
+    /// AccessoryView: image with a GIF
+    func testD7Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssert(app.images["image_accessory_view"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Icon: Circle SFSymbol
+    /// AccessoryView: image with a GIF
+    /// Secondary AccessoryView: image
+    func testD8Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssert(app.images["image_accessory_view"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
 }
 // swiftlint:enable type_body_length file_length

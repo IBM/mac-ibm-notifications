@@ -38,7 +38,9 @@ public final class NAMedia: Identifiable {
     private(set) var autoplay: Bool = false
     /// Auto play delay for video resources. Default: 1 second
     private(set) var autoplayDelay: Int = 1
-
+    ///  Boolean value that tells if the media is a GIF.
+    private(set) var isGIF: Bool = false
+    
     // MARK: - Initializers
 
     //  swiftlint:disable function_body_length
@@ -51,15 +53,18 @@ public final class NAMedia: Identifiable {
         case .image:
             if FileManager.default.fileExists(atPath: string),
                let data = try? Data(contentsOf: URL(fileURLWithPath: string)) {
+                self.isGIF = data.isGIF
                 let image = NSImage(data: data)
                 self.image = image
             } else if string.isValidURL,
                       let url = URL(string: string),
                       let data = try? Data(contentsOf: url) {
+                self.isGIF = data.isGIF
                 let image = NSImage(data: data)
                 self.image = image
             } else if let imageData = Data(base64Encoded: string, options: .ignoreUnknownCharacters),
                       let image = NSImage(data: imageData) {
+                self.isGIF = imageData.isGIF
                 self.image = image
             } else {
                 NALogger.shared.log("Unable to load image from %{public}@", [string])

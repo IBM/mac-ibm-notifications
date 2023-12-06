@@ -22,6 +22,8 @@ struct MediaView: View {
     var media: NAMedia
     /// The desired content mode for the media.
     var contentMode: ContentMode
+    /// The width of the container view.
+    var containerWidth: CGFloat
     
     // MARK: - Binded Variables
     
@@ -39,14 +41,16 @@ struct MediaView: View {
          mainButtonState: Binding<SwiftUIButtonState>,
          secondaryButtonState: Binding<SwiftUIButtonState>,
          legacyType: NotificationAccessoryElement.ViewType,
-         contentMode: ContentMode = .fill) throws {
+         contentMode: ContentMode = .fill,
+         containerWidth: CGFloat) throws {
         
         /// Initialize the binded variables.
         _output = output
         _mainButtonState = mainButtonState
         _secondaryButtonState = secondaryButtonState
         self.contentMode = contentMode
-        
+        self.containerWidth = containerWidth
+
         /// Set the media view type.
         type = legacyType
         
@@ -74,10 +78,17 @@ struct MediaView: View {
         case .image:
             /// If the media is an image, display the image using an Image view.
             if let image = media.image {
-                Image(nsImage: image)
-                    .resizable()
-                    .aspectRatio(aspectRatioForMedia(media), contentMode: contentMode)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if media.isGIF {
+                    ImageViewRepresentable(image: image,
+                                           width: containerWidth,
+                                           aspectRatio: aspectRatioForMedia(media),
+                                           contentMode: contentMode)
+                } else {
+                    Image(nsImage: image)
+                        .resizable()
+                        .aspectRatio(aspectRatioForMedia(media), contentMode: contentMode)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             } else {
                 EmptyView()
             }
@@ -129,6 +140,6 @@ struct MediaView_Previews: PreviewProvider {
             return .enabled
         }, set: { _, _ in
             
-        }), legacyType: .image)
+        }), legacyType: .image, containerWidth: 420)
     }
 }
