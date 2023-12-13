@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 7/9/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -107,6 +107,12 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var backgroundPanel: BackgroundPanelStyle?
     /// A boolean value that define if the UI should be movable for the user.
     var isMovable: Bool = true
+    /// A boolean value that define if the UI should ignore cmd+q shortcut.
+    var disableQuit: Bool = false
+    /// Custom width for the pop-up window size.
+    var customWidth: String?
+    ///  A boolean value that defined if the UI should appear without any destructive CTA.
+    var buttonless: Bool = false
     
     // MARK: - Initializers
     
@@ -243,12 +249,17 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let isNotMovable = dict["unmovable"] as? String {
             self.isMovable = !(isNotMovable.lowercased() == "true")
         }
+        if let disableQuit = dict["disable_quit"] as? String {
+            self.disableQuit = disableQuit.lowercased() == "true"
+        }
+        self.customWidth = dict["custom_width"] as? String
+        if let buttonless = dict["buttonless"] as? String {
+            self.buttonless = buttonless.lowercased() == "true"
+        }
         super.init()
         try checkObjectConsistency()
     }
-    
-    //  swiftlint:enable function_body_length
-    
+        
     private func checkObjectConsistency() throws {
         switch type {
         case .popup, .banner, .alert, .systemalert:
@@ -289,12 +300,31 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
                     resetCustomIconSize("Please check the format of -icon_height argument.")
                 }
             }
+            func resetCustomSize(_ message: String) {
+                NALogger.shared.log("%{public}@", [message])
+                customWidth = nil
+            }
+            if let customWidthAsString = customWidth {
+                if let customWidthNumber = NumberFormatter().number(from: customWidthAsString) {
+                    let customWidth = CGFloat(truncating: customWidthNumber)
+                    if let screenWidth = NSScreen.main?.visibleFrame.size.width, customWidth > screenWidth {
+                        resetCustomSize("The desired window custom width exceed the current main display width.")
+                    }
+                    if customWidth < 520 {
+                        resetCustomSize("It's not allowed to define window's custom width lower than the standard one.")
+                    }
+                } else {
+                    resetCustomSize("Please check the format of -custom_width argument.")
+                }
+            }
         case .onboarding:
             guard self.payload != nil || self.workflow != nil else {
                 throw NAError.dataFormat(type: .invalidOnboardingPayload)
             }
         }
     }
+
+    //  swiftlint:enable function_body_length
 
     static func loadOnboardingPayload(_ payload: String) throws -> OnboardingData {
         if payload.isValidURL, let url = URL(string: payload) {
@@ -341,6 +371,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case workflow
         case backgroundPanel
         case isMovable
+        case disableQuit
+        case customWidth
+        case buttonless
     }
     
     required public init(from decoder: Decoder) throws {
@@ -356,8 +389,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.titleFontSize = try container.decodeIfPresent(String.self, forKey: .titleFontSize)
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.iconPath = try container.decodeIfPresent(String.self, forKey: .iconPath)
-        self.iconWidth = try container.decodeIfPresent( String.self, forKey: .iconWidth)
-        self.iconHeight = try container.decodeIfPresent( String.self, forKey: .iconHeight)
+        self.iconWidth = try container.decodeIfPresent(String.self, forKey: .iconWidth)
+        self.iconHeight = try container.decodeIfPresent(String.self, forKey: .iconHeight)
         self.notificationImage = try container.decodeIfPresent(String.self, forKey: .notificationAttachment)
         self.accessoryViews = try container.decodeIfPresent([NotificationAccessoryElement].self, forKey: .accessoryViews)
         self.mainButton = try container.decode(NotificationButton.self, forKey: .mainButton)
@@ -385,6 +418,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue)
         }
         self.isMovable = try container.decode(Bool.self, forKey: .isMovable)
+        self.disableQuit = try container.decode(Bool.self, forKey: .disableQuit)
+        self.customWidth = try container.decodeIfPresent(String.self, forKey: .customWidth)
+        self.buttonless = try container.decode(Bool.self, forKey: .buttonless)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -421,7 +457,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.workflow?.rawValue, forKey: .workflow)
         try container.encodeIfPresent(self.backgroundPanel?.rawValue, forKey: .backgroundPanel)
         try container.encodeIfPresent(self.isMovable, forKey: .isMovable)
-
+        try container.encodeIfPresent(self.disableQuit, forKey: .disableQuit)
+        try container.encodeIfPresent(self.customWidth, forKey: .customWidth)
+        try container.encodeIfPresent(self.buttonless, forKey: .buttonless)
     }
     
     // MARK: Codable protocol conformity - END
@@ -518,8 +556,15 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let backgroundPanelRawValue = self.backgroundPanel?.rawValue {
             coder.encode(backgroundPanelRawValue, forKey: NOCodingKeys.backgroundPanel.rawValue)
         }
-        let number = NSNumber(booleanLiteral: isMovable)
-        coder.encode(number, forKey: NOCodingKeys.isMovable.rawValue)
+        let nIsMovable = NSNumber(booleanLiteral: isMovable)
+        coder.encode(nIsMovable, forKey: NOCodingKeys.isMovable.rawValue)
+        let nDisableQuit = NSNumber(booleanLiteral: disableQuit)
+        coder.encode(nDisableQuit, forKey: NOCodingKeys.disableQuit.rawValue)
+        if let customWidth = self.customWidth {
+            coder.encode(customWidth, forKey: NOCodingKeys.customWidth.rawValue)
+        }
+        let nButtonless = NSNumber(booleanLiteral: buttonless)
+        coder.encode(nButtonless, forKey: NOCodingKeys.buttonless.rawValue)
     }
     
     //  swiftlint:enable function_body_length
@@ -562,6 +607,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             self.backgroundPanel = BackgroundPanelStyle(rawValue: backgroundPanelRawValue as String)
         }
         self.isMovable = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.isMovable.rawValue) as? Bool ?? true
+        self.disableQuit = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.disableQuit.rawValue) as? Bool ?? false
+        self.customWidth = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.customWidth.rawValue) as String?
+        self.buttonless = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.buttonless.rawValue) as? Bool ?? false
     }
     
     // MARK: - NSSecureCoding protocol conformity - END

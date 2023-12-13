@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 7/13/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -52,6 +52,7 @@ extension NAError.Enums {
         case invalidJSONFilepath
         case invalidJSONDecoding(errorDescription: String)
         case invalidOnboardingPayload
+        case invalidSlideShowPayload
         case noPresetDefined
         case invalidReminderPayload
     }
@@ -78,6 +79,8 @@ extension NAError.Enums.ModelError: LocalizedError {
             return "Invalid JSON format: \(errorDescription)"
         case .invalidOnboardingPayload:
             return "Invalid onboarding payload."
+        case .invalidSlideShowPayload:
+            return "Invalid slideshow payload."
         case .noPresetDefined:
             return "No preset defined with the defined key."
         case .invalidReminderPayload:

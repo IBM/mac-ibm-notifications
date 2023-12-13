@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 18/06/2021.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
             case [.command] where event.characters == "q":
+                guard !self.context.disableQuit else { return .none }
                 Utils.applicationExit(withReason: .userDismissedPopup)
             default:
                 return event

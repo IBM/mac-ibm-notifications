@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 15/12/22.
-//  Copyright © 2023 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -34,12 +34,12 @@ struct ACVDecoder {
             throw NAError.efclController(type: .invalidAccessoryViewPayload)
         }
         
-        var splittedStrings = payload.split(separator: "/")
+        var splittedStrings = payload.replacingOccurrences(of: "//", with: "/#escaping-double-slash /").split(separator: "/")
         guard splittedStrings.count > 0 else { throw NAError.efclController(type: .invalidAccessoryViewPayload) }
         splittedStrings.reverse()
         
         for index in 0..<splittedStrings.count {
-            guard let argument = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true).first?.lowercased() else { continue }
+            guard let argument = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: false).first?.lowercased() else { continue }
             let value = splittedStrings[index].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true).last?.trimmingCharacters(in: CharacterSet.whitespaces)
             if argument == key.stringValue {
                 if type is Bool.Type {
@@ -51,6 +51,10 @@ struct ACVDecoder {
                 return type.init(stringLiteral: value)
             } else if codingKeys.filter({ $0.stringValue != key.stringValue }).contains(where: { $0.stringValue == argument }) {
                 continue
+            } else if argument == "#escaping-double-slash"{
+                if index < splittedStrings.count-1 {
+                    splittedStrings[index+1] = Substring(splittedStrings[index+1].appending("/\(splittedStrings[index].replacingOccurrences(of: "#escaping-double-slash ", with: ""))"))
+                }
             } else {
                 if index < splittedStrings.count-1 {
                     splittedStrings[index+1] = Substring(splittedStrings[index+1].appending("/\(splittedStrings[index])"))
@@ -76,5 +80,11 @@ extension [PickerItem]: ACVDecodable {
             someArray.append(PickerItem(index: index, label: line, isSelected: false))
         }
         self = someArray
+    }
+}
+
+extension Int: ACVDecodable {
+    init(stringLiteral: String) {
+        self = .init(stringLiteral) ?? 0
     }
 }

@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 7/9/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -41,6 +41,7 @@ public class NotificationAccessoryElement: NSObject, Codable, NSSecureCoding {
         case htmlwhitebox
         case checklist
         case datepicker
+        case slideshow
     }
 
     // MARK: - Variables

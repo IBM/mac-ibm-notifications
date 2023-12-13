@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 05/04/2023.
-//  Copyright © 2023 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -94,6 +94,7 @@ struct PageView: View {
                         HStack(alignment: .top) {
                             ForEach(row, id: \.hashValue) { accessoryView in
                                 accessoryView
+                                    .environmentObject(viewModel.viewSpec)
                             }
                         }
                     }

@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0FFD3E2B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD3F2B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD402B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD412B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD422B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD432B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD442B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD452B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD462B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD472B20788E00E69392 /* Data-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */; };
+		1B0FFD762B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD772B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD782B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD792B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7A2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7B2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7C2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7D2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7E2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B0FFD7F2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */; };
+		1B4B58CC2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CD2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CE2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
+		1B4B58CF2AF941BF0042A192 /* ViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */; };
 		1B5AFAEF2A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
 		1B5AFAF02A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
 		1B5AFAF12A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */; };
@@ -173,6 +197,10 @@
 		1B5AFBD12A52FC9800F777E1 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AFBCF2A52FC9800F777E1 /* PageViewModel.swift */; };
 		1BFAB6012AA7248C009307C6 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFAB6002AA7248C009307C6 /* RichText */; };
 		1BFAB6032AA72496009307C6 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFAB6022AA72496009307C6 /* RichText */; };
+		1BFAB6052AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
+		1BFAB6062AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
+		1BFAB6072AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
+		1BFAB6082AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
 		B9013A8D24F80C0F009A4554 /* HelpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */; };
 		B9064C0D276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
 		B9064C0E276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
@@ -740,6 +768,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data-Extension.swift"; sourceTree = "<group>"; };
+		1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewRepresentable.swift; sourceTree = "<group>"; };
+		1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSpec.swift; sourceTree = "<group>"; };
 		1B5AFAEE2A52BCE700F777E1 /* ControlActionClosureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlActionClosureProtocol.swift; sourceTree = "<group>"; };
 		1B5AFAF52A52BD2F00F777E1 /* BackPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPanelController.swift; sourceTree = "<group>"; };
 		1B5AFAFE2A52EC4400F777E1 /* SwiftUIButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIButtonState.swift; sourceTree = "<group>"; };
@@ -778,6 +809,7 @@
 		1B5AFBCC2A52FC8400F777E1 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		1B5AFBCF2A52FC9800F777E1 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		1BFAB5FF2A9F281C009307C6 /* ATTRIBUTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ATTRIBUTIONS.md; sourceTree = "<group>"; };
+		1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowView.swift; sourceTree = "<group>"; };
 		B9013A8A24F7E5E5009A4554 /* NALogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NALogger.swift; sourceTree = "<group>"; };
 		B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBuilder.swift; sourceTree = "<group>"; };
 		B9064C0C276BAF240085FA31 /* PopupReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupReminder.swift; sourceTree = "<group>"; };
@@ -996,12 +1028,13 @@
 			children = (
 				1B5AFB282A52EE3C00F777E1 /* ProgressBar */,
 				1B5AFB212A52EE3C00F777E1 /* ViewRepresentable */,
-				1B5AFB252A52EE3C00F777E1 /* PickerView.swift */,
+				1B5AFB2B2A52EE3C00F777E1 /* AccessoryViewWrapper.swift */,
 				1B5AFB262A52EE3C00F777E1 /* AccessoryViewSource.swift */,
 				1B5AFB272A52EE3C00F777E1 /* MediaView.swift */,
-				1B5AFB2B2A52EE3C00F777E1 /* AccessoryViewWrapper.swift */,
-				1B5AFB2C2A52EE3C00F777E1 /* DatePickerView.swift */,
 				1B5AFB2D2A52EE3C00F777E1 /* InputView.swift */,
+				1B5AFB252A52EE3C00F777E1 /* PickerView.swift */,
+				1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */,
+				1B5AFB2C2A52EE3C00F777E1 /* DatePickerView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1011,6 +1044,7 @@
 			children = (
 				1B5AFB222A52EE3C00F777E1 /* MarkdownView.swift */,
 				1B5AFB232A52EE3C00F777E1 /* HTMLView.swift */,
+				1B0FFD752B2078AD00E69392 /* ImageViewRepresentable.swift */,
 				1B5AFB242A52EE3C00F777E1 /* PlayerView.swift */,
 			);
 			path = ViewRepresentable;
@@ -1265,6 +1299,7 @@
 			isa = PBXGroup;
 			children = (
 				B9A03A9A24B76511005BB90E /* NotificationObject.swift */,
+				1B4B58CB2AF941BF0042A192 /* ViewSpec.swift */,
 				B92E6707253893D900F39949 /* ProgressState.swift */,
 				B9A03A9E24B779B8005BB90E /* NotificationAccessoryElement.swift */,
 				B9A8852125B9B10600081C8D /* OnboardingData.swift */,
@@ -1326,6 +1361,7 @@
 				B9504D23275EA00B00DD78C5 /* UNNotificationAttachment-Extension.swift */,
 				B9A8855525BB404000081C8D /* Decodable-Extensions.swift */,
 				B9524D2D24E15B1F007662C8 /* String-Extension.swift */,
+				1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */,
 				B985DAC9263854EA004F3470 /* NSScreen-Extension.swift */,
 				B9524D3724E17E7F007662C8 /* Int-Extension.swift */,
 				B94389F1262889FB008E314A /* NSColor-Extension.swift */,
@@ -1721,7 +1757,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = IBM;
 				TargetAttributes = {
 					B920D4B8265F8FC600437BE6 = {
@@ -1963,6 +1999,7 @@
 				B920D4EA265F90EB00437BE6 /* NSColor-Extension.swift in Sources */,
 				1B5AFBAA2A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
 				B920D4E5265F90E200437BE6 /* NAError.swift in Sources */,
+				1B0FFD772B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FD1730162875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				B920D4CE265F90C700437BE6 /* Environment.swift in Sources */,
 				1B5AFAF62A52BD2F00F777E1 /* BackPanelController.swift in Sources */,
@@ -1972,6 +2009,7 @@
 				B920D4D7265F90D200437BE6 /* ReplyHandler.swift in Sources */,
 				B920D4ED265F90EB00437BE6 /* String-Extension.swift in Sources */,
 				B9360EBD268A06FE00217247 /* EFCLController.swift in Sources */,
+				1B0FFD3F2B20788E00E69392 /* Data-Extension.swift in Sources */,
 				B920D502265F927B00437BE6 /* NotificationDispatch-Extension.swift in Sources */,
 				B94BDAD52684C1AB00663D21 /* Token.swift in Sources */,
 				B920D4E1265F90E200437BE6 /* LoadableNib.swift in Sources */,
@@ -2014,6 +2052,7 @@
 				1B5AFBBC2A52FBA700F777E1 /* BodyLabels.swift in Sources */,
 				1B5AFB6B2A52EEB700F777E1 /* BackPanelWindow.swift in Sources */,
 				B961A51E267A4D7F00657930 /* LoadableNib.swift in Sources */,
+				1BFAB6052AA85ABD009307C6 /* SlideShowView.swift in Sources */,
 				1B5AFBC02A52FBB900F777E1 /* PopUpView.swift in Sources */,
 				B961A516267A4D6600657930 /* OnboardingData.swift in Sources */,
 				B961A512267A4D5900657930 /* NALogger.swift in Sources */,
@@ -2054,8 +2093,10 @@
 				B961A531267A4DC700657930 /* FlippedStackView.swift in Sources */,
 				B9360EA8268A00E100217247 /* EFCLController.swift in Sources */,
 				B961A4F6267A483900657930 /* NotificationDispatch-Extension.swift in Sources */,
+				1B4B58CC2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				B961A51D267A4D7D00657930 /* NAMedia.swift in Sources */,
 				B961A517267A4D6800657930 /* NotificationButton.swift in Sources */,
+				1B0FFD412B20788E00E69392 /* Data-Extension.swift in Sources */,
 				B9064C10276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B92C37772701D933006114A3 /* InteractiveEFCLContoller.swift in Sources */,
 				1B5AFB4E2A52EE3C00F777E1 /* AccessoryViewSource.swift in Sources */,
@@ -2069,6 +2110,7 @@
 				1B5AFB522A52EE3C00F777E1 /* MediaView.swift in Sources */,
 				B961A50F267A4D3C00657930 /* Environment.swift in Sources */,
 				FD0D02D528D9F8AE00A167B7 /* SystemAlertController.swift in Sources */,
+				1B0FFD792B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FD1730182875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				1B5AFB932A52EF9500F777E1 /* View-Extension.swift in Sources */,
 				1B5AFB012A52EC4400F777E1 /* SwiftUIButtonState.swift in Sources */,
@@ -2096,6 +2138,7 @@
 				B961A5A9267B44B400657930 /* NSScreen-Extension.swift in Sources */,
 				1B5AFB6C2A52EEB700F777E1 /* BackPanelWindow.swift in Sources */,
 				B961A5B9267B458C00657930 /* Context.swift in Sources */,
+				1BFAB6062AA85ABD009307C6 /* SlideShowView.swift in Sources */,
 				FD8A35422863582A00DA72CC /* EFCLController-Extension.swift in Sources */,
 				B961A62A267C80C100657930 /* TaskManager.swift in Sources */,
 				1B5AFB3B2A52EE3C00F777E1 /* AccessoryView.swift in Sources */,
@@ -2136,8 +2179,10 @@
 				B961A5D9267B89CE00657930 /* LoadableNib.swift in Sources */,
 				B961A5DC267B89CE00657930 /* NAMedia.swift in Sources */,
 				FD1730192875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
+				1B4B58CD2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				B961A5A7267B44B400657930 /* Decodable-Extensions.swift in Sources */,
 				1B5AFAF92A52BD2F00F777E1 /* BackPanelController.swift in Sources */,
+				1B0FFD422B20788E00E69392 /* Data-Extension.swift in Sources */,
 				B961A5A6267B44B400657930 /* String-Extension.swift in Sources */,
 				1B5AFB022A52EC4400F777E1 /* SwiftUIButtonState.swift in Sources */,
 				B961A5F1267B8A2600657930 /* HorizontalLine.swift in Sources */,
@@ -2151,6 +2196,7 @@
 				1B5AFB532A52EE3C00F777E1 /* MediaView.swift in Sources */,
 				B961A5D7267B89CE00657930 /* NotificationObject.swift in Sources */,
 				B961A582267A5CDA00657930 /* Utils.swift in Sources */,
+				1B0FFD7A2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				B961A5DD267B89CE00657930 /* NotificationButton.swift in Sources */,
 				1B5AFB942A52EF9500F777E1 /* View-Extension.swift in Sources */,
 				B961A5D6267B89CE00657930 /* NAError.swift in Sources */,
@@ -2176,6 +2222,7 @@
 				B961A4B52673676000657930 /* ReplyHandler.swift in Sources */,
 				1B5AFBAB2A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
 				FD8A35402863582900DA72CC /* EFCLController-Extension.swift in Sources */,
+				1B0FFD782B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				B961A4B02673676000657930 /* LoadableNib.swift in Sources */,
 				FD1730172875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				B961A49F2673673C00657930 /* UserNotificationController.swift in Sources */,
@@ -2185,6 +2232,7 @@
 				B961A4A02673673F00657930 /* Context.swift in Sources */,
 				B9360EBE268A06FF00217247 /* EFCLController.swift in Sources */,
 				B961A4A92673676000657930 /* InfoSection.swift in Sources */,
+				1B0FFD402B20788E00E69392 /* Data-Extension.swift in Sources */,
 				B94BDAD62684C1AB00663D21 /* Token.swift in Sources */,
 				B961A4BB2673677C00657930 /* NSColor-Extension.swift in Sources */,
 				B961A4B72673677C00657930 /* String-Extension.swift in Sources */,
@@ -2247,6 +2295,7 @@
 				B961A625267C7DFE00657930 /* InteractiveEFCLContoller.swift in Sources */,
 				B9C711822681DBC200A3E898 /* TaskObject.swift in Sources */,
 				1B5AFBA92A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
+				1B0FFD3E2B20788E00E69392 /* Data-Extension.swift in Sources */,
 				B9360EC6268A0AE800217247 /* NotificationDispatch-Extension.swift in Sources */,
 				B9C7A9CA24D16F790038D4A7 /* NotificationDispatch.swift in Sources */,
 				FD1730152875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
@@ -2254,6 +2303,7 @@
 				1B5AFB9E2A52EFC200F777E1 /* Collection-Extension.swift in Sources */,
 				B961A4D42677AFB000657930 /* EFCLController.swift in Sources */,
 				B961A4F42679F50E00657930 /* TaskManager.swift in Sources */,
+				1B0FFD762B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				B9524D2E24E15B1F007662C8 /* String-Extension.swift in Sources */,
 				B9A03A9F24B779B8005BB90E /* NotificationAccessoryElement.swift in Sources */,
 			);
@@ -2265,6 +2315,7 @@
 			files = (
 				1B5AFBB82A52F03F00F777E1 /* ActionTrampoline.swift in Sources */,
 				FDFCA5712857CF71009C1880 /* NALogger.swift in Sources */,
+				1B0FFD432B20788E00E69392 /* Data-Extension.swift in Sources */,
 				FD17300F2875B82000781A69 /* DynamicNotificationButton.swift in Sources */,
 				FDFCA5542857CED7009C1880 /* NAError.swift in Sources */,
 				FDFCA5602857CEF3009C1880 /* String-Extension.swift in Sources */,
@@ -2279,6 +2330,7 @@
 				FDFCA5642857CEF3009C1880 /* Notification-Extension.swift in Sources */,
 				FDFCA55D2857CED7009C1880 /* OnboardingData.swift in Sources */,
 				FDFCA56A2857CF71009C1880 /* EFCLController-Extension.swift in Sources */,
+				1B0FFD7B2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FDFCA56C2857CF71009C1880 /* DeepLinkEngine.swift in Sources */,
 				FDFCA54E2857CED7009C1880 /* ConfigurableParameters.swift in Sources */,
 				FDFCA5512857CED7009C1880 /* Claims.swift in Sources */,
@@ -2327,6 +2379,7 @@
 				FDC346CB2858C458001F2212 /* SharedSettings.swift in Sources */,
 				FDC346B12858C43F001F2212 /* OnboardingData.swift in Sources */,
 				FDC346D32858C458001F2212 /* NAError.swift in Sources */,
+				1B0FFD442B20788E00E69392 /* Data-Extension.swift in Sources */,
 				FDC346932858C412001F2212 /* EFCLController.swift in Sources */,
 				FDC347312858C49B001F2212 /* Utils.swift in Sources */,
 				FDC346942858C412001F2212 /* Environment.swift in Sources */,
@@ -2350,6 +2403,7 @@
 				FDC347402858C4B9001F2212 /* EFCLController-Extension.swift in Sources */,
 				FDC346D22858C458001F2212 /* AppComponent.swift in Sources */,
 				1B5AFBAF2A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
+				1B0FFD7C2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FDC346C42858C445001F2212 /* ConfigurableParameters.swift in Sources */,
 				FDC346CD2858C458001F2212 /* Token.swift in Sources */,
 				FDC346C32858C445001F2212 /* NotificationButton.swift in Sources */,
@@ -2377,6 +2431,7 @@
 				FDC346D42858C458001F2212 /* SharedSettings.swift in Sources */,
 				FDC346B62858C43F001F2212 /* OnboardingData.swift in Sources */,
 				FDC346DC2858C458001F2212 /* NAError.swift in Sources */,
+				1B0FFD452B20788E00E69392 /* Data-Extension.swift in Sources */,
 				FDC346952858C413001F2212 /* EFCLController.swift in Sources */,
 				FDC347322858C49B001F2212 /* Utils.swift in Sources */,
 				FDC346962858C413001F2212 /* Environment.swift in Sources */,
@@ -2400,6 +2455,7 @@
 				FD8A353D2863582600DA72CC /* EFCLController-Extension.swift in Sources */,
 				FDC346DB2858C458001F2212 /* AppComponent.swift in Sources */,
 				1B5AFBB02A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
+				1B0FFD7D2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FDC346C62858C445001F2212 /* ConfigurableParameters.swift in Sources */,
 				FDC346D62858C458001F2212 /* Token.swift in Sources */,
 				FDC346C52858C445001F2212 /* NotificationButton.swift in Sources */,
@@ -2425,6 +2481,7 @@
 				1B5AFB952A52EF9500F777E1 /* View-Extension.swift in Sources */,
 				FDC346DD2858C459001F2212 /* SharedSettings.swift in Sources */,
 				1B5AFB382A52EE3C00F777E1 /* VideoAccessoryView.swift in Sources */,
+				1BFAB6072AA85ABD009307C6 /* SlideShowView.swift in Sources */,
 				FDC346BB2858C440001F2212 /* OnboardingData.swift in Sources */,
 				1B5AFB482A52EE3C00F777E1 /* PlayerView.swift in Sources */,
 				FDC346E52858C459001F2212 /* NAError.swift in Sources */,
@@ -2436,6 +2493,7 @@
 				FDC346E12858C459001F2212 /* UserReplyType.swift in Sources */,
 				FD0D02D628D9F8AE00A167B7 /* SystemAlertController.swift in Sources */,
 				FDC347292858C494001F2212 /* Decodable-Extensions.swift in Sources */,
+				1B4B58CE2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				1B5AFB402A52EE3C00F777E1 /* MarkdownView.swift in Sources */,
 				FDC3473E2858C4AF001F2212 /* InteractiveEFCLContoller.swift in Sources */,
 				1B5AFBC52A52FBD800F777E1 /* PopUpViewModel.swift in Sources */,
@@ -2467,6 +2525,7 @@
 				FDC346C82858C446001F2212 /* ConfigurableParameters.swift in Sources */,
 				FDC347282858C494001F2212 /* Int-Extension.swift in Sources */,
 				FDC346DF2858C459001F2212 /* Token.swift in Sources */,
+				1B0FFD462B20788E00E69392 /* Data-Extension.swift in Sources */,
 				FDC3474A2858C4E8001F2212 /* AppDelegate.swift in Sources */,
 				FDC3470F2858C48A001F2212 /* NoBackgroundScroller.swift in Sources */,
 				1B5AFBC22A52FBB900F777E1 /* PopUpView.swift in Sources */,
@@ -2478,6 +2537,7 @@
 				1B5AFB502A52EE3C00F777E1 /* AccessoryViewSource.swift in Sources */,
 				1B5AFB0A2A52ED8900F777E1 /* ACVDecoder.swift in Sources */,
 				1B5AFB052A52EC4400F777E1 /* SwiftUIButtonState.swift in Sources */,
+				1B0FFD7E2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FDC347252858C494001F2212 /* NSColor-Extension.swift in Sources */,
 				FDC347242858C494001F2212 /* Notification-Extension.swift in Sources */,
 				FDC346C72858C446001F2212 /* NotificationButton.swift in Sources */,
@@ -2516,6 +2576,7 @@
 				FDC346E92858C459001F2212 /* TaskObject.swift in Sources */,
 				1B5AFB962A52EF9500F777E1 /* View-Extension.swift in Sources */,
 				1B5AFAFD2A52BD2F00F777E1 /* BackPanelController.swift in Sources */,
+				1BFAB6082AA85ABD009307C6 /* SlideShowView.swift in Sources */,
 				FDC346E62858C459001F2212 /* SharedSettings.swift in Sources */,
 				1B5AFB392A52EE3C00F777E1 /* VideoAccessoryView.swift in Sources */,
 				FDC346C02858C440001F2212 /* OnboardingData.swift in Sources */,
@@ -2527,6 +2588,7 @@
 				FDC347132858C48A001F2212 /* FlippedStackView.swift in Sources */,
 				FDC346EA2858C459001F2212 /* UserReplyType.swift in Sources */,
 				FD1730132875B82000781A69 /* DynamicNotificationButton.swift in Sources */,
+				1B4B58CF2AF941BF0042A192 /* ViewSpec.swift in Sources */,
 				FDC347142858C48A001F2212 /* HorizontalLine.swift in Sources */,
 				FDC346992858C414001F2212 /* EFCLController.swift in Sources */,
 				1B5AFB412A52EE3C00F777E1 /* MarkdownView.swift in Sources */,
@@ -2558,6 +2620,7 @@
 				FDC346C12858C440001F2212 /* NotificationObject.swift in Sources */,
 				1B5AFB592A52EE3C00F777E1 /* ProgressBarView.swift in Sources */,
 				FDC3472E2858C495001F2212 /* String-Extension.swift in Sources */,
+				1B0FFD472B20788E00E69392 /* Data-Extension.swift in Sources */,
 				FDC3472D2858C495001F2212 /* NSScreen-Extension.swift in Sources */,
 				FDC347502858C4F3001F2212 /* NotificationDispatch-Extension.swift in Sources */,
 				FDC346ED2858C459001F2212 /* AppComponent.swift in Sources */,
@@ -2569,6 +2632,7 @@
 				1B5AFB512A52EE3C00F777E1 /* AccessoryViewSource.swift in Sources */,
 				FDC346CA2858C446001F2212 /* ConfigurableParameters.swift in Sources */,
 				FDC346E82858C459001F2212 /* Token.swift in Sources */,
+				1B0FFD7F2B2078AD00E69392 /* ImageViewRepresentable.swift in Sources */,
 				FDC346C92858C446001F2212 /* NotificationButton.swift in Sources */,
 				FDC3473F2858C4AF001F2212 /* InteractiveEFCLContoller.swift in Sources */,
 				1B5AFB452A52EE3C00F777E1 /* HTMLView.swift in Sources */,
@@ -2715,7 +2779,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2725,7 +2789,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2745,7 +2809,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2755,7 +2819,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2775,7 +2839,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2785,7 +2849,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2805,7 +2869,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2815,7 +2879,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2835,7 +2899,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2845,7 +2909,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2864,7 +2928,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2874,7 +2938,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2893,7 +2957,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2903,7 +2967,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2923,7 +2987,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2933,7 +2997,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2948,6 +3012,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2978,12 +3043,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2999,7 +3065,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3013,6 +3079,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3043,12 +3110,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3058,7 +3126,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -3076,7 +3144,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3087,7 +3155,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3106,7 +3174,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3117,7 +3185,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3133,7 +3201,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3155,7 +3223,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3177,7 +3245,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3199,7 +3267,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3263,7 +3331,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3285,7 +3353,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3306,7 +3374,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3327,7 +3395,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3349,7 +3417,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3371,7 +3439,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
@@ -3392,7 +3460,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3411,7 +3479,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 110;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/26/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -35,7 +35,9 @@ class EFCLController {
                                              "hide_title_bar_buttons",
                                              "retain_values",
                                              "show_suppression_button",
-                                             "unmovable"]
+                                             "unmovable",
+                                             "disable_quit",
+                                             "buttonless"]
     // MARK: - Variables
 
     let context = Context.main

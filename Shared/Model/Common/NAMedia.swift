@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 01/03/2021.
-//  Copyright © 2021 IBM Inc. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -11,7 +11,7 @@ import Cocoa
 import AVFoundation
 
 /// This class describe a media object used inside the agent.
-public final class NAMedia {
+public final class NAMedia: Identifiable {
 
     // MARK: - Enums
 
@@ -23,6 +23,7 @@ public final class NAMedia {
 
     // MARK: - Variables
 
+    public var id: UUID
     /// The type of the media.
     var mediaType: MediaType
     /// The payload used to represent or retrieve the media.
@@ -37,27 +38,33 @@ public final class NAMedia {
     private(set) var autoplay: Bool = false
     /// Auto play delay for video resources. Default: 1 second
     private(set) var autoplayDelay: Int = 1
-
+    ///  Boolean value that tells if the media is a GIF.
+    private(set) var isGIF: Bool = false
+    
     // MARK: - Initializers
 
     //  swiftlint:disable function_body_length
 
     init?(type: MediaType, from string: String) {
+        self.id = UUID()
         self.mediaType = type
         self.mediaPayload = string
         switch mediaType {
         case .image:
             if FileManager.default.fileExists(atPath: string),
                let data = try? Data(contentsOf: URL(fileURLWithPath: string)) {
+                self.isGIF = data.isGIF
                 let image = NSImage(data: data)
                 self.image = image
             } else if string.isValidURL,
                       let url = URL(string: string),
                       let data = try? Data(contentsOf: url) {
+                self.isGIF = data.isGIF
                 let image = NSImage(data: data)
                 self.image = image
             } else if let imageData = Data(base64Encoded: string, options: .ignoreUnknownCharacters),
                       let image = NSImage(data: imageData) {
+                self.isGIF = imageData.isGIF
                 self.image = image
             } else {
                 NALogger.shared.log("Unable to load image from %{public}@", [string])
@@ -148,7 +155,27 @@ public final class NAMedia {
             return nil
         }
     }
-
+    
+    /// Returns the resolution size of the media
+    func resolutionForMedia() -> CGSize {
+        switch self.mediaType {
+        case .image:
+            guard let image = self.image else { return .zero }
+            return image.size
+        case .video:
+            guard let size = self.videoResolution else { return .zero }
+            return size
+        }
+    }
+    
+    /// Returns the aspect ratio of the media
+    func aspectRatioForMedia() -> Double {
+        let resolution = resolutionForMedia()
+        return resolution != .zero ? resolution.width/resolution.height : 16/9
+    }
+    
+    // MARK: - Private Methods
+    
     /// Get the resolution of the video.
     /// - Parameter url: url of the video.
     /// - Returns: the resolution of the video.

@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/26/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -24,6 +24,7 @@ extension EFCLController {
             }
             let taskObject = try JSONDecoder().decode(TaskObject.self, from: data)
             context.sharedSettings = taskObject.settings
+            context.disableQuit = taskObject.notification.disableQuit
             NotificationCenter.default.post(name: .showNotification,
                                             object: self,
                                             userInfo: ["object": taskObject.notification])

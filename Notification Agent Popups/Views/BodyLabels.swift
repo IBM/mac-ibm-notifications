@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 22/11/22.
-//  Copyright © 2022 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -12,6 +12,10 @@ import SwiftyMarkdown
 
 /// BodyLabels is a struct that defines a view with the title and the subtitle for the PupUpView.
 struct BodyLabels: View {
+    
+    // MARK: - Environment Variables
+    
+    @EnvironmentObject var viewSpec: ViewSpec
     
     // MARK: - Variables
     
@@ -30,7 +34,7 @@ struct BodyLabels: View {
                     .accessibilityIdentifier("popup_title")
              }
             if let subtitle = subtitle {
-                MarkdownView(text: subtitle.localized, maxViewHeight: 450)
+                MarkdownView(text: subtitle.localized, maxViewHeight: 450, containerWidth: viewSpec.accessoryViewWidth)
                     .accessibilityElement()
                     .accessibilityValue(SwiftyMarkdown(string: subtitle).attributedString().string)
                     .accessibilityAddTraits(.isStaticText)

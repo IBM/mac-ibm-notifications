@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 31/03/2021.
-//  Copyright © 2021 IBM Inc. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -35,4 +35,5 @@ final class Context {
         }
     }
     var backgroundPanelsController: BackPanelController?
+    var disableQuit: Bool = false
 }

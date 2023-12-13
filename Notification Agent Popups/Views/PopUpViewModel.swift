@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 04/11/22.
-//  Copyright © 2023 IBM. All rights reserved.
+//  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -62,16 +62,6 @@ class PopUpViewModel: ObservableObject {
         }
         return nil
     }
-    var iconSize: CGSize {
-        if let widthString = notificationObject.iconWidth,
-           let width = NumberFormatter().number(from: widthString),
-           let heightString = notificationObject.iconHeight,
-           let height = NumberFormatter().number(from: heightString) {
-            return CGSize(width: CGFloat(truncating: width), height: CGFloat(truncating: height))
-        } else {
-            return CGSize(width: 60, height: 60)
-        }
-    }
     
     // MARK: - Variables
     
@@ -87,6 +77,7 @@ class PopUpViewModel: ObservableObject {
     var reminderTimer: Timer?
     var timeoutTimer: Timer?
     var countDown: Int = 0
+    var viewSpec: ViewSpec
 
     // MARK: - Published Variables
     
@@ -114,11 +105,22 @@ class PopUpViewModel: ObservableObject {
         self.notificationObject = notificationObject
         self.window = window
         mainButton = notificationObject.mainButton
-        mainButtonState = .enabled
-        secondaryButtonState = notificationObject.secondaryButton != nil ? .enabled : .hidden
+        mainButtonState = notificationObject.buttonless ? .hidden : .enabled
+        secondaryButtonState = notificationObject.secondaryButton != nil ? (notificationObject.buttonless ? .hidden : .enabled) : .hidden
         tertiaryButtonState = notificationObject.tertiaryButton != nil ? .enabled : .hidden
         helpButtonState = notificationObject.helpButton != nil ? .enabled : .hidden
         warningButtonState = notificationObject.warningButton?.isVisible ?? false ? .enabled : .hidden
+        let viewWidth = CGFloat(truncating: NumberFormatter().number(from: notificationObject.customWidth ?? "520") ?? .init(integerLiteral: 520))
+        var iconSize: CGSize = .zero
+        if let widthString = notificationObject.iconWidth,
+           let width = NumberFormatter().number(from: widthString),
+           let heightString = notificationObject.iconHeight,
+           let height = NumberFormatter().number(from: heightString) {
+            iconSize = CGSize(width: CGFloat(truncating: width), height: CGFloat(truncating: height))
+        } else {
+            iconSize = CGSize(width: 60, height: 60)
+        }
+        viewSpec = ViewSpec(mainViewWidth: viewWidth, iconSize: iconSize)
 
         NotificationCenter.default.addObserver(self, selector: #selector(repositionWindow), name: NSApplication.didChangeScreenParametersNotification, object: nil)
 
@@ -177,6 +179,7 @@ class PopUpViewModel: ObservableObject {
         mainButtonState = {
             guard primaryAccessoryView != nil else { return .enabled }
             guard secondaryAccessoryView != nil else { return primaryAVMainButtonState }
+            guard !notificationObject.buttonless else { return .hidden }
             switch primaryAVMainButtonState {
             case .enabled:
                 return secondaryAVMainButtonState
@@ -192,6 +195,7 @@ class PopUpViewModel: ObservableObject {
         secondaryButtonState = {
             guard primaryAccessoryView != nil else { return .enabled }
             guard secondaryAccessoryView != nil else { return primaryAVSecButtonState }
+            guard !notificationObject.buttonless else { return .hidden }
             switch primaryAVSecButtonState {
             case .enabled:
                 return secondaryAVSecButtonState

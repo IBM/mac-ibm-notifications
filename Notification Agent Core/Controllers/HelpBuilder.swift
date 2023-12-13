@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/27/20.
-//  Copyright © 2021 IBM Inc. All rights reserved
+//  Copyright © 2021 IBM. All rights reserved
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -45,7 +45,9 @@ public final class HelpBuilder {
                                            "-popup_reminder".yellow(),
                                            "-retain_values".yellow(),
                                            "-background_panel".yellow(),
-                                           "-unmovable".yellow()]
+                                           "-unmovable".yellow(),
+                                           "-disable_quit".yellow(),
+                                           "-custom_width".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -65,7 +67,8 @@ public final class HelpBuilder {
                                                 "-hide_title_bar_buttons".yellow(),
                                                 "-background_panel".yellow(),
                                                 "-unmovable".yellow(),
-                                                "-timeout".yellow()]
+                                                "-timeout".yellow(),
+                                                "-disable_quit".yellow()]
     static let systemAlertArguments: [String] = ["-type".green(),
                                                  "-title".yellow(),
                                                  "-subtitle".yellow(),
@@ -89,22 +92,24 @@ public final class HelpBuilder {
                                               "\n      The custom icon path/URL/SF Symbol name defined for this notification.\n      Example: -icon_path \"~/Icon/Path.png\"",
                                               "\n      The custom icon width defined for this notification. Max. width = 150\n      Example: -icon_width \"150\"",
                                               "\n      The custom icon height defined for this notification. Max. height = 300\n      Example: -icon_height \"150\"",
-                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist | datepicker ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
+                                              "[ whitebox | timer | image | video | progressbar | input | secureinput | dropdown | html | htmlwhitebox | checklist | datepicker | slideshow ]".red() + "\n      The UI type for the needed accessory view.\n      Example: -accessory_view_type whitebox",
                                               "\n      The payload for the accessory view:\n      " +
                                               "- Text for " + "[ whitebox ]".red() + " view type;\n      " +
                                               "- Text for " + "[ timer ]".red() + " view type. This will be timer's label. Use \"%@\" to define timer's position inside the label. Use " + "[ -timeout ]".yellow() + " argument to define timer's duration;\n      " +
-                                              "- File path/link for " + "[ image ]".red() + " view type;\n      " +
+                                              "- File path/link or base64 encoded string for " + "[ image ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/url TEXT /autoplay /delay INT\" ".green() + "for " + "[ video ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/percent DOUBLE /top_message TEXT /bottom_message TEXT /user_interaction_enabled BOOL /user_interruption_allowed BOOL\" ".green() + "for " + "[ progressbar ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/placeholder TEXT /title TEXT /value TEXT /required\" ".green() + "for the " + "[ input | secureinput ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /selected INT /placeholder TEXT /title TEXT\" ".green() + "for " + "[ dropdown ]".red() + " view type;\n      " +
                                               "- Text with HTML format for " + "[ html | htmlwhitebox ]".red() + " view type;\n      " +
                                               "- Text with the format " + "\"/list ITEM\\nITEM\\nITEM /preselection ITEM_INDEX ITEM_INDEX ITEM_INDEX /required /complete /title TEXT /radio\" ".green() + "for " + "[ checklist ]".red() + " view type. To read more about the usage of /complete and /required look at the project wiki;\n      " +
-                                              "- Text with the format " + "\"/title TEXT /preselection DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /style TEXT /components TEXT\" ".green() + "for " + "[ datepicker ]".red() + " view type. To read more about the usage of /style and /components look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/title TEXT /preselection DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /start_date DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /end_date DATE WITH FORMAT yyyy-MM-dd hh:mm:ss /style TEXT /components TEXT\" ".green() + "for " + "[ datepicker ]".red() + " view type. To read more about the usage of /style and /components look at the project wiki;\n      " +
+                                              "- Text with the format " + "\"/images URL\\nURL\\nURL /autoplay /delay INT\" ".green() + "for " + "[ slideshow ]".red() + " view type;\n      " +
                                               "Example 1: -accessory_view_payload \"This is the time left: %@\"\n      " +
                                               "Example 2: -accessory_view_payload \"/percent 0 /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
-                                              "Example 4: -accessory_view_payload \"<h1>Hello, world!</h1>this is a line of text<br><br><code>this is a code block<br>this is the second line of a code block</code><br>this is <span style=\"color: #ff0000\">red</span> text\".",
+                                              "Example 4: -accessory_view_payload \"<h1>Hello, world!</h1>this is a line of text<br><br><code>this is a code block<br>this is the second line of a code block</code><br>this is <span style=\"color: #ff0000\">red</span> text\"\n      " +
+                                              "Example 5: -accessory_view_payload \"/images /path/to/image.jpg\\nhttps://www.url.to/image.png\\nhttps://www.url.to/image.png /autoplay /delay 3\".",
                                               "\n      Same as for accessory_view_type argument.",
                                               "\n      Same as for accessory_view_payload argument.",
                                               "\n      The label of the main button.\n      Example: -main_button_label \"Main button title\"",
@@ -130,8 +135,10 @@ public final class HelpBuilder {
                                               "\n      A text payload to define the behavior of an optional reminder for the pop-up. The reminder is basically a timer at the end of which the pop-up is pushed again on top of the view hierarchy on screen. The payload format is: " + "\"/timeinterval <TIME_IN_SECONDS> /silent /repeat\" ".green() + "\n      Example: -popup_reminder \"/timeinterval 300\"",
                                               "\n      Flag that tells the agent to print the available accessory view outputs on any exit (main or secondary button clicked).",
                                               "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
-                                              "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable"]
-    
+                                              "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
+                                              "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit",
+                                              "\n      A custom width for the UI.\n      Example: -custom_width 1000",
+                                              "\n      Flag that tells the agent to not show any destructive CTA (Button).\n      Example: -buttonless"]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
@@ -151,7 +158,8 @@ public final class HelpBuilder {
                                                    "\n      Flag that tells the agent to remove the title bar buttons for the Onbording UI.\n      Example: -hide_title_bar_buttons",
                                                    "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
                                                    "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
-                                                   "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300"]
+                                                   "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300",
+                                                   "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit"]
     static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type systemAlert",
                                                     "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                     "\n      The subtitle of the notification.\n      Example: -subtitle \"Subtitle\"",
@@ -205,6 +213,7 @@ public final class HelpBuilder {
                                               "4".bold(),
                                               "200".bold(),
                                               "201".bold(),
+                                              "239".bold(),
                                               "250".bold(),
                                               "255".bold(),
                                               "260".bold()]
@@ -215,6 +224,7 @@ public final class HelpBuilder {
                                                          "Timeout.",
                                                          "Untracked success.",
                                                          "Received SigInt.",
+                                                         "User dimissed the popup.",
                                                          "Invalid number of arguments.",
                                                          "Invalid arguments syntax.",
                                                          "Unable to load resources"]
