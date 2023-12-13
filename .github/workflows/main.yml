@@ -19,7 +19,7 @@ jobs:
       - name: Xcode Setup
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '15.0.1'
       - name: Checkout project
         uses: actions/checkout@v3
       - name: Run Xcodebuild Test, Build
