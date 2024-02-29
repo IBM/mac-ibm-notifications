@@ -23,10 +23,12 @@ struct Icon: View {
         if let image = icon {
             Image(nsImage: image)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: iconSize.width, height: iconSize.height)
         } else {
             Image("default_icon")
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: iconSize.width, height: iconSize.height)
         }
     }
