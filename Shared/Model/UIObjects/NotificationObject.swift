@@ -111,8 +111,10 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
     var disableQuit: Bool = false
     /// Custom width for the pop-up window size.
     var customWidth: String?
-    ///  A boolean value that defined if the UI should appear without any destructive CTA.
+    /// A boolean value that define if the UI should appear without any destructive CTA.
     var buttonless: Bool = false
+    /// Boolean value that set the Popup UI title bar visibility.
+    var hideTitleBar: Bool = false
     
     // MARK: - Initializers
     
@@ -256,6 +258,9 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         if let buttonless = dict["buttonless"] as? String {
             self.buttonless = buttonless.lowercased() == "true"
         }
+        if let hideTitleBar = dict["hide_title_bar"] as? String {
+            self.hideTitleBar = hideTitleBar.lowercased() == "true"
+        }
         super.init()
         try checkObjectConsistency()
     }
@@ -374,6 +379,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         case disableQuit
         case customWidth
         case buttonless
+        case hideTitleBar
     }
     
     required public init(from decoder: Decoder) throws {
@@ -421,6 +427,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.disableQuit = try container.decode(Bool.self, forKey: .disableQuit)
         self.customWidth = try container.decodeIfPresent(String.self, forKey: .customWidth)
         self.buttonless = try container.decode(Bool.self, forKey: .buttonless)
+        self.hideTitleBar = try container.decode(Bool.self, forKey: .hideTitleBar)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -460,6 +467,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         try container.encodeIfPresent(self.disableQuit, forKey: .disableQuit)
         try container.encodeIfPresent(self.customWidth, forKey: .customWidth)
         try container.encodeIfPresent(self.buttonless, forKey: .buttonless)
+        try container.encodeIfPresent(self.hideTitleBar, forKey: .hideTitleBar)
     }
     
     // MARK: Codable protocol conformity - END
@@ -565,6 +573,8 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         }
         let nButtonless = NSNumber(booleanLiteral: buttonless)
         coder.encode(nButtonless, forKey: NOCodingKeys.buttonless.rawValue)
+        let nHideTitleBar = NSNumber(booleanLiteral: hideTitleBar)
+        coder.encode(nHideTitleBar, forKey: NOCodingKeys.hideTitleBar.rawValue)
     }
     
     //  swiftlint:enable function_body_length
@@ -610,6 +620,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
         self.disableQuit = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.disableQuit.rawValue) as? Bool ?? false
         self.customWidth = coder.decodeObject(of: NSString.self, forKey: NOCodingKeys.customWidth.rawValue) as String?
         self.buttonless = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.buttonless.rawValue) as? Bool ?? false
+        self.hideTitleBar = coder.decodeObject(of: NSNumber.self, forKey: NOCodingKeys.hideTitleBar.rawValue) as? Bool ?? false
     }
     
     // MARK: - NSSecureCoding protocol conformity - END

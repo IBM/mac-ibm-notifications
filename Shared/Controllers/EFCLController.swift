@@ -37,7 +37,8 @@ class EFCLController {
                                              "show_suppression_button",
                                              "unmovable",
                                              "disable_quit",
-                                             "buttonless"]
+                                             "buttonless",
+                                             "hide_title_bar"]
     // MARK: - Variables
 
     let context = Context.main

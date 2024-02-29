@@ -97,7 +97,7 @@ struct PopUpView: View {
                 }
             }
         }
-        .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+        .padding(EdgeInsets(top: viewModel.notificationObject.hideTitleBar ? -10 : 16, leading: 16, bottom: 16, trailing: 16))
         .frame(width: viewModel.viewSpec.mainViewWidth)
     }
 }
