@@ -54,26 +54,19 @@ struct PopUpView: View {
                            subtitle: viewModel.notificationObject.subtitle)
                 .environmentObject(viewModel.viewSpec)
                 .padding(.bottom, 8)
-                if let primaryAV = viewModel.primaryAccessoryView {
-                    switch primaryAV.accessoryView.type {
-                    case .timer:
-                        Text($viewModel.primaryAVInput.wrappedValue.localized)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityIdentifier("timer_accessory_view")
-                    default:
-                        AccessoryViewWrapper(source: primaryAV)
-                            .environmentObject(viewModel.viewSpec)
-                    }
-                }
-                if let secondaryAV = viewModel.secondaryAccessoryView {
-                    switch secondaryAV.accessoryView.type {
-                    case .timer:
-                        Text($viewModel.secondaryAVInput.wrappedValue.localized)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityIdentifier("timer_accessory_view")
-                    default:
-                        AccessoryViewWrapper(source: secondaryAV)
-                            .environmentObject(viewModel.viewSpec)
+                if !viewModel.accessoryViews.isEmpty {
+                    VStack(alignment: .leading) {
+                        ForEach(viewModel.accessoryViews, id: \.hashValue) { accessoryView in
+                            switch accessoryView.source.accessoryView.type {
+                            case .timer:
+                                Text($viewModel.timerAVInput.wrappedValue.localized)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .accessibilityIdentifier("timer_accessory_view")
+                            default:
+                                accessoryView
+                                    .environmentObject(viewModel.viewSpec)
+                            }
+                        }
                     }
                 }
                 Spacer(minLength: 12)
@@ -91,7 +84,7 @@ struct PopUpView: View {
                     .accessibilityIdentifier("secondary_button")
                     StandardButton(keyboardShortcut: .return, action: {
                         self.viewModel.didClickButton(of: .main)
-                    }, label: viewModel.notificationObject.mainButton.label, buttonState: $viewModel.mainButtonState)
+                    }, label: viewModel.notificationObject.mainButton.label, buttonState: $viewModel.primaryButtonState)
                     .accessibilityHint(viewModel.notificationObject.mainButton.callToActionType.accessibilityHint)
                     .accessibilityIdentifier("main_button")
                 }

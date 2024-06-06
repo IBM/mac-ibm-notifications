@@ -150,11 +150,21 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             }
         }
         self.accessoryViews = []
+        
         if let accessoryviewTyperawValue = dict["accessory_view_type"] as? String,
            let accessoryViewType = NotificationAccessoryElement.ViewType.init(rawValue: accessoryviewTyperawValue.lowercased()) {
             self.accessoryViews?.append(NotificationAccessoryElement(with: accessoryViewType, payload: dict["accessory_view_payload"] as? String))
         }
         
+        for number in 1...100 {
+            if let accessoryviewTyperawValue = dict["accessory_view_type_\(number.description)"] as? String,
+               let accessoryViewType = NotificationAccessoryElement.ViewType.init(rawValue: accessoryviewTyperawValue.lowercased()) {
+                self.accessoryViews?.append(NotificationAccessoryElement(with: accessoryViewType, payload: dict["accessory_view_payload_\(number.description)"] as? String))
+            } else {
+                break
+            }
+        }
+
         if let secondaryAccessoryviewTyperawValue = dict["secondary_accessory_view_type"] as? String,
            let secondaryAccessoryViewType = NotificationAccessoryElement.ViewType.init(rawValue: secondaryAccessoryviewTyperawValue.lowercased()) {
             self.accessoryViews?.append(NotificationAccessoryElement(with: secondaryAccessoryViewType, payload: dict["secondary_accessory_view_payload"] as? String))

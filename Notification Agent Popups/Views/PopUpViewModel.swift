@@ -6,7 +6,7 @@
 //  Copyright © 2021 IBM. All rights reserved.
 //  SPDX-License-Identifier: Apache2.0
 //
-//  swiftlint:disable type_body_length file_length
+//  swiftlint:disable type_body_length
 
 import SwiftUI
 import Combine
@@ -66,8 +66,6 @@ class PopUpViewModel: ObservableObject {
     // MARK: - Variables
     
     var warningButton: DynamicNotificationButton?
-    var primaryAccessoryView: AccessoryViewSource?
-    var secondaryAccessoryView: AccessoryViewSource?
     var replyHandler = ReplyHandler.shared
     var helpButtonState: SwiftUIButtonState
     var tertiaryButtonState: SwiftUIButtonState
@@ -78,25 +76,23 @@ class PopUpViewModel: ObservableObject {
     var timeoutTimer: Timer?
     var countDown: Int = 0
     var viewSpec: ViewSpec
+    var primaryButtonStates: [SwiftUIButtonState] = []
+    var secondaryButtonStates: [SwiftUIButtonState] = []
+    var accessoryViews: [AccessoryViewWrapper] = []
+    var outputs: [String] = []
 
     // MARK: - Published Variables
     
-    @Published var mainButtonState: SwiftUIButtonState
+    @Published var primaryButtonState: SwiftUIButtonState
     @Published var secondaryButtonState: SwiftUIButtonState
     @Published var warningButtonState: SwiftUIButtonState
-
-    @Published var primaryAVOutput: String = ""
-    @Published var primaryAVInput: String = ""
-    @Published var secondaryAVOutput: String = ""
-    @Published var secondaryAVInput: String = ""
+    @Published var timerAVInput: String = ""
     @Published var primaryAVMainButtonState: SwiftUIButtonState = .enabled
     @Published var primaryAVSecButtonState: SwiftUIButtonState = .enabled
     @Published var secondaryAVMainButtonState: SwiftUIButtonState = .enabled
     @Published var secondaryAVSecButtonState: SwiftUIButtonState = .enabled
-
     @Published var showHelpButtonPopover: Bool = false
     @Published var showWarningButtonPopover: Bool = false
-    
     @Published var mainButton: NotificationButton
             
     // MARK: - Initializers
@@ -105,7 +101,7 @@ class PopUpViewModel: ObservableObject {
         self.notificationObject = notificationObject
         self.window = window
         mainButton = notificationObject.mainButton
-        mainButtonState = notificationObject.buttonless ? .hidden : .enabled
+        primaryButtonState = notificationObject.buttonless ? .hidden : .enabled
         secondaryButtonState = notificationObject.secondaryButton != nil ? (notificationObject.buttonless ? .hidden : .enabled) : .hidden
         tertiaryButtonState = notificationObject.tertiaryButton != nil ? .enabled : .hidden
         helpButtonState = notificationObject.helpButton != nil ? .enabled : .hidden
@@ -143,7 +139,7 @@ class PopUpViewModel: ObservableObject {
         switch type {
         case .main:
             printOutputIfAvailable()
-            triggerAction(ofType: mainButtonState == .cancel ? .cancel : .main)
+            triggerAction(ofType: primaryButtonState == .cancel ? .cancel : .main)
         case .secondary:
             if let retainValues = notificationObject.retainValues, retainValues {
                 printOutputIfAvailable()
@@ -174,89 +170,75 @@ class PopUpViewModel: ObservableObject {
         }
     }
     
-    /// Validate the destructive buttons appearance on the dialog.
-    func checkDestructiveButtonVisibility() {
-        mainButtonState = {
-            guard primaryAccessoryView != nil else { return .enabled }
-            guard secondaryAccessoryView != nil else { return primaryAVMainButtonState }
-            guard !notificationObject.buttonless else { return .hidden }
-            switch primaryAVMainButtonState {
-            case .enabled:
-                return secondaryAVMainButtonState
-            case .disabled:
-                return secondaryAVMainButtonState != .hidden ? .disabled : .hidden
-            case .hidden:
-                return .hidden
-            case .cancel:
-                return .cancel
-            }
-        }()
-        guard notificationObject.secondaryButton != nil else { return }
-        secondaryButtonState = {
-            guard primaryAccessoryView != nil else { return .enabled }
-            guard secondaryAccessoryView != nil else { return primaryAVSecButtonState }
-            guard !notificationObject.buttonless else { return .hidden }
-            switch primaryAVSecButtonState {
-            case .enabled:
-                return secondaryAVSecButtonState
-            case .disabled:
-                return secondaryAVSecButtonState != .hidden ? .disabled : .hidden
-            case .hidden:
-                return .hidden
-            case .cancel:
-                return .hidden
-            }
-        }()
-    }
-    
     // MARK: - Private Methods
     
     /// This method wrap and bind the accessory views - if present - with the view model
     /// in order to be able to react to changes occurred in those accessory views.
     private func setupAccessoryViews() {
-        if let avs = notificationObject.accessoryViews, avs.count > 0 {
-            if avs[0].type == .dropdown {
-                primaryAVOutput = "-1"
-            }
-            primaryAccessoryView = AccessoryViewSource(output: Binding(get: {
-                return self.primaryAVOutput
+        for (item, accessoryView) in (notificationObject.accessoryViews ?? []).enumerated() {
+            var primaryButtonState: SwiftUIButtonState = .enabled
+            primaryButtonStates.append(primaryButtonState)
+            var secondaryButtonState: SwiftUIButtonState = .enabled
+            secondaryButtonStates.append(secondaryButtonState)
+            self.outputs.append(accessoryView.type == .dropdown ? "-1" : "")
+            
+            accessoryViews.append(AccessoryViewWrapper(source: AccessoryViewSource(output: Binding(get: {
+                return self.outputs[item]
             }, set: { newValue, _ in
-                self.primaryAVOutput = newValue
-                self.checkDestructiveButtonVisibility()
+                guard newValue != self.outputs[item] else { return }
+                self.outputs[item] = newValue
+                self.evaluateBindings()
             }), mainButtonState: Binding(get: {
-                return self.primaryAVMainButtonState
+                return primaryButtonState
             }, set: { newValue, _ in
-                self.primaryAVMainButtonState = newValue
-                self.checkDestructiveButtonVisibility()
+                guard newValue != primaryButtonState else { return }
+                primaryButtonState = newValue
+                self.evaluateBindings()
             }), secondaryButtonState: Binding(get: {
-                return self.primaryAVSecButtonState
+                return secondaryButtonState
             }, set: { newValue, _ in
-                self.primaryAVSecButtonState = newValue
-                self.checkDestructiveButtonVisibility()
-            }), accessoryView: avs[0])
-            if avs.count > 1 {
-                if avs[1].type == .dropdown {
-                    secondaryAVOutput = "-1"
-                }
-                secondaryAccessoryView = AccessoryViewSource(output: Binding(get: {
-                    return self.secondaryAVOutput
-                }, set: { newValue, _ in
-                    self.secondaryAVOutput = newValue
-                    self.checkDestructiveButtonVisibility()
-                }), mainButtonState: Binding(get: {
-                    return self.secondaryAVMainButtonState
-                }, set: { newValue, _ in
-                    self.secondaryAVMainButtonState = newValue
-                    self.checkDestructiveButtonVisibility()
-                }), secondaryButtonState: Binding(get: {
-                    return self.secondaryAVSecButtonState
-                }, set: { newValue, _ in
-                    self.secondaryAVSecButtonState = newValue
-                    self.checkDestructiveButtonVisibility()
-                }), accessoryView: avs[1])
-            }
+                guard newValue != secondaryButtonState else { return }
+                secondaryButtonState = newValue
+                self.evaluateBindings()
+            }), accessoryView: accessoryView)))
+            
         }
         setTimeoutIfNeeded()
+    }
+    
+    /// Evaluate the current state of the binded variables.
+    private func evaluateBindings() {
+        var localPrimaryButtonState: SwiftUIButtonState = .enabled
+        var localSecondaryButtonState: SwiftUIButtonState = .enabled
+        for acv in accessoryViews {
+            switch acv.source.mainButtonState {
+            case .enabled:
+                break
+            case .disabled:
+                localPrimaryButtonState = .disabled
+            case .hidden:
+                localPrimaryButtonState = .hidden
+            case .cancel:
+                break
+            }
+            switch acv.source.secondaryButtonState {
+            case .enabled:
+                break
+            case .disabled:
+                localSecondaryButtonState = .disabled
+            case .hidden:
+                localSecondaryButtonState = .hidden
+            case .cancel:
+                break
+            }
+        }
+        if self.primaryButtonState != localPrimaryButtonState {
+            self.primaryButtonState = localPrimaryButtonState
+        }
+        guard notificationObject.secondaryButton != nil else { return }
+        if self.secondaryButtonState != localSecondaryButtonState {
+            self.secondaryButtonState = localSecondaryButtonState
+        }
     }
     
     /// Send the relative user action to the replyHandler.
@@ -291,19 +273,11 @@ class PopUpViewModel: ObservableObject {
     private func setTimeoutIfNeeded() {
         if let timeoutString = notificationObject.timeout, let timeout = Int(timeoutString) {
             countDown = timeout
-            if let accv = notificationObject.accessoryViews?[safe: 0], let payload = accv.payload, accv.type == .timer {
-                primaryAVInput = String.init(format: payload, arguments: [timeout.timeFormattedString])
+            if let accv = accessoryViews.first(where: { $0.source.accessoryView.type == .timer }), let payload = accv.source.accessoryView.payload {
+                timerAVInput = String.init(format: payload, arguments: [timeout.timeFormattedString])
                 timeoutTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
                     self.updateCountdown()
-                    self.primaryAVInput = String(format: payload, arguments: [self.countDown.timeFormattedString])
-                })
-                return
-            }
-            if let accv = notificationObject.accessoryViews?[safe: 1], let payload = accv.payload, accv.type == .timer {
-                secondaryAVInput = String.init(format: payload, arguments: [timeout.timeFormattedString])
-                timeoutTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                    self.updateCountdown()
-                    self.secondaryAVInput = String(format: payload, arguments: [self.countDown.timeFormattedString])
+                    self.timerAVInput = String(format: payload, arguments: [self.countDown.timeFormattedString])
                 })
                 return
             }
@@ -353,33 +327,20 @@ class PopUpViewModel: ObservableObject {
     }
     
     private func printOutputIfAvailable() {
-        guard let primaryAccessoryView = self.primaryAccessoryView else { return }
-        switch primaryAccessoryView.accessoryView.type {
-        case .checklist:
-            if let payload = primaryAccessoryView.accessoryView.payload,
-               !payload.localizedStandardContains("/complete") && !primaryAVOutput.isEmpty && !(primaryAVOutput == "-1") {
-                print(primaryAVOutput)
+        for (index, accessoryView) in accessoryViews.enumerated() {
+            switch accessoryView.source.accessoryView.type {
+            case .checklist:
+                if let payload = accessoryView.source.accessoryView.payload,
+                   !payload.localizedStandardContains("/complete") && !outputs[index].isEmpty && !(outputs[index] == "-1") {
+                    print(outputs[index])
+                }
+            case .input, .secureinput, .securedinput, .dropdown, .datepicker :
+                if !outputs[index].isEmpty {
+                    print(outputs[index])
+                }
+            default:
+                break
             }
-        case .input, .secureinput, .securedinput, .dropdown, .datepicker :
-            if !primaryAVOutput.isEmpty {
-                print(primaryAVOutput)
-            }
-        default:
-            break
-        }
-        guard let secondaryAccessoryView = self.secondaryAccessoryView else { return }
-        switch secondaryAccessoryView.accessoryView.type {
-        case .checklist:
-            if let payload = secondaryAccessoryView.accessoryView.payload,
-                !payload.localizedStandardContains("/complete") && !secondaryAVOutput.isEmpty && !(secondaryAVOutput == "-1") {
-                print(secondaryAVOutput)
-            }
-        case .input, .secureinput, .securedinput, .dropdown, .datepicker :
-            if !secondaryAVOutput.isEmpty {
-                print(secondaryAVOutput)
-            }
-        default:
-            break
         }
     }
     
@@ -402,4 +363,4 @@ extension PopUpViewModel: DynamicNotificationButtonDelegate {
     }
 }
 
-//  swiftlint:enable type_body_length file_length
+//  swiftlint:enable type_body_length
