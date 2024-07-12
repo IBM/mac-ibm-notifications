@@ -3621,7 +3621,7 @@
 			repositoryURL = "https://github.com/NuPlay/RichText.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 2.4.1;
 			};
 		};
 		B97F10C225DD682900E15245 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
