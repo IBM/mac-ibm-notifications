@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/27/20.
-//  Copyright © 2021 IBM. All rights reserved
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -440,7 +440,7 @@ public final class HelpBuilder {
     }
 
     static func printAppVersion() {
-        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown")".bold())
+        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown") (\(Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "Unknown"))\n© Copyright IBM Corp. 2021, 2024".bold())
     }
 }
 

@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 04/11/22.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length
