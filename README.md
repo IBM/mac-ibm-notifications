@@ -3,8 +3,7 @@
 ![License](https://img.shields.io/badge/license-Apache%202-1984E5)
 
 ![Swift version](https://img.shields.io/badge/swift-5.9.0-1984E5?logo=swift)
-![Xcode version](https://img.shields.io/badge/xcode-15.2-1984E5?logo=xcode)
-![Project version](https://img.shields.io/badge/version-3.1.0-1984E5)
+![Project version](https://img.shields.io/badge/version-3.2.0-1984E5)
 ![macOS](https://img.shields.io/badge/macOS-11+-bright%20green)
 
 [![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
