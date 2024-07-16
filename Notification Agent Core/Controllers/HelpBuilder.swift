@@ -440,7 +440,7 @@ public final class HelpBuilder {
     }
 
     static func printAppVersion() {
-        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown") (\(Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "Unknown"))\n© Copyright IBM Corp. 2021, 2024".bold())
+        print("IBM Notifier \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown") (\(Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "Unknown"))\n© Copyright IBM Corp. 2021, 2024".bold())
     }
 }
 
