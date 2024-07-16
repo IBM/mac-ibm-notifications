@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 7/29/20.
-//  Copyright © 2021 IBM. All rights reserved
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable function_body_length
@@ -56,7 +56,7 @@ class UserNotificationController: NSObject {
     /// Show to the user a control center notification that describe the notification object received.
     /// - Parameter notificationObject: the notification object that needs to be show.
     func showBanner(_ notificationObject: NotificationObject) {
-        if let workflow = notificationObject.workflow, (workflow == .resetBanners || workflow == .resetAlerts) {
+        if let workflow = notificationObject.workflow, workflow == .resetBanners || workflow == .resetAlerts {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             Utils.applicationExit(withReason: .untrackedSuccess)

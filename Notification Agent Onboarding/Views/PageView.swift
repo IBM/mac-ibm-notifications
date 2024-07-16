@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 05/04/2023.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -57,6 +57,7 @@ struct PageView: View {
                     .padding(.bottom, 4)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("onboarding_title")
+                    .padding(.horizontal, 30)
             }
             if #available(macOS 12, *) {
                 if let subtitle = viewModel.page.subtitle {
@@ -64,12 +65,14 @@ struct PageView: View {
                         .multilineTextAlignment(.center)
                         .accessibilityAddTraits(.isHeader)
                         .accessibilityIdentifier("onboarding_subtitle")
+                        .padding(.horizontal, 30)
                 }
                 if let body = viewModel.page.body {
                     Text(AttributedString(markdownText(body).attributedString()))
                         .multilineTextAlignment(.leading)
                         .padding(.top, 8)
                         .accessibilityIdentifier("onboarding_body")
+                        .padding(.horizontal, 30)
                 }
             } else {
                 if let subtitle = viewModel.page.subtitle {
@@ -78,6 +81,7 @@ struct PageView: View {
                         .font(.title2)
                         .accessibilityAddTraits(.isHeader)
                         .accessibilityIdentifier("onboarding_subtitle")
+                        .padding(.horizontal, 30)
                 }
                 if let body = viewModel.page.body {
                     Text(body)
@@ -85,6 +89,7 @@ struct PageView: View {
                         .multilineTextAlignment(.center)
                         .padding(.top, 8)
                         .accessibilityIdentifier("onboarding_body")
+                        .padding(.horizontal, 30)
                 }
             }
 

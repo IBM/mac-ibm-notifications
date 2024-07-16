@@ -3,7 +3,7 @@
 //  Notification Agent Banner
 //
 //  Created by Simone Martorelli on 28/06/2021.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 

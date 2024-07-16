@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 5/27/21.
-//  Copyright © 2021 IBM. All rights reserved
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -31,7 +31,12 @@ extension NotificationDispatch {
                 let contentView = PopUpView(viewModel: viewModel)
                 let hostingView = NSHostingView(rootView: contentView)
                 mainWindow.contentView = hostingView
-                mainWindow.title = object.barTitle ?? ConfigurableParameters.defaultPopupBarTitle
+                if object.hideTitleBar {
+                    mainWindow.title = ""
+                    mainWindow.titlebarAppearsTransparent = true
+                } else {
+                    mainWindow.title = object.barTitle ?? ConfigurableParameters.defaultPopupBarTitle
+                }
                 mainWindow.setWindowPosition(object.position ?? .center)
                 mainWindow.styleMask.remove(.resizable)
                 mainWindow.styleMask.remove(.closable)

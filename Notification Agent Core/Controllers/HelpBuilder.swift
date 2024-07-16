@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 8/27/20.
-//  Copyright © 2021 IBM. All rights reserved
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable type_body_length file_length
@@ -20,8 +20,8 @@ public final class HelpBuilder {
                                            "-icon_height".yellow(),
                                            "-accessory_view_type".yellow(),
                                            "-accessory_view_payload".yellow(),
-                                           "-secondary_accessory_view_type".yellow(),
-                                           "-secondary_accessory_view_payload".yellow(),
+                                           "-accessory_view_type_N".yellow(),
+                                           "-accessory_view_payload_N".yellow(),
                                            "-main_button_label".yellow(),
                                            "-main_button_cta_type".yellow(),
                                            "-main_button_cta_payload".yellow(),
@@ -47,7 +47,9 @@ public final class HelpBuilder {
                                            "-background_panel".yellow(),
                                            "-unmovable".yellow(),
                                            "-disable_quit".yellow(),
-                                           "-custom_width".yellow()]
+                                           "-custom_width".yellow(),
+                                           "-buttonless".yellow(),
+                                           "-hide_title_bar".yellow()]
     static let bannerArguments: [String] = ["-type".green(),
                                             "-title".yellow(),
                                             "-subtitle".yellow(),
@@ -110,8 +112,8 @@ public final class HelpBuilder {
                                               "Example 3: -accessory_view_payload \"/percent indeterminate /top_message This is the top message /bottom_message This is the bottom message\";\n      " +
                                               "Example 4: -accessory_view_payload \"<h1>Hello, world!</h1>this is a line of text<br><br><code>this is a code block<br>this is the second line of a code block</code><br>this is <span style=\"color: #ff0000\">red</span> text\"\n      " +
                                               "Example 5: -accessory_view_payload \"/images /path/to/image.jpg\\nhttps://www.url.to/image.png\\nhttps://www.url.to/image.png /autoplay /delay 3\".",
-                                              "\n      Same as for accessory_view_type argument.",
-                                              "\n      Same as for accessory_view_payload argument.",
+                                              "\n      Same as for accessory_view_type argument. The tool support multiple accessory views on each pop-up;\n      Example 1: accessory_view_type_1 image;\n      Example 2: accessory_view_type_2 dropdown;",
+                                              "\n      Same as for accessory_view_payload argument. The tool support multiple accessory views on each pop-up;\n      Example 1: accessory_view_payload_1 \"path/or/URL/to/file\";\n      Example 2: accessory_view_payload_2 \"/list One\\nTwo\\nThree\";",
                                               "\n      The label of the main button.\n      Example: -main_button_label \"Main button title\"",
                                               "[ none | link ]".red() + "\n      The call to action type for the main button (default: none -> exit).\n      Example: -main_button_cta_type link",
                                               "\n      An URL if " + "[ link ]".red() + " cta type defined.\n      Example: -main_button_cta_payload \"URL\"",
@@ -138,7 +140,8 @@ public final class HelpBuilder {
                                               "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
                                               "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit",
                                               "\n      A custom width for the UI.\n      Example: -custom_width 1000",
-                                              "\n      Flag that tells the agent to not show any destructive CTA (Button).\n      Example: -buttonless"]
+                                              "\n      Flag that tells the agent to not show any destructive CTA (Button).\n      Example: -buttonless",
+                                              "\n      Flag that tells the agent to not show the title bar.\n      Example: -hide_title_bar"]
     static let bannerDescriptions: [String] = ["[ banner | alert ]".red() + "\n      The UI type of the notification.\n      Example: -type banner",
                                                "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                "\n      The subtitle of the notification. It supports MarkDown text.\n      Example: -subtitle \"Subtitle\"",
@@ -177,7 +180,8 @@ public final class HelpBuilder {
                                                     "\n      Flag that tells the agent to show the suppression future notifications button on the UI. If checked by the user the agent will print \"suppressed\" in the output before exit.\n      Example: -showSuppressionButton"]
     static let popupSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle | -accessory_view_type + -accessory_view_payload ] ".red() + "must be defined to present a pop-up.",
                                                 "By default tertiary button is not destructive. Use " + "[ exitlink ]".red() + " cta type to trigger a link (optional) and make it destructive for the pop-up.",
-                                                "In general if a call to action type is defined for a button, must be defined also the related payload. Except for the cta types " + "[ none | exitlink ]".red() + "."]
+                                                "In general if a call to action type is defined for a button, must be defined also the related payload. Except for the cta types " + "[ none | exitlink ]".red() + ".",
+                                                "To setup multiple accessory views on the pop-up use \"-accessory_view_type_N\" and \"-accessory_view_payload_N\" where N is an integer number that goes from 1 to 100. Use only sequential integers (CORRECT: 1, 2 ,3, 4, ... | WRONG: 1, 3, 5, 6, ...)."]
     static let bannerSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle ] ".red() + "must be defined to present a banner.",
                                                  "In general if a call to action type is defined for a button, must be defined also the related payload."]
     static let systemAlertSyntacticRules: [String] = ["At least one argument between" + " [ -title | -subtitle ] ".red() + "must be defined to present a systemAlert."]
@@ -436,7 +440,7 @@ public final class HelpBuilder {
     }
 
     static func printAppVersion() {
-        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown")".bold())
+        print("IBM Notifier version: \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown") (\(Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "Unknown"))\n© Copyright IBM Corp. 2021, 2024".bold())
     }
 }
 

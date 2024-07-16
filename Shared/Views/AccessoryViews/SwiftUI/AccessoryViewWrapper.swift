@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 09/02/23.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -48,6 +48,7 @@ struct AccessoryViewWrapper: View {
                 ScrollView {
                     RichText(html: source.accessoryView.payload ?? "")
                         .colorScheme(source.accessoryView.type == .htmlwhitebox ? .light : .auto)
+                        .customCSS("td { color: " + (source.accessoryView.type == .htmlwhitebox ? NSColor.black : NSColor.labelColor).hexString + "; }")
                         .padding(source.accessoryView.type == .htmlwhitebox ? 4 : 0)
                 }
                 .frame(maxHeight: AppComponent.current == .popup ? 300 : .infinity)

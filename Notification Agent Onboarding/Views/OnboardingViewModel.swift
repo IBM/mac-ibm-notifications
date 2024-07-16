@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 03/04/2023.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 //  swiftlint:disable function_body_length
@@ -111,9 +111,10 @@ class OnboardingViewModel: NSObject, ObservableObject {
             self.setTimeout(timeout)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(repositionWindow), name: NSApplication.didChangeScreenParametersNotification, object: nil)
-        if let progressBarPayload = onboardingData.progressBarPayload, onboardingData.pages.count > 1 {
+        if let progressBarPayload = onboardingData.progressBarPayload {
             var payload: String = "/percent 0 /user_interaction_enabled true"
             if progressBarPayload.lowercased() == "automatic" {
+                guard onboardingData.pages.count > 1 else { return }
                 automaticProgressBar = true
             } else {
                 payload = progressBarPayload

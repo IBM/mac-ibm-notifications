@@ -3,7 +3,7 @@
 //  Notification Agent Popup UI Tests
 //
 //  Created by Simone Martorelli on 02/06/22.
-//  Copyright © 2021 IBM. All rights reserved.
+//  © Copyright IBM Corp. 2021, 2024
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -19,7 +19,7 @@ class NAPUITests: XCTestCase {
     /// Icon: "default_icon"
     func testA1Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some Title","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some Title","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -44,7 +44,7 @@ class NAPUITests: XCTestCase {
     /// Main Button:  Label --> Ok
     func testA2Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -68,7 +68,7 @@ class NAPUITests: XCTestCase {
     /// Main Button:  Label --> Ok
     func testA3Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","position":"top_left","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","position":"top_left","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -93,7 +93,7 @@ class NAPUITests: XCTestCase {
     /// Main Button:  Label --> Ok
     func testA4Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":true,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM N otifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":true,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM N otifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -118,7 +118,7 @@ class NAPUITests: XCTestCase {
     /// Secondary Button:  Label --> Secondary
     func testA5Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -146,7 +146,7 @@ class NAPUITests: XCTestCase {
     /// Tertiary Button: Label --> Tertiary
     func testA6Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"tertiaryButton":{"label":"Tertiary","callToActionType":"link","callToActionPayload":"https://www.google.com"},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"tertiaryButton":{"label":"Tertiary","callToActionType":"link","callToActionPayload":"https://www.google.com"},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"IBM Notifier","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -176,7 +176,7 @@ class NAPUITests: XCTestCase {
     /// BarTitle: Some
     func testA7Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -205,7 +205,7 @@ class NAPUITests: XCTestCase {
     /// Icon: Circle SFSymbol
     func testA8Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -235,7 +235,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: slideshow with 3 images
     func testA9Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"slideshow","payload":"/images https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg\\nhttps://cdn.pixabay.com/photo/2015/04/19/08/32/rose-729509_960_720.jpg\\nhttps://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"slideshow","payload":"/images https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg\\nhttps://cdn.pixabay.com/photo/2015/04/19/08/32/rose-729509_960_720.jpg\\nhttps://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -273,7 +273,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: image
     func testB1Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -302,7 +302,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: whitebox
     func testB2Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"whitebox","payload":"Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"whitebox","payload":"Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -334,7 +334,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: timer
     func testB3Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"accessoryViews":[{"type":"timer","payload":"Time left: %@"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false,"accessoryViews":[{"type":"timer","payload":"Time left: %@"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -369,7 +369,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: input
     func testB4Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"input","payload":"/title AV Title /placeholder Some placeholder"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"input","payload":"/title AV Title /placeholder Some placeholder"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -404,7 +404,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: secureinput
     func testB5Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"secureinput","payload":"/title AV Title /placeholder Some secure placeholder"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"secureinput","payload":"/title AV Title /placeholder Some secure placeholder"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -439,7 +439,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: progressbar
     func testB6Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"progressbar","payload":"/percent 0 /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"progressbar","payload":"/percent 0 /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -469,7 +469,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: progressbar
     func testB7Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"progressbar","payload":"/percent indeterminate /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"progressbar","payload":"/percent indeterminate /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -499,7 +499,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: progressbar
     func testB8Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"progressbar","payload":"/percent 50 /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"progressbar","payload":"/percent 50 /top_message Top /bottom_message Bottom"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -529,7 +529,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: dropdown
     func testB9Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"dropdown","payload":"/list First\\nSecond\\nThird /placeholder Pick something /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"dropdown","payload":"/list First\\nSecond\\nThird /placeholder Pick something /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -570,7 +570,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: dropdown
     func testC1Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"dropdown","payload":"/list First\\nSecond\\nThird /placeholder Pick something"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"dropdown","payload":"/list First\\nSecond\\nThird /placeholder Pick something"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -611,7 +611,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist
     func testC2Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -650,7 +650,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist
     func testC3Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /required"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /required"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -687,7 +687,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist
     func testC4Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /complete"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /complete"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -729,7 +729,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist
     func testC5Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /preselection 1 /required"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /preselection 1 /required"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -764,7 +764,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist - radio
     func testC6Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio /required /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio /required /title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -799,7 +799,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist - radio
     func testC7Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -830,7 +830,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: checklist - radio
     func testC8Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio /preselection 1"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"checklist","payload":"/list First\\nSecond\\nThird /radio /preselection 1"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -862,7 +862,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: datepicker
     func testC9Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -894,7 +894,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: datepicker
     func testD1Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title /style graphical"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title /style graphical"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -925,7 +925,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: datepicker
     func testD2Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title /style graphical /components date"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"datepicker","payload":"/title Some title /style graphical /components date"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -957,7 +957,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: whitebox
     func testD3Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","customWidth":"1000","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"whitebox","payload":"Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","customWidth":"1000","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"whitebox","payload":"Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -989,7 +989,7 @@ class NAPUITests: XCTestCase {
     /// Unmovable: true
     func testD4Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":false,"disableQuit":false,"buttonless":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":false,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -1026,7 +1026,7 @@ class NAPUITests: XCTestCase {
     /// Unmovable: false
     func testD5Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"timeout":"30","barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -1061,7 +1061,7 @@ class NAPUITests: XCTestCase {
     /// Buttonless: true
     func testD6Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some Title","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":true},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some Title","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":true,"hideTitleBar":false},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -1088,7 +1088,7 @@ class NAPUITests: XCTestCase {
     /// AccessoryView: image with a GIF
     func testD7Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -1119,7 +1119,7 @@ class NAPUITests: XCTestCase {
     /// Secondary AccessoryView: image
     func testD8Popup() throws {
         let useCase = """
-        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
         """ // pragma: allowlist-secret
         if let useCaseData = useCase.data(using: .utf8) {
             let app = XCUIApplication()
@@ -1134,6 +1134,86 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.staticTexts["popup_subtitle"].exists)
             XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
             XCTAssert(app.images["image_accessory_view"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing simple Pop-up with:
+    /// Title: This is a title
+    /// Main Button:  Label --> Ok
+    /// BarTitle: hidden
+    /// Icon: "default_icon"
+    func testD9Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"OK","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"accessoryViews":[],"alwaysOnTop":false,"type":"popup","title":"This is a title","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some Title","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":true},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "OK")
+            XCTAssertEqual(app.images["popup_icon"].label, "default_icon")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssertEqual(app.windows["main_window"].title, "")
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// AccessoryView: dropdown
+    /// AccessoryView1: datepicker
+    /// AccessoryView2: whitebox
+    /// AccessoryView3: GIF
+    /// AccessoryView4: image
+    func testE1Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"dropdown","payload":"/list First\\nSecond\\nThird /placeholder Pick something /title Some title"},{"type":"datepicker","payload":"/title Some title /style graphical /components date"},{"type":"whitebox","payload":"Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view"},{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssertEqual(app.staticTexts["picker_accessory_view_title"].value as? String ?? "", "Some title")
+            XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].exists)
+            XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "Pick something")
+            app.popUpButtons["picker_accessory_view_dropdown"].click()
+            XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].exists)
+            app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].click()
+            sleep(1)
+            XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "First")
+            app.popUpButtons["picker_accessory_view_dropdown"].click()
+            XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].exists)
+            app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].click()
+            sleep(1)
+            XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "Second")
+            XCTAssert(app.staticTexts["datepicker_accessory_view_title"].exists)
+            XCTAssertEqual(app.staticTexts["datepicker_accessory_view_title"].value as? String ?? "", "Some title")
+            XCTAssert(app.datePickers["datepicker_accessory_view_picker"].exists)
+            XCTAssert(app.datePickers["datepicker_accessory_view_picker"].isEnabled)
+            XCTAssertNotNil(app.datePickers["datepicker_accessory_view_picker"].value)
+            XCTAssert(app.textViews["markdown_accessory_view"].exists)
+            XCTAssertEqual(app.textViews["markdown_accessory_view"].value as? String ?? "", "Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view")
+            XCTAssert(app.images["image_accessory_view"].exists)
+            XCTAssert(app.staticTexts["picker_accessory_view_title"].exists)
             app.terminate()
         } else {
             XCTAssert(false, "Failed to encode the usecase.")
