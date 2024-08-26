@@ -33,6 +33,10 @@ extension NotificationDispatch {
             } else if object.hideTitleBarButtons ?? false {
                 mainWindow.styleMask.remove(.closable)
                 mainWindow.styleMask.remove(.miniaturizable)
+            } else {
+                // Not sure why since Sonoma we need to manually add the default buttons to the Title Bar.
+                mainWindow.styleMask.update(with: .closable)
+                mainWindow.styleMask.update(with: .miniaturizable)
             }
             mainWindow.canBecomeVisibleWithoutLogin = true
 
