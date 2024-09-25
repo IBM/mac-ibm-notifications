@@ -87,6 +87,7 @@ struct SlideShowView: View {
             HStack(alignment: .center) {
                 if selection != 0 {
                     Button {
+                        guard selection > 0 else { return }
                         selection -= 1
                         invalidateTimer()
                     } label: {
@@ -105,6 +106,7 @@ struct SlideShowView: View {
                 Spacer()
                 if selection != images.count-1 {
                     Button {
+                        guard selection < images.count-1 else { return }
                         selection += 1
                         invalidateTimer()
                     } label: {
