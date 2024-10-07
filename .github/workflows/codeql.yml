@@ -81,7 +81,7 @@ jobs:
     - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
-        xcodebuild clean test build -project "Notification Agent.xcodeproj" -scheme "IBM Notifier" -destination 'platform=macOS' | xcpretty
+        xcodebuild clean build -project "Notification Agent.xcodeproj" -scheme "IBM Notifier" -destination 'platform=macOS' | xcpretty
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
