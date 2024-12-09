@@ -70,7 +70,8 @@ public final class HelpBuilder {
                                                 "-background_panel".yellow(),
                                                 "-unmovable".yellow(),
                                                 "-timeout".yellow(),
-                                                "-disable_quit".yellow()]
+                                                "-disable_quit".yellow(),
+                                                "-output_file".yellow()]
     static let systemAlertArguments: [String] = ["-type".green(),
                                                  "-title".yellow(),
                                                  "-subtitle".yellow(),
@@ -162,7 +163,8 @@ public final class HelpBuilder {
                                                    "[ opaque | translucent ]".red() + "\n      The style for the background panel that will cover all the screens.\n      Example: -background_panel opaque",
                                                    "\n      Flag that make the UI unmovable for the user.\n      Example: -unmovable",
                                                    "\n      The timeout for the onboarding. After this amount of seconds the agent exit with the timeout exit code.\n      Example: -timeout 300",
-                                                   "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit"]
+                                                   "\n      Flag that tells the agent to ignore cmd+q shortcut.\n      Example: -disable_quit",
+                                                   "[ filename.plist ]".red() + "\n      Flag that tells the agent the filename used to store onboarding output.\n      Example: -output_file custom.plist"]
     static let systemAlertDescriptions: [String] = ["[ systemAlert ]".red() + "\n      The UI type of the notification.\n      Example: -type systemAlert",
                                                     "\n      The title of the notification.\n      Example: -title \"Title\"",
                                                     "\n      The subtitle of the notification.\n      Example: -subtitle \"Subtitle\"",

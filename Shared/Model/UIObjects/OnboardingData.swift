@@ -16,12 +16,14 @@ public final class OnboardingData: Codable {
     /// An array of pages.
     var pages: [InteractiveOnboardingPage]
     var progressBarPayload: String?
+    var outputFile: String!
     
     // MARK: - Codable protocol conformity - START
 
     enum ODCodingKeys: String, CodingKey {
         case pages
         case progressBarPayload
+        case outputFile
     }
 
     required public init(from decoder: Decoder) throws {
@@ -34,12 +36,16 @@ public final class OnboardingData: Codable {
         if let payload = try? container.decodeIfPresent(String.self, forKey: .progressBarPayload) {
             self.progressBarPayload = payload
         }
+        if let outputFile = try? container.decodeIfPresent(String.self, forKey: .outputFile) {
+            self.outputFile = outputFile
+        }
     }
 
     public  func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ODCodingKeys.self)
         
         try container.encodeIfPresent(progressBarPayload, forKey: .progressBarPayload)
+        try container.encodeIfPresent(outputFile, forKey: .outputFile)
         try container.encode(pages, forKey: .pages)
     }
 
