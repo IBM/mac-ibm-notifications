@@ -145,6 +145,7 @@ public final class NotificationObject: NSObject, Codable, NSSecureCoding {
             switch type {
             case .onboarding:
                 self.payload = try Self.loadOnboardingPayload(payloadRawData)
+                self.payload?.outputFile = dict["output_file"] as? String ?? Constants.storeFileName
             default:
                 break
             }
