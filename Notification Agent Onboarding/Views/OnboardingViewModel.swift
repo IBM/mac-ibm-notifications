@@ -198,7 +198,7 @@ class OnboardingViewModel: NSObject, ObservableObject {
             plistDictionary[index.description] = pageDictionary
         }
         let dictionaryResult = NSDictionary(dictionary: plistDictionary)
-        Utils.write(dictionaryResult, to: Constants.storeFileName)
+        Utils.write(dictionaryResult, to: onboardingData.outputFile!)
     }
     
     /// Update the state of the progress bar if it's set to automatic.
