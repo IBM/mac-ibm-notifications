@@ -219,7 +219,7 @@ class PopUpViewModel: ObservableObject {
             case .hidden:
                 localPrimaryButtonState = .hidden
             case .cancel:
-                break
+                localPrimaryButtonState = .cancel
             }
             switch acv.source.secondaryButtonState {
             case .enabled:
