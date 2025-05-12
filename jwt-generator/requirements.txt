@@ -1,4 +1,4 @@
-astroid==2.15.8
+astroid==3.3.10
 attrs==21.4.0
 cffi==1.17.1
 cryptography==44.0.3
