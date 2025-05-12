@@ -1,5 +1,5 @@
 astroid==3.3.10
-attrs==21.4.0
+attrs==25.3.0
 cffi==1.17.1
 cryptography==44.0.3
 iniconfig==1.1.1
