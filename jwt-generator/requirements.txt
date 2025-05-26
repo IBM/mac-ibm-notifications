@@ -7,7 +7,7 @@ isort==6.0.1
 lazy-object-proxy==1.11.0
 mccabe==0.7.0
 packaging==25.0
-pluggy==1.5.0
+pluggy==1.6.0
 py==1.11.0
 pycparser==2.22
 PyJWT==2.10.1
