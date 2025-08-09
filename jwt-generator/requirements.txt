@@ -11,7 +11,7 @@ pluggy==1.6.0
 py==1.11.0
 pycparser==2.22
 PyJWT==2.10.1
-pylint==3.3.7
+pylint==3.3.8
 pyparsing==3.2.3
 pytest==8.4.1
 six==1.17.0
