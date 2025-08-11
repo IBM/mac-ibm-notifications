@@ -1,7 +1,7 @@
 astroid==3.3.11
 attrs==25.3.0
 cffi==1.17.1
-cryptography==45.0.5
+cryptography==45.0.6
 iniconfig==2.1.0
 isort==6.0.1
 lazy-object-proxy==1.11.0
