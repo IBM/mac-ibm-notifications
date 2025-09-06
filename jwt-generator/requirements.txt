@@ -13,7 +13,7 @@ pycparser==2.22
 PyJWT==2.10.1
 pylint==3.3.8
 pyparsing==3.2.3
-pytest==8.4.1
+pytest==8.4.2
 six==1.17.0
 toml==0.10.2
 wrapt==1.17.3
