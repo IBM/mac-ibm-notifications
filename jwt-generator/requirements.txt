@@ -1,6 +1,6 @@
 astroid==3.3.11
 attrs==25.3.0
-cffi==1.17.1
+cffi==2.0.0
 cryptography==45.0.7
 iniconfig==2.1.0
 isort==6.0.1
