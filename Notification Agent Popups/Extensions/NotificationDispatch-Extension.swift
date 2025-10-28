@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 5/27/21.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -37,7 +37,6 @@ extension NotificationDispatch {
                 } else {
                     mainWindow.title = object.barTitle ?? ConfigurableParameters.defaultPopupBarTitle
                 }
-                mainWindow.setWindowPosition(object.position ?? .center)
                 mainWindow.styleMask.remove(.resizable)
                 mainWindow.styleMask.remove(.closable)
                 mainWindow.canBecomeVisibleWithoutLogin = true
@@ -61,6 +60,20 @@ extension NotificationDispatch {
                     mainWindow.styleMask.remove(.miniaturizable)
                 }
                 
+                hostingView.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    hostingView.leadingAnchor.constraint(equalTo: mainWindow.contentView!.leadingAnchor),
+                    hostingView.trailingAnchor.constraint(equalTo: mainWindow.contentView!.trailingAnchor),
+                    hostingView.topAnchor.constraint(equalTo: mainWindow.contentView!.topAnchor),
+                    hostingView.bottomAnchor.constraint(equalTo: mainWindow.contentView!.bottomAnchor)
+                ])
+                let fitting = hostingView.fittingSize
+                NSLayoutConstraint.activate([
+                    mainWindow.contentView!.heightAnchor.constraint(greaterThanOrEqualToConstant: max(130, fitting.height)),
+                    mainWindow.contentView!.widthAnchor.constraint(equalToConstant: windowWidth)
+                ])
+                
+                mainWindow.setWindowPosition(object.position ?? .center)
                 mainWindow.makeKeyAndOrderFront(self)
                 
                 guard object.silent == false else { return }

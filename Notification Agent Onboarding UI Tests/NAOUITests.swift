@@ -3,7 +3,7 @@
 //  Notification Agent Onboarding UI Tests
 //
 //  Created by Simone Martorelli on 08/06/22.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 

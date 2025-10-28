@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Jan Valentik on 18/06/2021.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 

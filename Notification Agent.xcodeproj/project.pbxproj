@@ -201,6 +201,16 @@
 		1BFAB6062AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
 		1BFAB6072AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
 		1BFAB6082AA85ABD009307C6 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */; };
+		539AED912EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED922EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED932EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED942EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED952EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED962EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED972EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED982EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED992EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
+		539AED9A2EB0BCE600255370 /* NSWindow-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */; };
 		B9013A8D24F80C0F009A4554 /* HelpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */; };
 		B9064C0D276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
 		B9064C0E276BAF240085FA31 /* PopupReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9064C0C276BAF240085FA31 /* PopupReminder.swift */; };
@@ -810,6 +820,7 @@
 		1B5AFBCF2A52FC9800F777E1 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		1BFAB5FF2A9F281C009307C6 /* ATTRIBUTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ATTRIBUTIONS.md; sourceTree = "<group>"; };
 		1BFAB6042AA85ABD009307C6 /* SlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowView.swift; sourceTree = "<group>"; };
+		539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow-Extension.swift"; sourceTree = "<group>"; };
 		B9013A8A24F7E5E5009A4554 /* NALogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NALogger.swift; sourceTree = "<group>"; };
 		B9013A8C24F80C0F009A4554 /* HelpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBuilder.swift; sourceTree = "<group>"; };
 		B9064C0C276BAF240085FA31 /* PopupReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupReminder.swift; sourceTree = "<group>"; };
@@ -1363,6 +1374,7 @@
 				B9524D2D24E15B1F007662C8 /* String-Extension.swift */,
 				1B0FFD3D2B20788E00E69392 /* Data-Extension.swift */,
 				B985DAC9263854EA004F3470 /* NSScreen-Extension.swift */,
+				539AED902EB0BCDC00255370 /* NSWindow-Extension.swift */,
 				B9524D3724E17E7F007662C8 /* Int-Extension.swift */,
 				B94389F1262889FB008E314A /* NSColor-Extension.swift */,
 				1B5AFB922A52EF9500F777E1 /* View-Extension.swift */,
@@ -1988,6 +2000,7 @@
 			files = (
 				B9360EC7268A0B2B00217247 /* NotificationDispatch.swift in Sources */,
 				B920D4DC265F90D800437BE6 /* ConfigurableParameters.swift in Sources */,
+				539AED922EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				B920D4DA265F90D800437BE6 /* ProgressState.swift in Sources */,
 				B920D4D2265F90D200437BE6 /* NALogger.swift in Sources */,
 				B920D4DB265F90D800437BE6 /* OnboardingData.swift in Sources */,
@@ -2059,6 +2072,7 @@
 				B961A539267A4DD600657930 /* Decodable-Extensions.swift in Sources */,
 				1B5AFB3A2A52EE3C00F777E1 /* AccessoryView.swift in Sources */,
 				B94BDAD72684C1BB00663D21 /* Token.swift in Sources */,
+				539AED912EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				1B5AFB8A2A52EEDF00F777E1 /* InfoSectionView.swift in Sources */,
 				1B5AFB862A52EEDF00F777E1 /* Icon.swift in Sources */,
 				B961A4FD267A48B100657930 /* AppDelegate.swift in Sources */,
@@ -2145,6 +2159,7 @@
 				B961A55C267A4F2700657930 /* NotificationDispatch-Extension.swift in Sources */,
 				1B5AFB8B2A52EEDF00F777E1 /* InfoSectionView.swift in Sources */,
 				1B5AFB872A52EEDF00F777E1 /* Icon.swift in Sources */,
+				539AED942EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				B9C7118D2681DC2800A3E898 /* SharedSettings.swift in Sources */,
 				1B5AFBC72A52FC5C00F777E1 /* OnboardingView.swift in Sources */,
 				1B5AFB432A52EE3C00F777E1 /* HTMLView.swift in Sources */,
@@ -2211,6 +2226,7 @@
 			files = (
 				B9360EC8268A0B2B00217247 /* NotificationDispatch.swift in Sources */,
 				B961A4AC2673676000657930 /* ConfigurableParameters.swift in Sources */,
+				539AED972EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				B961A4B62673677C00657930 /* NSScreen-Extension.swift in Sources */,
 				B961A4A42673676000657930 /* NAError.swift in Sources */,
 				B961A4A62673676000657930 /* NotificationAccessoryElement.swift in Sources */,
@@ -2292,6 +2308,7 @@
 				B9710AB624A0F184000B5A67 /* DeepLinkEngine.swift in Sources */,
 				1B5AFBB52A52F03F00F777E1 /* ActionTrampoline.swift in Sources */,
 				B9D58831250A1410009F93C0 /* ConfigurableParameters.swift in Sources */,
+				539AED962EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				B961A625267C7DFE00657930 /* InteractiveEFCLContoller.swift in Sources */,
 				B9C711822681DBC200A3E898 /* TaskObject.swift in Sources */,
 				1B5AFBA92A52EFE600F777E1 /* Binding-Extension.swift in Sources */,
@@ -2323,6 +2340,7 @@
 				FDFCA55F2857CED7009C1880 /* UserReplyType.swift in Sources */,
 				FDFCA55C2857CED7009C1880 /* NotificationButton.swift in Sources */,
 				FDFCA5522857CED7009C1880 /* LoadableNib.swift in Sources */,
+				539AED9A2EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				FDFCA54F2857CED7009C1880 /* PopupReminder.swift in Sources */,
 				FDFCA5662857CEF3009C1880 /* Int-Extension.swift in Sources */,
 				1B5AFAF22A52BCE700F777E1 /* ControlActionClosureProtocol.swift in Sources */,
@@ -2374,6 +2392,7 @@
 				FD17301B2875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				FDC346D02858C458001F2212 /* InfoSection.swift in Sources */,
 				FDC347182858C494001F2212 /* NSScreen-Extension.swift in Sources */,
+				539AED992EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				FDC3471A2858C494001F2212 /* Int-Extension.swift in Sources */,
 				FDC346CE2858C458001F2212 /* TaskObject.swift in Sources */,
 				FDC346CB2858C458001F2212 /* SharedSettings.swift in Sources */,
@@ -2426,6 +2445,7 @@
 				FD17301C2875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				FDC346D92858C458001F2212 /* InfoSection.swift in Sources */,
 				FDC3471F2858C494001F2212 /* NSScreen-Extension.swift in Sources */,
+				539AED932EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				FDC347212858C494001F2212 /* Int-Extension.swift in Sources */,
 				FDC346D72858C458001F2212 /* TaskObject.swift in Sources */,
 				FDC346D42858C458001F2212 /* SharedSettings.swift in Sources */,
@@ -2510,6 +2530,7 @@
 				FDC346DE2858C459001F2212 /* LoadableNib.swift in Sources */,
 				1B5AFB542A52EE3C00F777E1 /* MediaView.swift in Sources */,
 				1B5AFB342A52EE3C00F777E1 /* MarkdownTextView.swift in Sources */,
+				539AED982EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				FDC346A32858C425001F2212 /* Context.swift in Sources */,
 				FDC347332858C49C001F2212 /* Utils.swift in Sources */,
 				FDC346B92858C440001F2212 /* ProgressState.swift in Sources */,
@@ -2605,6 +2626,7 @@
 				FD17301E2875B9A000781A69 /* InteractiveObjectProtocol.swift in Sources */,
 				FDC346A42858C426001F2212 /* Context.swift in Sources */,
 				1B5AFB552A52EE3C00F777E1 /* MediaView.swift in Sources */,
+				539AED952EB0BCE600255370 /* NSWindow-Extension.swift in Sources */,
 				1B5AFB352A52EE3C00F777E1 /* MarkdownTextView.swift in Sources */,
 				1B5AFB102A52EDB300F777E1 /* PickerItem.swift in Sources */,
 				FD8A353F2863582700DA72CC /* EFCLController-Extension.swift in Sources */,
@@ -2779,7 +2801,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2789,7 +2811,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2809,7 +2831,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2819,7 +2841,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.alert;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2839,7 +2861,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2849,7 +2871,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2869,7 +2891,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2879,7 +2901,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.popup;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2899,7 +2921,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2909,7 +2931,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2928,7 +2950,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2938,7 +2960,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.onboarding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2957,7 +2979,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2967,7 +2989,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2987,7 +3009,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2997,7 +3019,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier.banner;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3043,7 +3065,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 128;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3065,7 +3086,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3110,7 +3131,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 128;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3126,7 +3146,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -3144,7 +3164,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3155,7 +3175,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3174,7 +3194,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 135;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3185,7 +3205,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = 3.2.3;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cio.notifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3201,12 +3221,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Core-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3222,13 +3243,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Core-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3244,13 +3265,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Alert-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3266,13 +3287,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Alert-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3288,13 +3309,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Banner-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3310,13 +3331,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Banner-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3332,13 +3353,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Popup-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3354,13 +3375,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Popup-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3375,13 +3396,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Popup-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3396,13 +3417,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Popup-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3418,13 +3439,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Onboarding-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3440,13 +3461,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Onboarding-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3461,12 +3482,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Onboarding-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -3480,12 +3501,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = "";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 3.2.2;
+				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm.cio.be.Notification-Agent-Onboarding-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
