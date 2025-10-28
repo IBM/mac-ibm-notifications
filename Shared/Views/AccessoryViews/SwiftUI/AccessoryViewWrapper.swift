@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 09/02/23.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -18,11 +18,11 @@ struct AccessoryViewWrapper: View {
     
     @EnvironmentObject var viewSpec: ViewSpec
     
-        // MARK: - Variables
+    // MARK: - Variables
     
     var source: AccessoryViewSource
     var contentMode: ContentMode = .fill
-
+    
     // MARK: - Views
     
     var body: some View {

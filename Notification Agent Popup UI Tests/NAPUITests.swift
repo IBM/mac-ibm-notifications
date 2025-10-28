@@ -3,11 +3,25 @@
 //  Notification Agent Popup UI Tests
 //
 //  Created by Simone Martorelli on 02/06/22.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 
 import XCTest
+
+extension XCTestCase {
+    /// Non-blocking wait helper for UI tests to avoid direct `sleep` on the main thread.
+    func waitForSeconds(_ seconds: TimeInterval, file: StaticString = #filePath, line: UInt = #line) {
+        let expectation = self.expectation(description: "Wait for \(seconds) seconds")
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            expectation.fulfill()
+        }
+        let result = XCTWaiter.wait(for: [expectation], timeout: seconds + 1)
+        if result != .completed {
+            XCTFail("Wait did not complete in time", file: file, line: line)
+        }
+    }
+}
 
 // swiftlint:disable type_body_length file_length
 class NAPUITests: XCTestCase {
@@ -76,6 +90,7 @@ class NAPUITests: XCTestCase {
             app.launch()
             XCTAssert(app.buttons["main_button"].exists)
             XCTAssertEqual(app.buttons["main_button"].title, "OK")
+            XCTAssert(app.buttons["main_button"].isHittable)
             XCTAssert(app.staticTexts["popup_title"].exists)
             XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
             XCTAssert(app.staticTexts["popup_subtitle"].exists)
@@ -549,12 +564,12 @@ class NAPUITests: XCTestCase {
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "First")
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "Second")
             app.terminate()
         } else {
@@ -588,13 +603,13 @@ class NAPUITests: XCTestCase {
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "First")
             XCTAssert(app.buttons["main_button"].isEnabled)
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Pick something"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Pick something"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "Pick something")
             XCTAssertFalse(app.buttons["main_button"].isEnabled)
             app.terminate()
@@ -629,12 +644,12 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.checkBoxes["picker_accessory_view_checkboxes_First"].exists)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].label, "First")
             app.checkBoxes["picker_accessory_view_checkboxes_First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].value as? Bool, true)
             XCTAssert(app.checkBoxes["picker_accessory_view_checkboxes_Second"].exists)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_Second"].label, "Second")
             app.checkBoxes["picker_accessory_view_checkboxes_Second"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_Second"].value as? Bool, true)
             app.terminate()
         } else {
@@ -666,11 +681,11 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.checkBoxes["picker_accessory_view_checkboxes_First"].exists)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].label, "First")
             app.checkBoxes["picker_accessory_view_checkboxes_First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].value as? Bool, true)
             XCTAssert(app.buttons["main_button"].isEnabled)
             app.checkBoxes["picker_accessory_view_checkboxes_First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].value as? Bool, false)
             XCTAssertFalse(app.buttons["main_button"].isEnabled)
             app.terminate()
@@ -703,17 +718,17 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.checkBoxes["picker_accessory_view_checkboxes_First"].exists)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].label, "First")
             app.checkBoxes["picker_accessory_view_checkboxes_First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertFalse(app.buttons["main_button"].isEnabled)
             app.checkBoxes["picker_accessory_view_checkboxes_Second"].click()
             app.checkBoxes["picker_accessory_view_checkboxes_Third"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_First"].value as? Bool, true)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_Second"].value as? Bool, true)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_Third"].value as? Bool, true)
             XCTAssert(app.buttons["main_button"].isEnabled)
             app.checkBoxes["picker_accessory_view_checkboxes_First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertFalse(app.buttons["main_button"].isEnabled)
             app.terminate()
         } else {
@@ -745,10 +760,10 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.checkBoxes["picker_accessory_view_checkboxes_Second"].exists)
             XCTAssertEqual(app.checkBoxes["picker_accessory_view_checkboxes_Second"].label, "Second")
             app.checkBoxes["picker_accessory_view_checkboxes_Second"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertFalse(app.buttons["main_button"].isEnabled)
             app.checkBoxes["picker_accessory_view_checkboxes_Second"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssert(app.buttons["main_button"].isEnabled)
             app.terminate()
         } else {
@@ -782,7 +797,7 @@ class NAPUITests: XCTestCase {
             XCTAssert(app.radioGroups["picker_accessory_view_radio_buttons"].exists)
             XCTAssert(app.radioGroups["picker_accessory_view_radio_buttons"].radioButtons["First"].exists)
             app.radioGroups["picker_accessory_view_radio_buttons"].radioButtons["First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssert(app.radioGroups["picker_accessory_view_radio_buttons"].radioButtons["First"].isSelected)
             XCTAssert(app.buttons["main_button"].isEnabled)
             app.terminate()
@@ -1198,12 +1213,12 @@ class NAPUITests: XCTestCase {
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["First"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "First")
             app.popUpButtons["picker_accessory_view_dropdown"].click()
             XCTAssert(app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].exists)
             app.popUpButtons["picker_accessory_view_dropdown"].menuItems["Second"].click()
-            sleep(1)
+            waitForSeconds(1)
             XCTAssertEqual(app.popUpButtons["picker_accessory_view_dropdown"].value as? String, "Second")
             XCTAssert(app.staticTexts["datepicker_accessory_view_title"].exists)
             XCTAssertEqual(app.staticTexts["datepicker_accessory_view_title"].value as? String ?? "", "Some title")
@@ -1214,6 +1229,105 @@ class NAPUITests: XCTestCase {
             XCTAssertEqual(app.textViews["markdown_accessory_view"].value as? String ?? "", "Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view Some text in the whitebox accessory view")
             XCTAssert(app.images["image_accessory_view"].exists)
             XCTAssert(app.staticTexts["picker_accessory_view_title"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Icon: Circle SFSymbol
+    /// AccessoryView: image with a GIF
+    /// Secondary AccessoryView: image
+    /// Position: bottom right
+    func testE2Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"position":"bottom_right","showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["main_button"].isHittable)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssert(app.images["image_accessory_view"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Icon: Circle SFSymbol
+    /// AccessoryView: image with a GIF
+    /// Secondary AccessoryView: image
+    /// Position: top right
+    func testE3Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"position":"top_right","showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["main_button"].isHittable)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssert(app.images["image_accessory_view"].exists)
+            app.terminate()
+        } else {
+            XCTAssert(false, "Failed to encode the usecase.")
+        }
+    }
+    
+    /// Testing Pop-up with:
+    /// Title: This is a title
+    /// Subtitle: This is a subtitle
+    /// Main Button: Primary
+    /// Secondary Button: Secondary
+    /// Icon: Circle SFSymbol
+    /// AccessoryView: image with a GIF
+    /// Secondary AccessoryView: image
+    /// Position: bottom left
+    func testE4Popup() throws {
+        let useCase = """
+        {"notification":{"topicID":"untracked","mainButton":{"label":"Primary","callToActionType":"none","callToActionPayload":""},"secondaryButton":{"label":"Secondary","callToActionType":"none","callToActionPayload":""},"iconPath":"circle","hideTitleBarButtons":false,"retainValues":false,"alwaysOnTop":false,"type":"popup","title":"This is a title","subtitle":"This is a subtitle","silent":false,"position":"bottom_left","showSuppressionButton":false,"miniaturizable":false,"barTitle":"Some","forceLightMode":false,"notificationID":"untracked","isMovable":true,"disableQuit":false,"buttonless":false,"hideTitleBar":false, "accessoryViews":[{"type":"image","payload":"https://compote.slate.com/images/697b023b-64a5-49a0-8059-27b963453fb1.gif?crop=780%2C520%2Cx0%2Cy0&width=2200"},{"type":"image","payload":"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}]},"settings":{"isVerboseModeEnabled":false,"environment":"prod"}}
+        """ // pragma: allowlist-secret
+        if let useCaseData = useCase.data(using: .utf8) {
+            let app = XCUIApplication()
+            app.launchArguments = [useCaseData.base64EncodedString()]
+            app.launch()
+            XCTAssert(app.buttons["main_button"].exists)
+            XCTAssertEqual(app.buttons["main_button"].title, "Primary")
+            XCTAssert(app.buttons["main_button"].isHittable)
+            XCTAssert(app.buttons["secondary_button"].exists)
+            XCTAssertEqual(app.buttons["secondary_button"].label, "Secondary")
+            XCTAssert(app.staticTexts["popup_title"].exists)
+            XCTAssertEqual(app.staticTexts["popup_title"].value as? String ?? "", "This is a title")
+            XCTAssert(app.staticTexts["popup_subtitle"].exists)
+            XCTAssertEqual(app.staticTexts["popup_subtitle"].value as? String ?? "", "This is a subtitle")
+            XCTAssert(app.images["image_accessory_view"].exists)
             app.terminate()
         } else {
             XCTAssert(false, "Failed to encode the usecase.")

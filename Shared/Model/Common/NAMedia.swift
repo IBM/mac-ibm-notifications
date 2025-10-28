@@ -3,7 +3,7 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 01/03/2021.
-//  © Copyright IBM Corp. 2021, 2024
+//  © Copyright IBM Corp. 2021, 2025
 //  SPDX-License-Identifier: Apache2.0
 //
 
@@ -12,17 +12,17 @@ import AVFoundation
 
 /// This class describe a media object used inside the agent.
 public final class NAMedia: Identifiable {
-
+    
     // MARK: - Enums
-
+    
     /// The type of the available media:
     enum MediaType: String, Codable {
         case image
         case video
     }
-
+    
     // MARK: - Variables
-
+    
     public var id: UUID
     /// The type of the media.
     var mediaType: MediaType
@@ -42,9 +42,9 @@ public final class NAMedia: Identifiable {
     private(set) var isGIF: Bool = false
     
     // MARK: - Initializers
-
+    
     //  swiftlint:disable function_body_length
-
+    
     init?(type: MediaType, from string: String) {
         self.id = UUID()
         self.mediaType = type
@@ -57,8 +57,11 @@ public final class NAMedia: Identifiable {
                 let image = NSImage(data: data)
                 self.image = image
             } else if string.isValidURL,
-                      let url = URL(string: string),
-                      let data = try? Data(contentsOf: url) {
+                      let url = URL(string: string) {
+                guard let data = loadDataSynchronously(from: url) else {
+                    NALogger.shared.log("Unable to load image from %{public}@", [string])
+                    return nil
+                }
                 self.isGIF = data.isGIF
                 let image = NSImage(data: data)
                 self.image = image
@@ -144,9 +147,9 @@ public final class NAMedia: Identifiable {
             }
         }
     }
-
+    
     //  swiftlint:enable function_body_length
-
+    
     convenience init?(type: String, from string: String) {
         if let mediaType = MediaType(rawValue: type) {
             self.init(type: mediaType, from: string)
@@ -177,11 +180,52 @@ public final class NAMedia: Identifiable {
     // MARK: - Private Methods
     
     /// Get the resolution of the video.
-    /// - Parameter url: url of the video.
+    /// - Parameters:
+    ///   - url: url of the video.
     /// - Returns: the resolution of the video.
     private func resolutionForVideo(at url: URL) -> CGSize? {
         guard let track = AVURLAsset(url: url).tracks(withMediaType: AVMediaType.video).first else { return nil }
         let size = track.naturalSize.applying(track.preferredTransform)
         return CGSize(width: abs(size.width), height: abs(size.height))
+    }
+    
+    /// Synchronously loads data from the specified URL using `URLSession`.
+    ///
+    /// This method starts an asynchronous `URLSessionDataTask` to fetch data from the given URL,
+    /// then blocks the current thread using a semaphore until the task completes or the specified
+    /// timeout elapses. If the operation times out, the task is cancelled and `nil` is returned.
+    /// Any networking error encountered is logged via `NALogger`.
+    ///
+    /// - Note: Because this method blocks the calling thread until completion or timeout, avoid
+    ///   calling it from the main thread to prevent UI freezes. Prefer calling it from a background
+    ///   queue or consider providing an asynchronous variant if used in performance-sensitive paths.
+    ///
+    /// - Parameters:
+    ///   - url: The remote URL from which to load the data.
+    ///   - timeout: The maximum amount of time, in seconds, to wait for the request to complete.
+    ///              Defaults to 10 seconds.
+    /// - Returns: The downloaded `Data` if the request succeeds within the timeout window; otherwise `nil`.
+    func loadDataSynchronously(from url: URL, timeout: TimeInterval = 10) -> Data? {
+        var resultData: Data?
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                NALogger.shared.log("Unable to load image from %{public}@, error: %{public}@", [url.absoluteString, error.localizedDescription])
+            } else {
+                resultData = data
+            }
+            semaphore.signal()
+        }
+        task.resume()
+        
+        // Wait with timeout to avoid indefinite blocking
+        let timeoutResult = semaphore.wait(timeout: .now() + timeout)
+        if timeoutResult == .timedOut {
+            NALogger.shared.log("Timed out loading image from %{public}@", [url.absoluteString])
+            task.cancel()
+            return nil
+        }
+        return resultData
     }
 }
