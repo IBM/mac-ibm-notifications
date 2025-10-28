@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-Apache%202-1984E5)
 
 ![Swift version](https://img.shields.io/badge/swift-5.9.0-1984E5?logo=swift)
-![Project version](https://img.shields.io/badge/version-3.2.1-1984E5)
+![Project version](https://img.shields.io/badge/version-3.2.3-1984E5)
 ![macOS](https://img.shields.io/badge/macOS-11+-bright%20green)
 
 [![CI](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/IBM/mac-ibm-notifications/actions/workflows/main.yml)
@@ -17,6 +17,7 @@
 ## Scope
 
 The purpose of this project is to provide an useful tool to system administrators to trigger interactive popups and notification banners to the end user.
+<img alt="Cover Image" src="https://github.com/IBM/mac-ibm-notifications/blob/main/images/Home/cover.png" width="1000">
 
 ## Usage
 
