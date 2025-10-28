@@ -69,7 +69,7 @@ extension NotificationDispatch {
                 ])
                 let fitting = hostingView.fittingSize
                 NSLayoutConstraint.activate([
-                    mainWindow.contentView!.heightAnchor.constraint(equalToConstant: max(130, fitting.height)),
+                    mainWindow.contentView!.heightAnchor.constraint(greaterThanOrEqualToConstant: max(130, fitting.height)),
                     mainWindow.contentView!.widthAnchor.constraint(equalToConstant: windowWidth)
                 ])
                 
