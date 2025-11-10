@@ -16,4 +16,4 @@ pyparsing==3.2.5
 pytest==8.4.2
 six==1.17.0
 toml==0.10.2
-wrapt==2.0.0
+wrapt==2.0.1
