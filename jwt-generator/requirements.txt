@@ -9,7 +9,7 @@ mccabe==0.7.0
 packaging==25.0
 pluggy==1.6.0
 py==1.11.0
-pycparser==2.23
+pycparser==3.0
 PyJWT==2.10.1
 pylint==4.0.4
 pyparsing==3.3.2
