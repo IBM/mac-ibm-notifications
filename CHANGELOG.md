@@ -1,3 +1,9 @@
+# [3.2.4 - 136] - Unreleased
+
+## General Updates
+### Bug Fixes
+- Resolved an issue that could cause the desired UI not to appear if IBM Notifier is invoked after first login of the user. #302
+
 # [3.2.3 - 135] - 2025-10-28
 
 ## General Updates
