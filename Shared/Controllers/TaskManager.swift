@@ -7,10 +7,16 @@
 //  SPDX-License-Identifier: Apache2.0
 //
 
+import Darwin
 import Foundation
 import SystemConfiguration
 
-final class TaskManager {        
+final class TaskManager {
+    private struct ConsoleUser {
+        let name: String
+        let uid: uid_t
+    }
+    
     func runSyncTaskOnComponent(_ component: AppComponent, with jsonObject: Data, completion: (Int32) -> Void) -> Int32 {
         let task = buildTask(for: component, with: jsonObject)
         task.launch()
@@ -52,14 +58,14 @@ final class TaskManager {
         let errorPipe = Pipe()
         task.standardOutput = outputPipe
         task.standardError = errorPipe
-        if let loggedInUser = loggedUser() {
-            let suArgsString = "'" + component.getRelativeComponentPath() + "'" + " " + jsonObject.base64EncodedString()
-            var suArgsArray: [String] = [suArgsString]
-            task.launchPath = "/usr/bin/su"
-            suArgsArray.insert("-c", at: 0)
-            suArgsArray.insert(loggedInUser, at: 0)
-            suArgsArray.insert("-l", at: 0)
-            task.arguments = suArgsArray
+        if let consoleUser = consoleUser(), NSUserName() != consoleUser.name {
+            task.launchPath = "/bin/launchctl"
+            task.arguments = [
+                "asuser",
+                String(consoleUser.uid),
+                component.getRelativeComponentPath(),
+                jsonObject.base64EncodedString()
+            ]
         } else {
             task.launchPath = component.getRelativeComponentPath()
             task.arguments = [jsonObject.base64EncodedString()]
@@ -67,14 +73,13 @@ final class TaskManager {
         return task
     }
     
-    func loggedUser() -> String? {
+    private func consoleUser() -> ConsoleUser? {
         guard let loggedInUser = SCDynamicStoreCopyConsoleUser(nil, nil, nil) as String?,
-              !loggedInUser.isEmpty && loggedInUser != "loginwindow" else { return nil }
-        let userName = NSUserName()
-        if userName != loggedInUser {
-            return loggedInUser
-        } else {
+              !loggedInUser.isEmpty,
+              loggedInUser != "loginwindow",
+              let userRecord = getpwnam(loggedInUser) else {
             return nil
         }
+        return ConsoleUser(name: loggedInUser, uid: userRecord.pointee.pw_uid)
     }
 }
