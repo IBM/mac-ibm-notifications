@@ -373,10 +373,6 @@
 		B961A621267B91BE00657930 /* UserReplyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A619267B913C00657930 /* UserReplyType.swift */; };
 		B961A623267B925800657930 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A1424E25D68D6600E87AD6 /* Token.swift */; };
 		B961A625267C7DFE00657930 /* InteractiveEFCLContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A624267C7DFB00657930 /* InteractiveEFCLContoller.swift */; };
-		B961A627267C80BF00657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		B961A628267C80C000657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		B961A629267C80C000657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		B961A62A267C80C100657930 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
 		B961A62D267C9DC900657930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B961A62B267C9DA200657930 /* Assets.xcassets */; };
 		B9710AB624A0F184000B5A67 /* DeepLinkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */; };
 		B97583C22673643F0038A99F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97583C02673643F0038A99F /* Main.storyboard */; };
@@ -464,10 +460,6 @@
 		FDC346982858C413001F2212 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
 		FDC346992858C414001F2212 /* EFCLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A4D32677AFB000657930 /* EFCLController.swift */; };
 		FDC3469A2858C414001F2212 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC84602639C26B00D2BBA6 /* Environment.swift */; };
-		FDC3469B2858C41B001F2212 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		FDC3469C2858C41B001F2212 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		FDC3469D2858C41B001F2212 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
-		FDC3469E2858C41C001F2212 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A626267C80BA00657930 /* TaskManager.swift */; };
 		FDC3469F2858C421001F2212 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */; };
 		FDC346A02858C421001F2212 /* UserNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */; };
 		FDC346A12858C425001F2212 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BC85FA2626D802000C9DBD /* Context.swift */; };
@@ -872,7 +864,6 @@
 		B961A5B5267B451400657930 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B961A619267B913C00657930 /* UserReplyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReplyType.swift; sourceTree = "<group>"; };
 		B961A624267C7DFB00657930 /* InteractiveEFCLContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveEFCLContoller.swift; sourceTree = "<group>"; };
-		B961A626267C80BA00657930 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		B961A62B267C9DA200657930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B96AE19524F52A2300C99A5E /* ReplyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyHandler.swift; sourceTree = "<group>"; };
 		B9710AB524A0F184000B5A67 /* DeepLinkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkEngine.swift; sourceTree = "<group>"; };
@@ -1287,7 +1278,6 @@
 				1B5AFAF52A52BD2F00F777E1 /* BackPanelController.swift */,
 				B961A4D32677AFB000657930 /* EFCLController.swift */,
 				B9DC84602639C26B00D2BBA6 /* Environment.swift */,
-				B961A626267C80BA00657930 /* TaskManager.swift */,
 				B9C7A9C724D16A690038D4A7 /* UserNotificationController.swift */,
 				B9BC85FA2626D802000C9DBD /* Context.swift */,
 				B96AE19524F52A2300C99A5E /* ReplyHandler.swift */,
@@ -2047,7 +2037,6 @@
 				B9C711832681DBC200A3E898 /* TaskObject.swift in Sources */,
 				B9064C0E276BAF240085FA31 /* PopupReminder.swift in Sources */,
 				B9360EC1268A08FE00217247 /* AppComponent.swift in Sources */,
-				B961A627267C80BF00657930 /* TaskManager.swift in Sources */,
 				B920D4E6265F90E200437BE6 /* InfoSection.swift in Sources */,
 				B920D4EC265F90EB00437BE6 /* Decodable-Extensions.swift in Sources */,
 				B920D4D3265F90D200437BE6 /* UserNotificationController.swift in Sources */,
@@ -2134,7 +2123,6 @@
 				1B5AFB4E2A52EE3C00F777E1 /* AccessoryViewSource.swift in Sources */,
 				1B5AFB5E2A52EE3C00F777E1 /* AccessoryViewWrapper.swift in Sources */,
 				1B5AFB662A52EE3C00F777E1 /* InputView.swift in Sources */,
-				B961A629267C80C000657930 /* TaskManager.swift in Sources */,
 				FD1730072875B0D200781A69 /* PopupInteractiveEFCLController.swift in Sources */,
 				B961A53C267A4DDF00657930 /* Utils.swift in Sources */,
 				1B5AFB0D2A52EDB300F777E1 /* PickerItem.swift in Sources */,
@@ -2172,7 +2160,6 @@
 				B961A5B9267B458C00657930 /* Context.swift in Sources */,
 				1BFAB6062AA85ABD009307C6 /* SlideShowView.swift in Sources */,
 				FD8A35422863582A00DA72CC /* EFCLController-Extension.swift in Sources */,
-				B961A62A267C80C100657930 /* TaskManager.swift in Sources */,
 				1B5AFB3B2A52EE3C00F777E1 /* AccessoryView.swift in Sources */,
 				B961A55C267A4F2700657930 /* NotificationDispatch-Extension.swift in Sources */,
 				1B5AFB8B2A52EEDF00F777E1 /* InfoSectionView.swift in Sources */,
@@ -2273,7 +2260,6 @@
 				B9C711842681DBC200A3E898 /* TaskObject.swift in Sources */,
 				B9360EC2268A08FE00217247 /* AppComponent.swift in Sources */,
 				B9064C0F276BAF240085FA31 /* PopupReminder.swift in Sources */,
-				B961A628267C80C000657930 /* TaskManager.swift in Sources */,
 				B961A4B22673676000657930 /* ProgressState.swift in Sources */,
 				B961A4B42673676000657930 /* NALogger.swift in Sources */,
 				B961A4A72673676000657930 /* NotificationObject.swift in Sources */,
@@ -2432,7 +2418,6 @@
 				FDC346A12858C425001F2212 /* Context.swift in Sources */,
 				FDC346B02858C43F001F2212 /* NotificationAccessoryElement.swift in Sources */,
 				FDC346CC2858C458001F2212 /* LoadableNib.swift in Sources */,
-				FDC3469B2858C41B001F2212 /* TaskManager.swift in Sources */,
 				FDC346AF2858C43F001F2212 /* ProgressState.swift in Sources */,
 				FDC347192858C494001F2212 /* String-Extension.swift in Sources */,
 				FDC346B22858C43F001F2212 /* NotificationObject.swift in Sources */,
@@ -2485,7 +2470,6 @@
 				FDC346A22858C425001F2212 /* Context.swift in Sources */,
 				FDC346B52858C43F001F2212 /* NotificationAccessoryElement.swift in Sources */,
 				FDC346D52858C458001F2212 /* LoadableNib.swift in Sources */,
-				FDC3469C2858C41B001F2212 /* TaskManager.swift in Sources */,
 				FDC346B42858C43F001F2212 /* ProgressState.swift in Sources */,
 				FDC347202858C494001F2212 /* String-Extension.swift in Sources */,
 				FDC346B72858C43F001F2212 /* NotificationObject.swift in Sources */,
@@ -2539,7 +2523,6 @@
 				FDC346972858C413001F2212 /* EFCLController.swift in Sources */,
 				FDC347262858C494001F2212 /* NSScreen-Extension.swift in Sources */,
 				FDC346982858C413001F2212 /* Environment.swift in Sources */,
-				FDC3469D2858C41B001F2212 /* TaskManager.swift in Sources */,
 				FDC347232858C494001F2212 /* UNNotificationAttachment-Extension.swift in Sources */,
 				1B5AFB882A52EEDF00F777E1 /* Icon.swift in Sources */,
 				1B5AFB602A52EE3C00F777E1 /* AccessoryViewWrapper.swift in Sources */,
@@ -2635,7 +2618,6 @@
 				1B5AFB062A52EC4400F777E1 /* SwiftUIButtonState.swift in Sources */,
 				FDC347342858C49C001F2212 /* Utils.swift in Sources */,
 				FDC3469A2858C414001F2212 /* Environment.swift in Sources */,
-				FDC3469E2858C41C001F2212 /* TaskManager.swift in Sources */,
 				FDC346BF2858C440001F2212 /* NotificationAccessoryElement.swift in Sources */,
 				1B5AFB892A52EEDF00F777E1 /* Icon.swift in Sources */,
 				FDC346E72858C459001F2212 /* LoadableNib.swift in Sources */,

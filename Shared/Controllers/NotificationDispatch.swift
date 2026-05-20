@@ -8,8 +8,6 @@
 //
 
 import Foundation
-import Cocoa
-import SystemConfiguration
 
 /// Dispatch to the right controller the received notification object.
 final class NotificationDispatch {
@@ -17,10 +15,6 @@ final class NotificationDispatch {
     // MARK: - Static constants
 
     static let shared = NotificationDispatch()
-    
-    // MARK: - Variables
-    
-    var taskManager = TaskManager()
     
     // MARK: - Methods
 

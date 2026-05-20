@@ -9,7 +9,16 @@
 
 import Foundation
 
+private let coreTaskManager = TaskManager()
+
 extension NotificationDispatch {
+    
+    // MARK: - Variables
+    
+    var taskManager: TaskManager {
+        coreTaskManager
+    }
+    
     /// Handle the received notification and send the notification object to the correct controller.
     /// - Parameter notification: the received notification.
     @objc
