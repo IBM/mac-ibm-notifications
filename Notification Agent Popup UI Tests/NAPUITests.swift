@@ -3,7 +3,7 @@
 //  Notification Agent Popup UI Tests
 //
 //  Created by Simone Martorelli on 02/06/22.
-//  © Copyright IBM Corp. 2021, 2025
+//  © Copyright IBM Corp. 2021, 2026
 //  SPDX-License-Identifier: Apache2.0
 //
 

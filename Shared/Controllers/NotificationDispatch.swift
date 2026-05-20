@@ -3,13 +3,11 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 7/29/20.
-//  © Copyright IBM Corp. 2021, 2025
+//  © Copyright IBM Corp. 2021, 2026
 //  SPDX-License-Identifier: Apache2.0
 //
 
 import Foundation
-import Cocoa
-import SystemConfiguration
 
 /// Dispatch to the right controller the received notification object.
 final class NotificationDispatch {
@@ -17,10 +15,6 @@ final class NotificationDispatch {
     // MARK: - Static constants
 
     static let shared = NotificationDispatch()
-    
-    // MARK: - Variables
-    
-    var taskManager = TaskManager()
     
     // MARK: - Methods
 
