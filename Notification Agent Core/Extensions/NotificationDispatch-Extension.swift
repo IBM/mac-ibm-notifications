@@ -3,13 +3,22 @@
 //  Notification Agent
 //
 //  Created by Simone Martorelli on 28/06/2021.
-//  © Copyright IBM Corp. 2021, 2025
+//  © Copyright IBM Corp. 2021, 2026
 //  SPDX-License-Identifier: Apache2.0
 //
 
 import Foundation
 
+private let coreTaskManager = TaskManager()
+
 extension NotificationDispatch {
+    
+    // MARK: - Variables
+    
+    var taskManager: TaskManager {
+        coreTaskManager
+    }
+    
     /// Handle the received notification and send the notification object to the correct controller.
     /// - Parameter notification: the received notification.
     @objc

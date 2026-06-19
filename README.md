@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-Apache%202-1984E5)
 
 ![Swift version](https://img.shields.io/badge/swift-5.9.0-1984E5?logo=swift)
-![Project version](https://img.shields.io/badge/version-3.2.3-1984E5)
+![Project version](https://img.shields.io/badge/version-3.2.4-1984E5)
 ![macOS](https://img.shields.io/badge/macOS-11+-bright%20green)
 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5823/badge)](https://bestpractices.coreinfrastructure.org/projects/5823)
